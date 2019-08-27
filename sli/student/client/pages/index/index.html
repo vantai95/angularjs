@@ -1,0 +1,285 @@
+
+<div class="app-content-body" ng-controller="StudentController"
+	ng-init="init()">
+	<div class="wrapper-md clearfix widthfix-lg m-auto">
+		<div class="no-padder col-sm-9 col-xs-12 pull-right pc-r">
+			<p class="tt pc-big">
+				진행중인 강의 <span class="pull-right hidden-xs hidden-sm text-md gray padder m-t-sm" ui-sref="app.mylecture.index">전체보기 ></span>
+			</p>
+			<!-- carousel -->
+			<!-- carousel -->
+			<div ng-repeat="items in my_lecture_list track by $index">
+				<div class="no-padder col-xs-12 col-sm-6 hidden-md hidden-lg">
+					<div ng-controller="CarouselDemoCtrl" class="panel b-a m-b-none"
+						set-ng-animate="false">
+						<carousel interval="myInterval"> 
+						<slide> <!---강의 panel--->
+						<div class="panel panel-default no-shadow m-b-none">
+							<div class="panel-heading rightAR text-left"
+								ui-sref="app.mylecture.lecture({ltCd:items.ltCd})">{{items.lectureNm}}</div>
+							<div class="panel-body">
+								<div class=" b-n">
+									<table class="table mini-table m-b-none">
+										<tbody>
+											<tr>
+												<td class="w-sm2">강의코드</td>
+												<td>{{items.ltCd}}</td>
+											</tr>
+											<tr>
+												<td>고객사명</td>
+												<td>{{items.compNm}}</td>
+											</tr>
+											<tr>
+												<td>강의일시</td>
+												<td>{{items.nextClass}}</td>
+											</tr>
+											<tr>
+												<td>강의장소</td>
+												<td>{{items.lecturePlaceNm}}</td>
+											</tr>
+											<tr>
+												<td>
+												</td>
+												<td>
+													{{items.postNo}} {{items.addr}} {{items.dtlAddr}} <br>
+													<span class="m-l-xs" ng-click="showMap(items)"><img width="62"	src="./assets/img/map_ico.jpg"></span>
+												</td>
+											</tr>
+											<tr>
+												<td colspan="2">
+													<div class="col-sm-8" id="map_{{items.ltCd}}" style="width:100%; height:200px;margin-top:10px;display:none"></div>
+												</td>
+											</tr>
+											<tr>
+												<td>수강인원</td>
+												<td>{{items.studentCnt}}명</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<div class="wrapper-xs bg-black m-t-sm">
+									<table class="table mini-table m-b-none">
+										<tbody>
+											<tr>
+												<td>강의기간</td>
+												<td>{{items.startDt}} ~ {{items.endDt}}</td>
+											</tr>
+											<tr>
+												<td>강의시간</td>
+												<td>{{items.lectureTime}}</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+						<!---강의 panel end---> 
+						</slide> 
+						</carousel>
+					</div>
+				</div>
+			</div>
+			
+			<div ng-repeat="items in my_lecture_list track by $index">
+				<!-- carousel -->
+
+				<div class="no-padder col-sm-6 hidden-xs hidden-sm">
+					<div class="wrapper-xs">
+						<div ng-controller="CarouselDemoCtrl" class="panel b-a m-b-none"
+							set-ng-animate="false" ng-show="$index %2 == 0">
+							<carousel interval="myInterval"> <slide> <!---강의 panel--->
+							<div class="panel panel-default no-shadow m-b-none">
+								<div class="panel-heading rightAR text-left"
+									ui-sref="app.mylecture.lecture({ltCd: items.ltCd})">{{items.lectureNm}}</div>
+								<div class="panel-body">
+									<div class=" b-n">
+										<table class="table mini-table m-b-none">
+											<tbody>
+												<tr>
+													<td class="w-sm2">강의코드</td>
+													<td>{{items.ltCd}}</td>
+												</tr>
+												<tr>
+													<td>고객사명</td>
+													<td>{{items.compNm}}</td>
+												</tr>
+												<tr>
+													<td>강의일시</td>
+													<td>{{items.nextClass}}</td>
+												</tr>
+												<tr>
+													<td>강의장소</td>
+													<td>{{items.lecturePlaceNm}}</td>
+												</tr>
+												<tr>
+													<td>
+													</td>
+													<td>
+														{{items.postNo}} {{items.addr}} {{items.dtlAddr}} <br>
+														<span class="m-l-xs" ng-click="showMap(items)"><img width="62"	src="./assets/img/map_ico.jpg"></span>
+													</td>
+												</tr>
+												<tr>
+													<td colspan="2">
+														<div class="col-sm-8" id="map_{{items.ltCd}}" style="width:100%; height:200px;margin-top:10px;display:none"></div>
+													</td>
+												</tr>
+												<tr>
+												
+													<td>수강인원</td>
+													<td>{{items.studentCnt}} &nbsp;
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+									<div class="wrapper-xs bg-black m-t-sm">
+										<table class="table mini-table m-b-none">
+											<tbody>
+												<tr>
+													<td>강의기간</td>
+													<td>{{items.startDt}}~{{items.endDt}}</td>
+												</tr>
+												<tr>
+													<td>강의시간</td>
+													<td>{{items.lectureTime}}</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+							<!---강의 panel end---> </slide> </carousel>
+						</div>
+					</div>
+				</div>
+				<div class="no-padder col-sm-6 hidden-xs hidden-sm"
+					style="margin-top: -10px;">
+					<div class="wrapper-xs">
+						<div ng-controller="CarouselDemoCtrl" class="panel b-a m-b-none"
+							set-ng-animate="false" ng-show="$index %2 == 1">
+							<carousel interval="myInterval"> <slide> <!---강의 panel--->
+							<div class="panel panel-default no-shadow m-b-none">
+								<div class="panel-heading rightAR text-left"
+									ui-sref="app.mylecture.index">{{items.lectureNm}}</div>
+								<div class="panel-body">
+									<div class=" b-n">
+										<table class="table mini-table m-b-none">
+											<tbody>
+												<tr>
+													<td class="w-sm2">강의코드</td>
+													<td>{{items.ltCd}}</td>
+												</tr>
+												<tr>
+													<td>고객사명</td>
+													<td>{{items.compNm}}</td>
+												</tr>
+												<tr>
+													<td>강의일시</td>
+													<td>{{items.nextClass}}</td>
+												</tr>
+												<tr>
+													<td>강의장소</td>
+													<td>{{items.lecturePlaceNm}}</td>
+												</tr>
+												<tr>
+													<td>
+													</td>
+													<td>
+														{{items.postNo}} {{items.addr}} {{items.dtlAddr}} <br>
+														<span class="m-l-xs" ng-click="showMap(items)"><img width="62"	src="./assets/img/map_ico.jpg"></span>
+													</td>
+												</tr>
+												<tr>
+													<td colspan="2">
+														<div class="col-sm-8" id="map_{{items.ltCd}}" style="width:100%; height:200px;margin-top:10px;display:none"></div>
+													</td>
+												</tr>
+												<tr>
+													<td>수강인원</td>
+													<td>{{items.studentCnt}} &nbsp;
+														<button class="btn btn-borderPrimary hidden-xs hidden-sm">출석체크</button>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+									<div class="wrapper-xs bg-black m-t-sm">
+										<table class="table mini-table m-b-none">
+											<tbody>
+												<tr>
+													<td>강의기간</td>
+													<td>{{items.startDt}}~{{items.endDt}}</td>
+												</tr>
+												<tr>
+													<td>강의시간</td>
+													<td>{{items.lectureTime}}</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+							<!---강의 panel end---> </slide> </carousel>
+						</div>
+					</div>
+				</div>
+
+				<!-- / carousel -->
+			</div>
+
+		</div>
+		<div class="col-sm-3 col-xs-12 no-padder">
+			<div class="hidden-xs hidden-sm">
+				<!---big header area---->
+				<div class="clearfix">
+					<div class="dropdown wrapper text-center text-xl ltr">
+						<span class="thumb-xl w-auto-folded avatar"> <img
+							src="assets/img/a0.jpg">
+						</span> <span class="clear text-lg font-bold"> {{current_user.userName}} ({{current_user.userId}}) </span>
+						<button class="btn btn-rounded btn-add bg-black text-dark m-t-sm"
+							ui-sref="access.my_setting">개인정보수정</button>
+					</div>
+					<div>
+						<div class="m-t-md">
+							<div class="col-sm-4 col-xs-4 text-center no-padder"
+								ui-sref="app.mylecture.index">
+								<a><img src="assets/img/lecture_ico_color.png" width="32"></a>
+								<p class="m-t-sm text-md">내 강의실</p>
+							</div>
+							<div class="col-sm-4 col-xs-4 text-center no-padder"
+								ui-sref="app.student.student_help">
+								<a><img src="assets/img/lecture_support_ico_color.png"
+									width="32"></a>
+								<p class="m-t-sm text-md">수강지원센터</p>
+							</div>
+							<div class="col-sm-4 col-xs-4 text-center no-padder"
+								ui-sref="app.lecture.list">
+								<a><img src="assets/img/lecture_apply_color.png" width="32"></a>
+								<p class="m-t-sm text-md">수강신청</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!---big header area---->
+			</div>
+			<div class="mini_notice pc-padder">
+				<p class="tt m-t-xl pc-big">
+					공지사항 <span class="underline pull-right text-sm hidden-md hidden-lg"
+						ui-sref="app.notice.list">더보기</span>
+				</p>
+				  <div ng-repeat="x in notice_info_list">
+		            <div class="padder-md">[{{x.notiTypeNm}}] {{x.notiTitle}} ({{x.regDtShort}})</div>
+		            <div class="line" ng-hide="$last"></div>
+        		</div>
+				
+			</div>
+		</div>
+	</div>
+	<!--상단 Big header 적용되는 페이지는 app id에 bigbg클래스 추가--->
+	<script>
+    $(document).ready(function(){
+        $('#app').addClass('bigbg');
+    })
+</script>
+</div>

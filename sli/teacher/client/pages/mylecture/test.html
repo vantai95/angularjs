@@ -1,0 +1,1164 @@
+
+<div class="app-content-body" ng-controller="TestController" ng-init="init()">  
+<!--강의목록 s---->
+    <div class="panel panel-body no-shadow m-b-n-xs padder-vsm bg-gray">
+        <div class="pc-padder">
+        <form class="form-horizontal widthfix m-auto pull-none col-xs-12 col-sm-4 no-padder">
+        <div class="form-group b-n pc-padder">
+          <div class="col-xs-4 col-sm-3 no-padder-left">
+            <label class="control-label text-md"><span data-langNum="65">강의목록</span></label>
+          </div>    
+          <div class="col-xs-8 col-sm-9 no-padder">
+			            <select name="account" class="form-control m-t-xs" ng-model="ltCd" ng-change="changeLecture()"
+			              ng-options="item.ltCd as item.lectureNm for item in lecture_list_box">
+			              <option value="">제목</option>
+			            </select>
+          </div>
+        </div> 
+      </form>
+      </div>        
+    </div>
+    <!--강의목록 e---->
+    <!--LNB s-->
+    <div class="lnb_wraper">
+        <div class="lnb_wrap clearfix">
+            <a class="lnb" ui-sref="app.mylecture.lecture({ltCd: ltCd})"><span data-langNum="38">기본 정보</span></a>
+            <a class="lnb" ui-sref="app.mylecture.student({ltCd: ltCd})"><span data-langNum="39">수강생현황</span></a>
+            <a class="lnb" ui-sref="app.mylecture.lvtest({ltCd: ltCd})"><span data-langNum="40">레벨테스트</span></a>
+            <a class="lnb" ui-sref="app.mylecture.attend({ltCd: ltCd})"><span data-langNum="41">출석현황</span></a>
+            <a class="lnb active" ui-sref="app.mylecture.test({ltCd: ltCd})"><span data-langNum="42">성취도평가</span></a>
+            <a class="lnb" ui-sref="app.mylecture.alert_list({ltCd: ltCd})"><span data-langNum="43">알림게시판</span></a>
+        </div>
+    </div>
+    <!--LNB e-->
+<div class="widthfix-md m-auto">        
+    <div class="wrapper">
+        <p class="tt pc-text-left clearfix pc-big text-lg">{{info.lectureNm}} <span class="hidden-xs hidden-sm">[{{lvtest_info.tpCd}}]</span>
+        	<span class="text-md m-b-n pc-inline pc-float" >
+        		<span style="display:inline-block;"><span data-langNum="67">평가선택</span></span>
+			    <select class="form-control m-t-xs" ng-model="lvCd" ng-change="changeTest()" ng-options="item.lvCd as item.testKindName for item in test_list" style="width:180px;display:inline-block;">
+			    </select>
+			</span>
+		</p>
+        
+    </div>
+<div class="wrapper-md no-padder-top">
+    <div class="panel panel-default border">
+        <div class="table-responsive teacher_table">
+  			
+  			<table class="table table-bordered b-t b-light v_table nopadTable" ng-if="lvtest_info.tpCd == 'Business'">
+        		<thead>
+          			<tr class="active">            
+            			<th rowspan="2" class="v-middle w-xxs active"><span data-langNum="81">수강생</span></th>  
+            			<th colspan="5"><span data-langNum="49">평가항목</span></th>
+            			<th rowspan="2" class="v-middle w-xxxxs"><span data-langNum="50">총점</span></th>
+            			<th rowspan="2" class="v-middle w-xxxxs"><span data-langNum="51">평균</span></th>  
+          			</tr>   
+            		<tr class="active">            
+            			<th class="w-xxxxs">Speaking</th>
+            			<th class="w-xxxxs">Listening</th>  
+            			<th class="w-xxxxs">Pronunciation</th>  
+            			<th class="w-xxxxs">Vocabulary</th>  
+            			<th class="w-xxxxs">Grammar</th>  
+          			</tr>  
+        		</thead>
+        
+        		<tbody ng-repeat="list in lvtest_list">
+            <!---수강생 명단 s---->
+         			<tr>
+             			<td rowspan="2" class="active v-middele" >
+             				<a class="primary underline" ng-click="openPopup(list)">{{list.userName}}</a>
+             			</td>
+             			<td>{{list.article1Score}}</td>
+             			<td>{{list.article2Score}}</td>
+             			<td>{{list.article3Score}}</td>
+             			<td>{{list.article4Score}}</td>
+             			<td>{{list.article5Score}}</td>
+             			<td><b>{{list.totalScore}}</b></td>
+             			<td><span class="primary font-bold">{{list.avgScore}}</span></td>
+          			</tr>
+          			<tr>
+             			<td colspan="2">
+             				<div class="heightfix-sm text-left white-space heightmax font-thin">
+             					Comments :<br>
+             					{{list.cnts}}
+							</div>
+						</td>
+						<td colspan="2">
+             				<div class="heightfix-sm text-left white-space heightmax font-thin">
+             					Weak Points :<br>
+             					{{list.weakPoints}}
+							</div>
+						</td>
+						<td colspan="3">
+             				<div class="heightfix-sm text-left white-space heightmax font-thin">
+             					Action Plan :<br>
+             					{{list.actionPlan}}
+							</div>
+						</td>
+          			</tr>
+            <!---수강생 명단 e--->
+        		</tbody>
+      		</table>
+  			<table class="table table-bordered b-t b-light v_table nopadTable" ng-if="lvtest_info.tpCd == 'TOEIC'">
+        		<thead>
+          			<tr class="active">            
+            			<th rowspan="2" class="v-middle w-xxs active"><span data-langNum="81">수강생</span></th>  
+            			<th colspan="2"><span data-langNum="49">평가항목</span></th>
+            			<th rowspan="2" class="v-middle w-xxxxs"><span data-langNum="50">총점</span></th>
+            			<th rowspan="2" class="v-middle w-xxxxs"><span data-langNum="51">평균</span></th>  
+          			</tr>   
+            		<tr class="active">            
+            			<th class="w-xxxxs">L/C</th>
+            			<th class="w-xxxxs">R/C</th>  
+          			</tr>  
+        		</thead>
+        
+        		<tbody ng-repeat="list in lvtest_list">
+            <!---수강생 명단 s---->
+         			<tr>
+             			<td rowspan="2" class="active v-middele" >
+             				<a class="primary underline" ng-click="openPopup(list)">{{list.userName}}</a>
+             			</td>
+             			<td>{{list.article1Score}}</td>
+             			<td>{{list.article2Score}}</td>
+             			<td><b>{{list.totalScore}}</b></td>
+             			<td><span class="primary font-bold">{{list.avgScore}}</span></td>
+          			</tr>
+          			<tr>
+             			<td colspan="4">
+             				<div class="heightfix-sm text-left white-space heightmax font-thin">
+             					{{list.cnts}}
+							</div>
+						</td>
+          			</tr>
+            <!---수강생 명단 e--->
+        		</tbody>
+      		</table>
+
+  			<table class="table table-bordered b-t b-light v_table nopadTable" ng-if="lvtest_info.tpCd == 'TOEICS'">
+        		<thead>
+          			<tr class="active">            
+            			<th rowspan="2" class="v-middle w-xxs active"><span data-langNum="81">수강생</span></th>  
+            			<th colspan="5"><span data-langNum="49">평가항목</span></th>
+            			<th rowspan="2" class="v-middle w-xxxxs"><span data-langNum="50">총점</span></th>
+            			<th rowspan="2" class="v-middle w-xxxxs"><span data-langNum="51">평균</span></th>  
+          			</tr>   
+            		<tr class="active">            
+            			<th class="w-xxxxs">Pronunciation</th>
+            			<th class="w-xxxxs">Intonation and Stress</th>  
+            			<th class="w-xxxxs">Grammar</th>  
+            			<th class="w-xxxxs">Vocabulary and Cohesion</th>  
+            			<th class="w-xxxxs">Relevance of content and Completeness of content</th>  
+          			</tr>  
+        		</thead>
+        
+        		<tbody ng-repeat="list in lvtest_list">
+            <!---수강생 명단 s---->
+         			<tr>
+             			<td rowspan="2" class="active v-middele" >
+             				<a class="primary underline" ng-click="openPopup(list)">{{list.userName}}</a>
+             			</td>
+             			<td>{{list.article1Level}} - {{list.article1Score}}</td>
+             			<td>{{list.article2Level}} - {{list.article2Score}}</td>
+             			<td>{{list.article3Level}} - {{list.article3Score}}</td>
+             			<td>{{list.article4Level}} - {{list.article4Score}}</td>
+             			<td>{{list.article5Level}} - {{list.article5Score}}</td>
+             			<td><b>{{list.totalScore}}</b></td>
+             			<td><span class="primary font-bold">{{list.avgScore}}</span></td>
+          			</tr>
+          			<tr>
+             			<td colspan="7">
+             				<div class="heightfix-sm text-left white-space heightmax font-thin">
+             					{{list.cnts}}
+							</div>
+						</td>
+          			</tr>
+            <!---수강생 명단 e--->
+        		</tbody>
+      		</table>
+
+  			<table class="table table-bordered b-t b-light v_table nopadTable" ng-if="lvtest_info.tpCd == 'OPIC'">
+        		<thead>
+          			<tr class="active">            
+            			<th rowspan="2" class="v-middle w-xxs active"><span data-langNum="81">수강생</span></th>  
+            			<th colspan="5"><span data-langNum="49">평가항목</span></th>
+            			<th rowspan="2" class="v-middle w-xxxxs"><span data-langNum="50">총점</span></th>
+            			<th rowspan="2" class="v-middle w-xxxxs"><span data-langNum="51">평균</span></th>  
+          			</tr>   
+            		<tr class="active">            
+            			<th class="w-xxxxs">Language control</th>
+            			<th class="w-xxxxs">Function,Global Tasks</th>  
+            			<th class="w-xxxxs">Text Type</th>  
+            			<th class="w-xxxxs">Contents Context</th>  
+            			<th class="w-xxxxs">Comprehensibility</th>  
+          			</tr>  
+        		</thead>
+        
+        		<tbody ng-repeat="list in lvtest_list">
+            <!---수강생 명단 s---->
+         			<tr>
+             			<td rowspan="2" class="active v-middele" >
+             				<a class="primary underline" ng-click="openPopup(list)">{{list.userName}}</a>
+             			</td>
+             			<td>{{list.article1Level}} - {{list.article1Score}}</td>
+             			<td>{{list.article2Level}} - {{list.article2Score}}</td>
+             			<td>{{list.article3Level}} - {{list.article3Score}}</td>
+             			<td>{{list.article4Level}} - {{list.article4Score}}</td>
+             			<td>{{list.article5Level}} - {{list.article5Score}}</td>
+             			<td><b>{{list.totalScore}}</b></td>
+             			<td><span class="primary font-bold">{{list.avgScore}}</span></td>
+          			</tr>
+          			<tr>
+             			<td colspan="7">
+             				<div class="heightfix-sm text-left white-space heightmax font-thin">
+             					{{list.cnts}}
+							</div>
+						</td>
+          			</tr>
+            <!---수강생 명단 e--->
+        		</tbody>
+      		</table>
+
+  			<table class="table table-bordered b-t b-light v_table nopadTable" ng-if="lvtest_info.tpCd == 'HSK'">
+        		<thead>
+          			<tr class="active">            
+            			<th rowspan="2" class="v-middle w-xxs active"><span data-langNum="81">수강생</span></th>  
+            			<th colspan="3"><span data-langNum="49">평가항목</span></th>
+            			<th rowspan="2" class="v-middle w-xxxxs"><span data-langNum="50">총점</span></th>
+            			<th rowspan="2" class="v-middle w-xxxxs"><span data-langNum="51">평균</span></th>  
+          			</tr>   
+            		<tr class="active">            
+            			<th class="w-xxxxs">Listening</th>
+            			<th class="w-xxxxs">Reading</th>  
+            			<th class="w-xxxxs">Writing</th>  
+          			</tr>  
+        		</thead>
+        
+        		<tbody ng-repeat="list in lvtest_list">
+            <!---수강생 명단 s---->
+         			<tr>
+             			<td rowspan="2" class="active v-middele" >
+             				<a class="primary underline" ng-click="openPopup(list)">{{list.userName}}</a>
+             			</td>
+             			<td>{{list.article1Level}} - {{list.article1Score}}</td>
+             			<td>{{list.article2Level}} - {{list.article2Score}}</td>
+             			<td>{{list.article3Level}} - {{list.article3Score}}</td>
+             			<td><b>{{list.totalScore}}</b></td>
+             			<td><span class="primary font-bold">{{list.avgScore}}</span></td>
+          			</tr>
+          			<tr>
+             			<td colspan="5">
+             				<div class="heightfix-sm text-left white-space heightmax font-thin">
+             					{{list.cnts}}
+							</div>
+						</td>
+          			</tr>
+            <!---수강생 명단 e--->
+        		</tbody>
+      		</table>
+
+  			<table class="table table-bordered b-t b-light v_table nopadTable" ng-if="lvtest_info.tpCd == 'JLPT'">
+        		<thead>
+          			<tr class="active">            
+            			<th rowspan="2" class="v-middle w-xxs active"><span data-langNum="81">수강생</span></th>  
+            			<th colspan="3"><span data-langNum="49">평가항목</span></th>
+            			<th rowspan="2" class="v-middle w-xxxxs"><span data-langNum="50">총점</span></th>
+            			<th rowspan="2" class="v-middle w-xxxxs"><span data-langNum="51">평균</span></th>  
+          			</tr>   
+            		<tr class="active">            
+            			<th class="w-xxxxs">Language Knowledge</th>
+            			<th class="w-xxxxs">Reading</th>  
+            			<th class="w-xxxxs">Listening</th>  
+          			</tr>  
+        		</thead>
+        
+        		<tbody ng-repeat="list in lvtest_list">
+            <!---수강생 명단 s---->
+         			<tr>
+             			<td rowspan="2" class="active v-middele" >
+             				<a class="primary underline" ng-click="openPopup(list)">{{list.userName}}</a>
+             			</td>
+             			<td>{{list.article1Level}} - {{list.article1Score}}</td>
+             			<td>{{list.article2Level}} - {{list.article2Score}}</td>
+             			<td>{{list.article3Level}} - {{list.article3Score}}</td>
+             			<td><b>{{list.totalScore}}</b></td>
+             			<td><span class="primary font-bold">{{list.avgScore}}</span></td>
+          			</tr>
+          			<tr>
+             			<td colspan="5">
+             				<div class="heightfix-sm text-left white-space heightmax font-thin">
+             					{{list.cnts}}
+							</div>
+						</td>
+          			</tr>
+            <!---수강생 명단 e--->
+        		</tbody>
+      		</table>
+
+  			<table class="table table-bordered b-t b-light v_table nopadTable" ng-if="lvtest_info.tpCd == 'FLEX'">
+        		<thead>
+          			<tr class="active">            
+            			<th rowspan="2" class="v-middle w-xxs active"><span data-langNum="81">수강생</span></th>  
+            			<th colspan="3"><span data-langNum="49">평가항목</span></th>
+            			<th rowspan="2" class="v-middle w-xxxxs"><span data-langNum="50">총점</span></th>
+            			<th rowspan="2" class="v-middle w-xxxxs"><span data-langNum="51">평균</span></th>  
+          			</tr>   
+            		<tr class="active">            
+            			<th class="w-xxxxs">Listening & Reading</th>
+            			<th class="w-xxxxs">Reading</th>  
+            			<th class="w-xxxxs">Speaking</th>  
+          			</tr>  
+        		</thead>
+        
+        		<tbody ng-repeat="list in lvtest_list">
+            <!---수강생 명단 s---->
+         			<tr>
+             			<td rowspan="2" class="active v-middele" >
+             				<a class="primary underline" ng-click="openPopup(list)">{{list.userName}}</a>
+             			</td>
+             			<td>{{list.article1Level}} - {{list.article1Score}}</td>
+             			<td>{{list.article2Level}} - {{list.article2Score}}</td>
+             			<td>{{list.article3Level}} - {{list.article3Score}}</td>
+             			<td><b>{{list.totalScore}}</b></td>
+             			<td><span class="primary font-bold">{{list.avgScore}}</span></td>
+          			</tr>
+          			<tr>
+             			<td colspan="5">
+             				<div class="heightfix-sm text-left white-space heightmax font-thin">
+             					{{list.cnts}}
+							</div>
+						</td>
+          			</tr>
+            <!---수강생 명단 e--->
+        		</tbody>
+      		</table>
+
+  			<table class="table table-bordered b-t b-light v_table nopadTable" ng-if="lvtest_info.tpCd == 'OPI'">
+        		<thead>
+          			<tr class="active">            
+            			<th rowspan="2" class="v-middle w-xxs active"><span data-langNum="81">수강생</span></th>  
+            			<th colspan="5"><span data-langNum="49">평가항목</span></th>
+            			<th rowspan="2" class="v-middle w-xxxxs"><span data-langNum="50">총점</span></th>
+            			<th rowspan="2" class="v-middle w-xxxxs"><span data-langNum="51">평균</span></th>  
+          			</tr>   
+            		<tr class="active">            
+            			<th class="w-xxxxs">Language control</th>
+            			<th class="w-xxxxs">Function,Global Tasks</th>  
+            			<th class="w-xxxxs">Text Type</th>  
+            			<th class="w-xxxxs">Contents Context</th>  
+            			<th class="w-xxxxs">Comprehensibility</th>  
+          			</tr>  
+        		</thead>
+        
+        		<tbody ng-repeat="list in lvtest_list">
+            <!---수강생 명단 s---->
+         			<tr>
+             			<td rowspan="2" class="active v-middele" >
+             				<a class="primary underline" ng-click="openPopup(list)">{{list.userName}}</a>
+             			</td>
+             			<td>{{list.article1Level}} - {{list.article1Score}}</td>
+             			<td>{{list.article2Level}} - {{list.article2Score}}</td>
+             			<td>{{list.article3Level}} - {{list.article3Score}}</td>
+             			<td>{{list.article4Level}} - {{list.article4Score}}</td>
+             			<td>{{list.article5Level}} - {{list.article5Score}}</td>
+             			<td><b>{{list.totalScore}}</b></td>
+             			<td><span class="primary font-bold">{{list.avgScore}}</span></td>
+          			</tr>
+          			<tr>
+             			<td colspan="7">
+             				<div class="heightfix-sm text-left white-space heightmax font-thin">
+             					{{list.cnts}}
+							</div>
+						</td>
+          			</tr>
+            <!---수강생 명단 e--->
+        		</tbody>
+      		</table>
+
+  			<table class="table table-bordered b-t b-light v_table nopadTable" ng-if="lvtest_info.tpCd == 'CILS'">
+        		<thead>
+          			<tr class="active">            
+            			<th rowspan="2" class="v-middle w-xxs active"><span data-langNum="81">수강생</span></th>  
+            			<th colspan="5"><span data-langNum="49">평가항목</span></th>
+            			<th rowspan="2" class="v-middle w-xxxxs"><span data-langNum="50">총점</span></th>
+            			<th rowspan="2" class="v-middle w-xxxxs"><span data-langNum="51">평균</span></th>  
+          			</tr>   
+            		<tr class="active">            
+            			<th class="w-xxxxs">Speaking</th>
+            			<th class="w-xxxxs">Listening</th>  
+            			<th class="w-xxxxs">Reading</th>  
+            			<th class="w-xxxxs">Writing</th>  
+            			<th class="w-xxxxs">Grammar</th>  
+          			</tr>  
+        		</thead>
+        
+        		<tbody ng-repeat="list in lvtest_list">
+            <!---수강생 명단 s---->
+         			<tr>
+             			<td rowspan="2" class="active v-middele" >
+             				<a class="primary underline" ng-click="openPopup(list)">{{list.userName}}</a>
+             			</td>
+             			<td>{{list.article1Level}} - {{list.article1Score}}</td>
+             			<td>{{list.article2Level}} - {{list.article2Score}}</td>
+             			<td>{{list.article3Level}} - {{list.article3Score}}</td>
+             			<td>{{list.article4Level}} - {{list.article4Score}}</td>
+             			<td>{{list.article5Level}} - {{list.article5Score}}</td>
+             			<td><b>{{list.totalScore}}</b></td>
+             			<td><span class="primary font-bold">{{list.avgScore}}</span></td>
+          			</tr>
+          			<tr>
+             			<td colspan="7">
+             				<div class="heightfix-sm text-left white-space heightmax font-thin">
+             					{{list.cnts}}
+							</div>
+						</td>
+          			</tr>
+            <!---수강생 명단 e--->
+        		</tbody>
+      		</table>
+    	</div>        
+    </div>
+</div>
+</div>    
+</div>
+<script src="assets/js/language.js"></script>
+    <!--로고 hide , back button show--->
+<script>
+    $(document).ready(function(){
+        $('.app').addClass('back')
+    })
+</script>
+
+
+<script type="text/ng-template" id="popup">
+  <div class="popup_wrap" ng-init="initPopup()">
+      <div class="popup_header">
+        <span data-langNum="46">수강생 상세</span><span class="pull-right closebtn " data-ng-click="cancel()"><img src="assets/img/close.png" ></span>
+    </div>
+    <div class="popup_body no-padder">
+        <div class="wrapper b-b">
+        	<div class="pc-padder padder-md">
+        		<p class="tt"><span class="hidden-xs hidden-sm primary">{{lvtest_info.testKindName}} &nbsp;</span>{{info.lectureNm}} </p>
+        		<p>고객사명&nbsp;&nbsp;{{info.compNm}} <br>
+					강의기간&nbsp;&nbsp;{{info.startDt}} ~ {{info.endDt}}  &nbsp;&nbsp;강사명&nbsp;&nbsp;{{current_user.userName}}  
+				</p>
+        	</div>
+    	</div>
+        <!--수강생명단버튼 s active class=btn-borderPrimary, flexbox 하위 5개 아이템씩 배치고정---->
+        <div class="bg-gray padder-v wrapper-xs">
+            <div class="widthfix-xs m-auto">
+	            <div class="flexbox m-t-xs" ng-repeat="user in user_list">
+    	            <button class="w-20 btn {{item.stCd == selected_stCd ? 'btn-borderPrimary' : 'btn-transparent'}} btn-rounded" ng-repeat="item in user" ng-click="changeUser(item)">{{item.userName}}</button>
+            	</div>
+            </div>    
+        </div>
+        <!--수강생명단 버튼 end--->
+        <div class="wrapper bg-gray">
+            <div class="panel panel-default panel-body b">
+            	<div class="row form-horizontal m-b-sm">
+          			<div class="text-lg m-b-none m-t-sm">
+            			<span class="thumb-sm w-auto-folded avatar">
+            				<img src="assets/img/a0.jpg">
+          				</span>   
+            			<label class="control-label no-padder">{{selected_lvtest.userName}} 
+                			<span class="hidden-md hidden-lg">(레벨테스트 <span class="danger">{{selected_lvtest.avgScore}}</span>점)</span>
+            			</label>
+            			<!--pc에서 표출--->  
+            			<label class="control-label hidden-xs hidden-xs padder-lg pc-float text-md">
+                			<span><span data-langNum="50">총점</span> <span class="primary">{{selected_lvtest.totalScore}}</span>점  /  <span data-langNum="51">평균</span> <span class="primary">{{selected_lvtest.avgScore}}</span>점</span>
+            			</label>
+          			</div>
+          			<div class="line"></div>        
+        		</div>
+            
+				<div class="table-responsive">
+				<table class="table popup_table left_align m-b-n no-border" ng-if="lvtest_info.tpCd == 'Business'">
+                	<tbody>
+                  		<tr>
+                    		<td><label class="control-label">Speaking</label></td> 
+							<td>
+								<select ng-model="selected_lvtest.article1Level">
+									<option value="Lv1">A1 (20~23)</option>
+									<option value="Lv2">A1 (24~26)</option>
+									<option value="Lv3">A2 (27~29)</option>
+									<option value="Lv4">A2 (30~32)</option>
+									<option value="Lv5">B1 (33~35)</option>
+									<option value="Lv6">B1 (36~38)</option>							
+									<option value="Lv7">B2 (39~41)</option>
+									<option value="Lv8">B2 (42~44)</option>
+									<option value="Lv9">C1 (45~47)</option>
+									<option value="Lv10">C1 (48~50)</option>
+									<option value="Lv11">C2 (51~53)</option>
+									<option value="Lv12">C2 (54~56)</option>
+								</select>
+							</td>
+                    		<td><input type="text" ng-model="selected_lvtest.article1Score" ng-keyup="setAutoSelect(0)"></td>  
+                  		</tr>    
+                  		<tr>
+                    		<td><label class="control-label">Listening</label></td> 
+							<td>
+								<select ng-model="selected_lvtest.article2Level">
+									<option value="Lv1">A1 (20~23)</option>
+									<option value="Lv2">A1 (24~26)</option>
+									<option value="Lv3">A2 (27~29)</option>
+									<option value="Lv4">A2 (30~32)</option>
+									<option value="Lv5">B1 (33~35)</option>
+									<option value="Lv6">B1 (36~38)</option>							
+									<option value="Lv7">B2 (39~41)</option>
+									<option value="Lv8">B2 (42~44)</option>
+									<option value="Lv9">C1 (45~47)</option>
+									<option value="Lv10">C1 (48~50)</option>
+									<option value="Lv11">C2 (51~53)</option>
+									<option value="Lv12">C2 (54~56)</option>
+								</select>
+							</td>
+                    		<td><input type="text" ng-model="selected_lvtest.article2Score" ng-keyup="setAutoSelect(1)"></td>  
+                  		</tr>    
+                  		<tr>
+                    		<td><label class="control-label">Reading</label></td> 
+							<td>
+								<select ng-model="selected_lvtest.article3Level">
+									<option value="Lv1">A1 (20~23)</option>
+									<option value="Lv2">A1 (24~26)</option>
+									<option value="Lv3">A2 (27~29)</option>
+									<option value="Lv4">A2 (30~32)</option>
+									<option value="Lv5">B1 (33~35)</option>
+									<option value="Lv6">B1 (36~38)</option>							
+									<option value="Lv7">B2 (39~41)</option>
+									<option value="Lv8">B2 (42~44)</option>
+									<option value="Lv9">C1 (45~47)</option>
+									<option value="Lv10">C1 (48~50)</option>
+									<option value="Lv11">C2 (51~53)</option>
+									<option value="Lv12">C2 (54~56)</option>
+								</select>
+							</td>
+                    		<td><input type="text" ng-model="selected_lvtest.article3Score" ng-keyup="setAutoSelect(2)"></td>  
+                  		</tr>    
+                  		<tr>
+                    		<td><label class="control-label">Writing</label></td> 
+							<td>
+								<select ng-model="selected_lvtest.article4Level">
+									<option value="Lv1">A1 (20~23)</option>
+									<option value="Lv2">A1 (24~26)</option>
+									<option value="Lv3">A2 (27~29)</option>
+									<option value="Lv4">A2 (30~32)</option>
+									<option value="Lv5">B1 (33~35)</option>
+									<option value="Lv6">B1 (36~38)</option>							
+									<option value="Lv7">B2 (39~41)</option>
+									<option value="Lv8">B2 (42~44)</option>
+									<option value="Lv9">C1 (45~47)</option>
+									<option value="Lv10">C1 (48~50)</option>
+									<option value="Lv11">C2 (51~53)</option>
+									<option value="Lv12">C2 (54~56)</option>
+								</select>
+							</td>
+                    		<td><input type="text" ng-model="selected_lvtest.article4Score" ng-keyup="setAutoSelect(3)"></td>  
+                  		</tr>    
+                  		<tr>
+                    		<td><label class="control-label">Grammar</label></td> 
+							<td>
+								<select ng-model="selected_lvtest.article5Level">
+									<option value="Lv1">A1 (20~23)</option>
+									<option value="Lv2">A1 (24~26)</option>
+									<option value="Lv3">A2 (27~29)</option>
+									<option value="Lv4">A2 (30~32)</option>
+									<option value="Lv5">B1 (33~35)</option>
+									<option value="Lv6">B1 (36~38)</option>							
+									<option value="Lv7">B2 (39~41)</option>
+									<option value="Lv8">B2 (42~44)</option>
+									<option value="Lv9">C1 (45~47)</option>
+									<option value="Lv10">C1 (48~50)</option>
+									<option value="Lv11">C2 (51~53)</option>
+									<option value="Lv12">C2 (54~56)</option>
+								</select>
+							</td>
+                    		<td><input type="text" ng-model="selected_lvtest.article5Score" ng-keyup="setAutoSelect(4)"></td>  
+                  		</tr>    
+                  		<tr>
+							<td class="nopadderTD">
+                      	 		<textarea class="border" ng-model="selected_lvtest.cnts" placeholder="Comments"></textarea>
+                    		</td>
+							<td class="nopadderTD">
+                      	 		<textarea class="border" ng-model="selected_lvtest.weakPoints" placeholder="Weak Points"></textarea>
+                    		</td> 
+							<td class="nopadderTD">
+                      	 		<textarea class="border" ng-model="selected_lvtest.actionPlan" placeholder="Action Plan"></textarea>
+                    		</td>  
+                  		</tr>    
+                	</tbody>
+              	</table>
+            	<table class="table popup_table left_align m-b-n no-border" ng-if="lvtest_info.tpCd == 'TOEIC'">
+                	<tbody>
+                  		<tr>
+                    		<td class="w-10"><label class="control-label">L/C</label></td> 
+							<td class="w-30">
+								<select ng-model="selected_lvtest.article1Level">
+									<option value="LV.1">LV.1 (0~295)</option>
+									<option value="LV.2">LV.2 (300~395)</option>
+									<option value="LV.3">LV.3 (400~495)</option>
+									<option value="LV.4">LV.4 (500~595)</option>
+									<option value="LV.5">LV.5 (600~695)</option>
+									<option value="LV.6">LV.6 (700~795)</option>
+									<option value="LV.7">LV.7 (800~895)</option>
+									<option value="LV.8">LV.8 (900~990)</option>
+								</select>
+							</td>
+                    		<td class="m-w"><input type="text" ng-model="selected_lvtest.article1Score" ng-keyup="setAutoSelect(0)"></td>  
+                  		</tr>    
+                  		<tr>
+                    		<td><label class="control-label">R/C</label></td> 
+							<td class="w-30">
+								<select ng-model="selected_lvtest.article2Level">
+									<option value="LV.1">LV.1 (0~295)</option>
+									<option value="LV.2">LV.2 (300~395)</option>
+									<option value="LV.3">LV.3 (400~495)</option>
+									<option value="LV.4">LV.4 (500~595)</option>
+									<option value="LV.5">LV.5 (600~695)</option>
+									<option value="LV.6">LV.6 (700~795)</option>
+									<option value="LV.7">LV.7 (800~895)</option>
+									<option value="LV.8">LV.8 (900~990)</option>
+								</select>
+							</td>
+                    		<td class="m-w"><input type="text" ng-model="selected_lvtest.article2Score" ng-keyup="setAutoSelect(1)"></td>  
+                  		</tr>    
+                  		<tr>
+                    		<td colspan="3" class="nopadderTD">
+                      	 		<textarea class="border" ng-model="selected_lvtest.cnts" placeholder="comment"></textarea>
+                    		</td> 
+                  		</tr>    
+                	</tbody>
+              	</table>
+
+            	<table class="table popup_table left_align m-b-n no-border" ng-if="lvtest_info.tpCd == 'TOEICS'">
+                	<tbody>
+                  		<tr>
+                    		<td class="w-10"><label class="control-label">Pronunciation</label></td> 
+							<td class="w-30">
+								<select ng-model="selected_lvtest.article1Level">
+									<option value="LV.1">LV.1 (0~30)</option>
+									<option value="LV.2">LV.2 (40~50)</option>
+									<option value="LV.3">LV.3 (60~70)</option>
+									<option value="LV.4">LV.4 (80~100)</option>
+									<option value="LV.5">LV.5 (110~120)</option>
+									<option value="LV.6">LV.6 (130~150)</option>
+									<option value="LV.7">LV.7 (160~180)</option>
+									<option value="LV.8">LV.8 (190~200)</option>
+								</select>
+							</td>
+                    		<td class="m-w"><input type="text" ng-model="selected_lvtest.article1Score" ng-keyup="setAutoSelect(0)"></td>  
+                  		</tr>    
+                  		<tr>
+                    		<td><label class="control-label">Intonation and Stress</label></td> 
+							<td class="w-30">
+								<select ng-model="selected_lvtest.article2Level">
+									<option value="LV.1">LV.1 (0~30)</option>
+									<option value="LV.2">LV.2 (40~50)</option>
+									<option value="LV.3">LV.3 (60~70)</option>
+									<option value="LV.4">LV.4 (80~100)</option>
+									<option value="LV.5">LV.5 (110~120)</option>
+									<option value="LV.6">LV.6 (130~150)</option>
+									<option value="LV.7">LV.7 (160~180)</option>
+									<option value="LV.8">LV.8 (190~200)</option>
+								</select>
+							</td>
+                    		<td class="m-w"><input type="text" ng-model="selected_lvtest.article2Score" ng-keyup="setAutoSelect(1)"></td>  
+                  		</tr>    
+                  		<tr>
+                    		<td><label class="control-label">Grammar</label></td> 
+							<td class="w-30">
+								<select ng-model="selected_lvtest.article3Level">
+									<option value="LV.1">LV.1 (0~30)</option>
+									<option value="LV.2">LV.2 (40~50)</option>
+									<option value="LV.3">LV.3 (60~70)</option>
+									<option value="LV.4">LV.4 (80~100)</option>
+									<option value="LV.5">LV.5 (110~120)</option>
+									<option value="LV.6">LV.6 (130~150)</option>
+									<option value="LV.7">LV.7 (160~180)</option>
+									<option value="LV.8">LV.8 (190~200)</option>
+								</select>
+							</td>
+                    		<td class="m-w"><input type="text" ng-model="selected_lvtest.article3Score" ng-keyup="setAutoSelect(2)"></td>  
+                  		</tr>    
+                  		<tr>
+                    		<td><label class="control-label">Vocabulary and Cohesion</label></td> 
+							<td class="w-30">
+								<select ng-model="selected_lvtest.article4Level">
+									<option value="LV.1">LV.1 (0~30)</option>
+									<option value="LV.2">LV.2 (40~50)</option>
+									<option value="LV.3">LV.3 (60~70)</option>
+									<option value="LV.4">LV.4 (80~100)</option>
+									<option value="LV.5">LV.5 (110~120)</option>
+									<option value="LV.6">LV.6 (130~150)</option>
+									<option value="LV.7">LV.7 (160~180)</option>
+									<option value="LV.8">LV.8 (190~200)</option>
+								</select>
+							</td>
+                    		<td class="m-w"><input type="text" ng-model="selected_lvtest.article4Score" ng-keyup="setAutoSelect(3)"></td>  
+                  		</tr>    
+                  		<tr>
+                    		<td><label class="control-label">Relevance of content and Completeness of content</label></td> 
+							<td class="w-30">
+								<select ng-model="selected_lvtest.article5Level">
+									<option value="LV.1">LV.1 (0~30)</option>
+									<option value="LV.2">LV.2 (40~50)</option>
+									<option value="LV.3">LV.3 (60~70)</option>
+									<option value="LV.4">LV.4 (80~100)</option>
+									<option value="LV.5">LV.5 (110~120)</option>
+									<option value="LV.6">LV.6 (130~150)</option>
+									<option value="LV.7">LV.7 (160~180)</option>
+									<option value="LV.8">LV.8 (190~200)</option>
+								</select>
+							</td>
+                    		<td class="m-w"><input type="text" ng-model="selected_lvtest.article5Score" ng-keyup="setAutoSelect(4)"></td>  
+                  		</tr>    
+                  		<tr>
+                    		<td colspan="3" class="nopadderTD">
+                      	 		<textarea class="border" ng-model="selected_lvtest.cnts" placeholder="comment"></textarea>
+                    		</td> 
+                  		</tr>    
+                	</tbody>
+              	</table>
+
+            	<table class="table popup_table left_align m-b-n no-border" ng-if="lvtest_info.tpCd == 'OPIC'">
+                	<tbody>
+                  		<tr>
+                    		<td class="w-10"><label class="control-label">Language control</label></td> 
+							<td class="w-30">
+								<select ng-model="selected_lvtest.article1Level">
+									<option value="NL">NL (1~5)</option>
+									<option value="NM">NM (6~20)</option>
+									<option value="NH">NH (21~40)</option>
+									<option value="IL">IL (41~60)</option>
+									<option value="IM">IM (61~70)</option>
+									<option value="IH">IH (71~80)</option>
+									<option value="AL">AL (81~100)</option>
+								</select>
+							</td>
+                    		<td class="m-w"><input type="text" ng-model="selected_lvtest.article1Score" ng-keyup="setAutoSelect(0)"></td>  
+                  		</tr>    
+                  		<tr>
+                    		<td><label class="control-label">Function,Global Tasks</label></td> 
+							<td class="w-30">
+								<select ng-model="selected_lvtest.article2Level">
+									<option value="NL">NL (1~5)</option>
+									<option value="NM">NM (6~20)</option>
+									<option value="NH">NH (21~40)</option>
+									<option value="IL">IL (41~60)</option>
+									<option value="IM">IM (61~70)</option>
+									<option value="IH">IH (71~80)</option>
+									<option value="AL">AL (81~100)</option>
+								</select>
+							</td>
+                    		<td class="m-w"><input type="text" ng-model="selected_lvtest.article2Score" ng-keyup="setAutoSelect(1)"></td>  
+                  		</tr>    
+                  		<tr>
+                    		<td><label class="control-label">Text Type</label></td> 
+							<td class="w-30">
+								<select ng-model="selected_lvtest.article3Level">
+									<option value="NL">NL (1~5)</option>
+									<option value="NM">NM (6~20)</option>
+									<option value="NH">NH (21~40)</option>
+									<option value="IL">IL (41~60)</option>
+									<option value="IM">IM (61~70)</option>
+									<option value="IH">IH (71~80)</option>
+									<option value="AL">AL (81~100)</option>
+								</select>
+							</td>
+                    		<td class="m-w"><input type="text" ng-model="selected_lvtest.article3Score" ng-keyup="setAutoSelect(2)"></td>  
+                  		</tr>    
+                  		<tr>
+                    		<td><label class="control-label">Contents Context</label></td> 
+							<td class="w-30">
+								<select ng-model="selected_lvtest.article4Level">
+									<option value="NL">NL (1~5)</option>
+									<option value="NM">NM (6~20)</option>
+									<option value="NH">NH (21~40)</option>
+									<option value="IL">IL (41~60)</option>
+									<option value="IM">IM (61~70)</option>
+									<option value="IH">IH (71~80)</option>
+									<option value="AL">AL (81~100)</option>
+								</select>
+							</td>
+                    		<td class="m-w"><input type="text" ng-model="selected_lvtest.article4Score" ng-keyup="setAutoSelect(3)"></td>  
+                  		</tr>    
+                  		<tr>
+                    		<td><label class="control-label">Comprehensibility</label></td> 
+							<td class="w-30">
+								<select ng-model="selected_lvtest.article5Level">
+									<option value="NL">NL (1~5)</option>
+									<option value="NM">NM (6~20)</option>
+									<option value="NH">NH (21~40)</option>
+									<option value="IL">IL (41~60)</option>
+									<option value="IM">IM (61~70)</option>
+									<option value="IH">IH (71~80)</option>
+									<option value="AL">AL (81~100)</option>
+								</select>
+							</td>
+                    		<td class="m-w"><input type="text" ng-model="selected_lvtest.article5Score" ng-keyup="setAutoSelect(4)"></td>  
+                  		</tr>    
+                  		<tr>
+                    		<td colspan="3" class="nopadderTD">
+                      	 		<textarea class="border" ng-model="selected_lvtest.cnts" placeholder="comment"></textarea>
+                    		</td> 
+                  		</tr>    
+                	</tbody>
+              	</table>
+
+            	<table class="table popup_table left_align m-b-n no-border" ng-if="lvtest_info.tpCd == 'HSK'">
+                	<tbody>
+                  		<tr>
+                    		<td class="w-10"><label class="control-label">Listening</label></td> 
+							<td class="w-30">
+								<select ng-model="selected_lvtest.article1Level">
+									<option value="1급">1급 (0~30)</option>
+									<option value="2급">2급 (31~50)</option>
+									<option value="3급">3급 (51~70)</option>
+									<option value="4급">4급 (71~80)</option>
+									<option value="5급">5급 (81~90)</option>
+									<option value="6급">6급 (91~100)</option>
+								</select>
+							</td>
+                    		<td class="m-w"><input type="text" ng-model="selected_lvtest.article1Score" ng-keyup="setAutoSelect(0)"></td>  
+                  		</tr>    
+                  		<tr>
+                    		<td><label class="control-label">Reading</label></td> 
+							<td class="w-30">
+								<select ng-model="selected_lvtest.article2Level">
+									<option value="1급">1급 (0~30)</option>
+									<option value="2급">2급 (31~50)</option>
+									<option value="3급">3급 (51~70)</option>
+									<option value="4급">4급 (71~80)</option>
+									<option value="5급">5급 (81~90)</option>
+									<option value="6급">6급 (91~100)</option>
+								</select>
+							</td>
+                    		<td class="m-w"><input type="text" ng-model="selected_lvtest.article2Score" ng-keyup="setAutoSelect(1)"></td>  
+                  		</tr>    
+                  		<tr>
+                    		<td><label class="control-label">Writing</label></td> 
+							<td class="w-30">
+								<select ng-model="selected_lvtest.article3Level">
+									<option value="1급">1급 (0~30)</option>
+									<option value="2급">2급 (31~50)</option>
+									<option value="3급">3급 (51~70)</option>
+									<option value="4급">4급 (71~80)</option>
+									<option value="5급">5급 (81~90)</option>
+									<option value="6급">6급 (91~100)</option>
+								</select>
+							</td>
+                    		<td class="m-w"><input type="text" ng-model="selected_lvtest.article3Score" ng-keyup="setAutoSelect(2)"></td>  
+                  		</tr>    
+                  		<tr>
+                    		<td colspan="3" class="nopadderTD">
+                      	 		<textarea class="border" ng-model="selected_lvtest.cnts" placeholder="comment"></textarea>
+                    		</td> 
+                  		</tr>    
+                	</tbody>
+              	</table>
+
+            	<table class="table popup_table left_align m-b-n no-border" ng-if="lvtest_info.tpCd == 'JLPT'">
+                	<tbody>
+                  		<tr>
+                    		<td class="w-10"><label class="control-label">Language Knowledge</label></td> 
+							<td class="w-30">
+								<select ng-model="selected_lvtest.article1Level">
+									<option value="N5">N5 (0~30)</option>
+									<option value="N4">N4 (31~50)</option>
+									<option value="N3">N3 (51~70)</option>
+									<option value="N2">N2 (71~90)</option>
+									<option value="N1">N1 (91~100)</option>
+								</select>
+							</td>
+                    		<td class="m-w"><input type="text" ng-model="selected_lvtest.article1Score" ng-keyup="setAutoSelect(0)"></td>  
+                  		</tr>    
+                  		<tr>
+                    		<td><label class="control-label">Reading</label></td> 
+							<td class="w-30">
+								<select ng-model="selected_lvtest.article2Level">
+									<option value="N5">N5 (0~30)</option>
+									<option value="N4">N4 (31~50)</option>
+									<option value="N3">N3 (51~70)</option>
+									<option value="N2">N2 (71~90)</option>
+									<option value="N1">N1 (91~100)</option>
+								</select>
+							</td>
+                    		<td class="m-w"><input type="text" ng-model="selected_lvtest.article2Score" ng-keyup="setAutoSelect(1)"></td>  
+                  		</tr>    
+                  		<tr>
+                    		<td><label class="control-label">Listening</label></td> 
+							<td class="w-30">
+								<select ng-model="selected_lvtest.article3Level">
+									<option value="N5">N5 (0~30)</option>
+									<option value="N4">N4 (31~50)</option>
+									<option value="N3">N3 (51~70)</option>
+									<option value="N2">N2 (71~90)</option>
+									<option value="N1">N1 (91~100)</option>
+								</select>
+							</td>
+                    		<td class="m-w"><input type="text" ng-model="selected_lvtest.article3Score" ng-keyup="setAutoSelect(2)"></td>  
+                  		</tr>    
+                  		<tr>
+                    		<td colspan="3" class="nopadderTD">
+                      	 		<textarea class="border" ng-model="selected_lvtest.cnts" placeholder="comment"></textarea>
+                    		</td> 
+                  		</tr>    
+                	</tbody>
+              	</table>
+
+            	<table class="table popup_table left_align m-b-n no-border" ng-if="lvtest_info.tpCd == 'FLEX'">
+                	<tbody>
+                  		<tr>
+                    		<td class="w-10"><label class="control-label">Listening & Reading</label></td> 
+							<td class="w-30">
+								<select ng-model="selected_lvtest.article1Level">
+									<option value="3C">3C (325~425)</option>
+									<option value="3B">3B (426~525)</option>
+									<option value="3A">3A (526~625)</option>
+									<option value="2C">2C (626~700)</option>
+									<option value="2B">2B (701~775)</option>
+									<option value="2A">2A (776~850)</option>
+									<option value="1C">1C (851~900)</option>
+									<option value="1B">1B (901~950)</option>
+									<option value="1A">1A (951~1000)</option>
+								</select>
+							</td>
+                    		<td class="m-w"><input type="text" ng-model="selected_lvtest.article1Score" ng-keyup="setAutoSelect(0)"></td>  
+                  		</tr>    
+                  		<tr>
+                    		<td><label class="control-label">Writing</label></td> 
+							<td class="w-30">
+								<select ng-model="selected_lvtest.article2Level">
+									<option value="3C">3C (110~129)</option>
+									<option value="3B">3B (130~149)</option>
+									<option value="3A">3A (150~169)</option>
+									<option value="2C">2C (170~184)</option>
+									<option value="2B">2B (185~199)</option>
+									<option value="2A">2A (200~214)</option>
+									<option value="1C">1C (215~226)</option>
+									<option value="1B">1B (227~238)</option>
+									<option value="1A">1A (239~250)</option>
+								</select>
+							</td>
+                    		<td class="m-w"><input type="text" ng-model="selected_lvtest.article2Score" ng-keyup="setAutoSelect(1)"></td>  
+                  		</tr>    
+                  		<tr>
+                    		<td><label class="control-label">Speaking</label></td> 
+							<td class="w-30">
+								<select ng-model="selected_lvtest.article3Level">
+									<option value="3C">3C (110~129)</option>
+									<option value="3B">3B (130~149)</option>
+									<option value="3A">3A (150~169)</option>
+									<option value="2C">2C (170~184)</option>
+									<option value="2B">2B (185~199)</option>
+									<option value="2A">2A (200~214)</option>
+									<option value="1C">1C (215~226)</option>
+									<option value="1B">1B (227~238)</option>
+									<option value="1A">1A (239~250)</option>
+								</select>
+							</td>
+                    		<td class="m-w"><input type="text" ng-model="selected_lvtest.article3Score" ng-keyup="setAutoSelect(2)"></td>  
+                  		</tr>    
+                  		<tr>
+                    		<td colspan="3" class="nopadderTD">
+                      	 		<textarea class="border" ng-model="selected_lvtest.cnts" placeholder="comment"></textarea>
+                    		</td> 
+                  		</tr>    
+                	</tbody>
+              	</table>
+
+            	<table class="table popup_table left_align m-b-n no-border" ng-if="lvtest_info.tpCd == 'OPI'">
+                	<tbody>
+                  		<tr>
+                    		<td class="w-10"><label class="control-label">Language control</label></td> 
+							<td class="w-30">
+								<select ng-model="selected_lvtest.article1Level">
+									<option value="NL">NL (1~4)</option>
+									<option value="NM">NM (5~20)</option>
+									<option value="NH">NH (21~30)</option>
+									<option value="IL">IL (31~40)</option>
+									<option value="IM">IM (41~50)</option>
+									<option value="IH">IH (51~60)</option>
+									<option value="AL">AL (61~70)</option>
+									<option value="AM">AM (71~80)</option>
+									<option value="AH">AH (81~90)</option>
+									<option value="S">S (91~100)</option>
+								</select>
+							</td>
+                    		<td class="m-w"><input type="text" ng-model="selected_lvtest.article1Score" ng-keyup="setAutoSelect(0)"></td>  
+                  		</tr>    
+                  		<tr>
+                    		<td><label class="control-label">Function,Global Tasks</label></td> 
+							<td class="w-30">
+								<select ng-model="selected_lvtest.article2Level">
+									<option value="NL">NL (1~4)</option>
+									<option value="NM">NM (5~20)</option>
+									<option value="NH">NH (21~30)</option>
+									<option value="IL">IL (31~40)</option>
+									<option value="IM">IM (41~50)</option>
+									<option value="IH">IH (51~60)</option>
+									<option value="AL">AL (61~70)</option>
+									<option value="AM">AM (71~80)</option>
+									<option value="AH">AH (81~90)</option>
+									<option value="S">S (91~100)</option>
+								</select>
+							</td>
+                    		<td class="m-w"><input type="text" ng-model="selected_lvtest.article2Score" ng-keyup="setAutoSelect(1)"></td>  
+                  		</tr>    
+                  		<tr>
+                    		<td><label class="control-label">Text Type</label></td> 
+							<td class="w-30">
+								<select ng-model="selected_lvtest.article3Level">
+									<option value="NL">NL (1~4)</option>
+									<option value="NM">NM (5~20)</option>
+									<option value="NH">NH (21~30)</option>
+									<option value="IL">IL (31~40)</option>
+									<option value="IM">IM (41~50)</option>
+									<option value="IH">IH (51~60)</option>
+									<option value="AL">AL (61~70)</option>
+									<option value="AM">AM (71~80)</option>
+									<option value="AH">AH (81~90)</option>
+									<option value="S">S (91~100)</option>
+								</select>
+							</td>
+                    		<td class="m-w"><input type="text" ng-model="selected_lvtest.article3Score" ng-keyup="setAutoSelect(2)"></td>  
+                  		</tr>    
+                  		<tr>
+                    		<td><label class="control-label">Contents Context</label></td> 
+							<td class="w-30">
+								<select ng-model="selected_lvtest.article4Level">
+									<option value="NL">NL (1~4)</option>
+									<option value="NM">NM (5~20)</option>
+									<option value="NH">NH (21~30)</option>
+									<option value="IL">IL (31~40)</option>
+									<option value="IM">IM (41~50)</option>
+									<option value="IH">IH (51~60)</option>
+									<option value="AL">AL (61~70)</option>
+									<option value="AM">AM (71~80)</option>
+									<option value="AH">AH (81~90)</option>
+									<option value="S">S (91~100)</option>
+								</select>
+							</td>
+                    		<td class="m-w"><input type="text" ng-model="selected_lvtest.article4Score" ng-keyup="setAutoSelect(3)"></td>  
+                  		</tr>    
+                  		<tr>
+                    		<td><label class="control-label">Comprehensibility</label></td> 
+							<td class="w-30">
+								<select ng-model="selected_lvtest.article5Level">
+									<option value="NL">NL (1~4)</option>
+									<option value="NM">NM (5~20)</option>
+									<option value="NH">NH (21~30)</option>
+									<option value="IL">IL (31~40)</option>
+									<option value="IM">IM (41~50)</option>
+									<option value="IH">IH (51~60)</option>
+									<option value="AL">AL (61~70)</option>
+									<option value="AM">AM (71~80)</option>
+									<option value="AH">AH (81~90)</option>
+									<option value="S">S (91~100)</option>
+								</select>
+							</td>
+                    		<td class="m-w"><input type="text" ng-model="selected_lvtest.article5Score" ng-keyup="setAutoSelect(4)"></td>  
+                  		</tr>    
+                  		<tr>
+                    		<td colspan="3" class="nopadderTD">
+                      	 		<textarea class="border" ng-model="selected_lvtest.cnts" placeholder="comment"></textarea>
+                    		</td> 
+                  		</tr>    
+                	</tbody>
+              	</table>
+
+            	<table class="table popup_table left_align m-b-n no-border" ng-if="lvtest_info.tpCd == 'CILS'">
+                	<tbody>
+                  		<tr>
+                    		<td class="w-10"><label class="control-label">Speaking</label></td> 
+							<td class="w-30">
+								<select ng-model="selected_lvtest.article1Level">
+									<option value="A1">A1 (0~100)</option>
+									<option value="A2">A2 (0~100)</option>
+									<option value="B1">B1 (0~100)</option>
+									<option value="B2">B2 (0~100)</option>
+									<option value="C1">C1 (0~100)</option>
+									<option value="C2">C2 (0~100)</option>
+								</select>
+							</td>
+                    		<td class="m-w"><input type="text" ng-model="selected_lvtest.article1Score" ng-keyup="setAutoSelect(0)"></td>  
+                  		</tr>    
+                  		<tr>
+                    		<td><label class="control-label">Listening</label></td> 
+							<td class="w-30">
+								<select ng-model="selected_lvtest.article2Level">
+									<option value="A1">A1 (0~100)</option>
+									<option value="A2">A2 (0~100)</option>
+									<option value="B1">B1 (0~100)</option>
+									<option value="B2">B2 (0~100)</option>
+									<option value="C1">C1 (0~100)</option>
+									<option value="C2">C2 (0~100)</option>
+								</select>
+							</td>
+                    		<td class="m-w"><input type="text" ng-model="selected_lvtest.article2Score" ng-keyup="setAutoSelect(1)"></td>  
+                  		</tr>    
+                  		<tr>
+                    		<td><label class="control-label">Reading</label></td> 
+							<td class="w-30">
+								<select ng-model="selected_lvtest.article3Level">
+									<option value="A1">A1 (0~100)</option>
+									<option value="A2">A2 (0~100)</option>
+									<option value="B1">B1 (0~100)</option>
+									<option value="B2">B2 (0~100)</option>
+									<option value="C1">C1 (0~100)</option>
+									<option value="C2">C2 (0~100)</option>
+								</select>
+							</td>
+                    		<td class="m-w"><input type="text" ng-model="selected_lvtest.article3Score" ng-keyup="setAutoSelect(2)"></td>  
+                  		</tr>    
+                  		<tr>
+                    		<td><label class="control-label">Writing</label></td> 
+							<td class="w-30">
+								<select ng-model="selected_lvtest.article4Level">
+									<option value="A1">A1 (0~100)</option>
+									<option value="A2">A2 (0~100)</option>
+									<option value="B1">B1 (0~100)</option>
+									<option value="B2">B2 (0~100)</option>
+									<option value="C1">C1 (0~100)</option>
+									<option value="C2">C2 (0~100)</option>
+								</select>
+							</td>
+                    		<td class="m-w"><input type="text" ng-model="selected_lvtest.article4Score" ng-keyup="setAutoSelect(3)"></td>  
+                  		</tr>    
+                  		<tr>
+                    		<td><label class="control-label">Grammar</label></td> 
+							<td class="w-30">
+								<select ng-model="selected_lvtest.article5Level">
+									<option value="A1">A1 (0~100)</option>
+									<option value="A2">A2 (0~100)</option>
+									<option value="B1">B1 (0~100)</option>
+									<option value="B2">B2 (0~100)</option>
+									<option value="C1">C1 (0~100)</option>
+									<option value="C2">C2 (0~100)</option>
+								</select>
+							</td>
+                    		<td class="m-w"><input type="text" ng-model="selected_lvtest.article5Score" ng-keyup="setAutoSelect(4)"></td>  
+                  		</tr>    
+                  		<tr>
+                    		<td colspan="3" class="nopadderTD">
+                      	 		<textarea class="border" ng-model="selected_lvtest.cnts" placeholder="comment"></textarea>
+                    		</td> 
+                  		</tr>    
+                	</tbody>
+              	</table>
+            	</div>
+         	</div>        
+        </div>
+    </div>
+    <div >
+    <button type="submit" class="btn btn-primary m-t-none m-auto btn-xl w-full" ng-click="save()"><span data-langNum="52">등록</span></button>
+    </div>      
+    </div> 
+<script src="assets/js/language.js"></script>
+</script>
+<!--pc 팝업크기 사이즈용 클래스추가---->
+<script>
+    $(document).ready(function(){
+        $('body').addClass('pc-popup-md')
+    })
+</script>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Collections>
+    	<ExecutionMeta ID="SupportCenterList" Enable="true" IsReadOnly="false">
+		      <RegBy>SupportCenter</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>SupportCenter</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Title />
+		      <ConnectionID>SLI_MYBATIS_CON</ConnectionID>
+		      <CommandType>Qurey</CommandType>
+		      <QueryType>SelectList</QueryType>
+		      <Query>SupportCenter.selectSupportCenterList</Query>
+		      <AuthenticationType>Windows</AuthenticationType>
+		      <ExecutionDataType>Json</ExecutionDataType>
+		      <Namespace />
+		      <UseCaching>false</UseCaching>
+		      <CachingTimeoutMin>0</CachingTimeoutMin>
+		      <UseStub>false</UseStub>
+		      <StubFile />
+		      <Description />
+        </ExecutionMeta>
+        <ExecutionMeta ID="SupportCenterListCnt" Enable="true" IsReadOnly="false">
+		      <RegBy>SupportCenter</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>SupportCenter</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Title />
+		      <ConnectionID>SLI_MYBATIS_CON</ConnectionID>
+		      <CommandType>Qurey</CommandType>
+		      <QueryType>SelectOne</QueryType>
+		      <Query>SupportCenter.selectSupportCenterListCnt</Query>
+		      <AuthenticationType>Windows</AuthenticationType>
+		      <ExecutionDataType>Json</ExecutionDataType>
+		      <Namespace />
+		      <UseCaching>false</UseCaching>
+		      <CachingTimeoutMin>0</CachingTimeoutMin>
+		      <UseStub>false</UseStub>
+		      <StubFile />
+		      <Description />
+        </ExecutionMeta>
+        <ExecutionMeta ID="SupportCenterDetail" Enable="true" IsReadOnly="false">
+		      <RegBy>SupportCenter</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>SupportCenter</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Title />
+		      <ConnectionID>SLI_MYBATIS_CON</ConnectionID>
+		      <CommandType>Qurey</CommandType>
+		      <QueryType>SelectOne</QueryType>
+		      <Query>SupportCenter.selectSupportCenterDetail</Query>
+		      <AuthenticationType>Windows</AuthenticationType>
+		      <ExecutionDataType>Json</ExecutionDataType>
+		      <Namespace />
+		      <UseCaching>false</UseCaching>
+		      <CachingTimeoutMin>0</CachingTimeoutMin>
+		      <UseStub>false</UseStub>
+		      <StubFile />
+		      <Description />
+        </ExecutionMeta>    
+        <ExecutionMeta ID="SupportCenterSave" Enable="true" IsReadOnly="false">
+		      <RegBy>SupportCenter</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>SupportCenter</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Title />
+		      <ConnectionID>SLI_MYBATIS_CON</ConnectionID>
+		      <CommandType>Qurey</CommandType>
+		      <QueryType>SelectOne</QueryType>
+		      <Query>SupportCenter.saveSupportCenter</Query>
+		      <AuthenticationType>Windows</AuthenticationType>
+		      <ExecutionDataType>Json</ExecutionDataType>
+		      <Namespace />
+		      <UseCaching>false</UseCaching>
+		      <CachingTimeoutMin>0</CachingTimeoutMin>
+		      <UseStub>false</UseStub>
+		      <StubFile />
+		      <Description />
+        </ExecutionMeta>
+    </Collections>
+</MetaCollection>

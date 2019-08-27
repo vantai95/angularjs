@@ -1,0 +1,637 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Collections>
+		<ServiceMeta ID="EducationList" Enable="true" IsReadOnly="false">
+			<RegBy>calculate</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>calculate</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>EducationList</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>EducationList</PageName>
+		      <PageTitle>EducationList</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+      	<ServiceMeta ID="EducationListCnt" Enable="true" IsReadOnly="false">
+			<RegBy>calculate</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>calculate</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>EducationListCnt</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>EducationListCnt</PageName>
+		      <PageTitle>EducationListCnt</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+      	<ServiceMeta ID="EducationItemList" Enable="true" IsReadOnly="false">
+			<RegBy>calculate</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>calculate</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>EducationItemList</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>EducationItemList</PageName>
+		      <PageTitle>EducationItemList</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+		<ServiceMeta ID="EducationItemSave" Enable="true" IsReadOnly="false">
+			<RegBy>calculate</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>calculate</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>EducationItemSave</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>EducationItemSave</PageName>
+		      <PageTitle>EducationItemSave</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+      	
+      	
+      	<ServiceMeta ID="CalTeacherFeeList" Enable="true" IsReadOnly="false">
+			<RegBy>calculate</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>calculate</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>CalTeacherFeeList</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>CalTeacherFeeList</PageName>
+		      <PageTitle>CalTeacherFeeList</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+      	<ServiceMeta ID="CalTeacherFeeListByTeacher" Enable="true" IsReadOnly="false">
+			<RegBy>calculate</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>calculate</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>CalTeacherFeeListByTeacher</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>CalTeacherFeeList</PageName>
+		      <PageTitle>CalTeacherFeeList</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+      	<ServiceMeta ID="CalTeacherFeeListCnt" Enable="true" IsReadOnly="false">
+			<RegBy>calculate</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>calculate</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>CalTeacherFeeListCnt</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>CalTeacherFeeListCnt</PageName>
+		      <PageTitle>CalTeacherFeeListCnt</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+      	<ServiceMeta ID="CalTeacherFeeItemList" Enable="true" IsReadOnly="false">
+			<RegBy>calculate</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>calculate</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>CalTeacherFeeItemList</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>CalTeacherFeeItemList</PageName>
+		      <PageTitle>CalTeacherFeeItemList</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+      	<ServiceMeta ID="CalTeacherFeeItemSave" Enable="true" IsReadOnly="false">
+			<RegBy>calculate</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>calculate</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>CalTeacherFeeItemSave</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>CalTeacherFeeItemSave</PageName>
+		      <PageTitle>CalTeacherFeeItemSave</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+      	<ServiceMeta ID="CalLectureSave" Enable="true" IsReadOnly="false">
+			<RegBy>calculate</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>calculate</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>CalLectureSave</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>CalLectureSave</PageName>
+		      <PageTitle>CalLectureSave</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+
+      	<ServiceMeta ID="YearMonthCal" Enable="true" IsReadOnly="false">
+			<RegBy>calculate</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>calculate</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>YearMonthCal</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>CalLectureSave</PageName>
+		      <PageTitle>CalLectureSave</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+      	<ServiceMeta ID="CompExpendList" Enable="true" IsReadOnly="false">
+			<RegBy>calculate</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>calculate</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>CompExpendList</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>CalLectureSave</PageName>
+		      <PageTitle>CalLectureSave</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+      	<ServiceMeta ID="CompExpendAllList" Enable="true" IsReadOnly="false">
+			<RegBy>calculate</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>calculate</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>CompExpendAllList</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>CalLectureSave</PageName>
+		      <PageTitle>CalLectureSave</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+      	<ServiceMeta ID="InsertCompExpend" Enable="true" IsReadOnly="false">
+			<RegBy>calculate</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>calculate</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>InsertCompExpend</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>CalLectureSave</PageName>
+		      <PageTitle>CalLectureSave</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+
+      	<ServiceMeta ID="MonthMoneyComplete" Enable="true" IsReadOnly="false">
+			<RegBy>calculate</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>calculate</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>MonthMoneyComplete</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>CalLectureSave</PageName>
+		      <PageTitle>CalLectureSave</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+
+      	<ServiceMeta ID="MonthCompleteList" Enable="true" IsReadOnly="false">
+			<RegBy>calculate</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>calculate</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>MonthCompleteList</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>CalLectureSave</PageName>
+		      <PageTitle>CalLectureSave</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+
+      	<ServiceMeta ID="TeacherFeeListCnt" Enable="true" IsReadOnly="false">
+			<RegBy>calculate</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>calculate</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>TeacherFeeListCnt</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>TeacherFeeListCnt</PageName>
+		      <PageTitle>TeacherFeeListCnt</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+
+      	<ServiceMeta ID="TeacherFeeList" Enable="true" IsReadOnly="false">
+			<RegBy>calculate</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>calculate</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>TeacherFeeList</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>TeacherFeeList</PageName>
+		      <PageTitle>TeacherFeeList</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+
+      	<ServiceMeta ID="InsertTeacherFeeList" Enable="true" IsReadOnly="false">
+	        <RegBy>Lecture</RegBy>
+	        <RegDate>2016-11-07T12:00:00</RegDate>
+	        <ModBy>Lecture</ModBy>
+	        <ModDate>2016-11-07T12:00:00</ModDate>
+	        <Executions>
+	            <ExecutionID>InsertTeacherFeeList</ExecutionID>
+	        </Executions>
+	        <BLPType>PreExecuteJava</BLPType>
+	        <BLPFile>TeacherFee.class</BLPFile>
+	        <BLPTimeoutMin>10</BLPTimeoutMin>
+	        <Namespace>com.engine.sli.admin</Namespace>
+	        <ClassName>TeacherFee</ClassName>
+	        <RTFType>TRANSACTION</RTFType>
+	        <RTFAddress />
+	        <RTFCustomer />
+	        <RTFServiceID />
+	        <PageName>InsertTeacherFeeList</PageName>
+	        <PageTitle>InsertTeacherFeeList</PageTitle>
+	        <RTFTime>0</RTFTime>
+	        <ReturnType>DataSet</ReturnType>
+	    </ServiceMeta>
+
+      	<ServiceMeta ID="InsertTeacherFeeInfo" Enable="true" IsReadOnly="false">
+			<RegBy>calculate</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>calculate</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>InsertTeacherFeeInfo</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>InsertTeacherFeeInfo</PageName>
+		      <PageTitle>InsertTeacherFeeInfo</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+
+      	<ServiceMeta ID="SelectTeacherFeeInfo2" Enable="true" IsReadOnly="false">
+			<RegBy>calculate</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>calculate</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>SelectTeacherFeeInfo2</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>SelectTeacherFeeInfo</PageName>
+		      <PageTitle>SelectTeacherFeeInfo</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+      	<ServiceMeta ID="SelectTeacherFeeInfo" Enable="true" IsReadOnly="false">
+			<RegBy>calculate</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>calculate</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>SelectTeacherFeeInfo</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>SelectTeacherFeeInfo</PageName>
+		      <PageTitle>SelectTeacherFeeInfo</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+
+
+      	<ServiceMeta ID="ClientFeeListCnt" Enable="true" IsReadOnly="false">
+			<RegBy>calculate</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>calculate</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>ClientFeeListCnt</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>ClientFeeListCnt</PageName>
+		      <PageTitle>ClientFeeListCnt</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+
+      	<ServiceMeta ID="ClientFeeList" Enable="true" IsReadOnly="false">
+			<RegBy>calculate</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>calculate</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>ClientFeeList</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>ClientFeeList</PageName>
+		      <PageTitle>ClientFeeList</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+
+      	<ServiceMeta ID="InsertClientFeeList" Enable="true" IsReadOnly="false">
+	        <RegBy>Lecture</RegBy>
+	        <RegDate>2016-11-07T12:00:00</RegDate>
+	        <ModBy>Lecture</ModBy>
+	        <ModDate>2016-11-07T12:00:00</ModDate>
+	        <Executions>
+	            <ExecutionID>InsertClientFeeList</ExecutionID>
+	        </Executions>
+	        <BLPType>PreExecuteJava</BLPType>
+	        <BLPFile>ClientFee.class</BLPFile>
+	        <BLPTimeoutMin>10</BLPTimeoutMin>
+	        <Namespace>com.engine.sli.admin</Namespace>
+	        <ClassName>ClientFee</ClassName>
+	        <RTFType>TRANSACTION</RTFType>
+	        <RTFAddress />
+	        <RTFCustomer />
+	        <RTFServiceID />
+	        <PageName>InsertTeacherFeeList</PageName>
+	        <PageTitle>InsertTeacherFeeList</PageTitle>
+	        <RTFTime>0</RTFTime>
+	        <ReturnType>DataSet</ReturnType>
+	    </ServiceMeta>
+
+      	<ServiceMeta ID="InsertClientFeeInfo" Enable="true" IsReadOnly="false">
+			<RegBy>calculate</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>calculate</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>InsertClientFeeInfo</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>InsertClientFeeInfo</PageName>
+		      <PageTitle>InsertClientFeeInfo</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+
+      	<ServiceMeta ID="SelectClientFeeInfo2" Enable="true" IsReadOnly="false">
+			<RegBy>calculate</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>calculate</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>SelectClientFeeInfo2</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>SelectClientFeeInfo</PageName>
+		      <PageTitle>SelectClientFeeInfo</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+      	<ServiceMeta ID="SelectClientFeeInfo" Enable="true" IsReadOnly="false">
+			<RegBy>calculate</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>calculate</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>SelectClientFeeInfo</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>SelectClientFeeInfo</PageName>
+		      <PageTitle>SelectClientFeeInfo</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+    </Collections>
+</MetaCollection>

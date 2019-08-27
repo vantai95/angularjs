@@ -1,0 +1,91 @@
+<div class="app-content-body " ng-controller="VideoListController" ng-init="init()">
+  <div class="wrapper-md">
+    <div class="panel panel-default">
+      <div class="panel-heading font-bold">
+      	 강의동영상
+        <button type="submit" class="btn btn-primary pull-right btn-m" ui-sref="app.video.video_insert">
+	         동영상 신규등록
+	    </button>        
+      </div>     
+
+      <div class="panel-body">
+        <form class="form-horizontal" method="get">
+          <div class="form-group b-n">
+            <label class="col-sm-1 control-label">고객사명</label>
+            <div class="col-sm-2">
+              <select class="form-control input-sm" ng-model="filter.cpCd"
+					ng-options="item.cpCd as item.compNm for item in customer_companies"
+					ng-change="getLectures()">
+					<option value="">전체</option>
+				</select>
+            </div>
+            
+            <div class="form-group b-n">
+				<label class="col-sm-1 col-sm-offset-3 control-label">강의명</label>
+				<div class="col-sm-5">
+					<select name="account" class="form-control input-sm"
+						ng-model="filter.ltCd"  ng-change="setStartEndDt()"
+						ng-options="item.ltCd as item.lectureNm for item in lectures">
+						<option value="">전체</option>
+					</select>
+				</div>
+			</div>
+          </div>
+        </form>
+      </div>
+      <div class="panel-footer">
+        <div class="row">
+          <button type="submit" class="btn btn-dark pull-right btn-m" ng-click="getListData()">
+            조회
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="table-responsive teacher_table">
+        <table class="table b-t b-light">
+          <thead>
+            <tr class="active">
+              <th>No</th>              
+              <th>고객사명</th>
+              <th>강의코드</th>
+              <th>강의명</th>
+              <th>강의기간</th>              
+              <th>동영상등록수</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="x in list_video track by $index">
+              <td>{{total_video - $index - app.page_size * (current_page -1)}}</td>
+              <td>{{x.compNm}}</td>
+              <td>{{x.ltCd}}</td>
+              <td>
+                <a class="primary underline" ui-sref="app.video.video_detail({id: x.ltCd})">
+                    {{x.lectureNm}}
+                </a>
+              </td>
+              <td>{{x.startDt}} ~ {{x.endDt}}</td>
+              <td>{{x.videoCnt}}</td>                            
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+    <div class="row" ng-if="total_video > app.page_size">
+      <div class=" text-center">
+      	<ul class="pagination pagination-sm m-t-none m-b-none">
+          <li ng-click="previousPageClick()">
+            <a href=""><i class="fa fa-chevron-left"></i></a>
+          </li>
+          <li ng-repeat="page in getRange(total_pages) track by $index" 
+          	class="{{current_page == $index + 1 ? 'active' : ''}}"
+          ng-click="setCurrentPage($index + 1)"><a href="">{{$index + 1}}</a></li>
+          <li ng-click="nextPageClick()">
+            <a href=""><i class="fa fa-chevron-right"></i></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

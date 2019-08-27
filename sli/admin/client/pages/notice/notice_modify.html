@@ -1,0 +1,107 @@
+
+<!-- content -->
+<div class="app-content-body" ng-controller="NoticeInsertController" ng-init="init()">
+	<div class="wrapper-md">
+		<div class="panel panel-default panel-devide">
+			<div class="panel-heading font-bold">공지사항 수정</div>
+			<div class="panel-body">
+				<form class="form-horizontal" method="get">
+					<div class="form-group">
+						<div class="col-bg col-sm-1">
+							<label class=" control-label">구분</label>
+						</div>
+						<div class="col-sm-2">
+							<select name="account" class="form-control input-sm"
+								ng-model="notice.notiType"
+								ng-options="c.codeId as c.codeName1 for c in notice_types">
+								<option value="">전체</option>
+							</select>
+						</div>
+						<div class="col-bg col-sm-1 col-sm-offset-3">
+							<label class=" control-label">작성자</label>
+						</div>
+						<div class="col-sm-1">
+							<label class=" control-label">{{current_user.userId}}</label>
+						</div>
+						<div class="col-sm-2">
+							<input class="form-control input-sm" type="text" ng-model="notice.showRegNm" maxLength="20">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-1">
+							<label class=" control-label">고객사</label>
+						</div>
+						<div class="col-sm-2">
+							<select name="account" class="form-control input-sm"
+								ng-model="notice.cpCd"
+								ng-options="c.cpCd as c.compNm for c in companies">
+								<option value="">전체</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-1">
+							<label class=" control-label">제목</label>
+						</div>
+						<div class="col-sm-11">
+							<input class="form-control input-sm" type="text" ng-model="notice.notiTitle" maxlength="100">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-1 heightfix">
+							<label class=" control-label">내용</label>
+						</div>
+						<div class="col-sm-11">
+							<textarea class="b" ng-model="notice.notiContents"></textarea>
+						</div>
+					</div>
+					<div class="form-group b-n">
+						<div class="col-bg col-sm-1">
+							<label class=" control-label">노출설정</label>
+						</div>
+						<div class="col-sm-11">
+							<div class="col-sm-2 no-padder">
+								<div class="radio">
+									<label class="i-checks"> <input type="radio" name="showYn" value="N" ng-model="notice.showYn" ng-change="notice.showDtYn = null; notice.showStartDt = null; notice.showEndDt = null; "> <i></i>
+										비노출
+									</label> &nbsp;&nbsp;&nbsp; 
+									<label class="i-checks"> 
+									<input type="radio" name="showYn" value="Y" ng-model="notice.showYn">
+										<i></i> 노출
+									</label>
+								</div>
+							</div>
+							<div class="col-sm-10 no-padder">
+								<div class="radio col-sm-3">
+									<label class="m-t-sm">(</label> 
+									<label class="i-checks">
+										<input type="checkbox" ng-true-value="'Y'" ng-false-value="'N'" ng-value="N" ng-model="notice.showDtYn" ng-disabled="notice.showYn == 'N'">
+										<i></i> 노출 기간 설정
+									</label>
+								</div>
+								<div class="col-sm-7 no-padder-left">
+									<div class="col-sm-4 no-padder-right">
+										<input class="form-control input-sm date dateStr" type="text" ng-model="notice.showStartDt" ng-disabled="notice.showYn == 'N'">
+									</div>
+									<label class="control-label col-sm-1 text-center">─</label>
+									<div class="col-sm-4 no-padder-left">
+										<input class="form-control input-sm date dateEnd" type="text"  ng-model="notice.showEndDt" ng-disabled="notice.showYn == 'N'">
+									</div>
+									<label class="m-t-sm">)</label>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="text-center m-t-lg">
+			<button class="btn btn-dark btn-w" ng-click="cancelUpdating();">취소</button>
+			&nbsp;
+			<button class="btn btn-primary btn-w" ng-click="updateNotice();">수정완료</button>
+		</div>
+	</div>
+
+
+</div>
+<!-- /content -->

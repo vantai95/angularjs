@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Collections>
+		
+      	<ServiceMeta ID="CertificateList" Enable="true" IsReadOnly="false">
+			<RegBy>Certificate</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>Certificate</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>CertificateList</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>CertificateList</PageName>
+		      <PageTitle>CertificateList</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+      	<ServiceMeta ID="CertificateListCnt" Enable="true" IsReadOnly="false">
+			<RegBy>Certificate</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>Certificate</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>CertificateListCnt</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>CertificateList</PageName>
+		      <PageTitle>CertificateList</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+      	<ServiceMeta ID="CertificateSave" Enable="true" IsReadOnly="false">
+			<RegBy>Certificate</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>Certificate</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>CertificateSave</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>CertificateSave</PageName>
+		      <PageTitle>CertificateSave</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>      	  	
+    </Collections>
+</MetaCollection>

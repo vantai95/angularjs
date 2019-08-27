@@ -1,0 +1,533 @@
+<!-- content -->
+<div class="app-content-body" ng-controller="LectureInsertController" ng-init="init()">
+	<div class="wrapper-md">
+		<div class="panel panel-default panel-devide">
+			<div class="panel-heading font-bold">강의 수정</div>
+			<div class="panel-body">
+				<form class="form-horizontal" method="get">
+					<div class="form-group">
+						<div class="col-bg col-sm-2">
+							<label class="control-label">강의코드</label>
+						</div>
+						<div class="col-sm-4">
+							<label class="control-label">{{lecture_id}}</label>
+						</div>
+						<div class="col-bg col-sm-2">
+							<label class=" control-label"> 상태</label>
+						</div>
+						<div class="col-sm-4">
+							<label class="control-label"> {{lecture.stateFlagNm}} </label>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-2">
+							<label class="control-label">영역</label>
+						</div>
+						<div class="col-sm-4">
+							<select name="account" class="form-control input-sm"
+								ng-model="lecture.titleCd"
+								ng-options="item.codeId as item.codeName1 for item in domains"
+								ng-change="getSubjects()">
+								<option value="">선택</option>
+							</select>
+						</div>
+						<div class="col-bg col-sm-2">
+							<label class=" control-label"> 과목</label>
+						</div>
+						<div class="col-sm-4">
+							<select name="account" class="form-control input-sm"
+								ng-model="lecture.sjCd"
+								ng-options="item.sjCd as item.subjectName for item in subjects">
+								<option value="">선택</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-2">
+							<label class="control-label">진행고객사</label>
+						</div>
+						<div class="col-sm-4">
+							<select name="account" class="form-control input-sm"
+								ng-model="lecture.cpCd"
+								ng-options="item.cpCd as item.compNm for item in companies" ng-change="setPaymentType();">
+							<option value="">선택</option>
+							</select>
+						</div>
+						<div class="col-bg col-sm-2">
+							<label class=" control-label"> 강의구분</label>
+						</div>
+						<div class="col-sm-2">
+							<select name="account" class="form-control input-sm"
+								ng-model="lecture.lectureSort"
+								ng-options="item.codeId as item.codeName1 for item in lecture_sorts">
+							<option value="">선택</option>
+							</select>
+						</div>
+						<div  class="form-group">
+							<label class="i-checks m-l-sm">
+								<input type="checkbox" ng-model="lecture.attendanceYn" ng-true-value="'Y'" ng-false-value="'N'"><i></i>출석확정
+							</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-2">
+							<label class="control-label">담당강사</label>
+						</div>
+						<div class="col-sm-2">
+							<select name="account" class="form-control input-sm"
+								ng-model="lecture.tcCd"
+								ng-options="item.tcCd as item.userName for item in teachers | filter:filterUsers">
+								<option value="">전체</option>
+							</select>
+						</div>
+						<div class="col-sm-2">
+							<input class="form-control input-sm" placeholder="이름검색" ng-model="search.user_name" type="text">
+						</div>
+						<div class="col-bg col-sm-2">
+							<label class=" control-label"> 모집인원</label>
+						</div>
+						<div class="col-sm-4">
+							<input class="form-control input-sm limit_value" ng-model="lecture.studentLimit"
+								type="number" min="0" maxLength="4">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-2">
+							<label class=" control-label">
+								결제방법
+							</label>
+						</div>
+						<div class="col-sm-4">
+							<div class="radio">
+								<label class="i-checks"> 
+									<input type="radio" name="paymentType" ng-model="lecture.paymentType" value="M"> <i></i> 매월
+								</label> &nbsp;&nbsp;&nbsp; 
+								<label class="i-checks"> 
+									<input type="radio" name="paymentType" ng-model="lecture.paymentType" value="C"> <i></i> 과정종료후
+								</label>
+							</div>
+						</div>
+						<div class="col-bg col-sm-2">
+							<label class=" control-label">
+								개시여부
+							</label>
+						</div>
+						<div class="col-sm-4">
+							<label class="i-checks m-l-sm" style="margin-top:10px;">
+								<input type="checkbox" ng-model="lecture.useYn" ng-true-value="'Y'" value="Y"><i></i>개시
+							</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-2"><span class="dot">*</span>
+							<label class=" control-label">강의명</label>
+						</div>
+						<div class="col-sm-4">
+							<input class="form-control input-sm" ng-model="lecture.lectureNm"
+								type="text" maxlength="100">
+						</div>
+						<div class="col-bg col-sm-2">
+							<label class=" control-label">
+								강의설명
+							</label>
+						</div>
+						<div class="col-sm-4">
+							<textarea class="form-control input-sm" ng-model="lecture.lectureCnts" style="height:70px; min-height:30px;"></textarea>
+						</div>
+					</div>					
+					<div class="form-group">
+			            <div class="col-bg col-sm-2">
+			            	<label class=" control-label">강의이미지</label>
+			            </div>
+			            <div class="col-sm-4">
+			              	<label class="btn btn-sm btn-info m-t-xs" ng-if="!lecture.images && imgFile.fileName == ''">
+			                 	파일 첨부
+			                	<input type="file" select-ng-files ng-model="lecture.images" style="opacity: 0; position: absolute; left: 0; width: 100px;height: 32px; top: 5px" ng-change="fileUpload();"/>
+			              </label>
+			              <label class="uploader" ng-if="lecture.images" ng-repeat="file in lecture.images">
+			                	{{ file.name }}
+			                	<button type="button" id="file" class="btn btn-xs btn-default" ng-click="lecture.images = null;">
+			                  		<i class="fa fa-times primary"></i>
+			                	</button>
+			              </label>
+			              <label class="uploader" ng-if="imgFile.fileName != ''">
+			              		<a href="{{imgFile.pathUrl}}/{{imgFile.fileName}}" target="_blank">{{ imgFile.originalName }}</a>
+			                	<button type="button" id="file" class="btn btn-xs btn-default" ng-click="clearDownloadFile();">
+			                  		<i class="fa fa-times primary"></i>
+			                	</button>
+			              </label>
+			            </div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-2">
+							<label class="control-label">강의장소</label>
+						</div>
+						<div class="col-sm-1">
+							<label class="control-label">장소명</label>
+						</div>
+						<div class="col-sm-2">
+							<input class="form-control input-sm"
+								ng-model="lecture.lecturePlaceNm" type="text" maxlength="100">
+						</div>
+						<div class="col-sm-12 no-padder">
+							<div class="col-bg col-sm-2">
+								<label class="control-label text-xxs ">주소</label>
+							</div>
+							<div class="col-sm-1">
+								<label class="control-label">위치</label>
+							</div>
+							<div class="col-sm-8">
+								<div class="col-sm-1 no-padder">
+									<input class="form-control input-sm" type="text" ng-model="lecture.postNo" value="" placeholder="우편번호검색" maxlength="5" readonly ng-click="execDaumPostcode()">
+								</div>
+								<div class="col-sm-3">
+									<input class="form-control input-sm" type="text" ng-model="lecture.addr" value="" placeholder="주소를 입력하세요" maxlength="100" readonly ng-click="execDaumPostcode()">
+								</div>
+		
+								<div class="col-sm-3 no-padder">
+									<input class="form-control input-sm" type="text" ng-model="lecture.dtlAddr" placeholder="상세주소 입력" maxlength="255">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-2">
+							<label class=" control-label">강의일정</label>
+						</div>
+						<div class="col-sm-9 no-padder">
+						    <div class="text-left" style=" padding-right: 15px; padding-left: 15px;">
+								<button class="btn btn-sm btn-info m-t-xs" ng-click="addScheduleWeek()">일정추가</button>
+							</div>
+							<div ng-repeat="x in add_schedule_week" callback-on-end="repeatComplete($index);">
+								<div class="radio col-sm-4">
+					                <label class="i-checks" ng-repeat="s in schedule_week">
+					                  <input type="checkbox" ng-checked="checkAlreadyAssigned(x, s.id)" ng-click="setScheduleWeek(s.id, x)"> <i></i>{{s.name}}
+					                </label>
+								</div>
+								<div class="col-sm-1" style="text-align:right">
+									<label class="control-label">시간</label>
+								</div>								
+								
+								<div class="col-sm-3 no-padder-right">
+									<div class=" no-padder">
+										<!-- <input class="form-control input-sm char4_valid" placeholder="HH:MM" type="text" maxlength="5" ng-model="x.scheduleStartTime"> -->
+										<select class="form-control " ng-model="x.startHour" style="width:53px; margin-right:3px; padding:5px; float:left;" 
+												ng-options="item.hour as item.hour for item in hour_list" ng-change="checkComfirmTime(x)">
+					                        <option value="">시</option>
+					                    </select>              		
+										<select class="form-control " ng-model="x.startMinute" style="width:53px; padding:5px; float:left;"
+												ng-options="item.minute as item.minute for item in minute_list" ng-change="checkComfirmTime(x)">
+					                       	<option value="">분</option>
+					                    </select>
+					                	<label class="control-label" style="float:left;">~</label>
+					                	<select class="form-control " ng-model="x.endHour" style="width:53px; margin-right:3px; padding:5px; float:left;" 
+					                			ng-options="item.hour as item.hour for item in hour_list" ng-change="checkComfirmTime(x)">
+					                        <option value="">시</option>
+					                    </select>              		
+										<select class="form-control " ng-model="x.endMinute" style="width:53px; padding:5px;" 
+												ng-options="item.minute as item.minute for item in minute_list" ng-change="checkComfirmTime(x)">
+					                       	<option value="">분</option>
+					                    </select>
+									</div>
+								</div>
+																
+								<div class="col-sm-1" style="text-align:right">
+									<label class="control-label">적용일</label>
+								</div>
+								<div class="col-sm-2">
+									<div class="input-group input-group-sm m-t-xs date dateSchedule{{$index}}">
+										<input type="text" ng-model="x.stdDt" class="form-control">
+										<span class="input-group-btn">
+											<button type="button" class="btn btn-default">
+												<i class="glyphicon glyphicon-calendar"></i>
+											</button>
+										</span>
+									</div>
+								</div>
+								<div class="col-sm-1 no-padder" ng-if="$index != 0">
+									<button class="btn btn-sm btn-info m-t-xs"  ng-click="deleteScheduleWeek(x)">일정삭제</button>
+								</div>
+								<div style="clear:both"></div>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-2"><span class="dot">*</span>
+							<label class=" control-label"> 개강일</label>
+						</div>
+						<div class="col-sm-2">
+							<div class="input-group input-group-sm m-t-xs date dateStr">
+								<input type="text" ng-model="lecture.startDt" class="form-control">
+								<span class="input-group-btn">
+									<button type="button" class="btn btn-default">
+										<i class="glyphicon glyphicon-calendar"></i>
+									</button>
+								</span>
+							</div>
+						</div>
+						<div class="col-bg col-sm-2 col-sm-offset-2">
+							<label class=" control-label"> 종강일</label>
+						</div>
+						<div class="col-sm-2">
+							<div class="input-group input-group-sm m-t-xs date dateEnd">
+								<input type="text"  ng-model="lecture.endDt" class="form-control">
+								<span class="input-group-btn">
+									<button type="button" class="btn btn-default">
+										<i class="glyphicon glyphicon-calendar"></i>
+									</button>
+								</span>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-2">
+							<label class="control-label">총 강의 시수</label>
+						</div>
+						<div class="col-sm-2">
+							<input class="form-control input-sm limit_value" ng-model="lecture.lectureTotalCnt" type="number" maxLength="5">
+						</div>
+						<label class="control-label col-sm-2">T</label>
+						<div class="col-bg col-sm-2 ">
+							<label class=" control-label"> 수료 출석률</label>
+						</div>
+						<div class="col-sm-2">
+							<select name="completionRate" class="form-control input-sm"
+								ng-model="lecture.completAttendance" ng-options="percent for percent in percent_attendance">
+								<option value ="">선택</option>
+							</select>
+						</div>
+						<label class="control-label col-sm-1">이상</label>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-2">
+							<label class="control-label">결석처리 지각횟수</label>
+						</div>
+						<div class="col-sm-8">
+							<label class="control-label" style="float:left">지각</label>
+							<label class="col-sm-2"><input class="form-control input-sm limit_value" ng-model="lecture.absenceRate" type="number" maxLength="2" ></label>
+							<label class="control-label col-sm-8">회당 결석 1회로 산정합니다. (0 또는 미 입력시 지각을 결석으로 산정하지 않습니다.)</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-2">
+							<label class=" control-label">수강료</label>
+						</div>
+						<div class="col-sm-1">
+							<input class="form-control input-sm" ng-model="lecture.tuitionFee" type="number" maxLength="10">
+						</div>
+						<div class="col-sm-8 no-padder">
+							<div class="radio">
+								원 ( 청구단위 : &nbsp;&nbsp; 
+								<label class="i-checks" ng-repeat="tuition in tuition_fee_units"> 
+									<input type="radio" name="tuitionFeeUnit" value="{{tuition.codeId}}" ng-model="lecture.tuitionFeeUnit"><i></i> {{tuition.codeName1}}
+								</label> 
+								&nbsp;&nbsp;)
+								<label class="i-checks"> 
+									<input type="checkbox" ng-model="lecture.freeYn" ng-true-value="'Y'"> <i></i> 면세여부
+								</label>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-2">
+							<label class=" control-label">강사료</label>
+						</div>
+						<div class="col-sm-1">
+							<input class="form-control input-sm" type="number" ng-model="lecture.teacherFee" maxLength="10">
+						</div>
+						<div class="col-sm-5 no-padder">
+							<div class="radio">
+								원 (&nbsp;&nbsp; 
+								<label class="i-checks" ng-repeat="unit in teacher_fee_units">
+									<input type="radio" name="unitFeeLecture" value="{{unit.codeId}}" ng-model="lecture.teacherFeeUnit"> <i></i> {{unit.codeName1}}
+								</label>
+								&nbsp;&nbsp; &nbsp;)
+							</div>
+						</div>
+						<div class="col-sm-3 no-padder-right">
+							<label class="col-sm-3 control-label ">교통비</label>
+							<div class="col-sm-7 no-padder">
+								<input class="form-control input-sm" type="number" ng-model="lecture.teacherTrspFee" maxLength="8">
+							</div>
+							<label class="col-sm-2 control-label ">일(회)</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-2">
+							<label class=" control-label ">강의내용</label>
+						</div>
+						<div class="col-sm-4">
+							<input class="form-control input-sm" ng-model="lecture.lectureContents" type="text" />
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-2">
+							<label class=" control-label ">강의특징</label>
+						</div>
+						<div class="col-sm-4">
+							<textarea class="form-control input-sm" ng-model="lecture.lecturePoint" style="height:70px; min-height:30px;"></textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-2">
+							<label class=" control-label">
+								커리큘럼
+							</label>
+						</div>
+						<div class="col-sm-4">
+							<textarea class="form-control input-sm" ng-model="lecture.lectureCurriculum" style="height:70px; min-height:30px;"></textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-2">
+							<label class=" control-label ">강의교재</label>
+						</div>
+						<div class="col-sm-2">
+							<div class="radio">
+								<label class="i-checks"> 
+									<input type="radio" name="bookYn" ng-model="lecture.bookYn" value="N"> <i></i> 없음
+								</label> &nbsp;&nbsp;&nbsp; 
+								<label class="i-checks"> 
+									<input type="radio" name="bookYn" ng-model="lecture.bookYn" value="Y"> <i></i> 교재연결
+								</label>
+							</div>
+						</div>
+						<div class="col-sm-2">
+							<input class="form-control input-sm" ng-disabled="lecture.bookYn!='Y'" ng-model="book_name"  type="text" maxlength="20">
+						</div>
+						<div class="col-sm-2 no-padder">
+							<button class="btn btn-sm btn-info m-t-xs" ng-disabled="lecture.bookYn!='Y'" ng-click="showBookMaching()">교재검색</button>
+						</div>
+						 <div class="col-sm-10">
+							<label class="control-label" ng-repeat="x in bookInfoListPopup">
+								{{x.bookName}} ({{x.author}}, {{x.publisher}})
+				                <button type="button" id="file" class="btn btn-xs btn-default" ng-click="deleteBook(x)">
+				                  	<i class="fa fa-times primary"></i>
+				                </button>
+								<span ng-if="!$last">&nbsp&nbsp&nbsp&nbsp&nbsp/</span>
+							</label>
+						</div>
+						<div class="col-sm-2 no-padder">
+							
+						</div>
+<!-- 						<div class="col-sm-10">
+							<label class="control-label"  ng-repeat="book in lecture_books">{{book.bkCd}} &nbsp; {{book.bookName}} <span ng-if="!$last"> &nbsp/</label>
+						</div> -->
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-2">
+							<label class=" control-label ">샘플강의</label>
+						</div>
+						<div class="col-sm-4">
+							<input class="form-control input-sm" ng-model="lecture.sampleUrl" type="text" maxlength="255">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="text-center m-t-lg">
+			<button ng-click="cancelUpdating()" class="btn btn-dark btn-w">취소</button>
+			&nbsp;
+			<button ng-click="updateLecture()" class="btn btn-primary btn-w">수정완료</button>
+		</div>
+	</div>
+</div>
+<div style="position:fixed; z-index:9; width:100%; height:100%; left:0; top:0; display:none" id="daum_wrap">
+	<div id="layer" style="z-index:9999; display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
+		<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
+	</div>
+</div>
+<script>
+	$(function() {
+		$(".date").datepicker({
+			format : "yyyy-mm-dd"
+		});
+		//$(".date").datepicker('setDate', new Date());
+	});
+</script>
+<!-- /content -->
+<script type="text/ng-template" id="popup.html">
+  <div class="popup_wrap" ng-init="initPopup()">
+    <div class="popup_header">교재 연결하기<span class="pull-right closebtn">
+          <a ng-click="cancel()">
+            <img src="assets/img/close.png" class="img-full" alt="..."></span>
+          </a>
+    </div>
+    <div>
+        <div class="panel white padder-v m-b-none">
+        <div class="form-horizontal">
+        <div class="form-group b-n">
+          <div class="col-sm-2"><label class="control-label">과목</label></div>
+          <div class="col-sm-3">
+            <select name="account" class="form-control input-sm"
+								ng-model="selected_subject"
+								ng-options="item.sjCd as item.subjectName for item in subjectMasterListPopup">
+								<option value="">선택</option>
+							</select>
+          </div>
+        </div>
+          <div class="form-group">
+          <div class="col-sm-2"><label class="control-label">교재명</label></div>
+          <div class="col-sm-7">
+            <input class="form-control input-sm" ng-model="book_name"  type="text" maxlength="150">
+          </div>
+          <div class="col-sm-2">
+            <button type="submit" ng-click ="changeMasterList()" class="btn btn-dark pull-right btn-m m-t-xs">조회</button>
+          </div>      
+        </div>
+        </div>
+        </div>    
+    </div>  
+    <div class="popup_body">
+        <div class="panel panel-default">
+        <div class="table-responsive heightmax bg-gray padder-v">
+      <table class="table mini-table">
+                    <tbody>
+                      <tr ng-repeat="bookInfoX in bookInfoListPopup.data">
+                        <td><label class="i-checks m-b-xxs">
+                            <input type="checkbox" ng-model="bookInfoX.selected" ng-true-value="true" ng-false-value="false">
+                            <i></i>
+                          </label>
+                        </td>
+                        <td>{{bookInfoX.bkCd}}_ {{bookInfoX.bookName}}_ {{bookInfoX.author}}</td>
+                      </tr>  
+                    </tbody>
+                  </table>
+    </div>
+{{bookInfoListPopup.selected}}
+    </div>
+        <div class="text-center m-t-lg">
+            <button class="btn btn-primary btn-w" ng-click="ok()">등록</button>
+        </div>
+    </div>  
+  </div>
+</script>
+<script>
+	$(".limit_value").on("keypress",function(e){
+		var number = parseInt($(this).val() + e.key);
+		if(number < 0)
+		{
+			number = -number;
+		}
+		if(number > 32767)
+		{
+			if(e.which == 8)
+			{
+				return;
+			}
+			e.preventDefault();
+		}
+	});
+	
+	$(".char4_valid").on("keypress",function(e){
+		var number_length = (parseInt($(this).val() + e.key)).toString().length;
+		if(number_length > 4)
+		{
+			if(e.which == 8)
+			{
+				return;
+			}
+			e.preventDefault();
+		}
+	});
+</script>

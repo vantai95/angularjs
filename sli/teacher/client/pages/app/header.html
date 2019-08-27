@@ -1,0 +1,111 @@
+      <!-- navbar header /모바일 노출 header/---->
+      <div class="navbar-header">
+          <!---뒤로가기 버튼:display:none 상태--->
+        <button class="pull-left visible-xs back_btn" ui-sref="app.index.dashboard">
+        </button>  
+          <!--뒤로가기 버튼-->
+        <button class="pull-right visible-xs menu_btn" ui-toggle-class="off-screen" data-target=".app-aside" ui-scroll="app">
+        </button>
+         <div class="header_subTT">공지사항</div> 
+          <a href="#/" class="navbar-brand m-t"></a>
+      </div>
+      <!-- / navbar header -->
+      <!-- navbar collapse -->
+      <div class="collapse pos-rlt navbar-collapse widthfix m-auto">
+          <a href="#/" class="navbar-brand pull-left"></a>
+          <div class="header_nav pull-left clearfix">
+                          <!-- list -->                    
+            <ul class="nav">
+                <div>
+              <li>
+                <a ui-sref="app.notice.list" class="primary">      
+                  <span data-langNum="2">공지사항</span>
+                </a>
+              </li>
+              <li>
+                <a ui-sref="app.mylecture.index">      
+                  <span data-langNum="3">내강의실</span>
+                </a>
+              </li>
+              <li>
+                <a ui-sref="app.teacher.certificate">      
+                  <span data-langNum="4">강사지원센터</span>
+                </a>
+              </li>
+              <li>
+                <a ui-sref="app.data.list">      
+                  <span data-langNum="5">자료실</span>
+                </a>
+              </li>        
+              </div>
+            </ul>
+            <!-- / list -->                                                                         
+          </div>
+          
+        <ul class="nav navbar-nav navbar-right">
+            <button class="btn btn-borderPrimary btn-rounded btn-add btn-ko" onclick="changeLanguge('ko');">KR</button>
+            <button class="btn btn-transparent btn-rounded btn-add btn-en" onclick="changeLanguge('en');">EN</button>          
+            <a href="#" data-langNum="0" class="btn no-shadow navbar-btn underline" ng-click="logout();">
+            	로그아웃 
+          	</a>
+        </ul>
+      </div>
+      <!---big header area---->
+      <div class="bigbg_header clearfix">
+      <div class="dropdown wrapper text-center text-white text-xl ltr m-t" ui-sref="access.my_setting">
+          <span class="thumb w-auto-folded avatar">
+            <img src="assets/img/profile.png" class="img-full" alt="...">
+          </span>
+          <span class="clear">
+            <span class="block m-t-md text-lg">
+              {{current_user.userName}} ({{current_user.userId}})
+            </span>
+            <span class="text-muted text-xs block"></span>
+          </span>
+      </div>
+      <div>
+        <div class="m-t-md">
+          <div class="col-sm-4 col-xs-4 text-center no-padder" ui-sref="app.mylecture.index">
+              <a><img src="assets/img/lecture_ico.png" width="32" ></a>
+              <p class="m-t-sm text-white text-md"><span data-langNum="3">내 강의실</span></p>
+          </div>
+          <div class="col-sm-4 col-xs-4 text-center no-padder" ui-sref="app.teacher.certificate">
+              <a><img src="assets/img/certifi_ico.png" width="32" ></a>
+              <p class="m-t-sm text-white text-md"><span data-langNum="11">증명서 발급내역</span></p>
+          </div>
+          <div class="col-sm-4 col-xs-4 text-center no-padder" ui-sref="app.teacher.certificate">
+              <a><img src="assets/img/bill_ico.png" width="26" ></a>
+              <p class="m-t-sm text-white text-md"><span data-langNum="12">지급내역</span></p>
+          </div>    
+        </div>      
+      </div>
+      </div>
+        <!---big header area---->
+      <!-- / navbar collapse -->
+
+<script>
+	function changeLanguge(currentLanguage) {	
+	  localStorage.sli_lang = currentLanguage;
+	  
+	  if('ko' == currentLanguage ){
+		  $(".btn-ko").removeClass("btn-transparent").addClass("btn-borderPrimary");
+		  $(".btn-en").removeClass("btn-borderPrimary").addClass("btn-transparent");
+	  }else{
+		  $(".btn-en").removeClass("btn-transparent").addClass("btn-borderPrimary");
+		  $(".btn-ko").removeClass("btn-borderPrimary").addClass("btn-transparent");
+	  }
+	  
+	  $('[data-langNum]').each(function() {
+	    var $this = $(this); 
+	    $this.html($.lang[currentLanguage][$this.data('langnum')]); 
+	  });    
+	}
+	
+	$(document).ready(function(){
+		if( null == localStorage.getItem('sli_lang')){
+			changeLanguge("ko");
+		}else{
+			changeLanguge(localStorage.getItem('sli_lang'));
+		}
+	});
+</script>

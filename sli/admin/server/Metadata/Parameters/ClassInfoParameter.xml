@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Collections>
+    	<!-- ClassStudentSave START -->    	
+    	<ParameterMeta ID="saveType" IsReadOnly="false" Enable="true">
+			<RegBy>ClassInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>ClassInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>ClassStudentSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="cpCd" IsReadOnly="false" Enable="true">
+			<RegBy>ClassInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>ClassInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>ClassStudentSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="ltCd" IsReadOnly="false" Enable="true">
+			<RegBy>ClassInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>ClassInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>ClassStudentSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="stCd" IsReadOnly="false" Enable="true">
+			<RegBy>ClassInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>ClassInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>ClassStudentSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>			
+		<ParameterMeta ID="regUser" IsReadOnly="false" Enable="true">
+			<RegBy>ClassInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>ClassInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>ClassStudentSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>		
+		<!-- ClassStudentSave END  -->
+		
+		<!-- ClassStudentList Start  -->		
+		<ParameterMeta ID="cpCd" IsReadOnly="false" Enable="true">
+			<RegBy>ClassInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>ClassInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>ClassStudentList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="ltCd" IsReadOnly="false" Enable="true">
+			<RegBy>ClassInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>ClassInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>ClassStudentList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="classYn" IsReadOnly="false" Enable="true">
+			<RegBy>ClassInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>ClassInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>ClassStudentList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="userName" IsReadOnly="false" Enable="true">
+			<RegBy>ClassInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>ClassInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>ClassStudentList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<!-- ClassStudentList END  -->
+		
+		<!-- ClassStudentListCnt Start  -->		
+		<ParameterMeta ID="cpCd" IsReadOnly="false" Enable="true">
+			<RegBy>ClassInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>ClassInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>ClassStudentListCnt</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="ltCd" IsReadOnly="false" Enable="true">
+			<RegBy>ClassInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>ClassInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>ClassStudentListCnt</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="classYn" IsReadOnly="false" Enable="true">
+			<RegBy>ClassInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>ClassInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>ClassStudentListCnt</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="userName" IsReadOnly="false" Enable="true">
+			<RegBy>ClassInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>ClassInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>ClassStudentListCnt</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<!-- ClassStudentListCnt END  -->
+				
+		<!-- ClassInfoList Start  -->
+		<ParameterMeta ID="startPage" IsReadOnly="false" Enable="true">
+			<RegBy>ClassInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>ClassInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>ClassInfoList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="endPage" IsReadOnly="false" Enable="true">
+			<RegBy>ClassInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>ClassInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>ClassInfoList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="tcCd" IsReadOnly="false" Enable="true">
+			<RegBy>ClassInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>ClassInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>ClassInfoList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="cpCd" IsReadOnly="false" Enable="true">
+			<RegBy>ClassInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>ClassInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>ClassInfoList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="ltCd" IsReadOnly="false" Enable="true">
+			<RegBy>ClassInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>ClassInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>ClassInfoList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="userName" IsReadOnly="false" Enable="true">
+			<RegBy>ClassInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>ClassInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>ClassInfoList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>		
+		<!-- ClassInfoList END  -->	
+		
+		<!-- ClassInfoList Start  -->
+		<ParameterMeta ID="tcCd" IsReadOnly="false" Enable="true">
+			<RegBy>ClassInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>ClassInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>ClassInfoListCnt</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="cpCd" IsReadOnly="false" Enable="true">
+			<RegBy>ClassInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>ClassInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>ClassInfoListCnt</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="ltCd" IsReadOnly="false" Enable="true">
+			<RegBy>ClassInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>ClassInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>ClassInfoListCnt</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="userName" IsReadOnly="false" Enable="true">
+			<RegBy>ClassInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>ClassInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>ClassInfoListCnt</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>		
+		<!-- ClassInfoListCnt END  -->
+		
+		<!-- ClassInfoStudent START  -->
+		<ParameterMeta ID="clCd" IsReadOnly="false" Enable="true">
+			<RegBy>ClassInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>ClassInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>ClassInfoStudent</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shStartDt" IsReadOnly="false" Enable="true">
+			<RegBy>ClassInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>ClassInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>ClassInfoStudent</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shEndDt" IsReadOnly="false" Enable="true">
+			<RegBy>ClassInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>ClassInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>ClassInfoStudent</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<!-- ClassInfoStudent END  -->
+		
+		<!-- ChangeDrop START  -->
+		<ParameterMeta ID="clCd" IsReadOnly="false" Enable="true">
+			<RegBy>ClassInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>ClassInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>ChangeDrop</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="dropYn" IsReadOnly="false" Enable="true">
+			<RegBy>ClassInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>ClassInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>ChangeDrop</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="updUser" IsReadOnly="false" Enable="true">
+			<RegBy>ClassInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>ClassInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>ChangeDrop</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>		
+		<!-- ChangeDrop END  -->
+    </Collections>
+</MetaCollection>

@@ -1,0 +1,180 @@
+
+<div class="app-content-body " ng-controller="SMSController"
+	ng-init="init()">
+	<div class="wrapper-md">
+		<div class="panel panel-default">
+			<div class="panel-heading font-bold">SMS 발송 내역</div>
+		</div>
+		<div class="panel panel-default">
+			<table st-table="rowCollectionPage" class="table">
+				<div class="table-responsive teacher_table">
+					<table class="table b-t b-light">
+						<thead>
+							<tr class="active">
+								<th>No</th>
+								<th>구분</th>
+								<th>제목</th>
+								<th>내용</th>
+								<th>대상</th>
+								<th>발송자</th>
+								<th>발송일자</th>
+								<th>상태</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="x in sms track by $index">
+								<td>{{generateListNo(current_page, total_sms, $index)}}</td>
+								<td>{{x.smsType }}</td>
+								<td>{{x.sendTitle }}</td>
+								<td class="text-left">{{x.sendText }}</td>
+								<td>{{x.sendCnt + "명"}}</td>
+								<td>{{x.regUserNm }}</td>
+								<td>{{x.sendDt }}<br>{{x.sendTime }}</td>
+								<td ng-if="x.sendYn=='N'">예약중<br> <a
+									class="primary underline" ng-click="cancel(x.smtCd, x.sendDt, x.sendTime)")>발송취소</a>&nbsp;&nbsp;
+									<a class="primary underline" ng-click="openPopup(x)">수정</a>
+								</td>
+								<td ng-if="x.sendYn =='Y'">발송완료<br>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="row" ng-if="total_sms > 1">
+					<div class=" text-center">
+						<ul class="pagination pagination-sm m-t-none m-b-none">
+							<li ng-click="previousPageClick()"><a href=""><i
+									class="fa fa-chevron-left"></i></a></li>
+							<li ng-repeat="page in getRange(total_pages) track by $index"
+								class="{{current_page == $index + 1 ? 'active' : ''}}"
+								ng-click="setCurrentPage($index + 1)"><a href="">{{$index
+									+ 1}}</a></li>
+							<li ng-click="nextPageClick()"><a href=""><i
+									class="fa fa-chevron-right"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</table>
+		</div>
+	</div>
+</div>
+<script type="text/ng-template" id="smsTeacherSortingPopup.html">
+  <div class="popup_wrap" ng-init="initPopup()">
+      <div class="popup_header">
+        SMS 발송<span class="pull-right closebtn " data-ng-click="cancel()"><img src="assets/img/close.png" class="img-full" alt="..."></span>
+    </div>
+    <div class="popup_body no-padder-top">
+        <div>
+    <p class="m-t-md text-md">
+       총 수신 회원 수 : <span class="primary">{{sms_current.sendCnt}}</span>명
+    </p>     
+    <div class="panel panel-default panel-devide m-t-md">
+    <div class="panel-body">
+      <form class="form-horizontal ng-pristine ng-valid" method="get">
+        <div class="form-group">
+          <div class="col-bg col-sm-2"><label class=" control-label"> 문자구분</label></div>
+          <div class="col-sm-10">
+							<select name="account" class="form-control input-sm"
+								ng-model="sms_current.smsType"
+								ng-options="item.cnts as item.cnts for item in sms_messages"
+								ng-change="changeSmsType()">
+								<option value="">직접입력</option>
+							</select>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-bg col-sm-2"><label class=" control-label"> 제목</label></div>
+          <div class="col-sm-10">
+            <input class="form-control input-sm" ng-model="sms_current.sendTitle">
+          </div>
+        </div>  
+        <div class="form-group">
+          <div class="col-bg col-sm-2"><label class=" control-label"> 회신번호</label></div>
+          <div class="col-sm-4">
+            <input class="form-control input-sm" ng-model="sms_current.replyTel">
+          </div>
+        </div>          
+          <div class="form-group">
+          <div class="col-bg col-sm-2 h-lg"><label class="control-label ">환불사유</label></div>
+        <div class="col-sm-10 h-lg padder-vsm">
+            <textarea class="h-full b h-md2 m-t-none" ng-change="changeAreaText(sms_current.sendText)" maxlength="80" ng-model="sms_current.sendText"></textarea>
+            <div class="row">
+                <span class="pull-right">({{count_areatext}} byte)</span>
+            </div>
+          </div>
+        </div>
+          <div class="form-group b-n">
+           <div class="col-bg col-sm-2 "><label class=" control-label">
+                    환불유형</label></div>
+          <div class="col-sm-4">
+                <div class="radio">
+              <label class="i-checks">
+                <input type="radio" name="reserveYn" value="N" ng-true-value="'N'" ng-model="sms_current.reserveYn">
+                <i></i>
+                즉시발송
+              </label>
+            </div>        
+          </div>    
+        </div>
+          <div class="form-group">
+           <div class="col-bg col-sm-2 "><label class=" control-label">
+                    </label></div>
+          <div class="col-sm-2">
+                <div class="radio">
+                <label class="i-checks">
+                <input type="radio" name="reserveYn" value="Y" ng-true-value="'Y'" ng-model="sms_current.reserveYn">
+                <i></i>
+                예약발송
+               </label>
+            </div>        
+          </div>
+          <div class="col-sm-2 no-padder">
+            <input class="form-control input-sm date dateStr" type="text" ng-model="sms_current.sendDt">
+          </div>
+           <div class="col-sm-1 no-padder">
+			<label class="col-sm-1 control-label no-padder-left no-padder-right">&nbsp;&nbsp;</label>
+            <div class="col-sm-10 no-padder"><input class="form-control input-sm" type="number" min="0" max="23" ng-model="sms_current.hour">
+            </div> 
+          </div>
+        <div class="col-sm-1 no-padder">
+            <label class="col-sm-1 control-label no-padder-left no-padder-right">:</label>
+            <div class="col-sm-10 no-padder"><input class="form-control input-sm" type="number" min="0" max="59" ng-model="sms_current.minute">
+            </div> 
+          </div>      
+        </div>
+          <div class="form-group">
+          <div class="col-bg col-sm-2"><label class=" control-label">환불직원</label></div> 
+            <div class="col-sm-2">
+            <label class=" control-label">수신번호</label>
+          </div>
+            <div class="col-sm-2 no-padder">
+            <input class="form-control input-sm" type="text" ng-model="sms_current.sendMobiles">
+          </div>
+            <div class="col-sm-2">
+            <button type="submit" class="btn btn-dark btn-m m-t-xs" ng-click="save('Y')">보내기</button>
+          </div>    
+        </div>
+      </form>
+    </div>
+  </div>
+        <!--add del section end-->
+        <div class="text-center m-t-lg">
+            <button class="btn btn-dark btn-w" ng-click="cancel()">취소</button>
+            <button class="btn btn-primary btn-w" ng-click="save('N')">저장</button>
+        </div>
+    </div>  
+    </div>  
+  </div>
+
+<script type="text/javascript">
+	$(function() {
+		$(".dateStr").datepicker({
+			format : "yyyy-mm-dd",
+			autoclose: true
+		});		
+	});
+</script>
+</script>
+<style>
+    .modal-dialog{width:800px;}
+</style>

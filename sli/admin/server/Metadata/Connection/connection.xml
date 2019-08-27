@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Collections>
+	  	<ConnectionMeta ID="SLI_MYBATIS_CON" Enable="true" IsReadOnly="false">
+	      <RegBy>admin</RegBy>
+	      <RegDate>2012-10-04T12:00:00</RegDate>
+	      <ModBy>demo</ModBy>
+	      <ModDate>2013-11-11T14:59:31</ModDate>
+	      <ProviderName>MEERUE.MyBatis.Mysql</ProviderName>
+	      <ConnectionString>MYSQL</ConnectionString>
+	      <Encrypt>false</Encrypt>
+	      <IsCommon>true</IsCommon>
+	    </ConnectionMeta>
+    </Collections>
+</MetaCollection>

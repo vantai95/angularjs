@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Collections>    	
+    	 <ExecutionMeta ID="MyLectureList" Enable="true" IsReadOnly="false">
+		      <RegBy>Lecture</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>Lecture</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Title />
+		      <ConnectionID>SLI_MYBATIS_CON</ConnectionID>
+		      <CommandType>Qurey</CommandType>
+		      <QueryType>SelectList</QueryType>
+		      <Query>TcLecture.selectMyLectureList</Query>
+		      <AuthenticationType>Windows</AuthenticationType>
+		      <ExecutionDataType>Json</ExecutionDataType>
+		      <Namespace />
+		      <UseCaching>false</UseCaching>
+		      <CachingTimeoutMin>0</CachingTimeoutMin>
+		      <UseStub>false</UseStub>
+		      <StubFile />
+		      <Description />
+        </ExecutionMeta>
+        <ExecutionMeta ID="MyLectureDetail" Enable="true" IsReadOnly="false">
+		      <RegBy>Lecture</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>Lecture</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Title />
+		      <ConnectionID>SLI_MYBATIS_CON</ConnectionID>
+		      <CommandType>Qurey</CommandType>
+		      <QueryType>SelectOne</QueryType>
+		      <Query>TcLecture.selectMyLectureDetail</Query>
+		      <AuthenticationType>Windows</AuthenticationType>
+		      <ExecutionDataType>Json</ExecutionDataType>
+		      <Namespace />
+		      <UseCaching>false</UseCaching>
+		      <CachingTimeoutMin>0</CachingTimeoutMin>
+		      <UseStub>false</UseStub>
+		      <StubFile />
+		      <Description />
+        </ExecutionMeta>
+        <ExecutionMeta ID="LectureListBox" Enable="true" IsReadOnly="false">
+		      <RegBy>Lecture</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>Lecture</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Title />
+		      <ConnectionID>SLI_MYBATIS_CON</ConnectionID>
+		      <CommandType>Qurey</CommandType>
+		      <QueryType>SelectList</QueryType>
+		      <Query>TcLecture.selectLectureListBox</Query>
+		      <AuthenticationType>Windows</AuthenticationType>
+		      <ExecutionDataType>Json</ExecutionDataType>
+		      <Namespace />
+		      <UseCaching>false</UseCaching>
+		      <CachingTimeoutMin>0</CachingTimeoutMin>
+		      <UseStub>false</UseStub>
+		      <StubFile />
+		      <Description />
+        </ExecutionMeta>
+        
+        <!-- admin Lecture -->
+        <ExecutionMeta ID="LectureScheduleList" Enable="true" IsReadOnly="false">
+		      <RegBy>admin</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>admin</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Title />
+		      <ConnectionID>SLI_MYBATIS_CON</ConnectionID>
+		      <CommandType>Qurey</CommandType>
+		      <QueryType>SelectList</QueryType>
+		      <Query>Lecture.selectLectureScheduleList</Query>
+		      <AuthenticationType>Windows</AuthenticationType>
+		      <ExecutionDataType>Json</ExecutionDataType>
+		      <Namespace />
+		      <UseCaching>false</UseCaching>
+		      <CachingTimeoutMin>0</CachingTimeoutMin>
+		      <UseStub>false</UseStub>
+		      <StubFile />
+		      <Description />
+        </ExecutionMeta>
+        
+        <ExecutionMeta ID="LectureScheduleSave" Enable="true" IsReadOnly="false">
+		      <RegBy>admin</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>admin</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Title />
+		      <ConnectionID>SLI_MYBATIS_CON</ConnectionID>
+		      <CommandType>Qurey</CommandType>
+		      <QueryType>SelectOne</QueryType>
+		      <Query>Lecture.saveLectureSchedule</Query>
+		      <AuthenticationType>Windows</AuthenticationType>
+		      <ExecutionDataType>Json</ExecutionDataType>
+		      <Namespace />
+		      <UseCaching>false</UseCaching>
+		      <CachingTimeoutMin>0</CachingTimeoutMin>
+		      <UseStub>false</UseStub>
+		      <StubFile />
+		      <Description />
+        </ExecutionMeta>
+
+        <ExecutionMeta ID="GetLevelTest" Enable="true" IsReadOnly="false">
+		      <RegBy>admin</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>admin</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Title />
+		      <ConnectionID>SLI_MYBATIS_CON</ConnectionID>
+		      <CommandType>Qurey</CommandType>
+		      <QueryType>SelectOne</QueryType>
+		      <Query>Lecture.selectLevelTestForLecture</Query>
+		      <AuthenticationType>Windows</AuthenticationType>
+		      <ExecutionDataType>Json</ExecutionDataType>
+		      <Namespace />
+		      <UseCaching>false</UseCaching>
+		      <CachingTimeoutMin>0</CachingTimeoutMin>
+		      <UseStub>false</UseStub>
+		      <StubFile />
+		      <Description />
+        </ExecutionMeta>
+
+        <ExecutionMeta ID="GetLevelTestResult" Enable="true" IsReadOnly="false">
+		      <RegBy>admin</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>admin</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Title />
+		      <ConnectionID>SLI_MYBATIS_CON</ConnectionID>
+		      <CommandType>Qurey</CommandType>
+		      <QueryType>SelectList</QueryType>
+		      <Query>Lecture.selectLevelTestResult</Query>
+		      <AuthenticationType>Windows</AuthenticationType>
+		      <ExecutionDataType>Json</ExecutionDataType>
+		      <Namespace />
+		      <UseCaching>false</UseCaching>
+		      <CachingTimeoutMin>0</CachingTimeoutMin>
+		      <UseStub>false</UseStub>
+		      <StubFile />
+		      <Description />
+        </ExecutionMeta>
+        
+        <ExecutionMeta ID="LevelTestResultSave" Enable="true" IsReadOnly="false">
+		      <RegBy>admin</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>admin</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Title />
+		      <ConnectionID>SLI_MYBATIS_CON</ConnectionID>
+		      <CommandType>Qurey</CommandType>
+		      <QueryType>SelectOne</QueryType>
+		      <Query>Lecture.insertLevelTestResult</Query>
+		      <AuthenticationType>Windows</AuthenticationType>
+		      <ExecutionDataType>Json</ExecutionDataType>
+		      <Namespace />
+		      <UseCaching>false</UseCaching>
+		      <CachingTimeoutMin>0</CachingTimeoutMin>
+		      <UseStub>false</UseStub>
+		      <StubFile />
+		      <Description />
+        </ExecutionMeta>
+
+        <ExecutionMeta ID="TestList" Enable="true" IsReadOnly="false">
+		      <RegBy>admin</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>admin</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Title />
+		      <ConnectionID>SLI_MYBATIS_CON</ConnectionID>
+		      <CommandType>Qurey</CommandType>
+		      <QueryType>SelectList</QueryType>
+		      <Query>Lecture.selectTestList</Query>
+		      <AuthenticationType>Windows</AuthenticationType>
+		      <ExecutionDataType>Json</ExecutionDataType>
+		      <Namespace />
+		      <UseCaching>false</UseCaching>
+		      <CachingTimeoutMin>0</CachingTimeoutMin>
+		      <UseStub>false</UseStub>
+		      <StubFile />
+		      <Description />
+        </ExecutionMeta>
+
+        <ExecutionMeta ID="GetTestResult" Enable="true" IsReadOnly="false">
+		      <RegBy>admin</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>admin</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Title />
+		      <ConnectionID>SLI_MYBATIS_CON</ConnectionID>
+		      <CommandType>Qurey</CommandType>
+		      <QueryType>SelectList</QueryType>
+		      <Query>Lecture.selectTestResult</Query>
+		      <AuthenticationType>Windows</AuthenticationType>
+		      <ExecutionDataType>Json</ExecutionDataType>
+		      <Namespace />
+		      <UseCaching>false</UseCaching>
+		      <CachingTimeoutMin>0</CachingTimeoutMin>
+		      <UseStub>false</UseStub>
+		      <StubFile />
+		      <Description />
+        </ExecutionMeta>
+
+        <!-- <ExecutionMeta ID="MyLectureStats" Enable="true" IsReadOnly="false">
+		      <RegBy>Lecture</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>Lecture</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Title />
+		      <ConnectionID>SLI_MYBATIS_CON</ConnectionID>
+		      <CommandType>Qurey</CommandType>
+		      <QueryType>SelectOne</QueryType>
+		      <Query>TcLecture.selectMyLectureStats</Query>
+		      <AuthenticationType>Windows</AuthenticationType>
+		      <ExecutionDataType>Json</ExecutionDataType>
+		      <Namespace />
+		      <UseCaching>false</UseCaching>
+		      <CachingTimeoutMin>0</CachingTimeoutMin>
+		      <UseStub>false</UseStub>
+		      <StubFile />
+		      <Description />
+        </ExecutionMeta> -->
+        
+        <ExecutionMeta ID="LectureEnrichList" Enable="true" IsReadOnly="false">
+		      <RegBy>Lecture</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>Lecture</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Title />
+		      <ConnectionID>SLI_MYBATIS_CON</ConnectionID>
+		      <CommandType>Qurey</CommandType>
+		      <QueryType>SelectList</QueryType>
+		      <Query>TcLecture.selectLectureEnrichList</Query>
+		      <AuthenticationType>Windows</AuthenticationType>
+		      <ExecutionDataType>Json</ExecutionDataType>
+		      <Namespace />
+		      <UseCaching>false</UseCaching>
+		      <CachingTimeoutMin>0</CachingTimeoutMin>
+		      <UseStub>false</UseStub>
+		      <StubFile />
+		      <Description />
+        </ExecutionMeta>
+        
+        <ExecutionMeta ID="LectureScheduleTime" Enable="true" IsReadOnly="false">
+		      <RegBy>admin</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>admin</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Title />
+		      <ConnectionID>SLI_MYBATIS_CON</ConnectionID>
+		      <CommandType>Qurey</CommandType>
+		      <QueryType>SelectOne</QueryType>
+		      <Query>TcLecture.selectLectureScheduleTime</Query>
+		      <AuthenticationType>Windows</AuthenticationType>
+		      <ExecutionDataType>Json</ExecutionDataType>
+		      <Namespace />
+		      <UseCaching>false</UseCaching>
+		      <CachingTimeoutMin>0</CachingTimeoutMin>
+		      <UseStub>false</UseStub>
+		      <StubFile />
+		      <Description />
+        </ExecutionMeta>
+        
+    </Collections>
+</MetaCollection>

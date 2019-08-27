@@ -1,0 +1,52 @@
+
+<div class="app-content-body" ng-controller="LectureController" ng-init="init()">  
+<div>
+  <div class="row wrapper wrapper-md pc-text-center" >
+      <span class="wrapper primary text-md text-center w-sm" ng-click="getLectureRegList()">전체</span>
+      <span class="wrapper text-md text-center w-sm" ng-repeat="x in title_cd" ng-click="getLectureRegList(x.codeId)">{{x.codeName1}}</span>
+  </div>
+    <div class="widthfix-lg m-auto clearfix" >
+    <!---강의 컨텐츠 start---->
+    <div class="col-sm-4 no-padder" ng-repeat="lecture in lecture_reg_list">
+    <div class="wrapper-xs">
+    <div class="panel panel-default no-shadow BGpanel m-b ch01" ui-sref="app.lecture.detail({id : lecture.ltCd})" >
+        <div class="wrapper" style="position:relative">
+	    	<img src="{{lecture.pathUrl}}/{{lecture.fileName}}" style="width:100%; height:100%; position:absolute; left:0; top:0;" ng-if="lecture.fileName != ''" />
+            <p class="text-md wrapper-sm m-b-none" style="position:relative">
+                <button class="btn btn-border btn-rounded btn-add">{{lecture.subjectName}}</button>&nbsp;
+                {{lecture.startDt}}
+            </p>
+            <div class="wrapper no-padder-top" style="position:relative">
+	            <div class="font-thin">
+	                <div class="text-xl font-bold m-b-xs">{{lecture.lectureNm}} / {{lecture.teacherNm}}</div>
+	                {{lecture.lectureContents}} 
+	            </div>
+	            <div class="line"></div>
+	            <div class="font-thin text-sm">
+	                <b class="font-bold">일&nbsp;&nbsp;&nbsp;&nbsp;시</b> : {{lecture.startDt}}~{{lecture.endDt}}/ {{lecture.lectureWeek}} {{lecture.lectureTime}}
+	            </div>
+	            <div class="font-thin text-sm">
+	                <b class="font-bold">수강료</b> : {{lecture.tuitionFee | number}}원
+	            </div>
+            </div>    
+            <button class="btn btn-default w-full text-md m-t-lg"  style="position:relative">바로가기</button>
+        </div>
+        </div>    
+    </div>
+    </div>    
+    <!---강의 컨텐츠 end---->
+    </div>    
+</div>
+<div class="wrapper row">
+        <button class="btn btn-borderDefault w-full widthfix-xs m-auto pc-block">더보기</button>
+        </div>
+    <!--app, app-content body 에 그레이톤 배경 추가--->
+<script>
+    $(document).ready(function(){
+        $('.app-content-body').addClass('bg-gray');
+        $('.app').addClass('bg-gray');
+        $('.app').addClass('back');
+    })
+</script>
+    
+</div>

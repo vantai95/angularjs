@@ -1,0 +1,373 @@
+
+<div class="app-content-body" ng-controller="StudentController"
+	ng-init="init()">
+	<div class="wrapper-md">
+		<div class="panel panel-default">
+			<div class="panel-heading font-bold">수강생현황</div>
+			<div class="panel-body">
+				<form class="form-horizontal" method="get">
+					<div class="form-group b-n">
+						<label class="col-sm-1 control-label">고객사명</label>
+						<div class="col-sm-2">
+							<select name="account" class="form-control input-sm"
+								ng-model="selected_customer_company"
+								ng-change="getLectures()"
+								ng-options="customer_company.cpCd as customer_company.compNm for customer_company in customer_companies track by customer_company.cpCd">
+								<option value="">전체</option>
+							</select>
+						</div>
+						<label class="col-sm-1 col-sm-offset-1 control-label">담당강사</label>
+						<div class="col-sm-2">
+							<select name="account" class="form-control input-sm"
+								ng-model="selected_teacher"
+								ng-change="getLectures()"
+								ng-options="teacher.tcCd as teacher.userName for teacher in teachers track by teacher.tcCd">
+								<option value="">전체</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group b-n">
+						<label class="col-sm-1 control-label">강의명</label>
+						<div class="col-sm-11">
+							<select name="account" class="form-control input-sm"
+								ng-model="selected_lecture"
+								ng-options="lecture.ltCd as lecture.lectureNm for lecture in lectures">
+								<option value="">-----강사명 또는 고객사명을 선택해주세요.-----</option>
+							</select>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="panel-footer">
+				<div class="row">
+					<button type="submit" class="btn btn-dark pull-right btn-m"
+						ng-click="getClasses()">조회</button>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="table-responsive teacher_table">
+				<table class="table b-t b-light" id="tblStudent" ng-if="classes.length > 0">
+					<thead>
+						<tr class="active">
+						<th>No</th>
+						<th>수강생</th>
+						<th>성별</th>
+						<th>레벨테스트</th>
+						<th>출석률</th>
+						<th>성취도평가</th>
+						<th>수료여부</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="class in classes">
+							<td>{{generateListNo(current_page, total_classes, $index)}}</td>
+							<td><a class="primary underline"
+								ui-sref="app.student.detail({id: class.clCd})">{{class.userName}}</a></td>
+							<td>{{class.genderNm}}</td>
+							<td>{{class.scoreLv | number:1}}</td>
+							<td>{{class.attendRate}}</td>
+							<td>{{class.scoreAc | number:1}}</td>
+							<td>{{class.completeNm}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="row" ng-if="total_classes > app.page_size">
+			<div class=" text-center">
+				<ul class="pagination pagination-sm m-t-none m-b-none">
+					<li ng-click="previousPageClick()"><a href=""><i
+							class="fa fa-chevron-left"></i></a></li>
+					<li ng-repeat="page in getRange(total_pages) track by $index"
+						class="{{current_page == $index + 1 ? 'active' : ''}}"
+						ng-click="setCurrentPage($index + 1)"><a href="">{{$index
+							+ 1}}</a></li>
+					<li ng-click="nextPageClick()"><a href=""><i
+							class="fa fa-chevron-right"></i></a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="panel panel-default default_result"
+			ng-if="classes.length == 0">
+			<p class="text-center text-lg">선택된 항목이 없습니다.</p>
+		</div>
+		<div class="row">
+			<div class=" text-center">
+				<button type="submit" class="btn btn-primary pull-left "
+					ng-click="addNew()">수강생 추가</button>
+				<button type="submit" class="btn btn-info pull-right "
+					ng-click="sendMessage()">메세지발송</button>
+				<button type="submit" class="btn btn-border pull-right m-r-sm"
+					ng-click="exportEcel()">
+					엑셀 다운로드&nbsp; <i class="fa fa-file-excel-o"></i>
+				</button>
+			</div>
+		</div>
+	</div>
+	<script type="text/ng-template" id="custom_modal.html">
+          <div class="popup_wrap" ng-init="init_register()">
+              <div class="popup_header">
+                수강생 추가하기<span class="pull-right closebtn" ng-click="cancel()"><img src="assets/img/close.png" class="img-full" alt="..."></span>
+            </div>
+            <div class="popup_body no-padder-top">
+                <div>
+            <div class="panel-body text-md m-t-md">
+              <form class="form-horizontal ng-pristine ng-valid" method="get">
+                <div class="form-group b-n">
+                    <label class="col-sm-4 control-label"><b>고객사명</b> : {{lecture_detail.cpCdNm}}</label>
+                    <label class="col-sm-8 control-label"><b>강의기간</b> : {{lecture_detail.startDt}} ~ {{lecture_detail.endDt}} </label>
+                </div>
+                <div class="form-group b-n">
+                    <label class="col-sm-4 control-label"><b>강사명</b> : {{lecture_detail.tcCdNm}} </label>
+                    <label class="col-sm-8 control-label"><b>강의명</b> : {{lecture_detail.lectureNm}} </label>
+                </div>  
+              </form>
+            </div>
+            <div ng-if="lecture_detail.cpCd != ''">
+            <div class="form-horizontal m-t-md">
+                <div class="form-group b-n">
+<!--				<div class="col-sm-2">
+					<label class="control-label">이름</label>
+				</div> -->
+                  <div class="col-sm-4">
+					
+                    <div class="form-group b-n">
+						<input class="form-control input-sm" type="text" ng-model="search.user_name" placeholder="이름검색">
+					</div>
+                  </div>
+                  <!--<div class="col-sm-2">
+                    <button type="submit" class="btn btn-dark btn-m m-t-xs">조회</button>
+                  </div>-->    
+                </div>
+                </div> 
+          <div class="row m-t-md">
+            <div class="col-sm-5 no-padder-left">
+            <div class="panel panel-default heightmax h-xxl">            
+            <div class="table-responsive teacher_table">
+              <table class="table b-t b-light">
+                <thead>
+                  <tr class="active">
+                      <th>
+                          <label class="i-checks">
+                            <input type="checkbox" ng-model="register_all" ng-click="checkAll()">
+                            <i></i>
+                          </label>
+                        </th>
+                    <th colspan="4">
+                      수강생 명단 ({{unregistered_users.length}}명)
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="user in unregistered_users | filter:filterUsers">
+                    <td >
+                      <label class="i-checks">
+                        <input type="checkbox" ng-model="user.is_register" ng-change="updateCheckall()" >
+                        <i></i>
+                      </label>
+                    </td>
+                    <td>{{user.userName}}</td>
+                    <td>{{user.deptNm}}</td>
+                    <td>{{user.positionNm}}</td>
+                  </tr>
+                </tbody>
+              </table> 
+            </div>              
+            </div>
+            </div>
+            <!--left side-->
+            <div class="col-sm-1 h-xxl w-auto no-padder-left">
+                <div class="h-xxl table-cell v-middle">
+                <a class="w-100"><img src="/Sites/sli/admin/client/assets/img/big_add_btn.png" ng-click="registerUsers()"></a><br><br>
+                <a class="w-100"><img src="/Sites/sli/admin/client/assets/img/big_del_btn.png" ng-click="unRegisterUsers()"></a>    
+                </div>    
+            </div>
+            <!--right side-->
+            <div class="col-sm-5 no-padder-left">
+            <div class="panel panel-default heightmax h-xxl">            
+            <div class="table-responsive teacher_table">
+              <table class="table b-t b-light">
+                <thead>
+                  <tr class="active">
+						<th>
+                          <label class="i-checks">
+                            <input type="checkbox" ng-model="unregister_all" ng-click="checkAll1()">
+                            <i></i>
+                          </label>
+                        </th>
+                    <th colspan="4">
+                      수강생 명단 ({{register_users.length}}명)
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="user in register_users">
+                    <td>
+                      <label class="i-checks">
+                        <input type="checkbox"  ng-model="user.is_unregister" ng-change="updateCheckall1()" >
+                        <i></i>
+                      </label>
+                    </td>
+                    <td>{{user.userName}}</td>
+                    <td>{{user.deptNm}}</td>
+                    <td>{{user.positionNm}}</td>
+                  </tr>
+                </tbody>
+              </table>
+                
+            </div>                
+            </div>
+            </div>
+            </div>
+                <!--add del section end-->
+                <div class="modal-footer">
+                    <span class="btn btn-primary" ng-click="submitChangeRegister()">저장</span>
+                    <span class="btn btn-default" ng-click="cancel()">취소</span>
+                  </div>
+            </div>
+			
+			
+				<div ng-if="lecture_detail.cpCd == ''">
+            	<div class="form-horizontal m-t-md">
+	                <div class="form-group b-n">
+					<div class="col-sm-5">
+						<label class="control-label">※ 미 입력된 강의정보를 먼저 등록해주세요.</label>
+					</div>                  
+                	</div>
+                	<!--add del section end-->
+                	<div class="modal-footer">
+                    	<span class="btn btn-default" ng-click="cancel()">Cancel</span>
+                  	</div>
+            	</div>
+            	</div>
+
+            </div>  
+          </div>
+        </script>
+	<style>
+.modal-dialog {
+	width: 820px;
+}
+</style>
+
+<script type="text/ng-template" id="smsTeacherSortingPopup.html">
+  <div class="popup_wrap" ng-init="initPopup()">
+      <div class="popup_header">
+        SMS 발송<span class="pull-right closebtn " data-ng-click="cancel()"><img src="assets/img/close.png" class="img-full" alt="..."></span>
+    </div>
+    <div class="popup_body no-padder-top">
+        <div>
+    <p class="m-t-md text-md">
+       총 수신 회원 수 : <span class="primary">{{register_users_cnt}}</span>명 (Drop 회원 제외)
+    </p>     
+    <div class="panel panel-default panel-devide m-t-md">
+    <div class="panel-body">
+      <form class="form-horizontal ng-pristine ng-valid" method="get">
+        <div class="form-group">
+          <div class="col-bg col-sm-2"><label class=" control-label"> 문자구분</label></div>
+          <div class="col-sm-10">
+							<select name="account" class="form-control input-sm"
+								ng-model="sms_new.smsType"
+								ng-options="item.cnts as item.cnts for item in sms_messages"
+								ng-change="changeSmsType()">
+								<option value="">직접입력</option>
+							</select>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-bg col-sm-2"><label class=" control-label"> 제목</label></div>
+          <div class="col-sm-10">
+            <input class="form-control input-sm" ng-model="sms_new.sendTitle">
+          </div>
+        </div>  
+        <div class="form-group">
+          <div class="col-bg col-sm-2"><label class=" control-label"> 회신번호</label></div>
+          <div class="col-sm-4">
+            <input class="form-control input-sm" ng-model="sms_new.replyTel" maxlength="12">
+          </div>
+        </div>          
+          <div class="form-group">
+          <div class="col-bg col-sm-2 h-lg" style="height:140px !important"><label class="control-label ">내용</label></div>
+        <div class="col-sm-10 h-lg padder-vsm" style="height:140px !important">
+            <textarea class="h-full b h-md2 m-t-none" ng-change="changeAreaText(sms_new.sendText)" maxlength="80" ng-model="sms_new.sendText"></textarea>
+            <div class="row">
+				<span class="pull-left">SMS는 90byte, LMS는 2,000byte까지 전송가능합니다.<br>
+							90byte가 넘어갈 경우 자동으로 LMS로 전송됩니다.</span>
+                <span class="pull-right">({{count_areatext}} byte / 2,000 byte)</span>
+            </div>
+          </div>
+        </div>
+          <div class="form-group b-n">
+           <div class="col-bg col-sm-2 "><label class=" control-label">
+                    발송구분</label></div>
+          <div class="col-sm-4">
+                <div class="radio">
+              <label class="i-checks">
+                <input type="radio" name="reserveYn" value="N" ng-true-value="'N'" ng-model="sms_new.reserveYn">
+                <i></i>
+                즉시발송
+              </label>
+            </div>        
+          </div>    
+        </div>
+          <div class="form-group">
+           <div class="col-bg col-sm-2 "><label class=" control-label">
+                    </label></div>
+          <div class="col-sm-2">
+                <div class="radio">
+                <label class="i-checks">
+                <input type="radio" name="reserveYn" value="Y" ng-true-value="'Y'" ng-model="sms_new.reserveYn">
+                <i></i>
+                예약발송
+               </label>
+            </div>        
+          </div>
+          <div class="col-sm-2 no-padder">
+            <input class="form-control input-sm date dateStr" type="text" ng-model="sms_new.sendDt">
+          </div>
+        <div class="col-sm-1 no-padder">
+			<label class="col-sm-1 control-label no-padder-left no-padder-right">&nbsp;&nbsp;</label>
+            <div class="col-sm-10 no-padder"><input class="form-control input-sm" type="number" min="0" max="23" ng-model="sms_new.hour">
+            </div> 
+          </div>
+        <div class="col-sm-1 no-padder">
+            <label class="col-sm-1 control-label no-padder-left no-padder-right">:</label>
+            <div class="col-sm-10 no-padder"><input class="form-control input-sm" type="number" min="0" max="59"  ng-model="sms_new.minute">
+            </div> 
+          </div>      
+        </div>
+          <div class="form-group">
+          <div class="col-bg col-sm-2"><label class=" control-label">테스트발송</label></div> 
+            <div class="col-sm-2">
+            <label class=" control-label">수신번호</label>
+          </div>
+            <div class="col-sm-2 no-padder">
+            <input class="form-control input-sm" type="text" maxlength="12" ng-model="send_mobile">
+          </div>
+            <div class="col-sm-2">
+            <button type="submit" class="btn btn-dark btn-m m-t-xs" ng-click="save('Y')">보내기</button>
+          </div>    
+        </div>
+      </form>
+    </div>
+  </div>
+        <!--add del section end-->
+        <div class="text-center m-t-lg">
+            <button class="btn btn-dark btn-w" ng-click="cancel()">취소</button>
+            <button class="btn btn-primary btn-w" ng-click="save('N')">저장</button>
+        </div>
+    </div>  
+    </div>  
+  </div>
+
+<script type="text/javascript">
+	$(function() {
+		$(".dateStr").datepicker({
+			format : "yyyy-mm-dd",
+			autoclose: true
+		});
+		$(".dateStr").datepicker('setDate', new Date());
+	});
+</script>
+</script>

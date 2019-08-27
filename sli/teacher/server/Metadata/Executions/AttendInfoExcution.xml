@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Collections>
+    	<ExecutionMeta ID="ApplyStudentList" Enable="true" IsReadOnly="false">
+		      <RegBy>AttendInfo</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>AttendInfo</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Title />
+		      <ConnectionID>SLI_MYBATIS_CON</ConnectionID>
+		      <CommandType>Qurey</CommandType>
+		      <QueryType>SelectList</QueryType>
+		      <Query>AttendInfo.selectApplyStudentList</Query>
+		      <AuthenticationType>Windows</AuthenticationType>
+		      <ExecutionDataType>Json</ExecutionDataType>
+		      <Namespace />
+		      <UseCaching>false</UseCaching>
+		      <CachingTimeoutMin>0</CachingTimeoutMin>
+		      <UseStub>false</UseStub>
+		      <StubFile />
+		      <Description />
+        </ExecutionMeta>
+    	<ExecutionMeta ID="AttendStudentList" Enable="true" IsReadOnly="false">
+		      <RegBy>AttendInfo</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>AttendInfo</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Title />
+		      <ConnectionID>SLI_MYBATIS_CON</ConnectionID>
+		      <CommandType>Qurey</CommandType>
+		      <QueryType>SelectList</QueryType>
+		      <Query>AttendInfo.selectAttendStudentList</Query>
+		      <AuthenticationType>Windows</AuthenticationType>
+		      <ExecutionDataType>Json</ExecutionDataType>
+		      <Namespace />
+		      <UseCaching>false</UseCaching>
+		      <CachingTimeoutMin>0</CachingTimeoutMin>
+		      <UseStub>false</UseStub>
+		      <StubFile />
+		      <Description />
+        </ExecutionMeta>
+        <ExecutionMeta ID="AttendStudentSave" Enable="true" IsReadOnly="false">
+		      <RegBy>AttendInfo</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>AttendInfo</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Title />
+		      <ConnectionID>SLI_MYBATIS_CON</ConnectionID>
+		      <CommandType>Qurey</CommandType>
+		      <QueryType>SelectOne</QueryType>
+		      <Query>AttendInfo.saveAttendStudent</Query>
+		      <AuthenticationType>Windows</AuthenticationType>
+		      <ExecutionDataType>Json</ExecutionDataType>
+		      <Namespace />
+		      <UseCaching>false</UseCaching>
+		      <CachingTimeoutMin>0</CachingTimeoutMin>
+		      <UseStub>false</UseStub>
+		      <StubFile />
+		      <Description />
+        </ExecutionMeta>
+                        
+        <ExecutionMeta ID="AttendAbsenceListCnt" Enable="true" IsReadOnly="false">
+		      <RegBy>AttendInfo</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>AttendInfo</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Title />
+		      <ConnectionID>SLI_MYBATIS_CON</ConnectionID>
+		      <CommandType>Qurey</CommandType>
+		      <QueryType>SelectOne</QueryType>
+		      <Query>AttendInfo.selectAttendAbsenceListCnt</Query>
+		      <AuthenticationType>Windows</AuthenticationType>
+		      <ExecutionDataType>Json</ExecutionDataType>
+		      <Namespace />
+		      <UseCaching>false</UseCaching>
+		      <CachingTimeoutMin>0</CachingTimeoutMin>
+		      <UseStub>false</UseStub>
+		      <StubFile />
+		      <Description />
+        </ExecutionMeta>          
+        <ExecutionMeta ID="AttendAbsenceList" Enable="true" IsReadOnly="false">
+		      <RegBy>AttendInfo</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>AttendInfo</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Title />
+		      <ConnectionID>SLI_MYBATIS_CON</ConnectionID>
+		      <CommandType>Qurey</CommandType>
+		      <QueryType>SelectList</QueryType>
+		      <Query>AttendInfo.selectAttendAbsenceList</Query>
+		      <AuthenticationType>Windows</AuthenticationType>
+		      <ExecutionDataType>Json</ExecutionDataType>
+		      <Namespace />
+		      <UseCaching>false</UseCaching>
+		      <CachingTimeoutMin>0</CachingTimeoutMin>
+		      <UseStub>false</UseStub>
+		      <StubFile />
+		      <Description />
+        </ExecutionMeta>        
+        <ExecutionMeta ID="AttendAbsenceSave" Enable="true" IsReadOnly="false">
+		      <RegBy>AttendInfo</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>AttendInfo</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Title />
+		      <ConnectionID>SLI_MYBATIS_CON</ConnectionID>
+		      <CommandType>Qurey</CommandType>
+		      <QueryType>SelectOne</QueryType>
+		      <Query>AttendInfo.saveAttendAbsence</Query>
+		      <AuthenticationType>Windows</AuthenticationType>
+		      <ExecutionDataType>Json</ExecutionDataType>
+		      <Namespace />
+		      <UseCaching>false</UseCaching>
+		      <CachingTimeoutMin>0</CachingTimeoutMin>
+		      <UseStub>false</UseStub>
+		      <StubFile />
+		      <Description />
+        </ExecutionMeta>
+        <ExecutionMeta ID="AttendDateList" Enable="true" IsReadOnly="false">
+		      <RegBy>AttendInfo</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>AttendInfo</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Title />
+		      <ConnectionID>SLI_MYBATIS_CON</ConnectionID>
+		      <CommandType>Qurey</CommandType>
+		      <QueryType>SelectList</QueryType>
+		      <Query>AttendInfo.selectAttendDateList</Query>
+		      <AuthenticationType>Windows</AuthenticationType>
+		      <ExecutionDataType>Json</ExecutionDataType>
+		      <Namespace />
+		      <UseCaching>false</UseCaching>
+		      <CachingTimeoutMin>0</CachingTimeoutMin>
+		      <UseStub>false</UseStub>
+		      <StubFile />
+		      <Description />
+        </ExecutionMeta>
+        <ExecutionMeta ID="AttendLectureDetail" Enable="true" IsReadOnly="false">
+		      <RegBy>admin</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>admin</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Title />
+		      <ConnectionID>SLI_MYBATIS_CON</ConnectionID>
+		      <CommandType>Qurey</CommandType>
+		      <QueryType>SelectOne</QueryType>
+		      <Query>AttendInfo.selectAttendLectureDetail</Query>
+		      <AuthenticationType>Windows</AuthenticationType>
+		      <ExecutionDataType>Json</ExecutionDataType>
+		      <Namespace />
+		      <UseCaching>false</UseCaching>
+		      <CachingTimeoutMin>0</CachingTimeoutMin>
+		      <UseStub>false</UseStub>
+		      <StubFile />
+		      <Description />
+	    </ExecutionMeta>
+	    <ExecutionMeta ID="AttendTeacherSave" Enable="true" IsReadOnly="false">
+		      <RegBy>AttendInfo</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>AttendInfo</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Title />
+		      <ConnectionID>SLI_MYBATIS_CON</ConnectionID>
+		      <CommandType>Qurey</CommandType>
+		      <QueryType>SelectOne</QueryType>
+		      <Query>AttendInfo.saveAttendTeacher</Query>
+		      <AuthenticationType>Windows</AuthenticationType>
+		      <ExecutionDataType>Json</ExecutionDataType>
+		      <Namespace />
+		      <UseCaching>false</UseCaching>
+		      <CachingTimeoutMin>0</CachingTimeoutMin>
+		      <UseStub>false</UseStub>
+		      <StubFile />
+		      <Description />
+        </ExecutionMeta>
+        <ExecutionMeta ID="AttendTeacherSignOne" Enable="true" IsReadOnly="false">
+		      <RegBy>AttendInfo</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>AttendInfo</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Title />
+		      <ConnectionID>SLI_MYBATIS_CON</ConnectionID>
+		      <CommandType>Qurey</CommandType>
+		      <QueryType>SelectOne</QueryType>
+		      <Query>AttendInfo.selectAttendTeacherSignOne</Query>
+		      <AuthenticationType>Windows</AuthenticationType>
+		      <ExecutionDataType>Json</ExecutionDataType>
+		      <Namespace />
+		      <UseCaching>false</UseCaching>
+		      <CachingTimeoutMin>0</CachingTimeoutMin>
+		      <UseStub>false</UseStub>
+		      <StubFile />
+		      <Description />
+        </ExecutionMeta>
+             
+    </Collections>
+</MetaCollection>

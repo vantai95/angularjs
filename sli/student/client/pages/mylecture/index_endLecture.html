@@ -1,0 +1,41 @@
+
+<div class="app-content-body" ng-controller="StudentController"
+	ng-init="init()">  
+<div class="wrapper-md">
+  <div class="row wrapper no-padder-top widthfix-xxs m-auto">
+      <span class="text-md text-center col-xs-6" ui-sref="app.mylecture.index">진행중 강의</span>
+      <span class="text-md primary text-center col-xs-6" ui-sref="app.mylecture.index_endLecture">종료된 강의</span>
+  </div>
+    <p class="text-right text-sm m-t-xs">* 최근 1년 강의만 조회됩니다</p>
+    <!---강의 컨텐츠 start---->
+    <div class="widthfix-lg m-auto" ng-repeat="item in my_lecture_list1">
+    <div class="col-xs-12 col-sm-4 no-padder">
+    <div class="wrapper-xs">  
+    <div class="panel panel-default border m-b-sm" ui-sref="app.mylecture.lecture">
+        <div class="panel-heading font-bold rightAR text-left" ui-sref="app.mylecture.lecture">
+                {{item.lectureNm}}
+                <div class="text-xs font-thin text-ellipsis w-lg m-t-n-sm">{{item.lecturePlaceNm}}</div>
+            </div>
+        <div class="panel-body">
+            <div class="m-b-xs">
+                <span>수강종료 {{item.lastDt}}</span>
+                <span class="pull-right" ng-if="item.completeYn == 'Y'" style="color: red">{{item.completeNm}}</span>
+                <span class="pull-right" ng-if="item.completeYn != 'Y'" style="color: black">{{item.completeNm}}</span>
+            </div> 
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>    
+    <!---강의 컨텐츠 end---->
+</div>
+    <!--app, app-content body 에 그레이톤 배경 추가--->
+<script>
+    $(document).ready(function(){
+        $('.app-content-body').addClass('bg-gray');
+        $('.app').addClass('bg-gray');
+        $('.app').addClass('back');
+    })
+</script>
+    
+</div>

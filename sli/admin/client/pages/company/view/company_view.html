@@ -1,0 +1,125 @@
+ <!-- content -->
+  	<div class="app-content-body " ng-controller="CompanyViewController" ng-init="init() " >
+<div class="wrapper-md">
+  <div class="panel panel-default panel-devide">
+    <div class="panel-heading font-bold">
+      고객사관리
+    </div>
+    <div class="panel-body">
+      <form class="form-horizontal" method="get">
+        <div class="form-group">
+          <div class="col-bg col-sm-2"><label class=" control-label"> 회원구분</label></div>
+          <div class="col-sm-2">
+            <label class=" control-label">{{company.compStatusnm}}</label>
+          </div>
+            <div class="col-bg col-sm-2 col-sm-offset-3"><label class=" control-label">
+                 기업모드</label></div>
+          <div class="col-sm-2">
+            <label class=" control-label">{{company.compTypenm}}</label>
+          </div>
+        </div>
+          <div class="form-group">
+          <div class="col-bg col-sm-2"><label class=" control-label"> 업체명</label></div>
+          <div class="col-sm-2">
+            <label class=" control-label">{{company.compNm}}</label>
+          </div>
+            <div class="col-bg col-sm-2 col-sm-offset-3"><label class=" control-label label-indent">업체코드</label></div>
+          <div class="col-sm-2">
+            <label class=" control-label">{{company.cpCd}}</label>
+          </div>
+        </div>
+          <div class="form-group">
+          <div class="col-bg col-sm-2"><label class="control-label"> 고객사 담당자</label></div>
+          <div class="col-sm-2">
+            <label class=" control-label">{{company.sliCsNm}}</label>
+          </div>
+        <div class="col-sm-3">
+            <label class=" control-label">{{company.sliCsMobile}}</label>
+          </div>
+          <div class="col-sm-12 no-padder">
+          <div class="col-bg col-sm-2"><label class=" control-label text-xxs label-indent">"empty"</label></div>
+        <div class="col-sm-4">
+            <label class=" control-label">{{company.email}}</label>
+          </div>
+        </div>
+        </div>
+        <div class="form-group">
+          <div class="col-bg col-sm-2"><label class=" control-label label-indent">가입코드</label></div>
+          <div class="col-sm-4">
+            <label class=" control-label">{{company.compKey}}</label>
+          </div>
+        </div>
+          <div class="form-group">
+          <div class="col-bg col-sm-2"><label class=" control-label label-indent">회계처리 정보</label></div>
+          <div class="col-sm-4">
+            <label class=" control-label">{{company.accountTypenm}}</label>
+          </div>
+        </div>
+          <div class="form-group">
+          <div class="col-bg col-sm-2"><label class=" control-label label-indent">기업로고</label></div>
+          <div class="col-sm-4" >
+          	  <label class="uploader control-label m-l-none" ng-repeat="file in files">
+          	  	<a href="{{file.pathUrl}}/{{file.fileName}}" target="_blank" ng-if="file.curKey == 'logo'" style="max-width:135px;">{{file.originalName}}</a>
+          	  	<img class="img-full" src="{{file.pathUrl}}/{{file.fileName}}" class="img-full" ng-if="file.curKey == 'logo'" alt="..." >
+              </label>
+          </div>
+          <div class="col-bg col-sm-2 col-sm-offset-1"><label class=" control-label">
+                 영업담당자</label></div>
+          <div class="col-sm-2">
+            <label class=" control-label">{{company.sliSaNm}}</label>
+          </div>      
+        </div>
+        <div class="form-group">
+          <div class="col-bg col-sm-2"><label class=" control-label label-indent">메모</label></div>
+          <div class="col-sm-4">
+            <label class=" control-label">{{company.cnts}}</label>
+          </div>
+        </div>          
+      </form>
+    </div>
+  </div>
+    <div class="panel panel-default panel-devide">
+    <div class="panel-heading font-bold">
+      사이트 설정
+    </div>
+    <div class="panel-body">
+      <form class="form-horizontal" method="get">
+          <div class="form-group">
+          <div class="col-bg col-sm-2"><label class=" control-label"> 고객사 URL</label></div>
+          <div class="col-sm-4">
+            <label class=" control-label">{{company.url}}</label>
+          </div>
+        </div>
+          <div class="form-group">
+          <div class="col-bg col-sm-2"><label class="control-label"> 대표 색상</label></div>
+          <div class="col-sm-2">
+                <div class="input-group input-group-sm m-t-xs">
+                  <input type="text" class="form-control" value="{{company.color}}" disabled>
+                  <span class="input-group-btn">
+                <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-tint" style="color:{{company.color}}"></i></button>
+                  </span>
+                </div>
+          </div>
+        </div>
+          <div class="form-group">
+          <div class="col-bg col-sm-2 h-lg"><label class="control-label"> 메인 배너</label></div>
+          <div class="col-sm-3" style="min-height:120px !important;">
+          	 <label ng-repeat="file in files">
+          	  	<a href="{{file.pathUrl}}/{{file.fileName}}" target="_blank" ng-if="file.curKey == 'banner'">{{file.originalName}}</a>
+          	  	<img class="img-full" src="{{file.pathUrl}}/{{file.fileName}}" class="img-full" ng-if="file.curKey == 'banner'" alt="..." >
+              </label>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+        <div class="text-center m-t-lg" ng-model="id">
+        	<button class="btn btn-danger btn-w" ng-click="deleteCompany()">삭제</button>&nbsp;
+            <button class="btn btn-dark btn-w" ui-sref="app.company.list">목록</button>&nbsp;
+            <button class="btn btn-primary btn-w" ui-sref="app.company.modify({id: company_id})">수정</button>
+          </div>
+</div>
+
+
+	</div>
+  <!-- /content -->

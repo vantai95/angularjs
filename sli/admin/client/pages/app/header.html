@@ -1,0 +1,22 @@
+      <!-- navbar header -->
+      <div class="navbar-header box-shadow {{app.settings.navbarHeaderColor}}">
+        <button class="pull-right visible-xs" ui-toggle-class="off-screen" data-target=".app-aside" ui-scroll="app">
+          <i class="glyphicon glyphicon-align-justify"></i>
+        </button>
+        <!-- brand -->
+        <a href="#/" class="navbar-brand text-lt">
+          <img src="assets/img/SLI_logo.jpg" alt="." >
+        </a>
+        <!-- / brand -->
+      </div>
+      <!-- / navbar header -->
+
+      <!-- navbar collapse -->
+      <div class="collapse pos-rlt navbar-collapse box-shadow {{app.settings.navbarCollapseColor}}">
+                  <ul class="nav navbar-nav navbar-right">
+            <a href="#" class="btn no-shadow navbar-btn" ng-click="logout();">
+            <i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp; 로그아웃 
+          </a>
+        </ul>
+      </div>
+      <!-- / navbar collapse -->

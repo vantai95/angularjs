@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Collections>		      	
+      	<ServiceMeta ID="ClassStudentSave" Enable="true" IsReadOnly="false">
+	        <RegBy>class</RegBy>
+	        <RegDate>2016-11-07T12:00:00</RegDate>
+	        <ModBy>class</ModBy>
+	        <ModDate>2016-11-07T12:00:00</ModDate>
+	        <Executions>
+	            <ExecutionID>ClassStudentSave</ExecutionID>
+	        </Executions>
+	        <BLPType>Bypass</BLPType>
+	        <BLPFile />
+	        <BLPTimeoutMin>10</BLPTimeoutMin>
+	        <Namespace />
+	        <ClassName />
+	        <RTFType>None</RTFType>
+	        <RTFAddress />
+	        <RTFCustomer />
+	        <RTFServiceID />
+	        <PageName>class</PageName>
+	        <PageTitle>class</PageTitle>
+	        <RTFTime>0</RTFTime>
+	        <ReturnType>DataSet</ReturnType>
+	    </ServiceMeta>	   	    	   	
+    </Collections>
+</MetaCollection>

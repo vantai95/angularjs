@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Collections>
+		<ServiceMeta ID="AccountPayList" Enable="true" IsReadOnly="false">
+			<RegBy>account</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>account</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>AccountPayList</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>AccountPayList</PageName>
+		      <PageTitle>AccountPayList</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+      	<ServiceMeta ID="AccountPayListCnt" Enable="true" IsReadOnly="false">
+			<RegBy>account</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>account</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>AccountPayListCnt</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>AccountPayListCnt</PageName>
+		      <PageTitle>AccountPayListCnt</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+      	<ServiceMeta ID="AccountPaySave" Enable="true" IsReadOnly="false">
+			<RegBy>account</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>account</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>AccountPaySave</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>AccountPaySave</PageName>
+		      <PageTitle>AccountPaySave</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+      	
+		<ServiceMeta ID="AccountRefundList" Enable="true" IsReadOnly="false">
+			<RegBy>account</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>account</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>AccountRefundList</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>AccountRefundList</PageName>
+		      <PageTitle>AccountRefundList</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+      	<ServiceMeta ID="AccountRefundListCnt" Enable="true" IsReadOnly="false">
+			<RegBy>account</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>account</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>AccountRefundListCnt</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>AccountRefundListCnt</PageName>
+		      <PageTitle>AccountRefundListCnt</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+      	<ServiceMeta ID="AccountRefundDetail" Enable="true" IsReadOnly="false">
+			<RegBy>account</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>account</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>AccountRefundDetail</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>AccountRefundDetail</PageName>
+		      <PageTitle>AccountRefundDetail</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+      	<ServiceMeta ID="AccountRefundSave" Enable="true" IsReadOnly="false">
+			<RegBy>account</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>account</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>AccountRefundSave</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>AccountRefundSave</PageName>
+		      <PageTitle>AccountRefundSave</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>      	      	
+    </Collections>
+</MetaCollection>

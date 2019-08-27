@@ -1,0 +1,56 @@
+
+  	<div class="app-content-body " ng-controller="userController" ng-init="init()">
+<div class="wrapper-md">
+  <div class="panel panel-default">
+    <div class="panel-heading font-bold">
+      수강생현황
+    </div>
+    <div class="panel-body">
+      <form class="form-horizontal" method="get">
+        <div class="form-group b-n">
+          <label class="col-sm-1 control-label">담당강사</label>
+          <div class="col-sm-2">
+            <select name="teacher" class="form-control input-sm"
+				ng-options="teacher.userName for teacher in teachers track by teacher.tcCd"
+				ng-model="selected_teacher">
+				<option value="" selected>전체</option>
+			</select>
+          </div>
+            <label class="col-sm-1 col-sm-offset-3 control-label">고객사명</label>
+          <div class="col-sm-2">
+            <select name="customer_company" class="form-control input-sm"
+				ng-options="customer_company.compNm for customer_company in customer_companies track by customer_company.cpCd"
+				ng-model="selected_customer_company">
+				<option value="" selected>전체</option>
+			</select>
+          </div>
+        </div>
+        <div class="form-group b-n">
+          <label class="col-sm-1 control-label">강의명</label>
+          <div class="col-sm-11">
+            <select name="lecture" class="form-control input-sm"
+				ng-options="lecture.lectureNm for lecture in lectures"
+				ng-model="selected_lecture">
+				<option value="" selected>전체</option>
+			</select>
+          </div>
+        </div>
+        <div class="form-group b-n">
+          <label class="col-sm-1 control-label">이름 / ID</label>
+          <div class="col-sm-2">
+            <input class="form-control input-sm" type="text" ng-model="username_student">
+          </div>
+        </div>   
+      </form>
+    </div>
+      <div class="panel-footer">
+          <div class="row">
+            <button type="submit" class="btn btn-dark pull-right btn-m" ng-click="SearchOnList()">조회</button>     
+          </div>
+      </div>
+  </div>
+    <div class="panel panel-default default_result">
+        <p class="text-center text-lg">선택된 항목이 없습니다.</p>
+    </div>
+</div>
+</div>

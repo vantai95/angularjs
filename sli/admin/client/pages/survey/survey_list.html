@@ -1,0 +1,167 @@
+
+<div class="app-content-body" ng-controller="ServeyController"
+	ng-init="init()">
+	<div class="wrapper-md">
+		<div class="panel panel-default">
+			<div class="panel-heading font-bold">
+				설문관리
+				<button type="submit" class="btn btn-primary pull-right btn-m"
+					ui-sref="app.survey.setting" href="#!/app/survey/setting">설문등록</button>
+			</div>
+
+			<div class="panel-body">
+				<form class="form-horizontal" method="get">
+					<div class="form-group b-n">
+						<label class="col-sm-1 control-label">고객사명</label>
+						<div class="col-sm-2">
+							<select name="account" class="form-control input-sm"
+								ng-model="filter.cpCd" ng-change="getLectureListBox()"
+								ng-options="c.cpCd as c.compNm for c in companies">
+								<option value="">전체</option>
+							</select>
+						</div>
+						<label class="col-sm-1 col-sm-offset-1 control-label">담당강사</label>
+						<div class="col-sm-2">
+							<select name="account" class="form-control input-sm"
+								ng-model="filter.tcCd" ng-change="getLectureListBox()"
+								ng-options="t.tcCd as t.userName for t in teachers">
+								<option value="">전체</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group b-n">
+			          <label class="col-sm-1 control-label">강의명</label>
+			          <div class="col-sm-8">
+			            <select name="account" class="form-control input-sm"
+							ng-model="filter.ltCd"
+							ng-options="item.ltCd as item.lectureNm for item in lectureListBox ">
+							<option value="">전체</option>
+						</select>
+			          </div>
+			        </div>
+				</form>
+			</div>
+			<div class="panel-footer">
+				<div class="row">
+					<button type="submit" class="btn btn-dark pull-right btn-m" ng-click="search()">조회</button>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default default_result"
+			ng-if="surveys.length == 0">
+			<p class="text-center text-lg">담당 강사 또는 고객사를 선택해주세요.</p>
+		</div>
+		<div class="panel panel-default" ng-if="surveys.length > 0">
+			<div class="table-responsive teacher_table">
+				<table class="table b-t b-light">
+					<thead>
+						<tr class="active">
+							<th>No</th>
+							<th>강사명</th>
+							<th>고객사명</th>
+							<th>강의명</th>
+							<th>강의기간</th>
+							<th>수강인원</th>
+							<th>응답인원</th>
+							<th>만족도</th>
+							<th>설정</th>
+							<th>통계보기</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="x in surveys ">
+							<td>{{generateListNo(current_page, total_surveys, $index)}}</td>
+							<td>{{x.tcNm}}</td>
+							<td>{{x.compNm}}</td>
+							<td class="text-left">
+								<a class="primary underline" ui-sref="app.survey.setting({id: x.ltCd, smCd: x.smCd})">{{x.lectureNm}}</a>
+							</td>
+							<td>{{x.startDt}}~{{x.endDt}}</td>
+							<td>{{x.studentCnt}}</td>
+							<td>{{x.answerCnt}}</td>
+							<td>{{x.satisfyAvg}}</td>
+							<td>
+								<a class="primary underline" ui-sref="app.survey.setting({id: x.ltCd, smCd: x.smCd})" ng-if="x.stateFlag == 'R'">미등록</a> 
+								<a class="primary underline" ui-sref="app.survey.setting({id: x.ltCd, smCd: x.smCd})" ng-if="x.stateFlag == 'M' && x.statsYn == 'N'">수정</a> 
+								<a class="primary underline" ng-click="showSurveyDetail(x.ltCd, x.smCd)" ng-if="x.stateFlag != 'R' && (x.stateFlag != 'M' || x.statsYn != 'N')">설문보기</a>
+							</td>
+							<td><a class="primary underline" ui-sref="app.survey.result({smCd: x.smCd})" ng-if="x.stateFlag != 'R' && x.statsYn == 'N'")>진행중</a> 
+								<a class="primary underline" ui-sref="app.survey.result({smCd: x.smCd})" ng-if="x.statsYn != 'N'")>통계보기</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="row" ng-if="total_surveys > app.page_size">
+			<div class=" text-center">
+				<ul class="pagination pagination-sm m-t-none m-b-none">
+					<li ng-click="previousPageClick()"><a href=""><i
+							class="fa fa-chevron-left"></i></a></li>
+					<li ng-repeat="page in getRange(total_pages) track by $index"
+						class="{{current_page == $index + 1 ? 'active' : ''}}"
+						ng-click="setCurrentPage($index + 1)"><a href="">{{$index
+							+ 1}}</a></li>
+					<li ng-click="nextPageClick()"><a href=""><i
+							class="fa fa-chevron-right"></i></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/ng-template" id="survey_detail_modal.html">
+  <div class="popup_wrap" ng-init="init()">
+      <div class="popup_header">
+        설문 미리보기<span class="pull-right closebtn " data-ng-click="cancel()"><img src="assets/img/close.png" class="img-full" alt="..."></span>
+    </div>
+    <div class="popup_body no-padder-top">
+        <div>
+        <p class="m-t-md text-md">
+        안녕하세요, OOO 회원님<br> 
+보다 나은 수업을 위하여 수강하신 강의에 대한 설문에 응답해주시기 바랍니다.<br> 
+본 설문은 수업평가 및 개선을 위해 사용되며 응답 결과에 대해서는 개인적인 정보는 저장되지 않습니다. 
+
+    </p>
+    <div class="panel-body text-md m-t-md">
+      <form class="form-horizontal ng-pristine ng-valid" method="get">
+        <div class="form-group b-n">
+            <label class="col-sm-8 control-label"><b>강의기간</b> : {{survey.startDt}} ~ {{survey.endDt}}</label>
+        </div>
+        <div class="form-group b-n">
+            <label class="col-sm-4 control-label"><b>강사명</b> : {{survey.tcNm}} </label>
+            <label class="col-sm-8 control-label"><b>강의명</b> : {{survey.lectureNm}} </label>
+        </div>  
+      </form>
+    </div>
+    <div>
+  <table class="b-light v_table m-t-md">
+        <thead>  
+        </thead>
+        <tbody>
+			<tr ng-repeat="q in questions">
+				<td>
+					<div>{{$index + 1}}. {{q.survTitle}}</div>
+					<div class="col-sm-12 no-padder" ng-if="q.survType != 'S' && q.survType != 1">
+						<div class="radio">
+							<label class="i-checks" ng-repeat="a in q.answers" disabled> 
+								<input type="radio" name="count" disabled><i></i>{{a.survNm}}
+							</label> &nbsp;&nbsp;
+						</div>
+					</div>
+					<div class="col-sm-12 no-padder" ng-if="q.survType == 'S' || q.survType == 1">
+						<input class='form-control input-sm' type="text" name="count" disabled style="background-color: #fff;"><i></i>{{a.survNm}}
+					</div>
+					</div>
+				</td>
+			</tr>
+        </tbody>
+      </table>
+    </div>
+    </div>  
+    </div>  
+  </div>
+</script>
+<style>
+.modal-dialog {
+	width: 800px;
+}
+</style>

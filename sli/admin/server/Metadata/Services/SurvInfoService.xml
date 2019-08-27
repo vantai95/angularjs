@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Collections>  	
+	    
+	    <ServiceMeta ID="SurvSaveMaster" Enable="true" IsReadOnly="false">
+	        <RegBy>admin</RegBy>
+	        <RegDate>2016-11-07T12:00:00</RegDate>
+	        <ModBy>admin</ModBy>
+	        <ModDate>2016-11-07T12:00:00</ModDate>
+	        <Executions>
+	            <ExecutionID>SurvSaveMaster</ExecutionID>
+	        </Executions>
+	        <BLPType>PreExecuteJava</BLPType>
+	        <BLPFile>SurvInfo.class</BLPFile>
+	        <BLPTimeoutMin>10</BLPTimeoutMin>
+	        <Namespace>com.engine.sli.admin</Namespace>
+	        <ClassName>SurvInfo</ClassName>
+	        <RTFType>TRANSACTION</RTFType>
+	        <RTFAddress />
+	        <RTFCustomer />
+	        <RTFServiceID />
+	        <PageName>surv</PageName>
+	        <PageTitle>surv</PageTitle>
+	        <RTFTime>0</RTFTime>
+	        <ReturnType>DataSet</ReturnType>
+	    </ServiceMeta>
+	    <ServiceMeta ID="SurvSaveItem" Enable="true" IsReadOnly="false">
+			<RegBy>SurvInfo</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>SurvInfo</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>SurvSaveItem</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>		      
+		      <RTFType>TRANSACTION</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>SurvSaveItem</PageName>
+		      <PageTitle>SurvSaveItem</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+	    
+	    <ServiceMeta ID="SurvInfoList" Enable="true" IsReadOnly="false">
+			<RegBy>SurvInfo</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>SurvInfo</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>SurvInfoList</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>SurvInfoList</PageName>
+		      <PageTitle>SurvInfoList</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+      	<ServiceMeta ID="SurvInfoListCnt" Enable="true" IsReadOnly="false">
+			<RegBy>SurvInfo</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>SurvInfo</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>SurvInfoListCnt</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>SurvInfoListCnt</PageName>
+		      <PageTitle>SurvInfoListCnt</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+      	<ServiceMeta ID="SurvInfoDetail" Enable="true" IsReadOnly="false">
+			<RegBy>SurvInfo</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>SurvInfo</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>SurvInfoDetail</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>SurvInfoDetail</PageName>
+		      <PageTitle>SurvInfoDetail</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+	   	<ServiceMeta ID="SurvInfoDetailItemList" Enable="true" IsReadOnly="false">
+			<RegBy>SurvInfo</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>SurvInfo</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>SurvInfoDetailItemList</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>SurvInfoDetailItemList</PageName>
+		      <PageTitle>SurvInfoDetailItemList</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+      	
+      	<ServiceMeta ID="SurvStatsInfo" Enable="true" IsReadOnly="false">
+			<RegBy>SurvInfo</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>SurvInfo</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>SurvStatsInfo</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>SurvStatsInfo</PageName>
+		      <PageTitle>SurvStatsInfo</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+      	<ServiceMeta ID="SurvStatsTitleList" Enable="true" IsReadOnly="false">
+			<RegBy>SurvInfo</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>SurvInfo</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>SurvStatsTitleList</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>SurvStatsTitleList</PageName>
+		      <PageTitle>SurvStatsTitleList</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+      	<ServiceMeta ID="SurvStatsMulti" Enable="true" IsReadOnly="false">
+			<RegBy>SurvInfo</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>SurvInfo</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>SurvStatsMulti</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>SurvStatsMulti</PageName>
+		      <PageTitle>SurvStatsMulti</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+      	<ServiceMeta ID="SurvStatsEssay" Enable="true" IsReadOnly="false">
+			<RegBy>SurvInfo</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>SurvInfo</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>SurvStatsEssay</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>SurvStatsEssay</PageName>
+		      <PageTitle>SurvStatsEssay</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+      	<ServiceMeta ID="GetTargetSurvInfo" Enable="true" IsReadOnly="false">
+			<RegBy>SurvInfo</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>SurvInfo</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>GetTargetSurvInfo</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>GetTargetSurvInfo</PageName>
+		      <PageTitle>GetTargetSurvInfo</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+      	
+      	<ServiceMeta ID="SurvDelete" Enable="true" IsReadOnly="false">
+			<RegBy>SurvInfo</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>SurvInfo</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>SurvDelete</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>SurvDelete</PageName>
+		      <PageTitle>SurvDelete</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+      	
+    </Collections>
+</MetaCollection>

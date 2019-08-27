@@ -1,0 +1,292 @@
+
+<!-- content -->
+<div class="app-content-body" ng-controller="LectureDetailController"
+	ng-init="init()">
+	<div class="wrapper-md">
+		<div class="panel panel-default panel-devide">
+			<div class="panel-heading font-bold">강의 정보</div>
+			<div class="panel-body">
+				<form class="form-horizontal" method="get">
+					<div class="form-group">
+						<div class="col-bg col-sm-2">
+							<label class="control-label">강의코드</label>
+						</div>
+						<div class="col-sm-4">
+							<label class="control-label">{{lecture_id}}</label>
+						</div>
+						<div class="col-bg col-sm-2">
+							<label class=" control-label"> 상태</label>
+						</div>
+						<div class="col-sm-4">
+							<label class="control-label"> {{lecture.stateFlagNm}} </label>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-2">
+							<label class="control-label">영역</label>
+						</div>
+						<div class="col-sm-4">
+							<label class="control-label">{{lecture.titleCdNm}}</label>
+						</div>
+						<div class="col-bg col-sm-2">
+							<label class=" control-label"> 과목</label>
+						</div>
+						<div class="col-sm-4">
+							<label class="control-label">{{lecture.sjCdNm}}</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-2">
+							<label class="control-label">진행고객사</label>
+						</div>
+						<div class="col-sm-4">
+							<label class="control-label">{{lecture.cpCdNm}}</label>
+						</div>
+						<div class="col-bg col-sm-2">
+							<label class=" control-label"> 강의구분</label>
+						</div>
+						<div class="col-sm-4">
+							<label class="control-label">{{lecture.lectureSortNm}}</label>
+						</div>
+						<div class="form-group">
+							<span class="i-checks m-l-sm"> <input type="checkbox"
+								ng-checked="lecture.attendanceYn == 'Y'" readonly><i></i>출석확정
+							</span>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-2">
+							<label class="control-label">담당강사</label>
+						</div>
+						<div class="col-sm-4">
+							<label class="control-label">{{lecture.tcCdNm}}</label>
+						</div>
+						<div class="col-bg col-sm-2">
+							<label class=" control-label"> 모집인원</label>
+						</div>
+						<div class="col-sm-4">
+							<label class="control-label">{{lecture.studentLimit}}명
+								(현재수강생 <span class="primary">2 </span> 명)
+							</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-2">
+							<label class=" control-label">
+								결제방법
+							</label>
+						</div>
+						<div class="col-sm-4">
+							<div class="radio">
+								<label class="i-checks"> 
+									<input type="radio" name="paymentType" ng-model="lecture.paymentType" value="M" readonly /> <i></i> 매월
+								</label> &nbsp;&nbsp;&nbsp; 
+								<label class="i-checks"> 
+									<input type="radio" name="paymentType" ng-model="lecture.paymentType" value="C" readonly /> <i></i> 과정종료후
+								</label>
+							</div>
+						</div>
+						<div class="col-bg col-sm-2">
+							<label class=" control-label">개시여부</label>
+						</div>
+						<div class="col-sm-4">
+							<label class="control-label">{{lecutre.useYn}}{{lecture.useYn == 'Y' ? '개시' : '미개시'}}</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-2">
+							<label class=" control-label">강의명</label>
+						</div>
+						<div class="col-sm-4">
+							<label class="control-label">{{lecture.lectureNm}}</label>
+						</div>
+						<div class="col-bg col-sm-2">
+							<label class=" control-label">강의설명</label>
+						</div>
+						<div class="col-sm-4">
+							<label class="control-label" style="white-space: pre;">{{lecture.lectureCnts}}</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-2">
+							<label class=" control-label">강의이미지</label>
+						</div>
+						<div class="col-sm-8">
+				          	  <label class="uploader control-label m-l-none" ng-if="imgFile.fileName != ''">
+				          	  	<a href="{{imgFile.pathUrl}}/{{imgFile.fileName}}" target="_blank" style="max-width:135px;">{{imgFile.originalName}}</a>
+				          	  	<img class="img-full" src="{{imgFile.pathUrl}}/{{imgFile.fileName}}" class="img-full" alt="..." >
+				              </label>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-2">
+							<label class="control-label">강의장소</label>
+						</div>
+						<div class="col-sm-1">
+							<label class="control-label">장소명</label>
+						</div>
+						<div class="col-sm-2">
+							<label class="control-label">{{lecture.lecturePlaceNm}}</label>
+						</div>
+						<div class="col-sm-12 no-padder">
+							<div class="col-bg col-sm-2">
+								<label class=" control-label text-xxs ">주소</label>
+							</div>
+							<div class="col-sm-1">
+								<label class="control-label">위치</label>
+							</div>
+							<div class="col-sm-8">
+								<label class="control-label">{{lecture.postNo}} {{lecture.addr}} {{lecture.dtlAddr}} <span class="m-l-xs" ng-click="showMap();"><img width="62"	src="./assets/img/map_ico.jpg"></span></label>
+								<br>
+								<div class="col-sm-8" id="map" style="width:100%; height:300px;margin-top:10px;display:none"></div>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-2">
+							<label class=" control-label">강의일정</label>
+						</div>
+						<div class="col-sm-10 no-padder">
+							<div class="col-sm-10" ng-repeat="schedule in schedule_week">
+								<label class="control-label">{{schedule.scheduleWeekKor}}&nbsp;&nbsp; {{schedule.scheduleStartTime}} ~ {{schedule.scheduleEndTime}}&nbsp;&nbsp;&nbsp;&nbsp;  
+									적용기준일 : {{schedule.stdDt}}
+								</label>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-2">
+							<label class=" control-label"> 개강일</label>
+						</div>
+						<div class="col-sm-2">
+							<label class="control-label">{{lecture.startDt}}</label>
+						</div>
+						<div class="col-bg col-sm-2 col-sm-offset-3">
+							<label class=" control-label"> 종강일</label>
+						</div>
+						<div class="col-sm-2">
+							<label class="control-label">{{lecture.endDt}}</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-2">
+							<label class="control-label">총 강의 시수</label>
+						</div>
+						<div class="col-sm-1">
+							<label class="control-label">{{lecture.lectureTotalCnt}}</label>
+						</div>
+						<label class="control-label col-sm-1">T</label>
+						<div class="col-bg col-sm-2 col-sm-offset-3">
+							<label class=" control-label"> 수료 출석률</label>
+						</div>
+						<div class="col-sm-1">
+							<label class="control-label">{{lecture.completAttendance}}%</label>
+						</div>
+						<label class="control-label col-sm-1">이상</label>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-2">
+							<label class="control-label">결석처리 지각횟수</label>
+						</div>
+						<div class="col-sm-8">
+							<label class="control-label" ng-if="lecture.absenceRate > 0">지각 {{lecture.absenceRate}}회당 결석 1회로 산정합니다.</label>
+							<label class="control-label" ng-if="lecture.absenceRate <= 0">미사용</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-2">
+							<label class=" control-label">수강료</label>
+						</div>
+						<div class="col-sm-1">
+							<label class="control-label">{{lecture.tuitionFee | number:0}}</label>
+						</div>
+						<div class="col-sm-8 no-padder">
+							<div class="radio">
+								원 ( 청구단위 : &nbsp;&nbsp; 
+								<span class="i-checks" ng-repeat="tuition in tuition_fee_units"> 
+									<input type="radio" readonly name="tuitionFeeUnit" value="{{tuition.codeId}}" ng-model="lecture.tuitionFeeUnit"><i></i> {{tuition.codeName1}}
+								</span> 
+								&nbsp;&nbsp;)
+								<label class="i-checks"> 
+									<input type="checkbox" ng-model="lecture.freeYn" ng-true-value="'Y'" readonly /> <i></i> 면세여부
+								</label>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-2">
+							<label class=" control-label">강사료</label>
+						</div>
+						<div class="col-sm-1">
+							<label class="control-label">{{lecture.teacherFee | number:0}}</label>
+						</div>
+						<div class="col-sm-5 no-padder">
+							<div class="radio">
+								원 (&nbsp;&nbsp; 
+								<span class="i-checks" ng-repeat="unit in teacher_fee_units">
+									<input type="radio" readonly name="unitFeeLecture" value="{{unit.codeId}}" ng-model="lecture.teacherFeeUnit"> <i></i> {{unit.codeName1}}
+								</span>
+								&nbsp;&nbsp; &nbsp;)
+							</div>
+						</div>
+						<div class="col-sm-3 no-padder-right">
+							<label class="col-sm-3 control-label ">교통비</label>
+							<div class="col-sm-7 no-padder">
+								<label class="control-label">{{lecture.teacherTrspFee}}</label>
+							</div>
+							<label class="col-sm-2 control-label ">일(회)</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-2">
+							<label class=" control-label ">강의내용</label>
+						</div>
+						<div class="col-sm-10">
+							<label class="control-label" style="white-space: pre;">{{lecture.lectureContents}}</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-2">
+							<label class=" control-label ">강의특징</label>
+						</div>
+						<div class="col-sm-10">
+							<label class="control-label" style="white-space: pre;">{{lecture.lecturePoint}}</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-2">
+							<label class=" control-label ">커리큘럼</label>
+						</div>
+						<div class="col-sm-10">
+							<label class="control-label" style="white-space: pre;">{{lecture.lectureCurriculum}}</label>
+						</div>
+					</div>					
+					<div class="form-group">
+						<div class="col-bg col-sm-2">
+							<label class=" control-label ">강의교재</label>
+						</div>
+						<div class="col-sm-10">
+							<label class="control-label"  ng-repeat="book in lecture_books">{{book.bookName}} &nbsp;({{book.author}}, {{book.publisher}})<span ng-if="!$last"> &nbsp/</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-2">
+							<label class=" control-label ">샘플강의</label>
+						</div>
+						<div class="col-sm-10">
+							<label class="control-label">{{lecture.sampleUrl}}</label>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="text-center m-t-lg">
+			<button class="btn btn-danger btn-w" ng-click="deleteLecture()">삭제</button>&nbsp;
+			<button class="btn btn-dark btn-w" ui-sref="app.subject.lecture_list">목록</button>&nbsp;
+			<button class="btn btn-primary btn-w" ui-sref="app.subject.lecture_modify({id: lecture_id})">수정</button>
+		</div>
+	</div>
+
+
+</div>
+<!-- /content -->

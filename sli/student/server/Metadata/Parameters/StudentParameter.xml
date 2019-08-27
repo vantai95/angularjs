@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Collections>
+    	<!-- FindId Start-->
+    	<ParameterMeta ID="userType" IsReadOnly="false" Enable="true">
+			<RegBy>Student</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Student</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>FindId</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>		
+    	<ParameterMeta ID="userName" IsReadOnly="false" Enable="true">
+			<RegBy>Student</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Student</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>FindId</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>		
+    	<ParameterMeta ID="destPhone" IsReadOnly="false" Enable="true">
+			<RegBy>Student</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Student</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>FindId</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>		
+    	<ParameterMeta ID="setCode" IsReadOnly="false" Enable="true">
+			<RegBy>Student</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Student</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>FindId</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>		
+    	<ParameterMeta ID="company" IsReadOnly="false" Enable="true">
+			<RegBy>Student</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Student</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>FindId</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>		
+    	<ParameterMeta ID="project" IsReadOnly="false" Enable="true">
+			<RegBy>Student</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Student</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>FindId</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>		
+    	<ParameterMeta ID="packageName" IsReadOnly="false" Enable="true">
+			<RegBy>Student</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Student</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>FindId</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>		
+    	<!-- FindId End-->
+    	    	
+    	<!-- StudentDetail Start-->
+    	<ParameterMeta ID="stCd" IsReadOnly="false" Enable="true">
+			<RegBy>Student</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Student</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>StudentDetail</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>		
+    	<!-- StudentDetail End-->
+    	    	    	
+    	<!-- StudentSave Start-->
+    	<ParameterMeta ID="saveType" IsReadOnly="false" Enable="true">
+			<RegBy>Student</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Student</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>StudentSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="cpCd" IsReadOnly="false" Enable="true">
+			<RegBy>Student</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Student</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>StudentSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<ParameterMeta ID="stCd" IsReadOnly="false" Enable="true">
+			<RegBy>Student</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Student</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>StudentSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="userName" IsReadOnly="false" Enable="true">
+			<RegBy>Student</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Student</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>StudentSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="userId" IsReadOnly="false" Enable="true">
+			<RegBy>Student</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Student</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>StudentSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="userPw" IsReadOnly="false" Enable="true">
+			<RegBy>Student</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Student</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>StudentSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="mobile" IsReadOnly="false" Enable="true">
+			<RegBy>Student</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Student</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>StudentSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="gender" IsReadOnly="false" Enable="true">
+			<RegBy>Student</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Student</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>StudentSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>	
+		<ParameterMeta ID="birthday" IsReadOnly="false" Enable="true">
+			<RegBy>Student</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Student</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>StudentSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="deptNm" IsReadOnly="false" Enable="true">
+			<RegBy>Student</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Student</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>StudentSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="positionNm" IsReadOnly="false" Enable="true">
+			<RegBy>Student</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Student</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>StudentSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="email" IsReadOnly="false" Enable="true">
+			<RegBy>Student</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Student</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>StudentSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="bankCd" IsReadOnly="false" Enable="true">
+			<RegBy>Student</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Student</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>StudentSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="bankAccount" IsReadOnly="false" Enable="true">
+			<RegBy>Student</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Student</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>StudentSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="agreeEvtYn" IsReadOnly="false" Enable="true">
+			<RegBy>Student</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Student</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>StudentSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>		
+		<!-- StudentSave End-->
+				
+		<!-- CheckPassword Start-->
+    	<ParameterMeta ID="userType" IsReadOnly="false" Enable="true">
+			<RegBy>Student</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Student</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CheckPassword</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="userId" IsReadOnly="false" Enable="true">
+			<RegBy>Student</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Student</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CheckPassword</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="userPw" IsReadOnly="false" Enable="true">
+			<RegBy>Student</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Student</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CheckPassword</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<!-- CheckPassword End-->		    	
+    	   	
+    	<!-- CheckJoinInfo Start-->
+    	<ParameterMeta ID="checkType" IsReadOnly="false" Enable="true">
+			<RegBy>Student</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Student</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CheckJoinInfo</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="userName" IsReadOnly="false" Enable="true">
+			<RegBy>Student</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Student</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CheckJoinInfo</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="mobile" IsReadOnly="false" Enable="true">
+			<RegBy>Student</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Student</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CheckJoinInfo</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="userId" IsReadOnly="false" Enable="true">
+			<RegBy>Student</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Student</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CheckJoinInfo</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="company" IsReadOnly="false" Enable="true">
+			<RegBy>Student</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Student</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CheckJoinInfo</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="project" IsReadOnly="false" Enable="true">
+			<RegBy>Student</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Student</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CheckJoinInfo</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="packageName" IsReadOnly="false" Enable="true">
+			<RegBy>Student</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Student</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CheckJoinInfo</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<!-- CheckJoinInfo End-->
+    	
+    	<!-- CheckCompInfo Start-->
+    	<ParameterMeta ID="compKey" IsReadOnly="false" Enable="true">
+			<RegBy>Student</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Student</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CheckCompInfo</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<ParameterMeta ID="company" IsReadOnly="false" Enable="true">
+			<RegBy>Student</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Student</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CheckCompInfo</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<ParameterMeta ID="project" IsReadOnly="false" Enable="true">
+			<RegBy>Student</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Student</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CheckCompInfo</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<!-- CheckCompInfo End-->
+    </Collections>
+</MetaCollection>

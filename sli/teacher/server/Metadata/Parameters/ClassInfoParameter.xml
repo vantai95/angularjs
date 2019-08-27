@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Collections>
+		<!-- ClassInfoList Start  -->
+		<ParameterMeta ID="startPage" IsReadOnly="false" Enable="true">
+			<RegBy>ClassInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>ClassInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>ClassInfoList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="endPage" IsReadOnly="false" Enable="true">
+			<RegBy>ClassInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>ClassInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>ClassInfoList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="ltCd" IsReadOnly="false" Enable="true">
+			<RegBy>ClassInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>ClassInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>ClassInfoList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>			
+		<!-- ClassInfoList END  -->	
+						
+    </Collections>
+</MetaCollection>

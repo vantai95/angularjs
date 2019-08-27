@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Collections>
+    	<!-- NoticeInfoList Start-->
+    	<ParameterMeta ID="startPage" IsReadOnly="false" Enable="true">
+			<RegBy>NoticeInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>NoticeInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>NoticeInfoList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="endPage" IsReadOnly="false" Enable="true">
+			<RegBy>NoticeInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>NoticeInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>NoticeInfoList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>		
+		<ParameterMeta ID="notiSort" IsReadOnly="false" Enable="true">
+			<RegBy>NoticeInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>NoticeInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>NoticeInfoList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shCpCd" IsReadOnly="false" Enable="true">
+			<RegBy>NoticeInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>NoticeInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>NoticeInfoList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shTcCd" IsReadOnly="false" Enable="true">
+			<RegBy>NoticeInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>NoticeInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>NoticeInfoList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shLtCd" IsReadOnly="false" Enable="true">
+			<RegBy>NoticeInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>NoticeInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>NoticeInfoList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>				
+    	<!-- NoticeInfoList End-->
+    	
+    	<!-- NoticeInfoListCnt Start-->
+    	<ParameterMeta ID="notiSort" IsReadOnly="false" Enable="true">
+			<RegBy>NoticeInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>NoticeInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>NoticeInfoListCnt</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>    	
+		<ParameterMeta ID="shCpCd" IsReadOnly="false" Enable="true">
+			<RegBy>NoticeInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>NoticeInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>NoticeInfoListCnt</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shTcCd" IsReadOnly="false" Enable="true">
+			<RegBy>NoticeInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>NoticeInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>NoticeInfoListCnt</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shLtCd" IsReadOnly="false" Enable="true">
+			<RegBy>NoticeInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>NoticeInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>NoticeInfoListCnt</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<!-- NoticeInfoListCnt End-->
+     	
+     	<!-- NoticeInfoDetail Start-->
+    	<ParameterMeta ID="ntCd" IsReadOnly="false" Enable="true">
+			<RegBy>NoticeInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>NoticeInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>NoticeInfoDetail</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<!-- NoticeInfoDetail Start-->
+		
+    	<!-- NoticeInfoSave Start-->
+    	<ParameterMeta ID="saveType" IsReadOnly="false" Enable="true">
+			<RegBy>NoticeInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>NoticeInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>NoticeInfoSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="ntCd" IsReadOnly="false" Enable="true">
+			<RegBy>NoticeInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>NoticeInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>NoticeInfoSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="cpCd" IsReadOnly="false" Enable="true">
+			<RegBy>NoticeInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>NoticeInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>NoticeInfoSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="tcCd" IsReadOnly="false" Enable="true">
+			<RegBy>NoticeInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>NoticeInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>NoticeInfoSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="ltCd" IsReadOnly="false" Enable="true">
+			<RegBy>NoticeInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>NoticeInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>NoticeInfoSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="notiSort" IsReadOnly="false" Enable="true">
+			<RegBy>NoticeInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>NoticeInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>NoticeInfoSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="notiType" IsReadOnly="false" Enable="true">
+			<RegBy>NoticeInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>NoticeInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>NoticeInfoSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="showRegNm" IsReadOnly="false" Enable="true">
+			<RegBy>NoticeInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>NoticeInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>NoticeInfoSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="notiTitle" IsReadOnly="false" Enable="true">
+			<RegBy>NoticeInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>NoticeInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>NoticeInfoSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="notiContents" IsReadOnly="false" Enable="true">
+			<RegBy>NoticeInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>NoticeInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>NoticeInfoSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="showYn" IsReadOnly="false" Enable="true">
+			<RegBy>NoticeInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>NoticeInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>NoticeInfoSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="showDtYn" IsReadOnly="false" Enable="true">
+			<RegBy>NoticeInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>NoticeInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>NoticeInfoSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="showStartDt" IsReadOnly="false" Enable="true">
+			<RegBy>NoticeInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>NoticeInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>NoticeInfoSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="showEndDt" IsReadOnly="false" Enable="true">
+			<RegBy>NoticeInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>NoticeInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>NoticeInfoSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="regUser" IsReadOnly="false" Enable="true">
+			<RegBy>NoticeInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>NoticeInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>NoticeInfoSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="updUser" IsReadOnly="false" Enable="true">
+			<RegBy>NoticeInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>NoticeInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>NoticeInfoSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>				
+    	<!-- NoticeInfoSave End-->
+    	    	    	
+    </Collections>
+</MetaCollection>

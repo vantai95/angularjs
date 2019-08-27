@@ -1,0 +1,84 @@
+
+<!-- content -->
+<div class="app-content-body" ng-controller="DataViewController" ng-init="init()">
+	<div class="wrapper-md">
+		<div class="panel panel-default panel-devide">
+			<div class="panel-heading font-bold">자료실 정보</div>
+			<div class="panel-body">
+				<form class="form-horizontal" method="get">
+					<div class="form-group">						
+						<div class="col-bg col-sm-1">
+							<label class=" control-label">고객사명</label>
+						</div>
+						<div class="col-sm-3">
+							<label class=" control-label">{{dataInfo.cpCdNm}}</label>
+						</div>
+						<div class="col-bg col-sm-1">
+							<label class=" control-label">강의명</label>
+						</div>
+						<div class="col-sm-3">
+							<label class=" control-label">{{dataInfo.lectureNm}}</label>
+						</div>
+					</div>
+					<div class="form-group">						
+						<div class="col-bg col-sm-1">
+							<label class=" control-label">등록자</label>
+						</div>
+						<div class="col-sm-3">
+							<label class=" control-label">								
+								{{dataInfo.regUserNm}}
+								<span ng-if="dataInfo.regUserType == 'A'">(관리자)</span>
+								<span ng-if="dataInfo.regUserType == 'T'">(강사)</span>
+							</label>
+						</div>
+						<div class="col-bg col-sm-1">
+							<label class=" control-label">수정자</label>
+						</div>
+						<div class="col-sm-3">
+							<label class=" control-label">
+								{{dataInfo.updUserNm}}
+								<span ng-if="dataInfo.updUserType == 'A'">(관리자)</span>
+								<span ng-if="dataInfo.updUserType == 'T'">(강사)</span>
+							</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-1">
+							<label class=" control-label">제목</label>
+						</div>
+						<div class="col-sm-11">
+							<label class=" control-label">{{dataInfo.dataTitle}}</label>
+						</div>
+					</div>					
+					<div class="form-group">
+						<div class="col-bg col-sm-1">
+							<label class=" control-label">내용</label>
+						</div>
+						<div class="col-sm-11">
+							<textarea class="h-full m-t-none" readonly ng-model="dataInfo.dataCnts"></textarea>
+						</div>
+					</div>
+					<div class="form-group b-n">
+						<div class="col-bg col-sm-1 heightfix-md">
+							<label class=" control-label">첨부파일</label>
+						</div>
+												
+						<div class="col-sm-11" ng-repeat="file in files">
+			          	  <label class="uploader control-label m-l-none">
+			          	  	<a href="{{file.pathUrl}}/{{file.fileName}}" target="_blank" >{{file.originalName}}</a>			          	  			          	  	
+			              </label>
+			         	</div>						
+					</div>
+					
+				</form>
+			</div>
+		</div>
+		<div class="text-center m-t-lg">
+			<button class="btn btn-dark btn-w" ui-sref="app.file.list">취소</button>
+			&nbsp;
+			<button class="btn btn-primary btn-w" ui-sref="app.data.modify({id: dataInfo.daCd})">수정</button>
+			<button class="btn btn-danger btn-w" ng-click="deleteDataInfo()">삭제</button>
+		</div>
+	</div>
+</div>
+<!-- /content -->

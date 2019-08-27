@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Collections>
+		<ServiceMeta ID="SupportCenterList" Enable="true" IsReadOnly="false">
+			<RegBy>SupportCenter</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>SupportCenter</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>SupportCenterList</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>SupportCenterList</PageName>
+		      <PageTitle>SupportCenterList</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+      	<ServiceMeta ID="SupportCenterListCnt" Enable="true" IsReadOnly="false">
+			<RegBy>SupportCenter</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>SupportCenter</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>SupportCenterListCnt</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>SupportCenterListCnt</PageName>
+		      <PageTitle>SupportCenterListCnt</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+      	<ServiceMeta ID="SupportCenterDetail" Enable="true" IsReadOnly="false">
+			<RegBy>SupportCenter</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>SupportCenter</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>SupportCenterDetail</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>SupportCenterDetail</PageName>
+		      <PageTitle>SupportCenterDetail</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+      	<ServiceMeta ID="SupportCenterSave" Enable="true" IsReadOnly="false">
+			<RegBy>SupportCenter</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>SupportCenter</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>SupportCenterSave</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>SupportCenterSave</PageName>
+		      <PageTitle>SupportCenterSave</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>      	  	
+    </Collections>
+</MetaCollection>

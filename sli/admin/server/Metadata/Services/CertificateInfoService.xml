@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Collections>
+		<ServiceMeta ID="CertificateInfoList" Enable="true" IsReadOnly="false">
+			<RegBy>Certificate</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>Certificate</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>CertificateInfoList</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>CertificateInfoList</PageName>
+		      <PageTitle>CertificateInfoList</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+      	<ServiceMeta ID="CertificateInfoListCnt" Enable="true" IsReadOnly="false">
+			<RegBy>Certificate</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>Certificate</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>CertificateInfoListCnt</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>CertificateInfoListCnt</PageName>
+		      <PageTitle>CertificateInfoListCnt</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+      	<ServiceMeta ID="CertificateSave" Enable="true" IsReadOnly="false">
+			<RegBy>Certificate</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>Certificate</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>CertificateSave</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>CertificateSave</PageName>
+		      <PageTitle>CertificateSave</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+
+		<ServiceMeta ID="CertifyIssue" Enable="true" IsReadOnly="false">
+	        <RegBy>admin</RegBy>
+	        <RegDate>2016-11-07T12:00:00</RegDate>
+	        <ModBy>admin</ModBy>
+	        <ModDate>2016-11-07T12:00:00</ModDate>
+	        <Executions>
+	            <ExecutionID>CertifyIssue</ExecutionID>
+	        </Executions>
+	        <BLPType>PreExecuteJava</BLPType>
+	        <BLPFile>CertificateInfo.class</BLPFile>
+	        <BLPTimeoutMin>10</BLPTimeoutMin>
+	        <Namespace>com.engine.sli.admin</Namespace>
+	        <ClassName>CertificateInfo</ClassName>
+	        <RTFType>TRANSACTION</RTFType>
+	        <RTFAddress />
+	        <RTFCustomer />
+	        <RTFServiceID />
+	        <PageName>admin</PageName>
+	        <PageTitle>admin</PageTitle>
+	        <RTFTime>0</RTFTime>
+	        <ReturnType>DataSet</ReturnType>
+	    </ServiceMeta>
+      	
+    </Collections>
+</MetaCollection>

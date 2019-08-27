@@ -1,0 +1,92 @@
+<div class="app-content-body " ng-controller="TesttController" ng-init="init()">
+  <div class="wrapper-md" ng-view>
+    <div class="panel panel-default">
+      <div class="panel-heading font-bold">
+        테스트
+      </div>
+
+      <div class="panel-body">
+        <form class="form-horizontal" method="get">
+          <div class="form-group b-n">
+            <label class="col-sm-1 control-label">회원모드</label>
+            <div class="col-sm-2">
+              <select class="form-control input-sm"
+                ng-model="member_mode" 
+                ng-options="member_mode.id as member_mode.name for member_mode in member_modes">
+                <option value="">전체</option>
+              </select>
+              <br />
+            </div>
+            <label class="col-sm-1 col-sm-offset-3 control-label">기업구분</label>
+            <div class="col-sm-2">
+              <select class="form-control input-sm"
+                ng-model="company_type"
+                ng-options="company_type.id as company_type.name for company_type in company_types">
+                <option value="">전체</option>
+              </select>
+              <br />
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="panel-footer">
+        <div class="row">
+          <button class="btn btn-dark pull-right btn-m" ng-click="getCompanies()">
+            조회
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="table-responsive teacher_table">
+        <table class="table b-t b-light">
+          <thead>
+            <tr class="active">
+              <th>No</th>
+              <th>회원모드</th>
+              <th>업체명</th>
+              <th>기업구분</th>
+              <th>업체코드</th>
+              <th>고객담당자</th>
+              <th>연락처</th>
+              <th>등록일</th>
+              <th>상세</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="company in companies">
+              <td>{{ company.id }}</td>
+              <td>{{ company.user_mode }}</td>
+              <td>{{ company.name }}</td>
+              <td>{{ company.company_type }}</td>
+              <td>{{ company.code }}</td>
+              <td>{{ company.contact_name }}</td>
+              <td>{{ company.contact_phone }}</td>
+              <td>{{ company.registrated_date }}</td>
+              <td>
+                <a class="primary underline" ui-sref="app.company.view({id: company.id})">상세보기</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row" ng-if="total_companies > app.paging_size">
+      <div class=" text-center">
+        <ul class="pagination pagination-sm m-t-none m-b-none">
+          <li>
+            <a href=""><i class="fa fa-chevron-left"></i></a>
+          </li>
+          <li><a href="">1</a></li>
+          <li><a href="">2</a></li>
+          <li><a href="">3</a></li>
+          <li><a href="">4</a></li>
+          <li><a href="">5</a></li>
+          <li>
+            <a href=""><i class="fa fa-chevron-right"></i></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

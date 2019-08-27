@@ -1,0 +1,254 @@
+<div class="app-content-body" ng-controller="ServeySettingController"
+	ng-init="init()">
+	<div class="wrapper-md">
+		<div class="panel panel-default">
+			<div class="panel-heading font-bold">설문관리</div>
+			<div class="panel-body white text-md">
+				<form class="form-horizontal" method="get" ng-if="newYn == 'N'">
+					<div class="form-group b-n">
+						<label class="col-sm-3 control-label"><b>고객사명 : </b>
+							{{survey.compNm}}
+						</label> 
+						<label class="col-sm-3 control-label"><b>강의기간 : </b> 
+						{{survey.startDt}} ~ {{survey.endDt}}
+						</label>
+					</div>
+					<div class="form-group b-n">
+						<label class="col-sm-3 control-label"><b>강사명 : </b>
+							{{survey.tcNm}} 
+						</label> 
+						<label class="col-sm-3 control-label"><b>강의명 : </b> 
+							{{survey.lectureNm}} 
+						</label>
+					</div>
+				</form>
+				
+				<form class="form-horizontal" method="get" ng-if="newYn == 'Y'">
+					<div class="form-group b-n">
+						<label class="col-sm-1 control-label">고객사명</label>
+						<div class="col-sm-2">
+							<select name="account" class="form-control input-sm"
+								ng-model="filter.cpCd" ng-change="getLectureListBox()"
+								ng-options="c.cpCd as c.compNm for c in companies">
+								<option value="">전체</option>
+							</select>
+						</div>
+						<label class="col-sm-1 col-sm-offset-1 control-label"><span class="dot">*</span> 강의명</label>
+			          	<div class="col-sm-5">
+			            	<select name="account" class="form-control input-sm"
+								ng-model="filter.ltCd" ng-change="checkSurvInfo()"
+								ng-options="item.ltCd as item.lectureNm for item in lectureListBox ">
+								<option value="">전체</option>
+							</select>
+			          	</div>
+					</div>
+					<div class="form-group b-n" ng-if="filter.ltCd != '' && filter.ltCd != null">
+						<label class="col-sm-2 control-label"><b>등록된 설문 수 : </b>
+							{{tempSurvInfo.ltCnt}} 건
+						</label> 
+						<label class="col-sm-2 control-label"><b>수강생 수  : </b> 
+							{{tempSurvInfo.clCnt}} 명
+						</label>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<table class="table table-bordered b-t b-light v_table">
+				<thead>
+					<tr>
+						<th class="active w-sm" rowspan="2" class="v-middle">설문기간</th>
+						<th>
+							<div class="col-sm-4 no-padder-left">
+								<div class="col-sm-5 no-padder-right">
+									<div class="input-group input-group-sm m-t-xs date dateStr">
+										<input type="text" class="form-control" ng-model="survey.survStartDt"> 
+										<span class="input-group-btn">
+											<button type="button" class="btn btn-default">
+												<i class="glyphicon glyphicon-calendar"></i>
+											</button>
+										</span>
+									</div>
+								</div>
+								<label class="control-label col-sm-2 text-center m-t-sm">─</label>
+								<div class="col-sm-5 no-padder">
+									<div class="input-group input-group-sm m-t-xs date dateEnd">
+										<input type="text" class="form-control" ng-model="survey.survEndDt"> 
+										<span class="input-group-btn">
+											<button type="button" class="btn btn-default">
+												<i class="glyphicon glyphicon-calendar"></i>
+											</button>
+										</span>
+									</div>
+								</div>
+							</div>
+						</th>
+				</thead>
+				<tbody>
+					<tr ng-repeat="q in questions">
+						<td class="active">
+							<label class="i-checks"> 
+								<input type="checkbox" ng-true-value="'Y'" ng-false-value="'N'" ng-model="q.useYn"> <i></i> 문항 {{q.orderNo}}
+							</label>
+							<button class="btn btn-sm btn-danger m-t-xs" 
+							ng-show="q.isNew" ng-click="deleteQuestion(q)">- 문항삭제</button>
+						</td>
+						<td class="text-left">
+							<div>{{q.survTitle}}</div>
+							<div class="col-sm-12 no-padder" ng-if="q.survType != 'S' && q.survType != 1">
+								<div class="radio">
+									<label class="i-checks" ng-repeat="a in q.answers" disabled> 
+										<input type="radio" name="count" disabled><i></i>{{a.survNm}}
+									</label> &nbsp;&nbsp;
+								</div>
+							</div>
+							<div class="col-sm-12 no-padder" ng-if="q.survType == 'S' || q.survType == 1">
+								<input class='form-control input-sm' type="text" name="count" disabled style='background-color: #fff;'>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td class="active">
+							<button class="btn btn-sm btn-info m-t-xs" ng-click="addQuestion()">+ 문항추가</button>
+						</td>
+						<td class="text-left">
+							<div class="row">
+								<div class="col-sm-1 no-padder">
+									<label class="control-label m-t-xs">문항</label>
+								</div>
+								<div class="col-sm-11 no-padder">
+									<input class="form-control input-sm" type="text" ng-model="question.survTitle">
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-1 no-padder">
+									<label class="control-label m-t-xs">답변</label>
+								</div>
+								<div class="radio">
+									<label class="i-checks"> 
+										<input type="radio" name="count" value="1" ng-model="question.survType"> <i></i> 객관식 - 5지선다
+									</label> &nbsp;&nbsp; 
+									<label class="i-checks"> 
+										<input type="radio" name="count" value="2" ng-model="question.survType"> <i></i> 객관식 - 4지선다
+									</label> 
+									<label class="i-checks"> 
+										<input type="radio" name="count" value="3" ng-model="question.survType"> <i></i> 주관식
+									</label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="five" ng-if="question.survType == 1">
+									<div class="col-sm-2 no-padder-left">
+										<input class="form-control input-sm" type="text" ng-model="question.itemSurvNm1">
+									</div>
+									<div class="col-sm-2">
+										<input class="form-control input-sm" type="text" ng-model="question.itemSurvNm2">
+									</div>
+									<div class="col-sm-2">
+										<input class="form-control input-sm" type="text" ng-model="question.itemSurvNm3">
+									</div>
+									<div class="col-sm-2">
+										<input class="form-control input-sm" type="text" ng-model="question.itemSurvNm4">
+									</div>
+									<div class="col-sm-2">
+										<input class="form-control input-sm" type="text" ng-model="question.itemSurvNm5">
+									</div>
+								</div>
+								<div class="four" ng-if="question.survType == 2">
+									<div class="col-sm-3 no-padder-left">
+										<input class="form-control input-sm" type="text" ng-model="question.itemSurvNm1">
+									</div>
+									<div class="col-sm-3">
+										<input class="form-control input-sm" type="text" ng-model="question.itemSurvNm2">
+									</div>
+									<div class="col-sm-3">
+										<input class="form-control input-sm" type="text" ng-model="question.itemSurvNm3">
+									</div>
+									<div class="col-sm-3 no-padder-right">
+										<input class="form-control input-sm" type="text" ng-model="question.itemSurvNm4">
+									</div>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="text-center m-t-lg" ng-if="survey.statsYn == 'N' || newYn == 'Y'">
+			<button class="btn btn-dark btn-w" ng-click="deleteSurv()" ng-if="newYn == 'N'">삭제</button>&nbsp;
+			<button class="btn btn-dark btn-w" ui-sref="app.survey.list">취소</button>&nbsp;
+			<button class="btn btn-danger btn-w" ng-click="showSurveyDetail(survey.ltCd, survey.smCd)">미리보기</button>&nbsp;
+			<button class="btn btn-primary btn-w" ng-click="saveSurvey()">등록</button>
+		</div>
+		<div class="text-center m-t-lg" ng-if="survey.statsYn == 'Y'">
+			<button class="btn btn-dark btn-w" ng-click="deleteSurv()">삭제</button>&nbsp;
+			<button class="btn btn-dark btn-w" ui-sref="app.survey.list">목록</button>			
+		</div>
+	</div>
+</div>
+<script type="text/ng-template" id="survey_detail_modal.html">
+  <div class="popup_wrap">
+      <div class="popup_header">
+        설문 미리보기<span class="pull-right closebtn " data-ng-click="cancel()"><img src="assets/img/close.png" class="img-full" alt="..."></span>
+    </div>
+    <div class="popup_body no-padder-top">
+        <div>
+        <p class="m-t-md text-md">
+        안녕하세요, OOO 회원님<br> 
+보다 나은 수업을 위하여 수강하신 강의에 대한 설문에 응답해주시기 바랍니다.<br> 
+본 설문은 수업평가 및 개선을 위해 사용되며 응답 결과에 대해서는 개인적인 정보는 저장되지 않습니다. 
+
+    </p>
+    <div class="panel-body text-md m-t-md">
+      <form class="form-horizontal ng-pristine ng-valid" method="get">
+        <div class="form-group b-n">
+            <label class="col-sm-8 control-label"><b>강의기간</b> : {{survey.startDt}} ~ {{survey.endDt}}</label>
+        </div>
+        <div class="form-group b-n">
+            <label class="col-sm-4 control-label"><b>강사명</b> : {{survey.tcNm}} </label>
+            <label class="col-sm-8 control-label"><b>강의명</b> : {{survey.lectureNm}} </label>
+        </div>  
+      </form>
+    </div>
+    <div>
+  <table class="b-light v_table m-t-md">
+        <thead>  
+        </thead>
+        <tbody>
+			<tr ng-repeat="q in questions">
+				<td class="text-left">
+					<div>{{q.orderNo}}. {{q.survTitle}}</div>
+					<div class="col-sm-12 no-padder" ng-if="q.survType != 'S' && q.survType != 1">
+						<div class="radio">
+							<label class="i-checks" ng-repeat="a in q.answers" disabled> 
+								<input type="radio" name="count" disabled><i></i>{{a.survNm}}
+							</label> &nbsp;&nbsp;
+						</div>
+					</div>
+					<div class="col-sm-12 no-padder" ng-if="q.survType == 'S' || q.survType == 1">
+						<input class='form-control input-sm' type="text" name="count" disabled style='background-color: #fff;'>
+					</div>
+				</td>
+			</tr>
+        </tbody>
+      </table>
+    </div>
+    </div>  
+    </div>  
+  </div>
+</script>
+
+<style>
+.modal-dialog {
+	width: 800px;
+}
+</style>
+
+<script type="text/javascript">
+	$(function() {
+		$(".date").datepicker({
+			format : "yyyy-mm-dd",
+			autoclose: true
+		});
+	});
+</script>

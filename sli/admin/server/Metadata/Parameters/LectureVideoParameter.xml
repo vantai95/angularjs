@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Collections>
+    	<!-- LectureVideoList Start-->
+    	<ParameterMeta ID="startPage" IsReadOnly="false" Enable="true">
+			<RegBy>video</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>BookInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LectureVideoList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="endPage" IsReadOnly="false" Enable="true">
+			<RegBy>video</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>BookInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LectureVideoList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="cpCd" IsReadOnly="false" Enable="true">
+			<RegBy>video</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>BookInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LectureVideoList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="ltCd" IsReadOnly="false" Enable="true">
+			<RegBy>video</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>BookInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LectureVideoList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<!-- LectureVideoList End-->
+    	
+    	<!-- LectureVideoCnt Start-->    	
+		<ParameterMeta ID="cpCd" IsReadOnly="false" Enable="true">
+			<RegBy>video</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>BookInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LectureVideoCnt</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="ltCd" IsReadOnly="false" Enable="true">
+			<RegBy>video</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>BookInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LectureVideoCnt</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<!-- LectureVideoCnt End-->
+    	    	
+    	<!-- LectureVideoDetail Start-->
+    	<ParameterMeta ID="ltCd" IsReadOnly="false" Enable="true">
+			<RegBy>video</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>BookInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LectureVideoDetail</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>		
+    	<!-- LectureVideoDetail End-->
+    	
+    	<!-- LectureVideoSave Start-->    	
+    	<ParameterMeta ID="saveType" IsReadOnly="false" Enable="true">
+			<RegBy>video</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>BookInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LectureVideoSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="seq" IsReadOnly="false" Enable="true">
+			<RegBy>video</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>BookInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LectureVideoSave</ExecutionID>
+			<Value xsi:type="xsd:string">-1</Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<ParameterMeta ID="ltCd" IsReadOnly="false" Enable="true">
+			<RegBy>video</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>BookInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LectureVideoSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="orderNo" IsReadOnly="false" Enable="true">
+			<RegBy>video</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>BookInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LectureVideoSave</ExecutionID>
+			<Value xsi:type="xsd:string">0</Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="videoTitle" IsReadOnly="false" Enable="true">
+			<RegBy>video</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>BookInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LectureVideoSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="videoCnts" IsReadOnly="false" Enable="true">
+			<RegBy>video</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>BookInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LectureVideoSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="fileUrl" IsReadOnly="false" Enable="true">
+			<RegBy>video</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>BookInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LectureVideoSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="fileName" IsReadOnly="false" Enable="true">
+			<RegBy>video</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>BookInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LectureVideoSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="regUser" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LectureVideoSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="updUser" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LectureVideoSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<!-- LectureVideoSave End-->
+    	
+    	<!-- LectureDetailVideoList Start-->
+    	<ParameterMeta ID="startPage" IsReadOnly="false" Enable="true">
+			<RegBy>video</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>BookInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LectureDetailVideoList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="endPage" IsReadOnly="false" Enable="true">
+			<RegBy>video</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>BookInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LectureDetailVideoList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<ParameterMeta ID="ltCd" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LectureDetailVideoList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<!-- LectureDetailVideoList End--> 
+    	
+    	<!-- LectureDetailVideoListCnt Start-->    	
+    	<ParameterMeta ID="ltCd" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LectureDetailVideoListCnt</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<!-- LectureDetailVideoList End-->
+    	
+    </Collections>
+</MetaCollection>

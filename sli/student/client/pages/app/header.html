@@ -1,0 +1,98 @@
+      <!-- navbar header /모바일 노출 header/---->
+      <div class="navbar-header">
+          <!---뒤로가기 버튼:display:none 상태--->
+        <button class="pull-left visible-xs back_btn" ui-sref="app.index.dashboard">
+        </button>  
+          <!--뒤로가기 버튼-->
+        <button class="pull-right visible-xs menu_btn" ui-toggle-class="off-screen" data-target=".app-aside" ui-scroll="app">
+        </button>
+          <!--음성인식 아이콘-->
+        <button class="pull-right visible-xs voice_btn" ng-click="toNative()" >
+        </button>
+          <!--음성인식 아이콘-->
+         <div class="header_subTT">내 강의실</div> 
+          <a href="#/" class="navbar-brand m-t"></a>
+      </div>
+      <!-- / navbar header -->
+      <!-- navbar collapse -->
+      <div class="collapse pos-rlt navbar-collapse widthfix m-auto">
+          <a href="#/" class="navbar-brand pull-left"></a>
+          <div class="header_nav pull-left clearfix">
+                          <!-- list -->                    
+            <ul class="nav">
+                <div>
+              <li>
+                <a class="primary" ui-sref="app.notice.list">      
+                  <span>공지사항</span>
+                </a>
+              </li>
+              <li>
+                <a ui-sref="app.mylecture.index">      
+                  <span>내강의실</span>
+                </a>
+              </li>
+              <li>
+                <a ui-sref="app.lecture.list">      
+                  <span>수강신청</span>
+                </a>
+              </li>   
+              <li>
+                <a ui-sref="app.student.student_help">      
+                  <span>수강지원센터</span>
+                </a>
+              </li>
+              <li>
+                <a ui-sref="app.order.list">      
+                  <span>결제내역</span>
+                </a>
+              </li>
+              <li>
+                <a ui-sref="app.data.list">      
+                  <span>자료실</span>
+                </a>
+              </li>
+              </div>
+            </ul>
+            <!-- / list -->                                                                         
+          </div>
+          
+                  <ul class="nav navbar-nav navbar-right">
+<!--             <button class="btn btn-borderPrimary btn-rounded btn-add">KR</button>
+            <button class="btn btn-transparent btn-rounded btn-add">EN</button>  -->          
+            <a href="#" class="btn no-shadow navbar-btn underline" ng-click="logout()">
+            로그아웃 
+          </a>
+        </ul>
+      </div>
+      <!---big header area---->
+      <div class="bigbg_header clearfix">
+      <div class="dropdown wrapper text-center text-white text-xl ltr m-t" ui-sref="access.my_setting">
+          <span class="thumb w-auto-folded avatar">
+            <img src="assets/img/profile.png" class="img-full" alt="...">
+          </span>
+          <span class="clear">
+            <span class="block m-t-md text-lg">
+              	{{current_user.userName}} ({{current_user.userId}})
+            </span>
+            <span class="text-muted text-xs block"></span>
+          </span>
+      </div>
+      <div>
+        <div class="m-t-md">
+          <div class="col-sm-4 col-xs-4 text-center no-padder" ui-sref="app.mylecture.index">
+              <a><img src="assets/img/lecture_ico.png" alt="..." width="32"></a>
+              <p class="m-t-sm text-white text-md">내 강의실</p>
+          </div>
+          <div class="col-sm-4 col-xs-4 text-center no-padder" ui-sref="app.student.student_help">
+              <a><img src="assets/img/lecture_support_ico.png" alt="..." width="32"></a>
+              <p class="m-t-sm text-white text-md">수강지원센터</p>
+          </div>
+          <div class="col-sm-4 col-xs-4 text-center no-padder" ui-sref="app.lecture.list">
+              <a><img src="assets/img/lecture_apply.png" alt="..." width="32"></a>
+              <p class="m-t-sm text-white text-md">수강신청</p>
+          </div>    
+        </div>      
+      </div>
+      </div>
+        <!---big header area---->
+      <!-- / navbar collapse -->

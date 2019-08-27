@@ -1,0 +1,110 @@
+
+<!-- content -->
+<div class="app-content-body" ng-controller="AlarmViewController" ng-init="init()">
+	<div class="wrapper-md">
+		<div class="panel panel-default panel-devide">
+			<div class="panel-heading font-bold">알림게시판 정보</div>
+			<div class="panel-body">
+				<form class="form-horizontal" method="get">
+					<div class="form-group">
+						<div class="col-bg col-sm-1">
+							<label class=" control-label">구분</label>
+						</div>
+						<div class="col-sm-2">
+							<label class=" control-label">{{alarm.notiTypeNm}}</label>
+						</div>
+						<div class="col-bg col-sm-1 col-sm-offset-3">
+							<label class=" control-label">작성자</label>
+						</div>
+						<div class="col-sm-1">
+							<label class=" control-label">{{alarm.regUser}}</label>
+						</div>
+						<div class="col-sm-1">
+							<label class=" control-label">({{alarm.showRegNm}})</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-1">
+							<label class=" control-label">강사명</label>
+						</div>
+						<div class="col-sm-2">
+							<label class=" control-label">{{alarm.tcCdNm}}</label>
+						</div>
+						<div class="col-bg col-sm-1 col-sm-offset-3">
+							<label class=" control-label">고객사명</label>
+						</div>
+						<div class="col-sm-2">
+							<label class=" control-label">{{alarm.cpCdNm}}</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-1">
+							<label class=" control-label">강의명</label>
+						</div>
+						<div class="col-sm-11">
+							<label class=" control-label">{{alarm.lectureNm}}</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-1">
+							<label class=" control-label">제목</label>
+						</div>
+						<div class="col-sm-11">
+							<label class=" control-label">{{alarm.notiTitle}}</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-1 heightfix">
+							<label class=" control-label">내용</label>
+						</div>
+						<div class="col-sm-11">
+							<textarea readonly ng-model="alarm.notiContents"></textarea>
+						</div>
+					</div>
+					<div class="form-group b-n">
+						<div class="col-bg col-sm-1">
+							<label class=" control-label">노출설정</label>
+						</div>
+						<div class="col-sm-11">
+							<div class="col-sm-2 no-padder">
+								<div class="radio">
+									<span class="i-checks"> 
+										<input type="radio" name="showYn" value="N" readonly ng-checked="alarm.showYn == 'N'"> <i></i>비노출
+									</span> &nbsp;&nbsp;&nbsp; 
+									<span class="i-checks" readonly> 
+										<input type="radio" name="showYn" value="Y" readonly ng-checked="alarm.showYn == 'Y'"> <i></i>노출
+									</span>
+								</div>
+							</div>
+							<div class="col-sm-9 no-padder">
+								<div class="radio col-sm-3">
+									<label class="m-t-sm">(</label> 
+									<span class="i-checks">
+										<input type="checkbox" value="Y" ng-checked="alarm.showDtYn == 'Y'"> <i></i> 노출 기간 설정
+									</span>
+								</div>
+								<div class="col-sm-7 no-padder-left">
+									<div class="col-sm-4 no-padder-right">
+										<input class="form-control input-sm" type="text" readonly ng-model="alarm.showStartDt">
+									</div>
+									<label class="control-label col-sm-1 text-center">─</label>
+									<div class="col-sm-4 no-padder-left">
+										<input class="form-control input-sm" type="text" readonly ng-model="alarm.showEndDt">
+									</div>
+									<label class="m-t-sm">)</label>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="text-center m-t-lg">
+			<button class="btn btn-dark btn-w" ui-sref="app.alarm.list">취소</button>
+			&nbsp;
+			<button class="btn btn-primary btn-w" ui-sref="app.alarm.modify({id: alarm.ntCd})">수정</button>
+			<button class="btn btn-danger btn-w" ng-click="deleteAlarm()">삭제</button>
+		</div>
+	</div>
+</div>
+<!-- /content -->

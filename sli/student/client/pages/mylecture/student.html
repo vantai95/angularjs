@@ -1,0 +1,661 @@
+<div class="app-content-body" ng-controller="teacherCertificationController">  
+    <!--강의목록 s---->
+    <div class="panel panel-body no-shadow m-b-n-xs padder-vsm bg-gray">
+        <form class="form-horizontal widthfix m-auto pull-none col-xs-12 col-sm-4 no-padder">
+        <div class="form-group b-n">
+          <div class="col-xs-3 col-sm-3 no-padder">
+            <label class="control-label text-md">강의목록</label>
+          </div>    
+          <div class="col-xs-9 col-sm-9 no-padder">
+            <select name="account" class="form-control m-t-xs">
+              <option value="전체">제목</option>
+              <option value="option 2">option 2</option>
+              <option value="option 3">option 3</option>
+              <option value="option 4">option 4</option>
+            </select>
+          </div>
+        </div> 
+      </form>
+    </div>
+    <!--강의목록 e---->
+    <!--LNB s-->
+    <div class="lnb_wraper">
+        <div class="lnb_wrap clearfix">
+            <a class="lnb" ui-sref="app.mylecture.lecture({ltCd: selected_lecture})">기본 정보</a>
+            <a class="lnb" ui-sref="app.mylecture.video({ltCd: selected_lecture})">강의영상</a>
+            <a class="lnb" ui-sref="app.mylecture.lvtest({ltCd: selected_lecture})">레벨테스트</a>
+            <a class="lnb" ui-sref="app.mylecture.attend({ltCd: selected_lecture})">출석현황</a>
+            <a class="lnb" ui-sref="app.mylecture.test({ltCd: selected_lecture})">성취도평가</a>
+            <a class="lnb" ui-sref="app.mylecture.alert_list({ltCd: selected_lecture})">알림게시판</a>
+        </div>
+    </div>
+    <!--LNB e-->
+<div class="wrapper-xs">
+            <!---panel--->
+            <div class="col-xs-6 no-padder">
+            <div class="panel panel-default m-xs" ng-click="openPopup()">
+                <div class="panel-heading font-bold text-left no-padder">
+                  <div class="dropdown text-center text-sm wrapper-sm">
+                      <span class="badge bg-primary absolute_r0 text-sm">수료</span>
+                      <span class="thumb-sm w-auto-folded avatar w-sm m-t-xs">
+                        <img src="assets/img/profile.png" alt="...">
+                      </span>
+                      <span class="clear">
+                        <span class="block m-t-xs text-md">
+                          김정민 (남)
+                        </span>
+                      </span>
+                  </div>
+                </div>
+                <div class="panel-body no-padder">
+                    <div>
+                    <table class="table m-b-none">
+                    <tbody>
+                      <tr>
+                        <td class="no-padder">
+                            <p class="text-xxl w-xxxs text-center m-auto">39</p>    
+                            <p class="text-xxxs text-center">레벨테스트</p>
+                        </td>
+                        <td class="no-padder">
+                            <p class="text-xxl w-xxxs text-center m-auto">40</p>    
+                            <p class="text-xxxs text-center">성취도평가</p>
+                        </td>
+                        <td class="no-padder">
+                            <p class="text-xxl w-xxxs text-center m-auto">50<span class="text-xxxs">%</span></p>    
+                            <p class="text-xxxs text-center">출석률</p>
+                        </td>  
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>    
+                </div>
+              </div>
+            </div>    
+              <!---panel end--->
+            <!---panel--->
+            <div class="col-xs-6 no-padder">
+            <div class="panel panel-default m-xs">
+                <div class="panel-heading font-bold text-left no-padder">
+                  <div class="dropdown text-center text-sm wrapper-sm">
+                      <span class="badge bg-default absolute_r0 text-sm">미수료</span>
+                      <span class="thumb-sm w-auto-folded avatar w-sm m-t-xs">
+                        <img src="assets/img/profile.png" alt="...">
+                      </span>
+                      <span class="clear">
+                        <span class="block m-t-xs text-md">
+                          배정남 (남)
+                        </span>
+                      </span>
+                  </div>
+                </div>
+                <div class="panel-body no-padder">
+                    <div>
+                    <table class="table m-b-none">
+                    <tbody>
+                      <tr>
+                        <td class="no-padder">
+                            <p class="text-xxl w-xxxs text-center m-auto">39</p>    
+                            <p class="text-xxxs text-center">레벨테스트</p>
+                        </td>
+                        <td class="no-padder">
+                            <p class="text-xxl w-xxxs text-center m-auto">40</p>    
+                            <p class="text-xxxs text-center">성취도평가</p>
+                        </td>
+                        <td class="no-padder">
+                            <p class="text-xxl w-xxxs text-center m-auto">50<span class="text-xxxs">%</span></p>    
+                            <p class="text-xxxs text-center">출석률</p>
+                        </td>  
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>    
+                </div>
+              </div>
+            </div>    
+              <!---panel end--->
+            <!---panel--->
+            <div class="col-xs-6 no-padder">
+            <div class="panel panel-default m-xs">
+                <div class="panel-heading font-bold text-left no-padder">
+                  <div class="dropdown text-center text-sm wrapper-sm">
+                      <span class="badge bg-default absolute_r0 text-sm">미수료</span>
+                      <span class="thumb-sm w-auto-folded avatar w-sm m-t-xs">
+                        <img src="assets/img/profile.png" alt="...">
+                      </span>
+                      <span class="clear">
+                        <span class="block m-t-xs text-md">
+                          오승은 (남)
+                        </span>
+                      </span>
+                  </div>
+                </div>
+                <div class="panel-body no-padder">
+                    <div>
+                    <table class="table m-b-none">
+                    <tbody>
+                      <tr>
+                        <td class="no-padder">
+                            <p class="text-xxl w-xxxs text-center m-auto">39</p>    
+                            <p class="text-xxxs text-center">레벨테스트</p>
+                        </td>
+                        <td class="no-padder">
+                            <p class="text-xxl w-xxxs text-center m-auto">40</p>    
+                            <p class="text-xxxs text-center">성취도평가</p>
+                        </td>
+                        <td class="no-padder">
+                            <p class="text-xxl w-xxxs text-center m-auto">50<span class="text-xxxs">%</span></p>    
+                            <p class="text-xxxs text-center">출석률</p>
+                        </td>  
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>    
+                </div>
+              </div>
+            </div>    
+              <!---panel end--->
+            <!---panel--->
+            <div class="col-xs-6 no-padder">
+            <div class="panel panel-default m-xs">
+                <div class="panel-heading font-bold text-left no-padder">
+                  <div class="dropdown text-center text-sm wrapper-sm">
+                      <span class="badge bg-primary absolute_r0 text-sm">수료</span>
+                      <span class="thumb-sm w-auto-folded avatar w-sm m-t-xs">
+                        <img src="assets/img/profile.png" alt="...">
+                      </span>
+                      <span class="clear">
+                        <span class="block m-t-xs text-md">
+                          김인정 (여)
+                        </span>
+                      </span>
+                  </div>
+                </div>
+                <div class="panel-body no-padder">
+                    <div>
+                    <table class="table m-b-none">
+                    <tbody>
+                      <tr>
+                        <td class="no-padder">
+                            <p class="text-xxl w-xxxs text-center m-auto">39</p>    
+                            <p class="text-xxxs text-center">레벨테스트</p>
+                        </td>
+                        <td class="no-padder">
+                            <p class="text-xxl w-xxxs text-center m-auto">40</p>    
+                            <p class="text-xxxs text-center">성취도평가</p>
+                        </td>
+                        <td class="no-padder">
+                            <p class="text-xxl w-xxxs text-center m-auto">50<span class="text-xxxs">%</span></p>    
+                            <p class="text-xxxs text-center">출석률</p>
+                        </td>  
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>    
+                </div>
+              </div>
+            </div>    
+              <!---panel end--->
+            <!---panel--->
+            <div class="col-xs-6 no-padder">
+            <div class="panel panel-default m-xs">
+                <div class="panel-heading font-bold text-left no-padder">
+                  <div class="dropdown text-center text-sm wrapper-sm">
+                      <span class="badge bg-default absolute_r0 text-sm">미수료</span>
+                      <span class="thumb-sm w-auto-folded avatar w-sm m-t-xs">
+                        <img src="assets/img/profile.png" alt="...">
+                      </span>
+                      <span class="clear">
+                        <span class="block m-t-xs text-md">
+                          구윤모 (남)
+                        </span>
+                      </span>
+                  </div>
+                </div>
+                <div class="panel-body no-padder">
+                    <div>
+                    <table class="table m-b-none">
+                    <tbody>
+                      <tr>
+                        <td class="no-padder">
+                            <p class="text-xxl w-xxxs text-center m-auto">39</p>    
+                            <p class="text-xxxs text-center">레벨테스트</p>
+                        </td>
+                        <td class="no-padder">
+                            <p class="text-xxl w-xxxs text-center m-auto">40</p>    
+                            <p class="text-xxxs text-center">성취도평가</p>
+                        </td>
+                        <td class="no-padder">
+                            <p class="text-xxl w-xxxs text-center m-auto">50<span class="text-xxxs">%</span></p>    
+                            <p class="text-xxxs text-center">출석률</p>
+                        </td>  
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>    
+                </div>
+              </div>
+            </div>    
+              <!---panel end--->
+            <!---panel--->
+            <div class="col-xs-6 no-padder">
+            <div class="panel panel-default m-xs">
+                <div class="panel-heading font-bold text-left no-padder">
+                  <div class="dropdown text-center text-sm wrapper-sm">
+                      <span class="badge bg-primary absolute_r0 text-sm">수료</span>
+                      <span class="thumb-sm w-auto-folded avatar w-sm m-t-xs">
+                        <img src="assets/img/profile.png" alt="...">
+                      </span>
+                      <span class="clear">
+                        <span class="block m-t-xs text-md">
+                          김정민 (남)
+                        </span>
+                      </span>
+                  </div>
+                </div>
+                <div class="panel-body no-padder">
+                    <div>
+                    <table class="table m-b-none">
+                    <tbody>
+                      <tr>
+                        <td class="no-padder">
+                            <p class="text-xxl w-xxxs text-center m-auto">39</p>    
+                            <p class="text-xxxs text-center">레벨테스트</p>
+                        </td>
+                        <td class="no-padder">
+                            <p class="text-xxl w-xxxs text-center m-auto">40</p>    
+                            <p class="text-xxxs text-center">성취도평가</p>
+                        </td>
+                        <td class="no-padder">
+                            <p class="text-xxl w-xxxs text-center m-auto">50<span class="text-xxxs">%</span></p>    
+                            <p class="text-xxxs text-center">출석률</p>
+                        </td>  
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>    
+                </div>
+              </div>
+            </div>    
+              <!---panel end--->
+            <!---panel--->
+            <div class="col-xs-6 no-padder">
+            <div class="panel panel-default m-xs">
+                <div class="panel-heading font-bold text-left no-padder">
+                  <div class="dropdown text-center text-sm wrapper-sm">
+                      <span class="badge bg-default absolute_r0 text-sm">미수료</span>
+                      <span class="thumb-sm w-auto-folded avatar w-sm m-t-xs">
+                        <img src="assets/img/profile.png" alt="...">
+                      </span>
+                      <span class="clear">
+                        <span class="block m-t-xs text-md">
+                          김정진 (남)
+                        </span>
+                      </span>
+                  </div>
+                </div>
+                <div class="panel-body no-padder">
+                    <div>
+                    <table class="table m-b-none">
+                    <tbody>
+                      <tr>
+                        <td class="no-padder">
+                            <p class="text-xxl w-xxxs text-center m-auto">39</p>    
+                            <p class="text-xxxs text-center">레벨테스트</p>
+                        </td>
+                        <td class="no-padder">
+                            <p class="text-xxl w-xxxs text-center m-auto">40</p>    
+                            <p class="text-xxxs text-center">성취도평가</p>
+                        </td>
+                        <td class="no-padder">
+                            <p class="text-xxl w-xxxs text-center m-auto">50<span class="text-xxxs">%</span></p>    
+                            <p class="text-xxxs text-center">출석률</p>
+                        </td>  
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>    
+                </div>
+              </div>
+            </div>    
+              <!---panel end--->
+            <!---panel--->
+            <div class="col-xs-6 no-padder">
+            <div class="panel panel-default m-xs">
+                <div class="panel-heading font-bold text-left no-padder">
+                  <div class="dropdown text-center text-sm wrapper-sm">
+                      <span class="badge bg-default absolute_r0 text-sm">미수료</span>
+                      <span class="thumb-sm w-auto-folded avatar w-sm m-t-xs">
+                        <img src="assets/img/profile.png" alt="...">
+                      </span>
+                      <span class="clear">
+                        <span class="block m-t-xs text-md">
+                          장한별 (남)
+                        </span>
+                      </span>
+                  </div>
+                </div>
+                <div class="panel-body no-padder">
+                    <div>
+                    <table class="table m-b-none">
+                    <tbody>
+                      <tr>
+                        <td class="no-padder">
+                            <p class="text-xxl w-xxxs text-center m-auto">39</p>    
+                            <p class="text-xxxs text-center">레벨테스트</p>
+                        </td>
+                        <td class="no-padder">
+                            <p class="text-xxl w-xxxs text-center m-auto">40</p>    
+                            <p class="text-xxxs text-center">성취도평가</p>
+                        </td>
+                        <td class="no-padder">
+                            <p class="text-xxl w-xxxs text-center m-auto">50<span class="text-xxxs">%</span></p>    
+                            <p class="text-xxxs text-center">출석률</p>
+                        </td>  
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>    
+                </div>
+              </div>
+            </div>    
+              <!---panel end--->
+            <!---panel--->
+            <div class="col-xs-6 no-padder">
+            <div class="panel panel-default m-xs">
+                <div class="panel-heading font-bold text-left no-padder">
+                  <div class="dropdown text-center text-sm wrapper-sm">
+                      <span class="badge bg-default absolute_r0 text-sm">미수료</span>
+                      <span class="thumb-sm w-auto-folded avatar w-sm m-t-xs">
+                        <img src="assets/img/profile.png" alt="...">
+                      </span>
+                      <span class="clear">
+                        <span class="block m-t-xs text-md">
+                          박성준 (남)
+                        </span>
+                      </span>
+                  </div>
+                </div>
+                <div class="panel-body no-padder">
+                    <div>
+                    <table class="table m-b-none">
+                    <tbody>
+                      <tr>
+                        <td class="no-padder">
+                            <p class="text-xxl w-xxxs text-center m-auto">39</p>    
+                            <p class="text-xxxs text-center">레벨테스트</p>
+                        </td>
+                        <td class="no-padder">
+                            <p class="text-xxl w-xxxs text-center m-auto">40</p>    
+                            <p class="text-xxxs text-center">성취도평가</p>
+                        </td>
+                        <td class="no-padder">
+                            <p class="text-xxl w-xxxs text-center m-auto">50<span class="text-xxxs">%</span></p>    
+                            <p class="text-xxxs text-center">출석률</p>
+                        </td>  
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>    
+                </div>
+              </div>
+            </div>    
+              <!---panel end--->
+</div>
+</div>
+    
+    <!--로고 hide , back button show 그레이톤 배경--->
+<script>
+    $(document).ready(function(){
+        $('.app').addClass('back');
+        $('.app-content-body').addClass('bg-gray');
+        $('.app').addClass('bg-gray');
+    })
+</script>
+
+<script type="text/ng-template" id="popup">
+  <div class="popup_wrap">
+      <div class="popup_header">
+        수강생 상세<span class="pull-right closebtn " data-ng-click="cancel()"><img src="assets/img/close.png" ></span>
+    </div>
+    <div class="popup_body no-padder">
+        <div class="tt text-center wrapper b-b">2018 한국북부청 중국어 심화학습</div>
+        <!--수강생명단버튼 s active class=btn-borderPrimary, flexbox 하위 5개 아이템씩 배치고정---->
+        <div class="bg-gray padder-v wrapper-xs">
+            <div class="flexbox m-t-xs">
+                <button class="w-20 btn btn-transparent btn-rounded">김갑돌</button>
+                <button class="w-20 btn btn-borderPrimary btn-rounded">김철수</button>
+                <button class="w-20 btn btn-transparent btn-rounded">김갑돌</button>
+                <button class="w-20 btn btn-transparent btn-rounded">김갑돌</button>
+                <button class="w-20 btn btn-transparent btn-rounded">김갑돌</button>
+            </div>
+            <div class="flexbox m-t-xs">
+                <button class="w-20 btn btn-transparent btn-rounded">김갑돌</button>
+                <button class="w-20 btn btn-transparent btn-rounded">김갑돌</button>
+                <button class="w-20 btn btn-transparent btn-rounded">김갑돌</button>
+                <button class="w-20 btn btn-transparent btn-rounded">김갑돌</button>
+                <button class="w-20 btn btn-transparent btn-rounded">김갑돌</button>
+            </div>
+        </div>
+        <!------수강생명단버튼 e-------->
+        <div class="wrapper-md bg-gray no-padder-top">
+        <div class="panel-body panel">
+            <!---profile---->
+            <div class="dropdown wrapper text-center text-sm">
+          <span class="thumb-lg w-auto-folded avatar">
+            <img src="assets/img/profile.png" alt="...">
+          </span>
+          <span class="clear">
+            <span class="block m-t-sm text-md">
+              김정민 (kjm0604)
+            </span>
+          </span>
+            </div>
+            <!------profile e------>
+            <form class="form-horizontal ng-pristine ng-valid b-t b-b m-b">
+            <div class="form-group">
+              <div class="col-bg col-xs-4 no-padder"><label class=" control-label"><span class="dot">*</span> 소속고객사</label></div>
+              <div class="col-xs-8 no-padder"><label class=" control-label">한국전력</label></div>    
+            </div>
+            <div class="form-group">
+              <div class="col-bg col-xs-4 no-padder"><label class=" control-label"><span class="dot">*</span> 휴대폰번호</label></div>
+              <div class="col-xs-8 no-padder"><label class=" control-label">010-4684-1863</label></div>   
+            </div>
+            <div class="form-group">
+              <div class="col-bg col-xs-4 no-padder"><label class=" control-label"><span class="dot">*</span> 생년월일</label></div>
+              <div class="col-xs-8 no-padder"><label class=" control-label">1985년 7월 9일</label></div>   
+            </div>
+            <div class="form-group">
+              <div class="col-bg col-xs-4 no-padder"><label class=" control-label label-indent">부서/직급</label></div>
+              <div class="col-xs-8 no-padder"><label class=" control-label">해외사업부 / 대리</label></div>   
+            </div>
+            <div class="form-group">
+              <div class="col-bg col-xs-4 no-padder"><label class=" control-label"><span class="dot">*</span> 이메일</label></div>
+              <div class="col-xs-8 no-padder"><label class=" control-label">appletree4  @ naver.com</label></div>   
+            </div>
+            <div class="form-group">
+              <div class="col-bg col-xs-4 no-padder"><label class=" control-label"><span class="dot">*</span> 성별</label></div>
+              <div class="col-xs-8 no-padder"><label class=" control-label">남</label></div>   
+            </div>    
+            </form>
+        </div>
+        <!----level test s----->   
+        <div class="panel panel-default">
+        <div class="panel-heading b-n">
+            1. 레벨테스트
+        </div>    
+        <div class="panel-body no-padder">
+            <div class="col-xs-6">
+                <p class="text-2x text-center m-n">28.60</p>
+                <p class="text-md text-center">Average Score</p>
+            </div>
+            <div class="col-xs-6">
+                <p class="text-2x text-center m-n">Lv.3_A2</p>
+                <p class="text-md text-center">Level</p>
+            </div>
+        </div>    
+        </div>        
+        <!----level test e----->
+        <!----출결현황 s----->   
+        <div class="panel panel-default">
+        <div class="panel-heading b-n">
+            2. 출결현황 <span class="pull-right text-md">(출석률 <span class="primary">50</span>%  출석 <span class="primary">5</span>회  결석 <span class="primary">5</span>회) </span>
+        </div>    
+        <div class="panel-body no-padder">
+                        <div class="table-horizontal-wrap">
+              <table class="table table-bordered b-t b-light">
+                    <thead>
+                    <tr class="active">            
+                        <th>8/1</th>
+                        <th>8/2</th>
+                        <th>8/3</th>
+                        <th>8/4</th>
+                        <th>8/5</th>
+                        <th>8/6</th>
+                        <th>8/7</th>
+                        <th>8/8</th>
+                        <th>8/9</th>
+                        <th>8/10</th>
+                        <th>8/11</th>
+                        <th>8/12</th>
+                        <th>8/13</th>
+                        <th>8/14</th>
+                        <th>8/15</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                     <tr>
+                        <td><img src="assets/img/attend_check.png"></td>
+                        <td><img src="assets/img/attend_check.png"></td>
+                        <td><span class="gray text-xs">휴강</span></td>
+                        <td><img src="assets/img/attend_check_disabled.png"></td>
+                        <td><img src="assets/img/attend_check_disabled.png"></td>
+                        <td><img src="assets/img/attend_check_disabled.png"></td>
+                        <td><img src="assets/img/attend_check_disabled.png"></td>
+                        <td><img src="assets/img/attend_check_disabled.png"></td>
+                        <td><img src="assets/img/attend_check_disabled.png"></td>
+                        <td><img src="assets/img/attend_check_disabled.png"></td>
+                        <td><img src="assets/img/attend_check_disabled.png"></td>
+                        <td><img src="assets/img/attend_check_disabled.png"></td>
+                        <td><img src="assets/img/attend_check_disabled.png"></td>
+                        <td><img src="assets/img/attend_check_disabled.png"></td>
+                        <td><img src="assets/img/attend_check_disabled.png"></td>
+                      </tr>  
+                    </tbody>
+                    <thead>
+                    <tr class="active">            
+                        <th>8/16</th>
+                        <th>8/17</th>
+                        <th>8/18</th>
+                        <th>8/19</th>
+                        <th>8/20</th>
+                        <th>8/21</th>
+                        <th>8/22</th>
+                        <th>8/23</th>
+                        <th>8/24</th>
+                        <th>8/25</th>
+                        <th>8/26</th>
+                        <th>8/27</th>
+                        <th>8/28</th>
+                        <th>8/29</th>
+                        <th>8/30</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                     <tr>
+                        <td><img src="assets/img/attend_check.png"></td>
+                        <td><img src="assets/img/attend_check_disabled.png"></td>
+                        <td><img src="assets/img/attend_check_disabled.png"></td> 
+                        <td><span class="gray text-xs">휴강</span></td>
+                        <td><img src="assets/img/attend_check_disabled.png"></td>
+                        <td><img src="assets/img/attend_check_disabled.png"></td>
+                        <td><img src="assets/img/attend_check_disabled.png"></td>
+                        <td><img src="assets/img/attend_check_disabled.png"></td>
+                        <td><img src="assets/img/attend_check_disabled.png"></td>
+                        <td><img src="assets/img/attend_check_disabled.png"></td>
+                        <td><img src="assets/img/attend_check_disabled.png"></td>
+                        <td><img src="assets/img/attend_check_disabled.png"></td>
+                        <td><img src="assets/img/attend_check_disabled.png"></td>
+                        <td><img src="assets/img/attend_check_disabled.png"></td>
+                        <td><img src="assets/img/attend_check_disabled.png"></td>
+                      </tr>  
+                    </tbody>
+                    
+                  </table>
+                </div>
+        </div>    
+        </div>        
+        <!----출결현황 e----->
+        <!----성취도평가 s----->   
+        <div class="panel panel-default">
+        <div class="panel-heading b-n">
+            3. 성취도평가
+        </div>    
+        <div class="panel-body no-padder">
+            <div class="col-xs-6">
+                <p class="text-md text-center m-n">Average Score</p>
+                <p class="text-2x text-center">28.60</p>
+            </div>
+            <div class="col-xs-6">
+                <p class="text-md text-center m-n">Level</p>
+                <p class="text-2x text-center">Lv.3_A2</p>
+            </div>
+            <table class="table mini-table m-b">
+                    <tbody>
+                      <tr>
+                        <td>Speaking</td>
+                        <td class="w-md">
+                            <div class="progress ng-isolate-scope" animate="false" value="dynamic" type="info">
+                              <div class="progress-bar progress-bar-info" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="26" aria-valuemin="0" aria-valuemax="100" ng-style="{width: percent + '%'}" aria-valuetext="26%" ng-transclude="" style="transition: none 0s ease 0s; width: 20%;"></div>
+                              <p class="text-xs">&nbsp;22</p>    
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Listening</td>
+                        <td>
+                            <div class="progress ng-isolate-scope" animate="false" value="dynamic" type="success">
+                              <div class="progress-bar progress-bar-info" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="26" aria-valuemin="0" aria-valuemax="100" ng-style="{width: percent + '%'}" aria-valuetext="26%" ng-transclude="" style="transition: none 0s ease 0s; width: 70%;"></div>
+                              <p class="text-xs">&nbsp;70</p>    
+                            </div>  
+                        </td>
+                      </tr>      
+                      <tr>    
+                        <td>Pronunciation</td>
+                        <td>
+                            <div class="progress ng-isolate-scope" animate="false" value="dynamic" type="success">
+                              <div class="progress-bar progress-bar-info" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="26" aria-valuemin="0" aria-valuemax="100" ng-style="{width: percent + '%'}" aria-valuetext="26%" ng-transclude="" style="transition: none 0s ease 0s; width: 60%;"></div>
+                              <p class="text-xs">&nbsp;62</p>    
+                            </div>  
+                        </td>
+                      </tr>
+                      <tr>    
+                        <td>Vocabulary</td>
+                        <td>
+                            <div class="progress ng-isolate-scope" animate="false" value="dynamic" type="success">
+                              <div class="progress-bar progress-bar-info" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="26" aria-valuemin="0" aria-valuemax="100" ng-style="{width: percent + '%'}" aria-valuetext="26%" ng-transclude="" style="transition: none 0s ease 0s; width: 40%;"></div>
+                              <p class="text-xs">&nbsp;46</p>    
+                            </div>  
+                        </td>
+                     </tr>
+                      <tr>    
+                        <td>Grammar</td>
+                        <td>
+                            <div class="progress ng-isolate-scope" animate="false" value="dynamic" type="success">
+                              <div class="progress-bar progress-bar-info" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="26" aria-valuemin="0" aria-valuemax="100" ng-style="{width: percent + '%'}" aria-valuetext="26%" ng-transclude="" style="transition: none 0s ease 0s; width: 50%;"></div>
+                              <p class="text-xs m-l-xs">&nbsp;52</p>    
+                            </div>  
+                        </td>  
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div class="wrapper">
+                      <p class="tt">Comment</p>
+                      <p class="primary text-md">She has improved very quickly since the beginning of the course</p>
+                    </div>
+        </div>    
+        </div>        
+        <!----성취도평가 e----->    
+        </div>
+        </div>
+    </div> 
+</script>

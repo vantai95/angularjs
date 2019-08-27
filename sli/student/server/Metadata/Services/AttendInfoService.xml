@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Collections>  
+    
+    	<ServiceMeta ID="MyAttendStats" Enable="true" IsReadOnly="false">
+			<RegBy>AttendInfo</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>AttendInfo</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>MyAttendStats</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>MyAttendStats</PageName>
+		      <PageTitle>MyAttendStats</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+      	<ServiceMeta ID="MyAbsenceList" Enable="true" IsReadOnly="false">
+			<RegBy>AttendInfo</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>AttendInfo</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>MyAbsenceList</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>MyAbsenceList</PageName>
+		      <PageTitle>MyAbsenceList</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+      	
+      	
+	    <ServiceMeta ID="AttendStudentList" Enable="true" IsReadOnly="false">
+			<RegBy>AttendInfo</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>AttendInfo</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>AttendStudentList</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>AttendStudentList</PageName>
+		      <PageTitle>AttendStudentList</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+	 	      	      	
+      	<ServiceMeta ID="AttendAbsenceSave" Enable="true" IsReadOnly="false">
+	        <RegBy>attend</RegBy>
+	        <RegDate>2016-11-07T12:00:00</RegDate>
+	        <ModBy>attend</ModBy>
+	        <ModDate>2016-11-07T12:00:00</ModDate>
+	        <Executions>
+	            <ExecutionID>AttendAbsenceSave</ExecutionID>
+	        </Executions>
+	        <BLPType>PreExecuteJava</BLPType>
+	        <BLPFile>AttendAbsence.class</BLPFile>
+	        <BLPTimeoutMin>10</BLPTimeoutMin>
+	        <Namespace>com.engine.sli.admin</Namespace>
+	        <ClassName>AttendAbsence</ClassName>
+	        <RTFType>TRANSACTION</RTFType>
+	        <RTFAddress />
+	        <RTFCustomer />
+	        <RTFServiceID />
+	        <PageName>attend</PageName>
+	        <PageTitle>attend</PageTitle>
+	        <RTFTime>0</RTFTime>
+	        <ReturnType>DataSet</ReturnType>
+	    </ServiceMeta>
+	    
+	    <ServiceMeta ID="AttendAbsenceDelSave" Enable="true" IsReadOnly="false">
+			<RegBy>AttendInfo</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>AttendInfo</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>AttendAbsenceDelSave</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>AttendAbsenceDelSave</PageName>
+		      <PageTitle>AttendAbsenceDelSave</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+      	
+      	<ServiceMeta ID="AttendApprove" Enable="true" IsReadOnly="false">
+			<RegBy>AttendInfo</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>AttendInfo</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>AttendApprove</ExecutionID>
+		      </Executions>
+	          <BLPType>PreExecuteJava</BLPType>
+		      <BLPFile>AttendApprove.class</BLPFile>
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+	          <Namespace>com.engine.sli.admin</Namespace>
+	          <ClassName>AttendApprove</ClassName>
+	          <RTFType>TRANSACTION</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>AttendApprove</PageName>
+		      <PageTitle>AttendApprove</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+    </Collections>
+</MetaCollection>

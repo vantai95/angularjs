@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Collections>
+	    <ServiceMeta ID="SendSMS" Enable="true" IsReadOnly="false">
+			<RegBy>video</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>video</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>SendSMS</ExecutionID>
+		      </Executions>
+		      <BLPType>PreExecuteJava</BLPType>
+		      <BLPFile>SendSMS.class</BLPFile>>
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace>com.engine.sli.admin</Namespace>>
+		      <ClassName>SendSMS</ClassName>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>SendSMS</PageName>
+		      <PageTitle>SendSMS</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+
+	    <ServiceMeta ID="SendMultiSMS" Enable="true" IsReadOnly="false">
+			<RegBy>video</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>video</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>SendMultiSMS</ExecutionID>
+		      </Executions>
+		      <BLPType>PreExecuteJava</BLPType>
+		      <BLPFile>SendMultiSMS.class</BLPFile>>
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace>com.engine.sli.admin</Namespace>>
+		      <ClassName>SendMultiSMS</ClassName>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>SendSMS</PageName>
+		      <PageTitle>SendSMS</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+    </Collections>
+</MetaCollection>

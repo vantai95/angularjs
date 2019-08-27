@@ -1,0 +1,731 @@
+
+  	<div class="app-content-body" ng-controller="ExamDetailController" ng-init="init()">
+<div class="wrapper-md">
+  <div class="panel panel-default">
+    <div class="panel-heading font-bold">
+      성취도평가관리        
+    </div>
+    <div class="panel-body white text-md">
+      <form class="form-horizontal" method="get">
+        <div class="form-group b-n">
+          <label class="col-sm-3 control-label"><b>고객사명</b> : {{lecture.cpCdNm}}</label>
+            <label class="col-sm-3 control-label"><b>강의기간</b> : {{lecture.startDt}} ~ {{lecture.endDt}}</label>
+        </div>
+        <div class="form-group b-n">
+            <label class="col-sm-3 control-label"><b>강사명</b> : {{lecture.tcCdNm}} </label>
+            <label class="col-sm-3 control-label"><b>강의명</b> : {{lecture.lectureNm}} </label>
+            <label class="col-sm-3 control-label"><b>평가명</b> : {{lvtest.testKind == 'MIDDLE' ? '중간평가 ' + lvtest.testNo + '차' : '최종평가'}} </label>
+        </div>  
+      </form>
+    </div>
+  </div>
+    <div class="panel panel-default">
+  <table class="table table-bordered b-t b-light v_table">
+        <thead>
+          <tr class="active">            
+            <th rowspan="2" class="v-middle w-xxs">No</th>
+            <th rowspan="2" class="v-middle w-xs">수강생</th>
+            <th rowspan="2" class="v-middle w-sm">레벨테스트</th>  
+            <th colspan="{{selected_type.cols}}">평가항목</th>
+            <th rowspan="2" class="v-middle w-xs">총점</th>
+            <th rowspan="2" class="v-middle w-xs">평균</th>
+            <th rowspan="2" class="v-middle w-xxxl" ng-if="lvtest.tpCd != 'Business'">Comments{{lvtest.tpCd}}</th>
+            <th rowspan="2" class="v-middle w-xxxl" ng-if="lvtest.tpCd == 'Business'">Comments</th>
+            <th rowspan="2" class="v-middle w-xxxl" ng-if="lvtest.tpCd == 'Business'">Weak Points</th>
+            <th rowspan="2" class="v-middle w-xxxl" ng-if="lvtest.tpCd == 'Business'">Action Plan</th>
+            
+          </tr>   
+            <th class="w-xs" ng-repeat="name in selected_type.colName">{{name}}</th> 
+          </tr>  
+        </thead>
+        <tbody>
+         <tr ng-repeat="user in user_list">
+	             		<td>{{$index + 1}}</td>
+	             		<td><a class="primary underline" ng-click="openTestResultLayerPopup(user)">{{user.userName}}</a></td>
+	             		<td>{{user.lvAvgScore}}</td>
+	             		<td ng-repeat="name in selected_type.colName">{{user.score[$index]}}</td>
+	             		<td>{{user.totalScore}}</td>
+	             		<td>{{user.avgScore}}</td>
+	             		<td class="text-left" ng-if="lvtest.tpCd != 'Business'">{{user.cnts}}</td>
+	             		<td class="text-left" ng-if="lvtest.tpCd == 'Business'">{{user.cnts}}</td>
+	             		<td class="text-left" ng-if="lvtest.tpCd == 'Business'">{{user.weakPoints}}</td>
+	             		<td class="text-left" ng-if="lvtest.tpCd == 'Business'">{{user.actionPlan}}</td>
+          			</tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="text-center m-t-lg">
+            <button class="btn btn-dark btn-w" ui-sref="app.exam.exam_list">목록</button>&nbsp;
+<!--  -->            <button class="btn btn-primary btn-w" ng-click="openTestResultLayerPopup(null)">수정</button>
+          </div>
+    </div>  
+</div>
+
+<script type="text/ng-template" id="popup2">
+  <div class="popup_wrap" ng-init="init_popup()">
+      <div class="popup_header">
+        	{{testName}} 성적 입력하기<span class="pull-right closebtn " data-ng-click="cancel()"><img src="assets/img/close.png" class="img-full" alt="..."></span>
+    </div>
+    <div class="popup_body no-padder-top">
+        <div class="panel-body text-md m-t-md">
+      <form class="form-horizontal ng-pristine ng-valid" method="get">
+        <div class="form-group b-n">
+          <label class="col-sm-4 control-label"><b>고객사명</b> : {{ lecture.cpCdNm }}</label>
+            <label class="col-sm-8 control-label"><b>강의기간</b> : {{lecture.startDt}} ~ {{lecture.endDt}}</label>
+        </div>
+        <div class="form-group b-n">
+            <label class="col-sm-4 control-label"><b>강사명</b> : {{lecture.tcCdNm}} </label>
+            <label class="col-sm-8 control-label"><b>강의명</b> : {{lecture.lectureNm}} </label>
+        </div>  
+      </form>
+    </div>
+    <div class="m-t-sm">
+        <button class="btn {{result.lvCd == '' ? 'btn-borderPrimary' : 'btn-default'}} btn-xs m-xs w-sm2" ng-repeat="result in results" ng-click="setUserResult(result);">
+            <i class="glyphicon glyphicon-user gray "></i>&nbsp;&nbsp;{{result.userName}}&nbsp;&nbsp; <span class="gray">{{result.lvCd == '' ? '미등록' : '완료'}}</span>
+        </button>
+        <!--active button-->
+    </div>
+    <div class="row form-horizontal m-b-sm">
+	    <div class="text-lg" ng-if="selected_user != null">
+            <label class="control-label"><span class="underline">{{selected_user.userName}}</span>수강생 (레벨테스트 <span class="danger">{{selected_user.avgScore}}</span>점)</label>
+        </div>
+		<div class="text-lg" ng-if="selected_user == null">
+			<label class="control-label">※ 수강생을 선택해주세요.</label>
+		</div>
+    </div>
+    <div class="table-responsive" ng-if="selected_user != null">
+      	<table class="table b b-light popup_table center_align table-bordered m-b-n">
+        	<thead>
+          		<tr class="active">
+            		<th>항목</th>
+            		<th>레벨</th>
+            		<th class="white">득점</th>  
+          		</tr>
+        	</thead>
+			<tbody ng-if="selected_test.tpCd == 'Business'">
+          		<tr>
+            		<td><label class="control-label">Speaking</label></td> 
+            		<td>
+						<select ng-model="selected_user.article1Level">
+							<option value="Lv1">A1 (20~23)</option>
+							<option value="Lv2">A1 (24~26)</option>
+							<option value="Lv3">A2 (27~29)</option>
+							<option value="Lv4">A2 (30~32)</option>
+							<option value="Lv5">B1 (33~35)</option>
+							<option value="Lv6">B1 (36~38)</option>							
+							<option value="Lv7">B2 (39~41)</option>
+							<option value="Lv8">B2 (42~44)</option>
+							<option value="Lv9">C1 (45~47)</option>
+							<option value="Lv10">C1 (48~50)</option>
+							<option value="Lv11">C2 (51~53)</option>
+							<option value="Lv12">C2 (54~56)</option>
+						</select>
+					</td> 
+            		<td><input type="text" ng-model="selected_user.article1Score" ng-keyup="setAutoSelect(0)" /></td>  
+          		</tr>    
+          		<tr>
+            		<td><label class="control-label">Listening</label></td> 
+            		<td>
+						<select ng-model="selected_user.article2Level">
+							<option value="Lv1">A1 (20~23)</option>
+							<option value="Lv2">A1 (24~26)</option>
+							<option value="Lv3">A2 (27~29)</option>
+							<option value="Lv4">A2 (30~32)</option>
+							<option value="Lv5">B1 (33~35)</option>
+							<option value="Lv6">B1 (36~38)</option>							
+							<option value="Lv7">B2 (39~41)</option>
+							<option value="Lv8">B2 (42~44)</option>
+							<option value="Lv9">C1 (45~47)</option>
+							<option value="Lv10">C1 (48~50)</option>
+							<option value="Lv11">C2 (51~53)</option>
+							<option value="Lv12">C2 (54~56)</option>
+						</select>
+					</td> 
+            		<td><input type="text" ng-model="selected_user.article2Score" ng-keyup="setAutoSelect(1)" /></td>  
+          		</tr>
+          		<tr>
+            		<td><label class="control-label">Pronunciation</label></td> 
+            		<td>
+						<select ng-model="selected_user.article3Level">
+							<option value="Lv1">A1 (20~23)</option>
+							<option value="Lv2">A1 (24~26)</option>
+							<option value="Lv3">A2 (27~29)</option>
+							<option value="Lv4">A2 (30~32)</option>
+							<option value="Lv5">B1 (33~35)</option>
+							<option value="Lv6">B1 (36~38)</option>							
+							<option value="Lv7">B2 (39~41)</option>
+							<option value="Lv8">B2 (42~44)</option>
+							<option value="Lv9">C1 (45~47)</option>
+							<option value="Lv10">C1 (48~50)</option>
+							<option value="Lv11">C2 (51~53)</option>
+							<option value="Lv12">C2 (54~56)</option>
+						</select>
+					</td> 
+            		<td><input type="text" ng-model="selected_user.article3Score" ng-keyup="setAutoSelect(2)" /></td>  
+          		</tr>
+          		<tr>
+            		<td><label class="control-label">Vocabulary</label></td> 
+            		<td>
+						<select ng-model="selected_user.article4Level">
+							<option value="Lv1">A1 (20~23)</option>
+							<option value="Lv2">A1 (24~26)</option>
+							<option value="Lv3">A2 (27~29)</option>
+							<option value="Lv4">A2 (30~32)</option>
+							<option value="Lv5">B1 (33~35)</option>
+							<option value="Lv6">B1 (36~38)</option>							
+							<option value="Lv7">B2 (39~41)</option>
+							<option value="Lv8">B2 (42~44)</option>
+							<option value="Lv9">C1 (45~47)</option>
+							<option value="Lv10">C1 (48~50)</option>
+							<option value="Lv11">C2 (51~53)</option>
+							<option value="Lv12">C2 (54~56)</option>
+						</select>
+					</td> 
+            		<td><input type="text" ng-model="selected_user.article4Score" ng-keyup="setAutoSelect(3)" /></td>  
+          		</tr>
+          		<tr>
+            		<td><label class="control-label">Grammar</label></td> 
+            		<td>
+						<select ng-model="selected_user.article5Level">
+							<option value="Lv1">A1 (20~23)</option>
+							<option value="Lv2">A1 (24~26)</option>
+							<option value="Lv3">A2 (27~29)</option>
+							<option value="Lv4">A2 (30~32)</option>
+							<option value="Lv5">B1 (33~35)</option>
+							<option value="Lv6">B1 (36~38)</option>							
+							<option value="Lv7">B2 (39~41)</option>
+							<option value="Lv8">B2 (42~44)</option>
+							<option value="Lv9">C1 (45~47)</option>
+							<option value="Lv10">C1 (48~50)</option>
+							<option value="Lv11">C2 (51~53)</option>
+							<option value="Lv12">C2 (54~56)</option>
+						</select>
+					</td> 
+            		<td><input type="text" ng-model="selected_user.article5Score" ng-keyup="setAutoSelect(4)" /></td>  
+          		</tr>
+			</tbody>
+        	<tbody ng-if="selected_test.tpCd == 'TOEIC'">
+          		<tr>
+            		<td><label class="control-label">L/C</label></td> 
+            		<td>
+						<select ng-model="selected_user.article1Level">
+							<option value="LV.1">LV.1 (0~295)</option>
+							<option value="LV.2">LV.2 (300~395)</option>
+							<option value="LV.3">LV.3 (400~495)</option>
+							<option value="LV.4">LV.4 (500~595)</option>
+							<option value="LV.5">LV.5 (600~695)</option>
+							<option value="LV.6">LV.6 (700~795)</option>
+							<option value="LV.7">LV.7 (800~895)</option>
+							<option value="LV.8">LV.8 (900~990)</option>
+						</select>
+					</td> 
+            		<td><input type="text" ng-model="selected_user.article1Score" ng-keyup="setAutoSelect(0)" /></td>  
+          		</tr>    
+          		<tr>
+            		<td><label class="control-label">R/C</label></td> 
+            		<td>
+						<select ng-model="selected_user.article2Level">
+							<option value="LV.1">LV.1 (0~295)</option>
+							<option value="LV.2">LV.2 (300~395)</option>
+							<option value="LV.3">LV.3 (400~495)</option>
+							<option value="LV.4">LV.4 (500~595)</option>
+							<option value="LV.5">LV.5 (600~695)</option>
+							<option value="LV.6">LV.6 (700~795)</option>
+							<option value="LV.7">LV.7 (800~895)</option>
+							<option value="LV.8">LV.8 (900~990)</option>
+						</select>
+					</td> 
+            		<td><input type="text" ng-model="selected_user.article2Score" ng-keyup="setAutoSelect(1)" /></td>  
+          		</tr>
+			</tbody>
+        	<tbody ng-if="selected_test.tpCd == 'TOEICS'">
+          		<tr>
+            		<td><label class="control-label">Pronunciation</label></td> 
+            		<td>
+						<select ng-model="selected_user.article1Level">
+							<option value="LV.1">LV.1 (0~30)</option>
+							<option value="LV.2">LV.2 (40~50)</option>
+							<option value="LV.3">LV.3 (60~70)</option>
+							<option value="LV.4">LV.4 (80~100)</option>
+							<option value="LV.5">LV.5 (110~120)</option>
+							<option value="LV.6">LV.6 (130~150)</option>
+							<option value="LV.7">LV.7 (160~180)</option>
+							<option value="LV.8">LV.8 (190~200)</option>
+						</select>
+					</td> 
+            		<td><input type="text" ng-model="selected_user.article1Score" ng-keyup="setAutoSelect(0)" /></td>  
+          		</tr>    
+          		<tr>
+            		<td><label class="control-label">Intonation and Stress</label></td> 
+            		<td>
+						<select ng-model="selected_user.article2Level">
+							<option value="LV.1">LV.1 (0~30)</option>
+							<option value="LV.2">LV.2 (40~50)</option>
+							<option value="LV.3">LV.3 (60~70)</option>
+							<option value="LV.4">LV.4 (80~100)</option>
+							<option value="LV.5">LV.5 (110~120)</option>
+							<option value="LV.6">LV.6 (130~150)</option>
+							<option value="LV.7">LV.7 (160~180)</option>
+							<option value="LV.8">LV.8 (190~200)</option>
+						</select>
+					</td> 
+            		<td><input type="text" ng-model="selected_user.article2Score" ng-keyup="setAutoSelect(1)" /></td>  
+          		</tr>
+          		<tr>
+            		<td><label class="control-label">Grammar</label></td> 
+            		<td>
+						<select ng-model="selected_user.article3Level">
+							<option value="LV.1">LV.1 (0~30)</option>
+							<option value="LV.2">LV.2 (40~50)</option>
+							<option value="LV.3">LV.3 (60~70)</option>
+							<option value="LV.4">LV.4 (80~100)</option>
+							<option value="LV.5">LV.5 (110~120)</option>
+							<option value="LV.6">LV.6 (130~150)</option>
+							<option value="LV.7">LV.7 (160~180)</option>
+							<option value="LV.8">LV.8 (190~200)</option>
+						</select>
+					</td> 
+            		<td><input type="text" ng-model="selected_user.article3Score" ng-keyup="setAutoSelect(2)" /></td>  
+          		</tr>
+          		<tr>
+            		<td><label class="control-label">Vocabulary and Cohesion</label></td> 
+            		<td>
+						<select ng-model="selected_user.article4Level">
+							<option value="LV.1">LV.1 (0~30)</option>
+							<option value="LV.2">LV.2 (40~50)</option>
+							<option value="LV.3">LV.3 (60~70)</option>
+							<option value="LV.4">LV.4 (80~100)</option>
+							<option value="LV.5">LV.5 (110~120)</option>
+							<option value="LV.6">LV.6 (130~150)</option>
+							<option value="LV.7">LV.7 (160~180)</option>
+							<option value="LV.8">LV.8 (190~200)</option>
+						</select>
+					</td> 
+            		<td><input type="text" ng-model="selected_user.article4Score" ng-keyup="setAutoSelect(3)" /></td>  
+          		</tr>
+          		<tr>
+            		<td><label class="control-label">Relevance of content and<br> Completeness of content</label></td> 
+            		<td>
+						<select ng-model="selected_user.article5Level">
+							<option value="LV.1">LV.1 (0~30)</option>
+							<option value="LV.2">LV.2 (40~50)</option>
+							<option value="LV.3">LV.3 (60~70)</option>
+							<option value="LV.4">LV.4 (80~100)</option>
+							<option value="LV.5">LV.5 (110~120)</option>
+							<option value="LV.6">LV.6 (130~150)</option>
+							<option value="LV.7">LV.7 (160~180)</option>
+							<option value="LV.8">LV.8 (190~200)</option>
+						</select>
+					</td> 
+            		<td><input type="text" ng-model="selected_user.article5Score" ng-keyup="setAutoSelect(4)" /></td>  
+          		</tr>
+			</tbody>
+        	<tbody ng-if="selected_test.tpCd == 'OPIC'">
+          		<tr>
+            		<td><label class="control-label">Language control</label></td> 
+            		<td>
+						<select ng-model="selected_user.article1Level">
+							<option value="NL">NL (1~5)</option>
+							<option value="NM">NM (6~20)</option>
+							<option value="NH">NH (21~40)</option>
+							<option value="IL">IL (41~60)</option>
+							<option value="IM">IM (61~70)</option>
+							<option value="IH">IH (71~80)</option>
+							<option value="AL">AL (81~100)</option>
+						</select>
+					</td> 
+            		<td><input type="text" ng-model="selected_user.article1Score" ng-keyup="setAutoSelect(0)" /></td>  
+          		</tr>    
+          		<tr>
+            		<td><label class="control-label">Function,Global Tasks</label></td> 
+            		<td>
+						<select ng-model="selected_user.article2Level">
+							<option value="NL">NL (1~5)</option>
+							<option value="NM">NM (6~20)</option>
+							<option value="NH">NH (21~40)</option>
+							<option value="IL">IL (41~60)</option>
+							<option value="IM">IM (61~70)</option>
+							<option value="IH">IH (71~80)</option>
+							<option value="AL">AL (81~100)</option>
+						</select>
+					</td> 
+            		<td><input type="text" ng-model="selected_user.article2Score" ng-keyup="setAutoSelect(1)" /></td>  
+          		</tr>
+          		<tr>
+            		<td><label class="control-label">Text Type</label></td> 
+            		<td>
+						<select ng-model="selected_user.article3Level">
+							<option value="NL">NL (1~5)</option>
+							<option value="NM">NM (6~20)</option>
+							<option value="NH">NH (21~40)</option>
+							<option value="IL">IL (41~60)</option>
+							<option value="IM">IM (61~70)</option>
+							<option value="IH">IH (71~80)</option>
+							<option value="AL">AL (81~100)</option>
+						</select>
+					</td> 
+            		<td><input type="text" ng-model="selected_user.article3Score" ng-keyup="setAutoSelect(2)" /></td>  
+          		</tr>
+          		<tr>
+            		<td><label class="control-label">Contents Context</label></td> 
+            		<td>
+						<select ng-model="selected_user.article4Level">
+							<option value="NL">NL (1~5)</option>
+							<option value="NM">NM (6~20)</option>
+							<option value="NH">NH (21~40)</option>
+							<option value="IL">IL (41~60)</option>
+							<option value="IM">IM (61~70)</option>
+							<option value="IH">IH (71~80)</option>
+							<option value="AL">AL (81~100)</option>
+						</select>
+					</td> 
+            		<td><input type="text" ng-model="selected_user.article4Score" ng-keyup="setAutoSelect(3)" /></td>  
+          		</tr>
+          		<tr>
+            		<td><label class="control-label">Comprehensibility</label></td> 
+            		<td>
+						<select ng-model="selected_user.article5Level">
+							<option value="NL">NL (1~5)</option>
+							<option value="NM">NM (6~20)</option>
+							<option value="NH">NH (21~40)</option>
+							<option value="IL">IL (41~60)</option>
+							<option value="IM">IM (61~70)</option>
+							<option value="IH">IH (71~80)</option>
+							<option value="AL">AL (81~100)</option>
+						</select>
+					</td> 
+            		<td><input type="text" ng-model="selected_user.article5Score" ng-keyup="setAutoSelect(4)" /></td>  
+          		</tr>
+			</tbody>
+        	<tbody ng-if="selected_test.tpCd == 'HSK'">
+          		<tr>
+            		<td><label class="control-label">Listening</label></td> 
+            		<td>
+						<select ng-model="selected_user.article1Level">
+							<option value="1급">1급 (0~30)</option>
+							<option value="2급">2급 (31~50)</option>
+							<option value="3급">3급 (51~70)</option>
+							<option value="4급">4급 (71~80)</option>
+							<option value="5급">5급 (81~90)</option>
+							<option value="6급">6급 (91~100)</option>
+						</select>
+					</td> 
+            		<td><input type="text" ng-model="selected_user.article1Score" ng-keyup="setAutoSelect(0)" /></td>  
+          		</tr>    
+          		<tr>
+            		<td><label class="control-label">Reading</label></td> 
+            		<td>
+						<select ng-model="selected_user.article2Level">
+							<option value="1급">1급 (0~30)</option>
+							<option value="2급">2급 (31~50)</option>
+							<option value="3급">3급 (51~70)</option>
+							<option value="4급">4급 (71~80)</option>
+							<option value="5급">5급 (81~90)</option>
+							<option value="6급">6급 (91~100)</option>
+						</select>
+					</td> 
+            		<td><input type="text" ng-model="selected_user.article2Score" ng-keyup="setAutoSelect(1)" /></td>  
+          		</tr>
+          		<tr>
+            		<td><label class="control-label">Writing</label></td> 
+            		<td>
+						<select ng-model="selected_user.article3Level">
+							<option value="1급">1급 (0~30)</option>
+							<option value="2급">2급 (31~50)</option>
+							<option value="3급">3급 (51~70)</option>
+							<option value="4급">4급 (71~80)</option>
+							<option value="5급">5급 (81~90)</option>
+							<option value="6급">6급 (91~100)</option>
+						</select>
+					</td> 
+            		<td><input type="text" ng-model="selected_user.article3Score" ng-keyup="setAutoSelect(2)" /></td>  
+          		</tr>
+			</tbody>
+        	<tbody ng-if="selected_test.tpCd == 'JLPT'">
+          		<tr>
+            		<td><label class="control-label">Language Knowledge</label></td> 
+            		<td>
+						<select ng-model="selected_user.article1Level">
+							<option value="N5">N5 (0~30)</option>
+							<option value="N4">N4 (31~50)</option>
+							<option value="N3">N3 (51~70)</option>
+							<option value="N2">N2 (71~90)</option>
+							<option value="N1">N1 (91~100)</option>
+						</select>
+					</td> 
+            		<td><input type="text" ng-model="selected_user.article1Score" ng-keyup="setAutoSelect(0)" /></td>  
+          		</tr>    
+          		<tr>
+            		<td><label class="control-label">Reading</label></td> 
+            		<td>
+						<select ng-model="selected_user.article2Level">
+							<option value="N5">N5 (0~30)</option>
+							<option value="N4">N4 (31~50)</option>
+							<option value="N3">N3 (51~70)</option>
+							<option value="N2">N2 (71~90)</option>
+							<option value="N1">N1 (91~100)</option>
+						</select>
+					</td> 
+            		<td><input type="text" ng-model="selected_user.article2Score" ng-keyup="setAutoSelect(1)" /></td>  
+          		</tr>
+          		<tr>
+            		<td><label class="control-label">Listening</label></td> 
+            		<td>
+						<select ng-model="selected_user.article3Level">
+							<option value="N5">N5 (0~30)</option>
+							<option value="N4">N4 (31~50)</option>
+							<option value="N3">N3 (51~70)</option>
+							<option value="N2">N2 (71~90)</option>
+							<option value="N1">N1 (91~100)</option>
+						</select>
+					</td> 
+            		<td><input type="text" ng-model="selected_user.article3Score" ng-keyup="setAutoSelect(2)" /></td>  
+          		</tr>
+			</tbody>
+        	<tbody ng-if="selected_test.tpCd == 'FLEX'">
+          		<tr>
+            		<td><label class="control-label">Listening & Reading</label></td> 
+            		<td>
+						<select ng-model="selected_user.article1Level">
+							<option value="3C">3C (325~425)</option>
+							<option value="3B">3B (426~525)</option>
+							<option value="3A">3A (526~625)</option>
+							<option value="2C">2C (626~700)</option>
+							<option value="2B">2B (701~775)</option>
+							<option value="2A">2A (776~850)</option>
+							<option value="1C">1C (851~900)</option>
+							<option value="1B">1B (901~950)</option>
+							<option value="1A">1A (951~1000)</option>
+						</select>
+					</td> 
+            		<td><input type="text" ng-model="selected_user.article1Score" ng-keyup="setAutoSelect(0)" /></td>  
+          		</tr>    
+          		<tr>
+            		<td><label class="control-label">Writing</label></td> 
+            		<td>
+						<select ng-model="selected_user.article2Level">
+							<option value="3C">3C (110~129)</option>
+							<option value="3B">3B (130~149)</option>
+							<option value="3A">3A (150~169)</option>
+							<option value="2C">2C (170~184)</option>
+							<option value="2B">2B (185~199)</option>
+							<option value="2A">2A (200~214)</option>
+							<option value="1C">1C (215~226)</option>
+							<option value="1B">1B (227~238)</option>
+							<option value="1A">1A (239~250)</option>
+						</select>
+					</td> 
+            		<td><input type="text" ng-model="selected_user.article2Score" ng-keyup="setAutoSelect(1)" /></td>  
+          		</tr>
+          		<tr>
+            		<td><label class="control-label">Speaking</label></td> 
+            		<td>
+						<select ng-model="selected_user.article3Level">
+							<option value="3C">3C (110~129)</option>
+							<option value="3B">3B (130~149)</option>
+							<option value="3A">3A (150~169)</option>
+							<option value="2C">2C (170~184)</option>
+							<option value="2B">2B (185~199)</option>
+							<option value="2A">2A (200~214)</option>
+							<option value="1C">1C (215~226)</option>
+							<option value="1B">1B (227~238)</option>
+							<option value="1A">1A (239~250)</option>
+						</select>
+					</td> 
+            		<td><input type="text" ng-model="selected_user.article3Score" ng-keyup="setAutoSelect(2)" /></td>  
+          		</tr>
+			</tbody>
+        	<tbody ng-if="selected_test.tpCd == 'OPI'">
+          		<tr>
+            		<td><label class="control-label">Language control</label></td> 
+            		<td>
+						<select ng-model="selected_user.article1Level">
+							<option value="NL">NL (1~4)</option>
+							<option value="NM">NM (5~20)</option>
+							<option value="NH">NH (21~30)</option>
+							<option value="IL">IL (31~40)</option>
+							<option value="IM">IM (41~50)</option>
+							<option value="IH">IH (51~60)</option>
+							<option value="AL">AL (61~70)</option>
+							<option value="AM">AM (71~80)</option>
+							<option value="AH">AH (81~90)</option>
+							<option value="S">S (91~100)</option>
+						</select>
+					</td> 
+            		<td><input type="text" ng-model="selected_user.article1Score" ng-keyup="setAutoSelect(0)" /></td>  
+          		</tr>    
+          		<tr>
+            		<td><label class="control-label">Function,Global Tasks</label></td> 
+            		<td>
+						<select ng-model="selected_user.article2Level">
+							<option value="NL">NL (1~4)</option>
+							<option value="NM">NM (5~20)</option>
+							<option value="NH">NH (21~30)</option>
+							<option value="IL">IL (31~40)</option>
+							<option value="IM">IM (41~50)</option>
+							<option value="IH">IH (51~60)</option>
+							<option value="AL">AL (61~70)</option>
+							<option value="AM">AM (71~80)</option>
+							<option value="AH">AH (81~90)</option>
+							<option value="S">S (91~100)</option>
+						</select>
+					</td> 
+            		<td><input type="text" ng-model="selected_user.article2Score" ng-keyup="setAutoSelect(1)" /></td>  
+          		</tr>
+          		<tr>
+            		<td><label class="control-label">Text Type</label></td> 
+            		<td>
+						<select ng-model="selected_user.article3Level">
+							<option value="NL">NL (1~4)</option>
+							<option value="NM">NM (5~20)</option>
+							<option value="NH">NH (21~30)</option>
+							<option value="IL">IL (31~40)</option>
+							<option value="IM">IM (41~50)</option>
+							<option value="IH">IH (51~60)</option>
+							<option value="AL">AL (61~70)</option>
+							<option value="AM">AM (71~80)</option>
+							<option value="AH">AH (81~90)</option>
+							<option value="S">S (91~100)</option>
+						</select>
+					</td> 
+            		<td><input type="text" ng-model="selected_user.article3Score" ng-keyup="setAutoSelect(2)" /></td>  
+          		</tr>
+          		<tr>
+            		<td><label class="control-label">Contents Context</label></td> 
+            		<td>
+						<select ng-model="selected_user.article4Level">
+							<option value="NL">NL (1~4)</option>
+							<option value="NM">NM (5~20)</option>
+							<option value="NH">NH (21~30)</option>
+							<option value="IL">IL (31~40)</option>
+							<option value="IM">IM (41~50)</option>
+							<option value="IH">IH (51~60)</option>
+							<option value="AL">AL (61~70)</option>
+							<option value="AM">AM (71~80)</option>
+							<option value="AH">AH (81~90)</option>
+							<option value="S">S (91~100)</option>
+						</select>
+					</td> 
+            		<td><input type="text" ng-model="selected_user.article4Score" ng-keyup="setAutoSelect(3)" /></td>  
+          		</tr>
+          		<tr>
+            		<td><label class="control-label">Comprehensibility</label></td> 
+            		<td>
+						<select ng-model="selected_user.article5Level">
+							<option value="NL">NL (1~4)</option>
+							<option value="NM">NM (5~20)</option>
+							<option value="NH">NH (21~30)</option>
+							<option value="IL">IL (31~40)</option>
+							<option value="IM">IM (41~50)</option>
+							<option value="IH">IH (51~60)</option>
+							<option value="AL">AL (61~70)</option>
+							<option value="AM">AM (71~80)</option>
+							<option value="AH">AH (81~90)</option>
+							<option value="S">S (91~100)</option>
+						</select>
+					</td> 
+            		<td><input type="text" ng-model="selected_user.article5Score" ng-keyup="setAutoSelect(4)" /></td>  
+          		</tr>
+			</tbody>
+        	<tbody ng-if="selected_test.tpCd == 'CILS'">
+          		<tr>
+            		<td><label class="control-label">Speaking</label></td> 
+            		<td>
+						<select ng-model="selected_user.article1Level">
+							<option value="A1">A1 (0~100)</option>
+							<option value="A2">A2 (0~100)</option>
+							<option value="B1">B1 (0~100)</option>
+							<option value="B2">B2 (0~100)</option>
+							<option value="C1">C1 (0~100)</option>
+							<option value="C2">C2 (0~100)</option>
+						</select>
+					</td> 
+            		<td><input type="text" ng-model="selected_user.article1Score" ng-keyup="setAutoSelect(0)" /></td>  
+          		</tr>    
+          		<tr>
+            		<td><label class="control-label">Listening</label></td> 
+            		<td>
+						<select ng-model="selected_user.article2Level">
+							<option value="A1">A1 (0~100)</option>
+							<option value="A2">A2 (0~100)</option>
+							<option value="B1">B1 (0~100)</option>
+							<option value="B2">B2 (0~100)</option>
+							<option value="C1">C1 (0~100)</option>
+							<option value="C2">C2 (0~100)</option>
+						</select>
+					</td> 
+            		<td><input type="text" ng-model="selected_user.article2Score" ng-keyup="setAutoSelect(1)" /></td>  
+          		</tr>
+          		<tr>
+            		<td><label class="control-label">Reading</label></td> 
+            		<td>
+						<select ng-model="selected_user.article3Level">
+							<option value="A1">A1 (0~100)</option>
+							<option value="A2">A2 (0~100)</option>
+							<option value="B1">B1 (0~100)</option>
+							<option value="B2">B2 (0~100)</option>
+							<option value="C1">C1 (0~100)</option>
+							<option value="C2">C2 (0~100)</option>
+						</select>
+					</td> 
+            		<td><input type="text" ng-model="selected_user.article3Score" ng-keyup="setAutoSelect(2)" /></td>  
+          		</tr>
+          		<tr>
+            		<td><label class="control-label">Writing</label></td> 
+            		<td>
+						<select ng-model="selected_user.article4Level">
+							<option value="A1">A1 (0~100)</option>
+							<option value="A2">A2 (0~100)</option>
+							<option value="B1">B1 (0~100)</option>
+							<option value="B2">B2 (0~100)</option>
+							<option value="C1">C1 (0~100)</option>
+							<option value="C2">C2 (0~100)</option>
+						</select>
+					</td> 
+            		<td><input type="text" ng-model="selected_user.article4Score" ng-keyup="setAutoSelect(3)" /></td>  
+          		</tr>
+          		<tr>
+            		<td><label class="control-label">Grammar</label></td> 
+            		<td>
+						<select ng-model="selected_user.article5Level">
+							<option value="A1">A1 (0~100)</option>
+							<option value="A2">A2 (0~100)</option>
+							<option value="B1">B1 (0~100)</option>
+							<option value="B2">B2 (0~100)</option>
+							<option value="C1">C1 (0~100)</option>
+							<option value="C2">C2 (0~100)</option>
+						</select>
+					</td> 
+            		<td><input type="text" ng-model="selected_user.article5Score" ng-keyup="setAutoSelect(4)" /></td>  
+          		</tr>
+			</tbody>
+			<tbody>    
+          		<tr class="active">
+            		<td colspan="2">총점 <span class="danger">{{selected_user.totalScore}}</span>점</td>
+            		<td >평균 <span class="danger">{{selected_user.avgScore}}</span>점</td>  
+          		</tr>
+				<tr ng-if="selected_test.tpCd != 'Business'">
+            		<td colspan="3" class="heightfix-md">
+                		<textarea placeholder="comment" ng-model="selected_user.cnts">{{selected_user.cnts}}</textarea>
+            		</td> 
+          		</tr>
+				<tr ng-if="selected_test.tpCd == 'Business'">
+            		<td class="heightfix-md">
+                		<textarea placeholder="Comments" ng-model="selected_user.cnts">{{selected_user.cnts}}</textarea>
+            		</td>
+					<td class="heightfix-md">
+                		<textarea placeholder="Weak Points" ng-model="selected_user.weakPoints">{{selected_user.weakPoints}}</textarea>
+            		</td>
+					<td class="heightfix-md">
+                		<textarea placeholder="Action Plan" ng-model="selected_user.actionPlan">{{selected_user.actionPlan}}</textarea>
+            		</td>
+          		</tr> 
+        	</tbody>
+      	</table>
+    </div>        
+    <div class="text-center m-t-lg">
+        <button class="btn btn-primary btn-w" ng-click="saveScore()">등록</button>
+          </div>
+    </div>  
+  </div>
+</script>

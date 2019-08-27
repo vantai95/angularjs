@@ -1,0 +1,76 @@
+ <!-- content -->
+ <div class="app-content-body ">
+     <div class="wrapper-md" ng-controller="CodeInsertController" ng-init="init()">
+         <div class="panel panel-default panel-devide">
+             <div class="panel-heading font-bold">공통코드 등록</div>
+             <div class="panel-body">
+                 <form class="form-horizontal" method="get">
+                     <div class="form-group">
+                         <div class="col-bg col-sm-2"><label class=" control-label"><span class="dot">*</span> 그룹코드</label></div>
+                         <div class="col-sm-3">
+                             <input class="form-control input-sm" ng-model="groupInfo.groupId" type="text" maxlength="40">
+                         </div>
+                         <div class="col-bg col-sm-2 col-sm-offset-1"><label class=" control-label">
+                                 <span class="dot">*</span> 그룹코드명</label></div>
+                         <div class="col-sm-3">
+                             <input class="form-control input-sm" ng-model="groupInfo.groupName" type="text" maxlength="40">
+                         </div>
+                     </div>
+                     <div class="form-group">
+                         <div class="col-bg col-sm-2"><label class=" control-label label-indent">그룹코드 설명</label></div>
+                         <div class="col-sm-4">
+                             <input class="form-control input-sm" type="text" ng-model="groupInfo.groupDesc" maxlength="255">
+                         </div>
+                     </div>
+                 </form>
+             </div>
+         </div>
+         <div class="panel panel-default panel-devide">
+             <div class="panel-heading font-bold">세부코드</div>
+             <div class="panel panel-default">
+                 <div class="table-responsive teacher_table">
+                     <table class="table b-t b-light">
+                         <thead>
+                             <tr class="active">
+                                 <th>No</th>
+                                 <th><span class="dot">*</span> 코드값</th>
+                                 <th><span class="dot">*</span> 코드명1</th>
+                                 <th>코드명2</th>
+                                 <th>코드명3</th>
+                                 <th colspan="2">순서</th>
+                                 <th>관리</th>
+                             </tr>
+                         </thead>
+                         <tbody>
+                             <tr ng-repeat="x in codeList track by $index">
+                                 <td>{{$index + 1}}</td>
+                                 <td><input class="form-control input-sm" ng-model="x.codeId" type="text" maxlength="20"></td>
+                                 <td><input class="form-control input-sm" ng-model="x.codeName1" type="text" maxlength="40"></td>
+                                 <td><input class="form-control input-sm" ng-model="x.codeName2" type="text" maxlength="40"></td>
+                                 <td><input class="form-control input-sm" ng-model="x.codeName3" type="text" maxlength="40"></td>
+                                 <td class="w-xxs no-padder-right">                                 	
+                                 	<button type="button" class="btn btn-default btn-icon"  ng-click="upItem($index)"><i class="glyphicon  glyphicon-arrow-up"></i></button>
+                                 </td>
+                                 <td class="w-xxs no-padder-left">
+                                 	<button type="button" class="btn btn-default btn-icon"  ng-click="downItem($index)"><i class="glyphicon  glyphicon-arrow-down"></i></button>
+                                 </td>
+                                 <td>
+                                     <button class="btn btn-sm btn-info m-t-xs" ng-click="fnDelete($index)">삭제</button>
+                                 </td>
+                             </tr>
+                         </tbody>
+                     </table>                     
+                 </div>
+             </div>
+             <div class="text-right m-sm">
+	             <button class="btn btn-danger btn-m" ng-click="fnAddCode()">코드추가</button>
+	         </div>
+         </div>
+         <div class="text-center m-t-lg">
+             <button class="btn btn-dark btn-w" ui-sref="app.code.list">취소</button>&nbsp;
+             <button class="btn btn-primary btn-w" ng-click="fnSave()">등록</button>
+         </div>
+     </div>
+     
+ </div>
+ <!-- /content -->

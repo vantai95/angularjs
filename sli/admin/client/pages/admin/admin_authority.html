@@ -1,0 +1,85 @@
+
+  	<div class="app-content-body" ng-controller="AdminAuthorityController" ng-init="init()">
+<div class="wrapper-md">
+  <div class="panel panel-default">
+    <div class="panel-heading font-bold">
+      관리자 그룹관리
+    </div>
+  </div>
+    <div>
+    <div class="col-sm-4 no-padder-left">
+    <div class="panel panel-default heightmax">            
+    <div class="table-responsive teacher_table">
+      <table class="table b-t b-light left_align">
+        <thead>
+        </thead>
+        <tbody>
+            <!--선택된 tr에 class active 추가-->
+          <tr class="cursor-p" ng-repeat="x in adminGroupList track by $index" ng-click="getGroupMenuList(x.arCd)">
+            <td class="w-full" ng-click="ShowHide(x.displayOrder)" >{{x.groupNm}}</td>
+            <td class="w-xxs no-padder-right" ng-if="IsVisible == x.displayOrder">
+            <button type="button" class="btn btn-default btn-icon"  ng-click="upItem(x.displayOrder)"><i class="glyphicon  glyphicon-arrow-up"></i></button>  
+            </td>
+            <td class="w-xxs" ng-if="IsVisible == x.displayOrder">
+            <button type="button" class="btn btn-default btn-icon"  ng-click="dowItem(x.displayOrder)"><i class="glyphicon  glyphicon-arrow-down"></i></button>  
+            </td>
+            <td class="w-xxs no-padder-left" ng-if="IsVisible == x.displayOrder">
+            <button type="button" class="btn btn-default btn-icon"  ng-click="deleteItem(x.arCd)"><i class="glyphicon glyphicon-trash"></i></button>  
+          </tr>
+        </tbody>
+      </table>
+        
+    </div>              
+    </div>
+        <div class="col-sm-9 no-padder-left">
+            <input class="form-control input-sm" ng-model="groupNm" type="text" maxlength="30" placeholder="관리자 그룹명">
+        </div>
+        <div class="col-sm-3 no-padder-left">
+                <button class="btn btn-dark btn-m m-t-xs" ng-click="insertAdminGroup()">추가</button>
+        </div>
+    </div>
+    <!--left side-->
+    <!--right side-->
+    <div class="col-sm-4 no-padder-left">
+    <div class="panel panel-default heightmax-lg" style="position: inherit">            
+    <div class="table-responsive teacher_table">
+      <table class="table b-t b-light left_align" >
+        <thead>
+          <tr class="active">
+            <th>
+              <label class="i-checks">
+                <input type="checkbox" ng-model="checkall" ng-change="selectAll()">
+                <i></i>
+              </label>
+            </th>
+            <th>전체</th>
+          </tr>
+        </thead>
+        <tbody ng-repeat="x in menu_master_list">
+          <tr class="bg-black"  >
+            <td class="w-xxs">
+              <label class="i-checks">
+                <input type="checkbox" ng-model="x.checked" ng-change='selectMasterItem(x)'>
+                <i></i>
+              </label>
+            </td>
+            <td>{{x.groupNm}}</td>
+          </tr>
+          <tr ng-repeat="y in menu_sub_list[x.muCd]">
+            <td class="w-xxs" >
+              <label class="i-checks">
+                <input type="checkbox" ng-model="y.checked" ng-change='selectSubItem(x)'>
+                <i></i>
+              </label>
+            </td>
+            <td>{{y.menuNm}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>              
+    </div>
+        <button type="submit" class="btn btn-primary pull-right btn-m m-t-xs" ng-click="add()">권한저장</button>
+    </div>
+    </div>
+</div>
+	</div>

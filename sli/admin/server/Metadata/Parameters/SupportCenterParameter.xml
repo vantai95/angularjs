@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Collections>
+    	<!-- SupportCenterList Start-->
+    	<ParameterMeta ID="startPage" IsReadOnly="false" Enable="true">
+			<RegBy>SupportCenter</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>SupportCenter</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SupportCenterList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="endPage" IsReadOnly="false" Enable="true">
+			<RegBy>SupportCenter</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>SupportCenter</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SupportCenterList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shInquiryType" IsReadOnly="false" Enable="true">
+			<RegBy>SupportCenter</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>SupportCenter</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SupportCenterList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shAnswerYn" IsReadOnly="false" Enable="true">
+			<RegBy>SupportCenter</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>SupportCenter</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SupportCenterList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shUserName" IsReadOnly="false" Enable="true">
+			<RegBy>SupportCenter</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>SupportCenter</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SupportCenterList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shInquiryTitle" IsReadOnly="false" Enable="true">
+			<RegBy>SupportCenter</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>SupportCenter</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SupportCenterList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>			
+    	<!-- SupportCenterList End-->
+    	
+    	<!-- SupportCenterListCnt Start-->    	
+		<ParameterMeta ID="shInquiryType" IsReadOnly="false" Enable="true">
+			<RegBy>SupportCenter</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>SupportCenter</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SupportCenterListCnt</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shAnswerYn" IsReadOnly="false" Enable="true">
+			<RegBy>SupportCenter</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>SupportCenter</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SupportCenterListCnt</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shUserName" IsReadOnly="false" Enable="true">
+			<RegBy>SupportCenter</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>SupportCenter</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SupportCenterListCnt</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shInquiryTitle" IsReadOnly="false" Enable="true">
+			<RegBy>SupportCenter</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>SupportCenter</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SupportCenterListCnt</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<!-- SupportCenterListCnt End-->
+     	
+     	<!-- SupportCenterDetail Start-->
+    	<ParameterMeta ID="scCd" IsReadOnly="false" Enable="true">
+			<RegBy>SupportCenter</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>SupportCenter</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SupportCenterDetail</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<!-- SupportCenterDetail Start-->
+		
+    	<!-- SupportCenterSave Start-->
+    	<ParameterMeta ID="saveType" IsReadOnly="false" Enable="true">
+			<RegBy>SupportCenter</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>SupportCenter</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SupportCenterSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="scCd" IsReadOnly="false" Enable="true">
+			<RegBy>SupportCenter</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>SupportCenter</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SupportCenterSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="inquiryType" IsReadOnly="false" Enable="true">
+			<RegBy>SupportCenter</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>SupportCenter</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SupportCenterSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="inquiryTitle" IsReadOnly="false" Enable="true">
+			<RegBy>SupportCenter</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>SupportCenter</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SupportCenterSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="inquiryCnts" IsReadOnly="false" Enable="true">
+			<RegBy>SupportCenter</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>SupportCenter</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SupportCenterSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="answerCnts" IsReadOnly="false" Enable="true">
+			<RegBy>SupportCenter</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>SupportCenter</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SupportCenterSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="answerUser" IsReadOnly="false" Enable="true">
+			<RegBy>SupportCenter</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>SupportCenter</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SupportCenterSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="regUser" IsReadOnly="false" Enable="true">
+			<RegBy>SupportCenter</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>SupportCenter</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SupportCenterSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="updUser" IsReadOnly="false" Enable="true">
+			<RegBy>SupportCenter</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>SupportCenter</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SupportCenterSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>				
+    	<!-- SupportCenterSave End-->
+    	    	    	
+    </Collections>
+</MetaCollection>

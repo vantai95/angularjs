@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Collections>
+    	<!-- CustomerCompanyList Start-->
+    	<ParameterMeta ID="startPage" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CustomerCompanyList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="endPage" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CustomerCompanyList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="compStatus" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CustomerCompanyList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="compType" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CustomerCompanyList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<!-- CustomerCompanyList End-->
+    	
+    	<!-- CustomerCompanyCnt Start-->    	
+		<ParameterMeta ID="compStatus" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CustomerCompanyCnt</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="compType" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CustomerCompanyCnt</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<!-- CustomerCompanyCnt End-->
+    	
+    	<!-- CustomerCompanyDetail Start-->
+    	<ParameterMeta ID="cpCd" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CustomerCompanyDetail</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<!-- CustomerCompanyDetail End-->
+    	
+    	<!-- CustomerDeleteCompany Start -->
+    	<ParameterMeta ID="updUser" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CustomerDeleteCompany</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="cpCd" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CustomerDeleteCompany</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>		
+    	<!-- CustomerDeleteCompany End-->   	    	
+    	    	    	
+    </Collections>
+</MetaCollection>

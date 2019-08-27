@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Collections>
+		
+      	<ServiceMeta ID="FindId" Enable="true" IsReadOnly="false">
+			<RegBy>Student</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>Student</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>FindId</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>FindId</PageName>
+		      <PageTitle>FindId</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+      	<ServiceMeta ID="TeacherUserDetail" Enable="true" IsReadOnly="false">
+			<RegBy>Teacher</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>Teacher</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>TeacherUserDetail</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>TeacherUserDetail</PageName>
+		      <PageTitle>TeacherUserDetail</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+      	<ServiceMeta ID="TeacherSave" Enable="true" IsReadOnly="false">
+	        <RegBy>teacher</RegBy>
+	        <RegDate>2016-11-07T12:00:00</RegDate>
+	        <ModBy>teacher</ModBy>
+	        <ModDate>2016-11-07T12:00:00</ModDate>
+	        <Executions>
+	            <ExecutionID>TeacherSave</ExecutionID>
+	        </Executions>
+	        <BLPType>PreExecuteJava</BLPType>
+	        <BLPFile>Teacher2.class</BLPFile>
+	        <BLPTimeoutMin>10</BLPTimeoutMin>
+	        <Namespace>com.engine.sli.admin</Namespace>
+	        <ClassName>Teacher2</ClassName>
+	        <RTFType>TRANSACTION</RTFType>
+	        <RTFAddress />
+	        <RTFCustomer />
+	        <RTFServiceID />
+	        <PageName>teacher</PageName>
+	        <PageTitle>teacher</PageTitle>
+	        <RTFTime>0</RTFTime>
+	        <ReturnType>DataSet</ReturnType>
+	    </ServiceMeta>
+      	<ServiceMeta ID="CheckPassword" Enable="true" IsReadOnly="false">
+			<RegBy>Teacher</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>Teacher</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>CheckPassword</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>CheckPassword</PageName>
+		      <PageTitle>CheckPassword</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>      	
+    </Collections>
+</MetaCollection>

@@ -1,0 +1,69 @@
+
+<div class="app-content-body" ng-controller="VideoListController" ng-init='init()'>  
+    <!--강의목록 s---->
+    <div class="panel panel-body no-shadow m-b-n-xs padder-vsm bg-gray">
+        <form class="form-horizontal widthfix m-auto pull-none col-xs-12 col-sm-4 no-padder">
+        <div class="form-group b-n">
+          <div class="col-xs-3 col-sm-3 no-padder">
+            <label class="control-label text-md">강의목록</label>
+          </div>    
+          <div class="col-xs-9 col-sm-9 no-padder">
+            <select name="account" class="form-control m-t-xs"
+            	ng-model="selected_lecture"
+            	ng-options = "lecture.ltCd as lecture.lectureNm for lecture in lectureList" ng-change="getVideoList()">
+              <option value="">제목</option>
+            </select>
+          </div>
+        </div> 
+      </form>
+    </div>
+    <!--강의목록 e---->
+    <!--LNB s-->
+    <div class="lnb_wraper">
+        <div class="lnb_wrap clearfix">
+            <a class="lnb" ui-sref="app.mylecture.lecture({ltCd: selected_lecture})">기본 정보</a>
+            <a class="lnb active" ui-sref="app.mylecture.video({ltCd: selected_lecture})">강의영상</a>
+            <a class="lnb" ui-sref="app.mylecture.lvtest({ltCd: selected_lecture})">레벨테스트</a>
+            <a class="lnb" ui-sref="app.mylecture.attend({ltCd: selected_lecture})">출석현황</a>
+            <a class="lnb" ui-sref="app.mylecture.test({ltCd: selected_lecture})">성취도평가</a>
+            <a class="lnb" ui-sref="app.mylecture.alert_list({ltCd: selected_lecture})">알림게시판</a>
+        </div>
+    </div>
+    <!--LNB e-->
+<div class="wrapper-md widthfix-lg m-auto">
+    <div class="wrapper tt font-bold">
+        {{lecture_detail[0].lectureNm}}
+    </div>
+    
+    <div class="acc_wrap b-b">
+		<!---list s--->
+		<div class="panel-group m-b-none" ng-repeat="item in video_list">
+			<table class="table b-t b-light nopadTable-sm m-b-none">
+				<tbody>
+					<tr class="heightfix-sm2">
+						<td class="w-xxxs">{{item.orderNo}}강</td>
+						<td class="text-left">
+							<div>{{item.videoTitle}}</div>
+						</td>
+						<td class="w-xs">
+							<button class="btn btn-borderDefault m-auto pc-block" ng-click="playVideo(item)">강의보기</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<!---list e--->
+	</div>
+    <br>
+    <div>
+       <button class="btn btn-borderDefault w-full widthfix-xs m-auto pc-block" ng-click="moveTop()">맨 위로</button>
+    </div>
+</div>
+
+    <!--로고 hide , back button show--->
+<script>
+    $(document).ready(function(){
+        $('.app').addClass('back')
+    })
+</script>
+</div>

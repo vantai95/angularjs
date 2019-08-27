@@ -1,0 +1,580 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Collections>
+    	<!-- AdminUserList Start-->
+    	<ParameterMeta ID="startPage" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>AdminUserList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="endPage" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>AdminUserList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="searchOrder" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>AdminUserList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<!-- AdminUserList End-->
+    	
+    	<!-- AdminUserListCnt Start-->
+		<ParameterMeta ID="searchOrder" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>AdminUserList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<!-- AdminUserListCnt End-->
+    	
+    	<!-- AdminUserDetail Start-->
+    	<ParameterMeta ID="userId" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>AdminUserDetail</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<!-- AdminUserDetail End-->
+    	
+    	<!-- AdminUserSave Start-->
+    	<ParameterMeta ID="saveType" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>AdminUserSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<ParameterMeta ID="compNo" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>AdminUserSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="arCd" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>AdminUserSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="userName" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>AdminUserSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="userId" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>AdminUserSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="userPw" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>AdminUserSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="belongNm" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>AdminUserSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="deptNm" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>AdminUserSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="teamNm" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>AdminUserSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="positionNm" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>AdminUserSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="mobile" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>AdminUserSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="email" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>AdminUserSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="accessYn" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>AdminUserSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="regUser" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>AdminUserSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>		
+		<ParameterMeta ID="updUser" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>AdminUserSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>	
+		<ParameterMeta ID="result" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>AdminUserSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Output</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="message" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>AdminUserSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Output</Direction>
+		</ParameterMeta>					
+    	<!-- AdminUserSave End-->    	   	
+    	
+    	<!-- AdminGroupSave Start -->
+    	<ParameterMeta ID="saveType" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>AdminGroupSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>   
+    	<ParameterMeta ID="arCd" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>AdminGroupSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>    	
+    	<ParameterMeta ID="groupNm" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>AdminGroupSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="displayOrder" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>AdminGroupSave</ExecutionID>
+			<Value xsi:type="xsd:string">0</Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="arrowType" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>AdminGroupSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="regUser" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>AdminGroupSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="updUser" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>AdminGroupSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>   	
+    	<!-- AdminGroupSave End -->
+    	    	    	 
+    	<!-- AdminGroupUserListCnt Start -->	 
+    	<ParameterMeta ID="arCd" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>AdminGroupUserListCnt</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<!-- AdminUpdateGroup End -->   
+    	
+    	<!-- AdminGroupUserList Start -->	 
+    	<ParameterMeta ID="arCd" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>AdminGroupUserList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<!-- AdminUpdateGroup End -->  
+    	
+    	<!-- GroupMenuList Start -->	 
+    	<ParameterMeta ID="arCd" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>GroupMenuList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<!-- GroupMenuList End -->
+    	    	    	
+    	<!-- MenuAuthSave Start -->	 
+    	<ParameterMeta ID="arCd" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>MenuAuthSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="msCd" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>MenuAuthSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="regUser" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>MenuAuthSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<!-- MenuAuthSave End --> 
+    	
+	    	<!-- AdminUserLogin Start-->
+    	<ParameterMeta ID="userId" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>AdminUserLogin</ExecutionID>
+			<Value xsi:type="xsd:string">2</Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<ParameterMeta ID="userPw" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>AdminUserLogin</ExecutionID>
+			<Value xsi:type="xsd:string">2</Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<!-- AdminUserDetail End-->
+    	
+    	<!-- NewPassword Start -->
+    	<ParameterMeta ID="userId" IsReadOnly="false" Enable="true">
+			<RegBy>account</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>account</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>NewPassword</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>		
+		<ParameterMeta ID="userEmail" IsReadOnly="false" Enable="true">
+			<RegBy>account</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>account</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>NewPassword</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="result" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>NewPassword</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Output</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="message" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>NewPassword</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Output</Direction>
+		</ParameterMeta>					
+    	<!-- NewPassword End -->	
+    	<!-- NewPasswordT Start -->
+    	<ParameterMeta ID="userId" IsReadOnly="false" Enable="true">
+			<RegBy>account</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>account</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>NewPasswordT</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>		
+		<ParameterMeta ID="userEmail" IsReadOnly="false" Enable="true">
+			<RegBy>account</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>account</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>NewPasswordT</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="result" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>NewPasswordT</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Output</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="message" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>NewPasswordT</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Output</Direction>
+		</ParameterMeta>					
+    	<!-- NewPasswordT Start -->	
+    	<!-- NewPasswordT Start -->
+    	<ParameterMeta ID="userId" IsReadOnly="false" Enable="true">
+			<RegBy>account</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>account</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>NewPasswordS</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>		
+		<ParameterMeta ID="userEmail" IsReadOnly="false" Enable="true">
+			<RegBy>account</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>account</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>NewPasswordS</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="result" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>NewPasswordS</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Output</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="message" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>NewPasswordS</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Output</Direction>
+		</ParameterMeta>					
+    	<!-- NewPasswordT Start -->	
+    </Collections>
+</MetaCollection>

@@ -1,0 +1,31 @@
+
+<div class="app-content-body wrapper" ng-controller="StudentViewController" ng-init="init()">
+    <div class="widthfix-md m-auto">
+
+    <div class="text-left text-md clearfix hidden-xs hidden-sm pc-padder">
+                    <p class="pc-big-sm ">수강지원센터
+                    </p>
+                </div>
+    <div class="wrapper b-b">
+        <p class="primary">{{support_detail.inquiryTypeNm}}</p>
+        <span class="text-xl"><input type="text" ng-model="support_detail.inquiryTitle" style="border:none;"></input></span>
+        <span class="pull-right text-sm gray m-t-xs"><label class=" control-label">
+                 {{support_detail.regDt}} ({{support_detail.answerYnNm}})</label></span>
+    </div>
+    <div class="heightfix">
+        <textarea ng-model="support_detail.inquiryCnts">
+        </textarea>
+    </div>
+    <div class="row m-t-lg widthfix-xs m-auto">
+    <div class="col-xs-6 col-sm-4 no-padder hidden-xs hidden-sm">
+        <button type="submit" class="btn btn-xl btn-info btn-block pc-btn-w-sm" ui-sref="app.student.student_help">목록</button>    
+    </div>    
+    <div class="col-xs-6 col-sm-4 no-padder">
+        <button type="submit" class="btn btn-xl btn-dark btn-block pc-btn-w-sm" ng-click="getDeleteSupportCenterSave()">삭제</button>    
+    </div>
+    <div class="col-xs-6 col-sm-4 no-padder">
+        <button type="submit" class="btn btn-xl btn-primary btn-block pc-btn-w-sm" ng-click="getUpdateSupportCenterSave()">수정</button>    
+    </div>
+</div>
+  </div>
+</div> 

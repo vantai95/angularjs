@@ -1,0 +1,361 @@
+<div class="app-content-body" ng-controller="ListController"
+	ng-init="init()">
+	<div class="bg-gray padder-v">
+		<form class="form-horizontal widthfix-sm m-auto clearfix">
+			<div class="form-group no-padder col-sm-6 b-n">
+				<div class="col-xs-5 no-padder-right">
+					<div class="input-group m-t-xs date dateStr">
+						<input type="text" class="form-control" ng-model="shStartDt" readonly style="background:#fff; min-width: 103px;">
+						<span class="input-group-btn">
+							<button type="button" class="btn btn-default b-l-none no-shadow">
+								<i class="glyphicon glyphicon-calendar"></i>
+							</button>
+						</span>
+					</div>
+				</div>
+				<div class="col-xs-2 no-padder text-center">
+					<label class="control-label ">─</label>
+				</div>
+				<div class="col-xs-5 no-padder-left date dateEnd">
+					<div class="input-group m-t-xs">
+						<input type="text" class="form-control" ng-model="shEndDt" readonly style="background:#fff; min-width: 103px;">
+						<span class="input-group-btn">
+							<button type="button" class="btn btn-default b-l-none no-shadow">
+								<i class="glyphicon glyphicon-calendar"></i>
+							</button>
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="form-group b-n m-t-xs no-padder col-sm-6">
+				<!---active : btn-primary, default : btn-borderDefault text-dark bg-white--->
+				<div class="col-xs-8 no-padder-right">
+					<div class="col-xs-4 no-padder">
+						<div class="btn btn-borderDefault no-radius w-full dt_3" ng-click="setSearchDate(3)">3개월</div>
+					</div>
+					<div class="col-xs-4 no-padder">
+						<div class="btn btn-borderDefault bg-white no-radius w-full dt_6" ng-click="setSearchDate(6)">6개월</div>
+					</div>
+					<div class="col-xs-4 no-padder">
+						<div class="btn btn-borderDefault bg-white no-radius w-full dt_12" ng-click="setSearchDate(12)">1년</div>
+					</div>
+				</div>
+				<div class="col-xs-4">
+					<div class="btn btn-primary no-radius w-full"
+						ng-click="getSearch();">조회</div>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="widthfix-md m-auto">
+		<div class="wrapper-md no-padder-top">
+			<div class="text-left text-md clearfix hidden-xs hidden-sm">
+				<p class="pc-big-sm font-bold">주문내역</p>
+			</div>
+			<!-- 패널 스타일 list -->
+			<div class="acc_wrap b-b">
+				<!---list s--->
+				<div class="panel-group m-b-none" ng-repeat="my_pay in my_pays">
+					<table class="table b-t b-light nopadTable-sm m-b-none">
+						<tbody>
+							<tr class="heightfix-sm2">
+								<td class="w-xxxs">{{my_pay.orderCd}}</td>
+								<td class="text-left">
+									<div>{{my_pay.lectureNm}}
+										({{my_pay.lectureWeek}})_{{my_pay.teacherNm}}</div>
+									<div>결제일 {{my_pay.payDt}} / {{my_pay.payMoney | number}}원</div>
+									<div ng-if="my_pay.payStatus=='RP' && my_pay.prCd!='' && my_pay.refundDt != ''">
+										환불금 {{my_pay.refundMoney | number:0}}
+									</div>
+								</td>
+								<td class="w-xs" ng-if="my_pay.payStatus == 'NA'">
+									<p class="primary">미결제</p>
+									<div>
+										<button class="btn-borderPrimary btn padder-sm no-radius"
+											ng-click="openPopup2(my_pay)">결제진행</button>
+									</div>
+								</td>
+								<td class="w-xs" ng-if="my_pay.payStatus != 'NA'">
+									
+									<p class="primary">{{my_pay.payStatusNm}}</p>
+									<div ng-if="my_pay.payStatus=='CP' && my_pay.prCd==''">
+										<button class="btn-borderPrimary btn padder-sm no-radius"
+											ng-click="openPopup(my_pay.paCd)">환불신청</button>
+									</div>
+									<!--
+									5/29 학생은 스스로 결제취소 할 수 없도록 변경.  
+									<div ng-if="my_pay.payStatus=='CP' && my_pay.prCd=='' && my_pay.payMeans == 'CARD'">
+										<button class="btn-borderPrimary btn padder-sm no-radius"
+											ng-click="paymentCancel(my_pay)">결제취소</button>
+									</div> -->
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<!---list e--->
+			</div>
+			<!--패널 스타일 list end -->
+		</div>
+	</div>
+	
+	<div ng-if="app.page_size < total_my_pay">
+   		<button class="btn btn-borderDefault w-full widthfix-xs m-auto pc-block btnMoreList" ng-click="nextPageClick()">더보기</button>
+   		<br>
+   	</div>
+   	
+   	<style>
+		.dropdown-menu{right:auto}
+	</style>	
+</div>
+<script type="text/ng-template" id="popup">
+  <div class="popup_wrap" ng-init="popupInit()">
+      <div class="popup_header">
+        환불신청<span class="pull-right closebtn " data-ng-click="cancel()"><img src="assets/img/close.png" class="img-full" alt="..."></span>
+    </div>
+    <div class="popup_body padder-sm">
+        <form class="form-horizontal ng-pristine b-b b-t" method="get">
+        <div class="form-group">
+          <div class="col-bg col-xs-4"><label class=" control-label">주문번호</label></div>
+          <div class="col-xs-8"><label class=" control-label">{{refund_info.orderCd}}</label></div>
+        </div>
+        <div class="form-group">
+          <div class="col-bg col-xs-4"><label class=" control-label">결제금액</label></div>
+          <div class="col-xs-8"><label class=" control-label">{{refund_info.payMoney}}원</label></div>
+        </div>
+        <div class="form-group">
+          <div class="col-bg col-xs-4"><label class=" control-label">결제수단</label></div>
+          <div class="col-xs-8"><label class=" control-label">{{refund_info.payMeansNm}}</label></div>
+        </div>
+        <div class="form-group">
+          <div class="col-bg col-xs-4"><label class=" control-label">결제일시</label></div>
+          <div class="col-xs-8"><label class=" control-label">{{refund_info.payDt}}</label></div>
+        </div>
+        <div class="form-group">
+          <div class="col-bg col-xs-4"><label class=" control-label">상품명</label></div>
+          <div class="col-xs-8"><label class=" control-label">{{refund_info.lectureNm}}</label></div>
+        </div>
+        <div class="form-group">
+          <div class="col-bg col-xs-4"><label class=" control-label">수강기간</label></div>
+          <div class="col-xs-8"><label class=" control-label">{{refund_info.startDt}}~{{refund_info.endDt}}</label></div>
+        </div>
+        <div class="form-group">
+          <div class="col-bg col-xs-4"><label class=" control-label">진척률</label></div>
+          <div class="col-xs-8"><label class=" control-label">{{refund_info.nowAttCnt}}차시/총 {{refund_info.studentLimit}}차시  ({{refund_info.nowAttCnt/refund_info.studentLimit*100}}%) </label></div>
+        </div>
+        <div class="form-group">
+          <div class="col-bg col-xs-4"><label class=" control-label">환불사유</label></div>
+          <div class="col-xs-8">
+            <select class="form-control input-sm"
+				ng-model="refundType"
+				ng-options="item.codeId as item.codeName1 for item in refund_types">
+				<option value="">전체</option>
+            </select>
+          </div>
+        </div> 
+        <div class="form-group">
+          <div class="col-bg col-xs-4 padder-vsm"><label class=" control-label text-xxs heightmax-xs">empty</label></div>
+          <div class="col-xs-8">
+                <textarea class="b heightmax-xs m-t-sm" ng-model="refundCnts"></textarea>
+          </div>
+        </div>     
+        <div class="form-group">
+          <div class="col-bg col-xs-4"><label class="control-label">환불계좌</label></div>
+          <div class="col-xs-8">
+            <select class="form-control input-sm"
+				ng-model="selectBankType" ng-change="changeBankType()">
+				<option value="op_1">내 계좌</option>
+			    <option value="op_2">직접입력</option>
+          	</select>
+          </div>
+        </div> 
+        <div class="form-group panel-title">
+          <div class="col-bg col-xs-4"><label class=" control-label text-xxs">empty</label></div>
+          <div class="col-xs-8">
+			<select class="form-control input-sm chk-bank"
+				ng-model="bankCd"
+				ng-options="item.codeId as item.codeName1 for item in bankcds">
+				<option value="">선택</option>
+            </select>
+          </div>
+        </div>
+		<div class="form-group panel-title">
+          <div class="col-bg col-xs-4"><label class=" control-label text-xxs">empty</label></div>
+          <div class="col-xs-8">
+                <input class="form-control input-sm chk-bank" ng-model="bankAccount" placeholder="계좌번호입력">
+          </div>
+        </div>    
+      </form>   
+    </div>   
+      <button type="submit" ng-click="save()"class="btn btn-xl btn-primary w-full m-t-lg">저장</button>       
+  </div>
+
+</script>
+
+<script type="text/ng-template" id="popup2">
+<div class="popup_wrap" ng-init="init()">
+	<div class="popup_header">
+       	결제하기<span class="pull-right closebtn " data-ng-click="cancel()"><img src="assets/img/close.png" class="img-full"></span>
+    </div>
+    <div class="panel panel-default m-b-none">
+    	<div class="wrapper">
+        	<p class="tt padder font-bold text-md">신청내역</p>
+        	<div class="b-n m-b-none">
+          		<table class="table mini-table m-b-none text-smTB">
+            		<tbody>
+              			<tr>
+                			<td class="w-xs">강의명</td>
+                			<td>{{lecture_detail.lectureNm}}</td>
+              			</tr>
+              			<tr>
+                			<td>강의시간</td>
+                			<td>{{lecture_detail.lectureWeek}} {{lecture_detail.lectureTime}}</td>
+              			</tr>
+              			<tr>
+                			<td>수강료</td>
+                			<td>{{lecture_detail.payMoney | number}}원</td>
+              			</tr>    
+            		</tbody>
+          		</table>
+        	</div>
+    		<div class="text-right padder m-t">
+        		결제금액 <span class="text-2x font-bold">{{lecture_detail.payMoney | number}}</span> 원
+    		</div>
+        </div>
+    </div>   
+    <div class="wrapper bg-gray">
+        <div class="tt m-t">결제수단</div>
+        <!----결제수단 4가지---->
+        <div class="row clearfix m-t-sm">
+            <div class="col-xs-6 col-sm-3 no-padder" ng-repeat="x in pay_mean">
+                <div class="wrapper-xxs">
+                	<div class="btn w-full no-radius " ng-click="select(x.codeId)" ng-class="{'btn-primary': x.codeId == selected}">{{x.codeName1}}</div>
+                </div>    
+            </div>
+        </div>
+        <div class="m-t-lg m-b-xxl bigcheck_wrap">
+        	<div class="tt">
+				전체동의 
+				<span ng-if="checkAll == false" ng-click="checkAll1()">
+					<img src="assets/img/attend_check_disabled.png">
+				</span> 
+				<span ng-if="checkAll == true" ng-click="checkAll1()">
+					<img src="assets/img/attend_check.png">
+				</span> 
+			</div>
+        	<div class="m-t-sm">
+            	<div>
+					<span ng-if="check == true" ng-click="selectCheck()"><img src="assets/img/attend_check.png"></span>
+					<span ng-if="check == false" ng-click="selectCheck()"><img src="assets/img/attend_check_disabled.png"></span>&nbsp;
+					구매정보 확인 및 결제진행에 동의합니다.
+				</div>
+            	<div class="m-t-xs">
+					<span ng-if="check1 == true" ng-click="selectCheck1()"><img src="assets/img/attend_check.png"></span>
+					<span ng-if="check1 == false" ng-click="selectCheck1()"><img src="assets/img/attend_check_disabled.png"></span>&nbsp;환불정책을 확인하였으며 동의합니다. <a ng-click="openPopup3()">[자세히보기]</a>
+				</div>    
+        	</div>        
+        </div>    
+    </div>   
+    <button type="submit" class="btn btn-xl btn-primary w-full" ng-click="getPayment()">결제진행</button>       
+</div>
+<form name="frm_payment" method="post" action="/payreq_crossplatform.jsp" >
+	<input type="hidden" name="CST_MID" value="sli01"/>
+	<input type="hidden" name="CST_PLATFORM" value="service"/>
+	<input type="hidden" name="LGD_BUYER" value=""/>
+	<input type="hidden" name="LGD_PRODUCTINFO" value=""/>
+	<input type="hidden" name="LGD_AMOUNT" value=""/>
+	<input type="hidden" name="LGD_BUYEREMAIL" value=""/>
+	<input type="hidden" name="LGD_OID" value=""/>
+	<input type="hidden" name="LGD_TIMESTAMP" value=""/>
+	<input type="hidden" name="LGD_CUSTOM_USABLEPAY" value="SC0010" />
+	<input type="hidden" name="LGD_WINDOW_TYPE" id="LGD_WINDOW_TYPE" value="iframe" /> 
+	<input type="hidden" name="LGD_CUSTOM_SWITCHINGTYPE" id="LGD_CUSTOM_SWITCHINGTYPE" value="IFRAME" /> 
+</form>
+<form method="post"  name="LGD_PAYINFO" id="LGD_PAYINFO" action="/payres.jsp" accept-charset="euc-kr">
+	<input type="hidden" name="CST_MID" id="CST_MID" value=""/>
+	<input type="hidden" name="CST_PLATFORM" id="CST_PLATFORM" value="service"/>
+	<input type="hidden" name="LGD_AMOUNT" id="LGD_AMOUNT" value=""/>
+	<input type="hidden" name="LGD_BUYER" id="LGD_BUYER" value=""/>
+	<input type="hidden" name="LGD_BUYEREMAIL" id="LGD_BUYEREMAIL" value=""/>
+	<input type="hidden" name="LGD_CASNOTEURL" id="LGD_CASNOTEURL" value=""/>
+	<input type="hidden" name="LGD_CUSTOM_PROCESSTYPE" id="LGD_CUSTOM_PROCESSTYPE" value=""/>
+	<input type="hidden" name="LGD_CUSTOM_SKIN" id="LGD_CUSTOM_SKIN" value=""/>
+	<input type="hidden" name="LGD_CUSTOM_SWITCHINGTYPE" id="LGD_CUSTOM_SWITCHINGTYPE" value=""/>
+	<input type="hidden" name="LGD_CUSTOM_USABLEPAY" id="LGD_CUSTOM_USABLEPAY" value=""/>
+	<input type="hidden" name="LGD_DOMAIN_URL" id="LGD_DOMAIN_URL" value=""/>
+	<input type="hidden" name="LGD_HASHDATA" id="LGD_HASHDATA" value="" />
+	<input type="hidden" name="LGD_MID" id="LGD_MID" value="" /> 
+	<input type="hidden" name="LGD_OID" id="LGD_OID" value="" /> 
+	<input type="hidden" name="LGD_OSTYPE_CHECK" id="LGD_OSTYPE_CHECK" value="" /> 
+	<input type="hidden" name="LGD_PAYKEY" id="LGD_PAYKEY" value="" /> 
+	<input type="hidden" name="LGD_PRODUCTINFO" id="LGD_PRODUCTINFO" value="" /> 
+	<input type="hidden" name="LGD_RESPCODE" id="LGD_RESPCODE" value="" /> 
+	<input type="hidden" name="LGD_RESPMSG" id="LGD_RESPMSG" value="" /> 
+	<input type="hidden" name="LGD_RETURNURL" id="LGD_RETURNURL" value="" /> 
+	<input type="hidden" name="LGD_TIMESTAMP" id="LGD_TIMESTAMP" value="" /> 
+	<input type="hidden" name="LGD_VERSION" id="LGD_VERSION" value="" /> 
+	<input type="hidden" name="LGD_WINDOW_TYPE" id="LGD_WINDOW_TYPE" value="" /> 
+	<input type="hidden" name="LGD_WINDOW_VER" id="LGD_WINDOW_VER" value="" /> 
+	<input type="hidden" name="LGD_CASASSIGNNOTIYN" id="LGD_CASASSIGNNOTIYN" value="N" />
+</form>
+<form method="post"  name="LGD_PAYINFO_M" id="LGD_PAYINFO_M" action="/payres.jsp" accept-charset="euc-kr">
+	<input type="hidden" name="LGD_CUSTOM_PROCESSTYPE" id="LGD_CUSTOM_PROCESSTYPE" value="">
+	<input type="hidden" name="LGD_MID" id="LGD_MID" value="">
+	<input type="hidden" name="CST_PLATFORM" id="CST_PLATFORM" value="service">
+	<input type="hidden" name="LGD_CASNOTEURL" id="LGD_CASNOTEURL" value="">
+	<input type="hidden" name="LGD_BUYER" id="LGD_BUYER" value="">
+	<input type="hidden" name="LGD_CUSTOM_SKIN" id="LGD_CUSTOM_SKIN" value="">
+	<input type="hidden" name="CST_MID" id="CST_MID" value="">
+	<input type="hidden" name="LGD_KVPMISPAUTOAPPYN" id="LGD_KVPMISPAUTOAPPYN" value="">
+	<input type="hidden" name="LGD_OID" id="LGD_OID" value="">
+	<input type="hidden" name="LGD_MTRANSFERWAPURL" id="LGD_MTRANSFERWAPURL" value="">
+	<input type="hidden" name="LGD_VERSION" id="LGD_VERSION" value="">
+	<input type="hidden" name="LGD_PCVIEWYN" id="LGD_PCVIEWYN" value="">
+	<input type="hidden" name="LGD_TIMESTAMP" id="LGD_TIMESTAMP" value="">
+	<input type="hidden" name="CST_WINDOW_TYPE" id="CST_WINDOW_TYPE" value="submit">
+	<input type="hidden" name="LGD_RETURNURL" id="LGD_RETURNURL" value="">
+	<input type="hidden" name="LGD_PAYKEY" id="LGD_PAYKEY" value="">
+	<input type="hidden" name="LGD_AMOUNT" id="LGD_AMOUNT" value="">
+	<input type="hidden" name="LGD_MTRANSFERAUTOAPPYN" id="LGD_MTRANSFERAUTOAPPYN" value="A">
+	<input type="hidden" name="LGD_RESPMSG" id="LGD_RESPMSG" value="">
+	<input type="hidden" name="LGD_CUSTOM_FIRSTPAY" id="LGD_CUSTOM_FIRSTPAY" value="SC0010">
+	<input type="hidden" name="LGD_MPILOTTEAPPCARDWAPURL" id="LGD_MPILOTTEAPPCARDWAPURL" value="">
+	<input type="hidden" name="LGD_PRODUCTINFO" id="LGD_PRODUCTINFO" value="">
+	<input type="hidden" name="LGD_MTRANSFERCANCELURL" id="LGD_MTRANSFERCANCELURL" value="">
+	<input type="hidden" name="LGD_HASHDATA" id="LGD_HASHDATA" value="">
+	<input type="hidden" name="LGD_KVPMISPWAPURL" id="LGD_KVPMISPWAPURL" value="">
+	<input type="hidden" name="LGD_KVPMISPCANCELURL" id="LGD_KVPMISPCANCELURL" value="">
+	<input type="hidden" name="LGD_RESPCODE" id="LGD_RESPCODE" value="">
+	<input type="hidden" name="LGD_CUSTOM_SWITCHINGTYPE" id="LGD_CUSTOM_SWITCHINGTYPE" value="SUBMIT">
+	<input type="hidden" name="LGD_BUYEREMAIL" id="LGD_BUYEREMAIL" value="">
+	<input type="hidden" name="LGD_CASASSIGNNOTIYN" id="LGD_CASASSIGNNOTIYN" value="N" />
+</form>
+</script>
+<script type="text/ng-template" id="popup3">
+  <div class="popup_wrap">
+      <div class="popup_header">
+        환불규정<span class="pull-right closebtn " data-ng-click="cancel()"><img src="assets/img/close.png" class="img-full"></span>
+    </div>
+    <div class="wrapper">
+        <textarea class="heightfix-lg bg-gray">
+        인터넷쇼핑몰 사업자는 위 2.부터 5.까지의 사유에 해당하여 청약철회 등이 불가능한 상품에 대해 그 사실을 상품의 포장이나 그 밖에 소비자가 쉽게 알 수 있는 곳에 명확하게 적거나 시험 사용 상품을 제공하는 등의 방법으로 청약철회 등의 권리 행사가 방해받지 않도록 조치해야 합니다(「전자상거래 등에서의 소비자보호에 관한 법률」 제17조제6항 본문). 만약 사업자가 이와 같은 조치를 안했다면, 소비자는 청약철회 등의 제한사유에도 불구하고 청약철회 등을 할 수 있습니다(「전자상거래 등에서의 소비자보호에 관한 법률」 제17조제2항 단서).
+ 다만, 위의 5. 중 디지털콘텐츠에 대하여 소비자가 청약철회 등을 할 수 없는 경우에는 청약철회 등이 불가능하다는 사실의 표시와 함께 다음의 어느 하나의 방법에 따라 시험 사용 상품을 제공하는 등의 방법으로 청약철회 등의 권리 행사가 방해받지 않도록 해야 합니다(「전자상거래 등에서의 소비자보호에 관한 법률」 제17조제6항 단서 및 규제「전자상거래 등에서의 소비자보호에 관한 법률 시행령」 제21조의2).
+√ 일부 이용의 허용: 디지털콘텐츠의 일부를 미리보기, 미리듣기 등으로 제공
+√ 한시적 이용의 허용: 일정 사용기간을 설정하여 디지털콘텐츠 제공
+√ 체험용 디지털콘텐츠 제공: 일부 제한된 기능만을 사용할 수 있는 디지털콘텐츠 제공
+√ 위의 방법으로 시험 사용 상품 등을 제공하기 곤란한 경우: 디지털콘텐츠에 관한 정보 제공
+    </textarea>
+    </div>      
+  </div>
+
+</script>    
+    <!--app, app-content body 에 그레이톤 배경 추가--->
+<script>
+    $(document).ready(function(){
+        $('.app').addClass('back');
+        $(".dateStr, .dateEnd").datepicker({
+			format : "yyyy-mm-dd",
+			autoclose: true
+		});
+    })
+</script>

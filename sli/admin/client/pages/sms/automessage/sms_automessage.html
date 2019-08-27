@@ -1,0 +1,102 @@
+
+  	<div class="app-content-body" ng-controller="smsAutomessageController" ng-init="init()">
+<div class="wrapper-md">
+  <div class="panel panel-default m-b-none">
+    <div class="panel-heading font-bold b-n">
+      자동발송관리        
+    </div>
+  </div>
+    <div class="panel panel-default m-t">
+    <div class="table-responsive teacher_table">    
+  <table class="table table-bordered b-t b-light">
+        <thead>
+        <tr class="deep_active">            
+            <th class="w-sm">주제</th>
+            <th class="w-md">조건</th>
+            <th>발송문구</th>
+            <th class="w-sm">설정</th>
+          </tr>
+        </thead>
+        <tbody>
+        	<tr ng-repeat="smsMessage in smsMessageList">
+        		<td class="active v-middle">{{smsMessage.title}}</td>
+	            <td class="text-left">{{smsMessage.cnts}}</td>
+	            <td><div class="col-sm-10 h-full no-padder"><textarea class="b-a h-full" ng-model="smsMessage.sendText"></textarea></div>
+	                <div class="col-sm-2"><label class="underline m-t"><a class="primary" ng-click="saveChangeSMSMessage(smsMessage)">내용수정</a></label></div>
+	            </td>
+	            <td>
+		            <div class="radio m-t-none m-b-none l-h-2x">
+		              <label class="i-checks">
+		                <input type="radio" value="Y" ng-model="smsMessage.useYn" ng-change="saveUseYn(smsMessage)">
+		                <i></i>
+		                사용중&nbsp;&nbsp;&nbsp;
+		              </label><br>
+		                <label class="i-checks m-t-xs">
+		                <input type="radio" value="N" ng-model="smsMessage.useYn" ng-change="saveUseYn(smsMessage)">
+		                <i></i>
+		                사용안함
+		               </label>
+		           	</div>    
+	            </td>
+        	</tr>
+        </tbody>
+      </table>
+    </div>
+    </div>
+    <div class="panel panel-default m-b-none">
+    <div class="panel-heading font-bold b-n">
+      자주 사용하는 문구 
+    </div>
+  </div>
+    <div class="panel panel-default m-b-none m-t">
+    <div class="table-responsive teacher_table">        
+  <table class="table table-bordered b-t b-light">
+        <thead>
+        <tr class="deep_active">            
+            <th class="w-sm">주제</th>
+            <th class="w-md">조건</th>
+            <th>발송문구</th>
+            <th colspan="2">설정</th>
+          </tr>
+        </thead>
+        <tbody>
+         <tr ng-repeat="frequentlyUsedPhrase in frequentlyUsedPhrases">
+            <td class="active">
+            	<span ng-if="frequentlyUsedPhrase.checked == true")>{{frequentlyUsedPhrase.title}}</span>
+            	<textarea ng-if="frequentlyUsedPhrase.checked == false" class="v-middle my_topic b-a"  ng-model="frequentlyUsedPhrase.title" style="background-color: #fbfbfb !important;"></textarea>
+            </td>
+            <td class="text-left v-middle">
+            	<span ng-if="frequentlyUsedPhrase.checked == true")>{{frequentlyUsedPhrase.cnts}}</span>
+            	<textarea ng-if="frequentlyUsedPhrase.checked == false" class="my_condition b-a"  ng-model="frequentlyUsedPhrase.cnts" style="background-color: #fff !important;"></textarea> 
+            </td>
+            <td>
+            	<span ng-if="frequentlyUsedPhrase.checked == true")>{{frequentlyUsedPhrase.sendText}}</span>
+            	<textarea ng-if="frequentlyUsedPhrase.checked == false" class="b-a h-full my_message" ng-model="frequentlyUsedPhrase.sendText" style="background-color: #fff !important;"></textarea>                
+            </td>
+            <td class="w-xs" >
+            	<label class="underline m-t"><a ng-if="frequentlyUsedPhrase.checked == true" ng-click="frequentlyUsedPhrase.checked = !frequentlyUsedPhrase.checked" class="primary">수정</a></label>
+                <label class="underline m-t"><a ng-if="frequentlyUsedPhrase.checked == false" ng-click="changePhrase(frequentlyUsedPhrase)" class="primary">저장</a></label>
+            </td>
+             <td class="w-xs" >
+                 <label class="underline m-t"><a ng-click="del(frequentlyUsedPhrase)">삭제</a></label>
+            </td>
+          </tr>
+          
+          <tr>
+            <td class="active"><textarea class="b-a h-full" ng-model="frequentlyUsedPhrase.title"></textarea></td>
+            <td><textarea class="b-a h-full" ng-model="frequentlyUsedPhrase.cnts"></textarea></td>
+            <td><textarea class="b-a h-full" ng-model="frequentlyUsedPhrase.sendText"></textarea>
+            </td>
+            <td colspan="2" >
+                <button class="btn btn-primary btn-m m-t" ng-click="saveSMS()">저장</button>
+            </td>             
+          </tr>    
+        </tbody>
+      </table>
+    </div>    
+    </div>
+    </div>  
+</div>
+
+<script src="./pages/sms/automessage/sms_automessage_controller.js">
+</script>

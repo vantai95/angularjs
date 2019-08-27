@@ -1,0 +1,525 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Collections>
+    	<!-- SurvSaveMaster START -->    	
+    	<ParameterMeta ID="saveType" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SurvSaveMaster</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="tempKey" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SurvSaveMaster</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="smCd" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SurvSaveMaster</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="ltCd" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SurvSaveMaster</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="cpCd" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SurvSaveMaster</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="survStartDt" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SurvSaveMaster</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="survEndDt" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SurvSaveMaster</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="regUser" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SurvSaveMaster</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>	
+		<ParameterMeta ID="updUser" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SurvSaveMaster</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<!-- SurvSaveMaster END  -->
+		
+		<!-- SurvSaveItem Start  -->		
+		<ParameterMeta ID="saveType" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SurvSaveItem</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="tempKey" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SurvSaveItem</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="smCd" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SurvSaveItem</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>		
+		<ParameterMeta ID="title" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SurvSaveItem</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>		
+		<ParameterMeta ID="orderNo" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SurvSaveItem</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="survType" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SurvSaveItem</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="itemSurvNm1" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SurvSaveItem</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="itemSurvNm2" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SurvSaveItem</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="itemSurvNm3" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SurvSaveItem</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="itemSurvNm4" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SurvSaveItem</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="itemSurvNm5" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SurvSaveItem</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="useYn" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SurvSaveItem</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="regUser" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SurvSaveItem</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>	
+		<ParameterMeta ID="updUser" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SurvSaveItem</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>			
+		<!-- SurvSaveItem END  -->
+				
+		<!-- SurvInfoList Start-->		
+		<ParameterMeta ID="startPage" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SurvInfoList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="endPage" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SurvInfoList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shLtCd" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SurvInfoList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shCpCd" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SurvInfoList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shTcCd" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SurvInfoList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<!-- SurvInfoList END  -->
+		
+		<!-- SurvInfoListCnt Start-->		
+		<ParameterMeta ID="shLtCd" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SurvInfoListCnt</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>	
+		<ParameterMeta ID="shCpCd" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SurvInfoListCnt</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shTcCd" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SurvInfoListCnt</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<!-- SurvInfoListCnt END  -->
+		
+		<!-- SurvInfoDetail Start-->		
+		<ParameterMeta ID="ltCd" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SurvInfoDetail</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="smCd" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SurvInfoDetail</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<!-- SurvInfoDetail End-->
+		
+		<!-- SurvInfoDetailItemList Start-->		
+		<ParameterMeta ID="ltCd" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SurvInfoDetailItemList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="smCd" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SurvInfoDetailItemList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="useYn" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SurvInfoDetailItemList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<!-- SurvInfoDetail End-->	
+		
+		<!-- SurvStatsInfo Start-->
+		<ParameterMeta ID="smCd" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SurvStatsInfo</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<!-- SurvStatsInfo End-->
+		
+		<!-- SurvStatsTitleList Start-->
+		<ParameterMeta ID="smCd" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SurvStatsTitleList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<!-- SurvStatsTitleList End-->
+		
+		<!-- SurvStatsMulti Start-->
+		<ParameterMeta ID="smCd" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SurvStatsMulti</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<!-- SurvStatsMulti End-->
+		
+		<!-- SurvStatsEssay Start-->
+		<ParameterMeta ID="smCd" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SurvStatsEssay</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<!-- SurvStatsEssay End-->
+		
+		<!-- GetTargetSurvInfo Start-->
+		<ParameterMeta ID="ltCd" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>GetTargetSurvInfo</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<!-- GetTargetSurvInfo End-->
+		
+		<!-- SurvDelete Start-->
+		<ParameterMeta ID="saveType" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SurvDelete</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="smCd" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SurvDelete</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="updUser" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SurvDelete</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength></DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<!-- GetTargetSurvInfo End-->
+		
+    </Collections>
+</MetaCollection>

@@ -1,0 +1,1419 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Collections>
+    	<!-- EducationList Start-->
+    	<ParameterMeta ID="startPage" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>EducationList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="endPage" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>EducationList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shTcCd" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>EducationList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shCpCdArea" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>EducationList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shLtCd" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>EducationList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shLectureNm" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>EducationList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shStartDt" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>EducationList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shEndDt" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>EducationList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="completeYn" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>EducationList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<!-- EducationList End-->
+    	
+    	<!-- EducationListCnt Start-->
+		<ParameterMeta ID="shTcCd" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>EducationListCnt</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shCpCd" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>EducationListCnt</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shLtCd" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>EducationListCnt</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shLectureNm" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>EducationListCnt</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shStartDt" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>EducationListCnt</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shEndDt" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>EducationListCnt</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="completeYn" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>EducationListCnt</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<!-- EducationListCnt End-->
+    	
+    	<!-- EducationItemList Start-->
+    	<ParameterMeta ID="ptCd" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>EducationItemList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<ParameterMeta ID="ltCd" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>EducationItemList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<ParameterMeta ID="shTcCd" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>EducationItemList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shCpCd" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>EducationItemList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shLtCd" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>EducationItemList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>		
+		<ParameterMeta ID="shStartDt" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>EducationItemList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shEndDt" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>EducationItemList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="completeYn" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>EducationItemList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<!-- EducationItemList End-->
+    	
+    	<!-- EducationItemSave Start-->
+    	<ParameterMeta ID="saveType" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>EducationItemSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="caCd" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>EducationItemSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="ptCd" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>EducationItemSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="ltCd" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>EducationItemSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="itemCnts" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>EducationItemSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="freeYn" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>EducationItemSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="cost" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>EducationItemSave</ExecutionID>
+			<Value xsi:type="xsd:string">0</Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>		
+		<ParameterMeta ID="qnty" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>EducationItemSave</ExecutionID>
+			<Value xsi:type="xsd:string">0</Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="totalMoney" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>EducationItemSave</ExecutionID>
+			<Value xsi:type="xsd:string">0</Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="selectDt" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>EducationItemSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="regUser" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>EducationItemSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="updUser" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>EducationItemSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<!-- EducationItemSave End-->
+    	   	
+    	
+    	<!-- CalTeacherFeeList Start-->
+    	<ParameterMeta ID="startPage" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalTeacherFeeList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="endPage" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalTeacherFeeList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shTcCd" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalTeacherFeeList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shCpCd" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalTeacherFeeList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shLtCd" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalTeacherFeeList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shLectureNm" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalTeacherFeeList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shStartDt" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalTeacherFeeList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shEndDt" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalTeacherFeeList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="completeTcYn" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalTeacherFeeList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<!-- CalTeacherFeeList End-->
+
+    	<!-- CalTeacherFeeListByTeacher Start-->
+    	<ParameterMeta ID="startPage" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalTeacherFeeListByTeacher</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="endPage" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalTeacherFeeListByTeacher</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shTcCd" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalTeacherFeeListByTeacher</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shCpCdArea" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalTeacherFeeListByTeacher</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shLtCd" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalTeacherFeeListByTeacher</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shLectureNm" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalTeacherFeeListByTeacher</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shStartDt" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalTeacherFeeListByTeacher</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shEndDt" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalTeacherFeeListByTeacher</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="completeTcYn" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalTeacherFeeListByTeacher</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shOrder" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalTeacherFeeListByTeacher</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<!-- CalTeacherFeeListByTeacher End-->
+    	
+    	<!-- CalTeacherFeeList Start-->    	
+		<ParameterMeta ID="shTcCd" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalTeacherFeeListCnt</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shCpCd" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalTeacherFeeListCnt</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shLtCd" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalTeacherFeeListCnt</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shLectureNm" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalTeacherFeeListCnt</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shStartDt" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalTeacherFeeListCnt</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shEndDt" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalTeacherFeeListCnt</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<!-- CalTeacherFeeListCnt End-->
+    	
+    	<!-- CalTeacherFeeItemList Start-->    	
+		<ParameterMeta ID="ltCd" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalTeacherFeeItemList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="ptCd" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalTeacherFeeItemList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shStartDt" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalTeacherFeeItemList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shEndDt" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalTeacherFeeItemList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>		
+    	<!-- CalTeacherFeeItemList End-->
+    	
+    	<!-- CalTeacherFeeItemSave Start-->    	
+		<ParameterMeta ID="saveType" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalTeacherFeeItemSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="cbCd" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalTeacherFeeItemSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="ptCd" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalTeacherFeeItemSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="ltCd" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalTeacherFeeItemSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="itemCnts" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalTeacherFeeItemSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="addMoney" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalTeacherFeeItemSave</ExecutionID>
+			<Value xsi:type="xsd:string">0</Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="minusMoney" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalTeacherFeeItemSave</ExecutionID>
+			<Value xsi:type="xsd:string">0</Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="occurDt" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalTeacherFeeItemSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>		
+		<ParameterMeta ID="regUser" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalTeacherFeeItemSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="updUser" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalTeacherFeeItemSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="result" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalTeacherFeeItemSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Output</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="message" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalTeacherFeeItemSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Output</Direction>
+		</ParameterMeta>
+    	<!-- CalTeacherFeeItemSave End-->
+    	
+    	<!-- CalLectureSave Start-->
+    	<ParameterMeta ID="saveType" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalLectureSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="ptCd" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalLectureSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="ltCd" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalLectureSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="lastMoney" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalLectureSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="lastRemark" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalLectureSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="regUser" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalLectureSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="result" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalLectureSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Output</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="message" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalLectureSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Output</Direction>
+		</ParameterMeta>
+    	<!-- CalLectureSave End-->
+
+
+		<ParameterMeta ID="cpCd" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>YearMonthCal</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="selectYear" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>YearMonthCal</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+
+		<ParameterMeta ID="cpCd" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CompExpendList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="selectYear" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CompExpendList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="selectMonth" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CompExpendList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+
+
+		<ParameterMeta ID="saveType" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>InsertCompExpend</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="seq" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>InsertCompExpend</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="cpCd" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>InsertCompExpend</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="selectYear" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>InsertCompExpend</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="selectMonth" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>InsertCompExpend</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="expendCnts" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>InsertCompExpend</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="expendMoney" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>InsertCompExpend</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="selectDt" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>InsertCompExpend</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="regUser" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>InsertCompExpend</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+
+		<ParameterMeta ID="selectYear" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CompExpendAllList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="cpCd" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CompExpendAllList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+
+		<ParameterMeta ID="selectYear" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>MonthCompleteList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="cpCd" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>MonthCompleteList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+
+
+		<ParameterMeta ID="cpCd" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>MonthMoneyComplete</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="selectYear" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>MonthMoneyComplete</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="selectMonth" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>MonthMoneyComplete</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="salesMoney" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>MonthMoneyComplete</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="teacherMoney" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>MonthMoneyComplete</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="expendMoney" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>MonthMoneyComplete</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="taxBillDt" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>MonthMoneyComplete</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="regUser" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>MonthMoneyComplete</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+
+
+		<ParameterMeta ID="select_complete" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>TeacherFeeListCnt</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+
+		<ParameterMeta ID="select_complete" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>TeacherFeeList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="startPage" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>TeacherFeeList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="endPage" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>TeacherFeeList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+
+
+		<ParameterMeta ID="ptCd" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SelectTeacherFeeInfo</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shOrder" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SelectTeacherFeeInfo</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+
+		<ParameterMeta ID="ptCd" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SelectTeacherFeeInfo2</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+
+
+		<ParameterMeta ID="select_complete" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>ClientFeeListCnt</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+
+		<ParameterMeta ID="select_complete" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>ClientFeeList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="startPage" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>ClientFeeList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="endPage" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>ClientFeeList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+
+		<ParameterMeta ID="ptCd" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SelectClientFeeInfo2</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+
+		<ParameterMeta ID="ptCd" IsReadOnly="false" Enable="true">
+			<RegBy>calculate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>calculate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SelectClientFeeInfo</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    </Collections>
+</MetaCollection>

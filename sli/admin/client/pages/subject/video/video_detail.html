@@ -1,0 +1,146 @@
+ <!-- content -->
+  	<div class="app-content-body " ng-controller="VideoDetailController" ng-init="init()">
+<div class="wrapper-md">
+  <div class="panel panel-default panel-devide">
+    <div class="panel-heading font-bold">
+      강의정보
+    </div>
+    <div class="panel-body">
+      <form class="form-horizontal" method="get">
+        <div class="form-group">
+          <div class="col-bg col-sm-2"><label class=" control-label"> 고객사명</label></div>
+          <div class="col-sm-4">
+            <label class=" control-label">{{videoInfo.compNm}}</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-bg col-sm-2"><label class=" control-label"> 강의코드</label></div>
+          <div class="col-sm-4">
+            <label class=" control-label">{{videoInfo.ltCd}}</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-bg col-sm-2"><label class=" control-label"> 강의명</label></div>
+          <div class="col-sm-4">
+            <label class=" control-label">{{videoInfo.lectureNm}}</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-bg col-sm-2"><label class=" control-label">강의기간</label></div>
+          <div class="col-sm-4">
+            <label class=" control-label">{{videoInfo.startDt}} ~ {{videoInfo.endDt}}</label>
+          </div>
+        </div>  
+      </form>
+    </div>
+  </div>
+  
+    
+  <div class="panel panel-default panel-devide">
+    <div class="panel-heading font-bold">
+      강의동영상목록
+    </div>
+    
+    <div class="panel panel-default">
+      <div class="table-responsive teacher_table">
+        <table class="table b-t b-light">
+          <thead>
+            <tr class="active">
+              <th>No</th>
+              <th>회차</th>              
+              <th>제목</th>
+              <th>코멘트</th>
+              <th>링크주소</th>
+              <th>파일명</th>              
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="x in videoList track by $index">
+              <td>{{total_video - $index - app.page_size * (current_page -1)}}</td>
+              <td>{{x.orderNo}}</td>
+              <td>{{x.videoTitle}}</td>
+              <td>{{x.videoCnts}}</td>
+              <td>{{x.fileUrl}}</td>
+              <td>{{x.fileName}}</td>
+              <td>
+	              <button class="btn btn-sm btn-primary m-t-xs"  ng-click="openPopup(x)">수정</button>
+	              &nbsp;<button class="btn btn-sm btn-info m-t-xs"  ng-click="deleteVideo(x.seq)">삭제</button>
+              </td>                            
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row" ng-if="total_video > app.page_size">
+      <div class=" text-center">
+      	<ul class="pagination pagination-sm m-t-none m-b-none">
+          <li ng-click="previousPageClick()">
+            <a href=""><i class="fa fa-chevron-left"></i></a>
+          </li>
+          <li ng-repeat="page in getRange(total_pages) track by $index" 
+          	class="{{current_page == $index + 1 ? 'active' : ''}}"
+          ng-click="setCurrentPage($index + 1)"><a href="">{{$index + 1}}</a></li>
+          <li ng-click="nextPageClick()">
+            <a href=""><i class="fa fa-chevron-right"></i></a>
+          </li>
+        </ul>
+      </div>
+    </div>    
+  </div>
+  
+        <div class="text-center m-t-lg">
+            <button class="btn btn-dark btn-w" ui-sref="app.video.video_list">목록</button>&nbsp;
+        </div>
+</div>
+
+
+	</div>
+  <!-- /content -->
+  
+  
+  <script type="text/ng-template" id="custom_modal.html" >
+  <div class="popup_wrap" ng-init="initPopUp()">
+      <div class="popup_header">
+        동영상 파일수정<span class="pull-right closebtn " data-ng-click="cancel()"><img src="assets/img/close.png" class="img-full" alt="..."></span>
+    </div>
+    <div class="popup_body no-padder-top">
+        <div class="panel-body white">
+      <form class="form-horizontal m-t-md">
+        <div class="form-group b-n">
+          <label class="col-sm-2 control-label">회차</label>
+          <div class="col-sm-3">
+            <input class="form-control input-sm" type="text" ng-model="pop_orderNo" maxlength="5">
+          </div>
+        </div>
+		<div class="form-group b-n">
+          <label class="col-sm-2 control-label">제목</label>
+          <div class="col-sm-10">
+            <input class="form-control input-sm" type="text" ng-model="pop_videoTitle" maxlength="100">
+          </div>
+        </div>		
+		<div class="form-group b-n">
+          <label class="col-sm-2 control-label">코멘트</label>
+          <div class="col-sm-10">
+            <input class="form-control input-sm" type="text" ng-model="pop_videoCnts" maxlength="100">
+          </div>
+        </div>
+		<div class="form-group b-n">
+          <label class="col-sm-2 control-label">링크주소</label>
+          <div class="col-sm-10">
+            <input class="form-control input-sm" type="text" ng-model="pop_fileUrl" maxlength="255">
+          </div>
+        </div>
+		<div class="form-group b-n">
+          <label class="col-sm-2 control-label">파일명</label>
+          <div class="col-sm-10">
+            <input class="form-control input-sm" type="text" ng-model="pop_fileName" maxlength="100">
+          </div>
+        </div>
+      </form>
+      <div class="text-center m-t-lg">
+           <button class="btn btn-primary btn-w" ng-click="saveModify()">등록</button>
+      </div>
+    </div>  
+  </div>
+  </script>

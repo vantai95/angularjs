@@ -1,0 +1,46 @@
+<div class="container w-auto-xs signin_wrapper forgot_wrapper w-xxxl wrapper"  ng-controller="RegisterStudentController" ng-init="init()">
+   <div class="panel panel-default panel-devide no-shadow">
+    <div class="panel-heading b-n m-b-md">
+      <span class="text-2x font-thin">회원가입</span>
+        <span class="pull-right">
+        <button class="btn-icon btn btn-borderPrimary btn-rounded btn-sm text-md m-t-none">1</button>&nbsp;
+        <button class="btn-icon btn btn-borderPrimary btn-rounded btn-sm text-md m-t-none">2</button>&nbsp;
+        <button class="btn-icon btn btn-borderDefault btn-rounded btn-sm text-md m-t-none">3</button>&nbsp; 
+        </span>
+    </div>
+       <div class="padder-sm m-t-xxl">
+        <p class="text-sm">* 휴대폰 중복확인, 가입코드 확인 후 회원가입이 진행됩니다.</p>
+        <p class="text-sm">* 이름과 휴대폰 번호, 가입코드를 입력해주세요.</p>
+       </div>
+    <div class="panel-body m-t-lg">
+      <form class="form-horizontal text-md">
+        <div class="form-group">
+          <div class="col-xs-4"><label class=" control-label">
+                 이름</label></div>
+          <div class="col-xs-8"><input class="form-control input-lg" type="text" ng-model="user_name"></div>    
+        </div>
+        <div class="form-group">
+          <div class="col-xs-4"><label class=" control-label">
+                 휴대폰번호</label></div>
+          <div class="col-xs-5 no-padder-right">
+          	<input class="form-control input-lg mobile_tx" type="text" ng-model="mobile" maxlength="11" placeholder="숫자만 입력해 주세요." ng-change="phoneCheck()" />
+          </div>
+          <div class="col-xs-3 no-padder-left">
+              <button class="btn btn-lg btn-borderPrimary w-full" ng-click="checkJoinInfo()">중복확인</button>
+            </div>     
+        </div>
+        <div class="form-group">
+          <div class="col-xs-4"><label class=" control-label">
+                 가입코드</label></div>
+          <div class="col-xs-5 no-padder-right">
+          	<input class="form-control input-lg comp_key_tx" type="text" ng-model="comp_key" maxlength="20">
+          </div>
+          <div class="col-xs-3 no-padder-left">
+              <button class="btn btn-lg btn-borderPrimary w-full" ng-click="checkCompKey()">확인</button>
+            </div>     
+        </div>
+      </form>
+      <button type="submit" class="btn btn-xl btn-primary btn-block m-t-xxxl" ui-sref="access.join_form({user_name: user_name, mobile: mobile, cpCd:check_comp_info.cpcd, checked_SLI : checked_SLI, checked_info: checked_info,cheked_event: checked_instruction})" ng-disabled="check_student[0].result != 'succ' || check_comp_info.result != 'succ' ">다음</button>  
+    </div>
+  </div>
+</div>

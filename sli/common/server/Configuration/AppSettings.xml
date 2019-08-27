@@ -1,0 +1,18 @@
+<appSettings>
+	<add key="DEPLOY_DATABASE_USE" value="true" />
+	<add key="DEPLOY_TO_AZURE" value="true" />
+	<add key="MEERUE_URL" value="http://localhost/meerue" />
+	<add key="CUSTOM_MAIN_MENU_URL" value="" />
+	<add key="CUSTOM_LOGIN_URL_USE" value="false" />
+	<add key="CUSTOM_LOGIN_URL" value="" />
+	<add key="HOME_PROJECT" value="false" />
+	<add key="CUSTOM_MAIN_PC_VERSION_URL" value="http://www.kaonsoft.com" />
+	<add key="CUSTOM_MAIN_COPYRIGHT" value="Copyrightⓒ2014 Kaonsoft. All Rights Reserved." />
+	<add key="UPLOAD_IMAGE_VIRTUAL_PATH" value="http://dev.kaonsoft.com/meerue" />
+	<add key="UPLOAD_IMAGE_PHSICAL_PATH" value="\\127.0.0.1" />
+	<add key="UPLOAD_FILE_VIRTUAL_PATH" value="http://localhost:1138" />
+	<add key="UPLOAD_FILE_PHSICAL_PATH" value="\\127.0.0.1" />
+	<add key="UPLOAD_IMAGE_RESULT_URL" value="/Shell/Inquire/SAMES_SHELL_CAMERA_PICTURE_INFO" />
+	<add key="UPLOAD_THUMBNAIL_WIDTH" value="150" />
+	<add key="UPLOAD_THUMBNAIL_HEIGHT" value="150" />
+</appSettings>

@@ -1,0 +1,1322 @@
+
+<div class="app-content-body" ng-controller="TestController" ng-init="init()">  
+     <!--강의목록 s---->
+    <div class="panel panel-body no-shadow m-b-n-xs padder-vsm bg-gray">
+        <form class="form-horizontal widthfix m-auto pull-none col-xs-12 col-sm-4 no-padder">
+        <div class="form-group b-n">
+          <div class="col-xs-3 col-sm-3 no-padder">
+            <label class="control-label text-md">강의목록</label>
+          </div>    
+          <div class="col-xs-9 col-sm-9 no-padder">
+            <select name="account" class="form-control m-t-xs" 
+            	ng-model="selected_lecture"
+				ng-options="lecture.ltCd as lecture.lectureNm for lecture in lectures"
+				ng-change="getLectureListBox()">
+            </select>
+          </div>
+        </div> 
+      </form>
+    </div>
+    <!--강의목록 e---->
+    <!--LNB s-->
+    <div class="lnb_wraper">
+        <div class="lnb_wrap clearfix">
+            <a class="lnb"  ui-sref="app.mylecture.lecture({ltCd: selected_lecture})">기본 정보</a>
+            <a class="lnb" ui-sref="app.mylecture.video({ltCd: selected_lecture})">강의영상</a>
+            <a class="lnb"  ui-sref="app.mylecture.lvtest({ltCd: selected_lecture})">레벨테스트</a>
+            <a class="lnb" ui-sref="app.mylecture.attend({ltCd: selected_lecture})">출석현황</a>
+            <a class="lnb active" ui-sref="app.mylecture.test({ltCd: selected_lecture})">성취도평가</a>
+            <a class="lnb" ui-sref="app.mylecture.alert_list({ltCd: selected_lecture})">알림게시판</a>
+        </div>
+    </div>
+    <!--LNB e-->
+<div class="">
+    <div class="panel panel-default no-shadow">
+        <div class="panel-heading font-bold text-left b-n widthfix-lg m-auto m-t">
+                    {{lecture_detail.lectureNm}}<span class="hidden-xs hidden-sm"> [{{info.tpCd}}]</span>
+        	<span class="text-md m-b-n pc-inline pc-float">
+        		<span style="display:inline-block;">평가선택</span>
+			    <select class="form-control m-t-xs" ng-model="lvCd" ng-change="changeTest()" ng-options="item.lvCd as item.testKindName for item in test_list" style="width:180px;display:inline-block;">
+			    </select>
+			</span>
+        </div> 
+        <!-----모바일노출용---->
+        <div class="panel-body m-t hidden-md hidden-lg">
+            <div class="row" ng-if="info.tpCd != null">
+            	<div class="col-xs-12">
+                	<p class="text-2x text-center m-n font-bold">{{info.avgScore}}</p>
+                	<p class="text-md text-center">Average Score</p>
+            	</div>
+<!--             <div class="col-xs-6">
+                <p class="text-2x text-center m-n font-bold">Lv.3_A2</p>
+                <p class="text-md text-center">Level</p>
+            </div> -->
+            </div>
+            
+            <table class="table table-test center_align m-b-none" ng-if="info.tpCd == null">
+				<tbody>
+					<tr>
+						<td>점수가 공개되지 않았습니다.</td>
+					</tr>
+				</tbody>
+	   		</table>
+	   		
+	   		<table class="table table-test center_align m-b-none" ng-if="info.tpCd == 'Business'">
+				<tbody>
+					<tr>
+						<td class="w-10">Speaking</td>
+                        <td class="w-md">
+   	                        <div class="progress ng-isolate-scope" animate="false" value="dynamic" type="info">
+       	                    	<div class="progress-bar progress-bar-info" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="{{info.article1Score}}" aria-valuemin="0" aria-valuemax="56" ng-style="{width: percent + '%'}" aria-valuetext="{{info.article1Score}}%"  style="width: {{info.article1Score/56 * 100}}%;"></div>
+           		                <p class="text-xs">&nbsp;{{info.article1Score}}</p>    
+               			    </div>
+                        </td>
+					</tr>
+					<tr>
+						<td class="w-10">Listening</td>
+                        <td class="w-md">
+   	                        <div class="progress ng-isolate-scope" animate="false" value="dynamic" type="info">
+       	                    	<div class="progress-bar progress-bar-info" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="{{info.article2Score}}" aria-valuemin="0" aria-valuemax="56" ng-style="{width: percent + '%'}" aria-valuetext="{{info.article2Score}}%"  style="width: {{info.article2Score/56 * 100}}%;"></div>
+           		                <p class="text-xs">&nbsp;{{info.article2Score}}</p>    
+               			    </div>
+                        </td>
+					</tr>
+					<tr>
+						<td class="w-10">Pronunciation</td>
+                        <td class="w-md">
+   	                        <div class="progress ng-isolate-scope" animate="false" value="dynamic" type="info">
+       	                    	<div class="progress-bar progress-bar-info" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="{{info.article3Score}}" aria-valuemin="0" aria-valuemax="56" ng-style="{width: percent + '%'}" aria-valuetext="{{info.article3Score}}%"  style="width: {{info.article3Score/56 * 100}}%;"></div>
+           		                <p class="text-xs">&nbsp;{{info.article3Score}}</p>    
+               			    </div>
+                        </td>
+					</tr>
+					<tr>
+						<td class="w-10">Vocabulary</td>
+                        <td class="w-md">
+   	                        <div class="progress ng-isolate-scope" animate="false" value="dynamic" type="info">
+       	                    	<div class="progress-bar progress-bar-info" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="{{info.article4Score}}" aria-valuemin="0" aria-valuemax="56" ng-style="{width: percent + '%'}" aria-valuetext="{{info.article4Score}}%"  style="width: {{info.article4Score/56 * 100}}%;"></div>
+           		                <p class="text-xs">&nbsp;{{info.article4Score}}</p>    
+               			    </div>
+                        </td>
+					</tr>
+					<tr>
+						<td class="w-10">Grammar</td>
+                        <td class="w-md">
+   	                        <div class="progress ng-isolate-scope" animate="false" value="dynamic" type="info">
+       	                    	<div class="progress-bar progress-bar-info" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="{{info.article5Score}}" aria-valuemin="0" aria-valuemax="56" ng-style="{width: percent + '%'}" aria-valuetext="{{info.article5Score}}%"  style="width: {{info.article5Score/56 * 100}}%;"></div>
+           		                <p class="text-xs">&nbsp;{{info.article5Score}}</p>    
+               			    </div>
+                        </td>
+					</tr>
+        		</tbody>
+      		</table> 
+            <table class="table table-test center_align m-b-none" ng-if="info.tpCd == 'TOEIC'">
+				<tbody>
+					<tr>
+						<td class="w-10">L/C</td>
+                        <td class="w-md">
+   	                        <div class="progress ng-isolate-scope" animate="false" value="dynamic" type="info">
+       	                    	<div class="progress-bar progress-bar-info" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="{{info.article1Score}}" aria-valuemin="0" aria-valuemax="990" ng-style="{width: percent + '%'}" aria-valuetext="{{info.article1Score}}%"  style="width: {{info.article1Score/990 * 100}}%;"></div>
+           		                <p class="text-xs">&nbsp;{{info.article1Score}}</p>    
+               			    </div>
+                        </td>
+					</tr>
+					<tr>
+						<td class="w-10">R/C</td>
+                        <td class="w-md">
+   	                        <div class="progress ng-isolate-scope" animate="false" value="dynamic" type="info">
+       	                    	<div class="progress-bar progress-bar-info" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="{{info.article2Score}}" aria-valuemin="0" aria-valuemax="990" ng-style="{width: percent + '%'}" aria-valuetext="{{info.article2Score}}%"  style="width: {{info.article2Score/990 * 100}}%;"></div>
+           		                <p class="text-xs">&nbsp;{{info.article2Score}}</p>    
+               			    </div>
+                        </td>
+					</tr>
+				</tbody>
+	   		</table>
+			
+      		<table class="table table-test center_align m-b-none" ng-if="info.tpCd == 'TOEICS'">
+				<tbody>
+					<tr>
+						<td class="w-10">Pronunciation</td>
+                        <td class="w-md">
+   	                        <div class="progress ng-isolate-scope" animate="false" value="dynamic" type="info">
+       	                    	<div class="progress-bar progress-bar-info" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="{{info.article1Score}}" aria-valuemin="0" aria-valuemax="200" ng-style="{width: percent + '%'}" aria-valuetext="{{info.article1Score}}%"  style="width: {{info.article1Score/200 * 100}}%;"></div>
+           		                <p class="text-xs">&nbsp;{{info.article1Score}}</p>    
+               			    </div>
+                        </td>
+					</tr>
+					<tr>
+						<td class="w-10">Intonation and Stress</td>
+                        <td class="w-md">
+   	                        <div class="progress ng-isolate-scope" animate="false" value="dynamic" type="info">
+       	                    	<div class="progress-bar progress-bar-info" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="{{info.article2Score}}" aria-valuemin="0" aria-valuemax="200" ng-style="{width: percent + '%'}" aria-valuetext="{{info.article2Score}}%"  style="width: {{info.article2Score/200 * 100}}%;"></div>
+           		                <p class="text-xs">&nbsp;{{info.article2Score}}</p>    
+               			    </div>
+                        </td>
+					</tr>
+					<tr>
+						<td class="w-10">Grammar</td>
+                        <td class="w-md">
+   	                        <div class="progress ng-isolate-scope" animate="false" value="dynamic" type="info">
+       	                    	<div class="progress-bar progress-bar-info" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="{{info.article3Score}}" aria-valuemin="0" aria-valuemax="200" ng-style="{width: percent + '%'}" aria-valuetext="{{info.article3Score}}%"  style="width: {{info.article3Score/200 * 100}}%;"></div>
+           		                <p class="text-xs">&nbsp;{{info.article3Score}}</p>    
+               			    </div>
+                        </td>
+					</tr>
+					<tr>
+						<td class="w-10">Vocabulary and Cohesion</td>
+                        <td class="w-md">
+   	                        <div class="progress ng-isolate-scope" animate="false" value="dynamic" type="info">
+       	                    	<div class="progress-bar progress-bar-info" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="{{info.article4Score}}" aria-valuemin="0" aria-valuemax="200" ng-style="{width: percent + '%'}" aria-valuetext="{{info.article4Score}}%"  style="width: {{info.article4Score/200 * 100}}%;"></div>
+           		                <p class="text-xs">&nbsp;{{info.article4Score}}</p>    
+               			    </div>
+                        </td>
+					</tr>
+					<tr>
+						<td class="w-10">Relevance of content and Completeness of content</td>
+                        <td class="w-md">
+   	                        <div class="progress ng-isolate-scope" animate="false" value="dynamic" type="info">
+       	                    	<div class="progress-bar progress-bar-info" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="{{info.article5Score}}" aria-valuemin="0" aria-valuemax="200" ng-style="{width: percent + '%'}" aria-valuetext="{{info.article5Score}}%"  style="width: {{info.article5Score/200 * 100}}%;"></div>
+           		                <p class="text-xs">&nbsp;{{info.article5Score}}</p>    
+               			    </div>
+                        </td>
+					</tr>
+				</tbody>
+      		</table>
+			
+      		<table class="table table-test center_align m-b-none" ng-if="info.tpCd == 'OPIC'">
+      			<tbody>
+					<tr>
+						<td class="w-10">Language control</td>
+                        <td class="w-md">
+   	                        <div class="progress ng-isolate-scope" animate="false" value="dynamic" type="info">
+       	                    	<div class="progress-bar progress-bar-info" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="{{info.article1Score}}" aria-valuemin="0" aria-valuemax="100" ng-style="{width: percent + '%'}" aria-valuetext="{{info.article1Score}}%"  style="width: {{info.article1Score/100 * 100}}%;"></div>
+           		                <p class="text-xs">&nbsp;{{info.article1Score}}</p>    
+               			    </div>
+                        </td>
+					</tr>
+					<tr>
+						<td class="w-10">Function,Global Tasks</td>
+                        <td class="w-md">
+   	                        <div class="progress ng-isolate-scope" animate="false" value="dynamic" type="info">
+       	                    	<div class="progress-bar progress-bar-info" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="{{info.article2Score}}" aria-valuemin="0" aria-valuemax="100" ng-style="{width: percent + '%'}" aria-valuetext="{{info.article2Score}}%"  style="width: {{info.article2Score/100 * 100}}%;"></div>
+           		                <p class="text-xs">&nbsp;{{info.article2Score}}</p>    
+               			    </div>
+                        </td>
+					</tr>
+					<tr>
+						<td class="w-10">Text Type</td>
+                        <td class="w-md">
+   	                        <div class="progress ng-isolate-scope" animate="false" value="dynamic" type="info">
+       	                    	<div class="progress-bar progress-bar-info" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="{{info.article3Score}}" aria-valuemin="0" aria-valuemax="100" ng-style="{width: percent + '%'}" aria-valuetext="{{info.article3Score}}%"  style="width: {{info.article3Score/100 * 100}}%;"></div>
+           		                <p class="text-xs">&nbsp;{{info.article3Score}}</p>    
+               			    </div>
+                        </td>
+					</tr>
+					<tr>
+						<td class="w-10">Contents Context</td>
+                        <td class="w-md">
+   	                        <div class="progress ng-isolate-scope" animate="false" value="dynamic" type="info">
+       	                    	<div class="progress-bar progress-bar-info" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="{{info.article4Score}}" aria-valuemin="0" aria-valuemax="100" ng-style="{width: percent + '%'}" aria-valuetext="{{info.article4Score}}%"  style="width: {{info.article4Score/100 * 100}}%;"></div>
+           		                <p class="text-xs">&nbsp;{{info.article4Score}}</p>    
+               			    </div>
+                        </td>
+					</tr>
+					<tr>
+						<td class="w-10">Comprehensibility</td>
+                        <td class="w-md">
+   	                        <div class="progress ng-isolate-scope" animate="false" value="dynamic" type="info">
+       	                    	<div class="progress-bar progress-bar-info" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="{{info.article5Score}}" aria-valuemin="0" aria-valuemax="100" ng-style="{width: percent + '%'}" aria-valuetext="{{info.article5Score}}%"  style="width: {{info.article5Score/100 * 100}}%;"></div>
+           		                <p class="text-xs">&nbsp;{{info.article5Score}}</p>    
+               			    </div>
+                        </td>
+					</tr>
+				</tbody>
+			</table>
+			
+      		<table class="table table-test center_align m-b-none" ng-if="info.tpCd == 'HSK'">
+				<tbody>
+					<tr>
+						<td class="w-10">Listening</td>
+                        <td class="w-md">
+   	                        <div class="progress ng-isolate-scope" animate="false" value="dynamic" type="info">
+       	                    	<div class="progress-bar progress-bar-info" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="{{info.article1Score}}" aria-valuemin="0" aria-valuemax="100" ng-style="{width: percent + '%'}" aria-valuetext="{{info.article1Score}}%"  style="width: {{info.article1Score/100 * 100}}%;"></div>
+           		                <p class="text-xs">&nbsp;{{info.article1Score}}</p>    
+               			    </div>
+                        </td>
+					</tr>
+					<tr>
+						<td class="w-10">Reading</td>
+                        <td class="w-md">
+   	                        <div class="progress ng-isolate-scope" animate="false" value="dynamic" type="info">
+       	                    	<div class="progress-bar progress-bar-info" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="{{info.article2Score}}" aria-valuemin="0" aria-valuemax="100" ng-style="{width: percent + '%'}" aria-valuetext="{{info.article2Score}}%"  style="width: {{info.article2Score/100 * 100}}%;"></div>
+           		                <p class="text-xs">&nbsp;{{info.article2Score}}</p>    
+               			    </div>
+                        </td>
+					</tr>
+					<tr>
+						<td class="w-10">Writing</td>
+                        <td class="w-md">
+   	                        <div class="progress ng-isolate-scope" animate="false" value="dynamic" type="info">
+       	                    	<div class="progress-bar progress-bar-info" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="{{info.article3Score}}" aria-valuemin="0" aria-valuemax="100" ng-style="{width: percent + '%'}" aria-valuetext="{{info.article3Score}}%"  style="width: {{info.article3Score/100 * 100}}%;"></div>
+           		                <p class="text-xs">&nbsp;{{info.article3Score}}</p>    
+               			    </div>
+                        </td>
+					</tr>								
+				</tbody>
+			</table>
+			
+      		<table class="table table-test center_align m-b-none" ng-if="info.tpCd == 'JLPT'">
+				<tbody>
+					<tr>
+						<td class="w-10">Language Knowledge</td>
+                        <td class="w-md">
+   	                        <div class="progress ng-isolate-scope" animate="false" value="dynamic" type="info">
+       	                    	<div class="progress-bar progress-bar-info" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="{{info.article1Score}}" aria-valuemin="0" aria-valuemax="100" ng-style="{width: percent + '%'}" aria-valuetext="{{info.article1Score}}%"  style="width: {{info.article1Score/100 * 100}}%;"></div>
+           		                <p class="text-xs">&nbsp;{{info.article1Score}}</p>    
+               			    </div>
+                        </td>
+					</tr>
+					<tr>
+						<td class="w-10">Reading</td>
+                        <td class="w-md">
+   	                        <div class="progress ng-isolate-scope" animate="false" value="dynamic" type="info">
+       	                    	<div class="progress-bar progress-bar-info" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="{{info.article2Score}}" aria-valuemin="0" aria-valuemax="100" ng-style="{width: percent + '%'}" aria-valuetext="{{info.article2Score}}%"  style="width: {{info.article2Score/100 * 100}}%;"></div>
+           		                <p class="text-xs">&nbsp;{{info.article2Score}}</p>    
+               			    </div>
+                        </td>
+					</tr>
+					<tr>
+						<td class="w-10">Listening</td>
+                        <td class="w-md">
+   	                        <div class="progress ng-isolate-scope" animate="false" value="dynamic" type="info">
+       	                    	<div class="progress-bar progress-bar-info" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="{{info.article3Score}}" aria-valuemin="0" aria-valuemax="100" ng-style="{width: percent + '%'}" aria-valuetext="{{info.article3Score}}%"  style="width: {{info.article3Score/100 * 100}}%;"></div>
+           		                <p class="text-xs">&nbsp;{{info.article3Score}}</p>    
+               			    </div>
+                        </td>
+					</tr>
+        		</tbody>
+      		</table>
+			
+	        <table class="table table-test center_align m-b-none" ng-if="info.tpCd == 'FLEX'">
+				<tbody>
+					<tr>
+						<td class="w-10">Language Knowledge</td>
+                        <td class="w-md">
+   	                        <div class="progress ng-isolate-scope" animate="false" value="dynamic" type="info">
+       	                    	<div class="progress-bar progress-bar-info" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="{{info.article1Score}}" aria-valuemin="0" aria-valuemax="1000" ng-style="{width: percent + '%'}" aria-valuetext="{{info.article1Score}}%"  style="width: {{info.article1Score/1000 * 100}}%;"></div>
+           		                <p class="text-xs">&nbsp;{{info.article1Score}}</p>    
+               			    </div>
+                        </td>
+					</tr>
+					<tr>
+						<td class="w-10">Reading</td>
+                        <td class="w-md">
+   	                        <div class="progress ng-isolate-scope" animate="false" value="dynamic" type="info">
+       	                    	<div class="progress-bar progress-bar-info" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="{{info.article2Score}}" aria-valuemin="0" aria-valuemax="250" ng-style="{width: percent + '%'}" aria-valuetext="{{info.article2Score}}%"  style="width: {{info.article2Score/250 * 100}}%;"></div>
+           		                <p class="text-xs">&nbsp;{{info.article2Score}}</p>    
+               			    </div>
+                        </td>
+					</tr>
+					<tr>
+						<td class="w-10">Listening</td>
+                        <td class="w-md">
+   	                        <div class="progress ng-isolate-scope" animate="false" value="dynamic" type="info">
+       	                    	<div class="progress-bar progress-bar-info" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="{{info.article3Score}}" aria-valuemin="0" aria-valuemax="250" ng-style="{width: percent + '%'}" aria-valuetext="{{info.article3Score}}%"  style="width: {{info.article3Score/250 * 100}}%;"></div>
+           		                <p class="text-xs">&nbsp;{{info.article3Score}}</p>    
+               			    </div>
+                        </td>
+					</tr>
+        		</tbody>
+			</table>
+			
+	        <table class="table table-test center_align m-b-none" ng-if="info.tpCd == 'OPI'">
+				<tbody>
+					<tr>
+						<td class="w-10">Language control</td>
+                        <td class="w-md">
+   	                        <div class="progress ng-isolate-scope" animate="false" value="dynamic" type="info">
+       	                    	<div class="progress-bar progress-bar-info" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="{{info.article1Score}}" aria-valuemin="0" aria-valuemax="100" ng-style="{width: percent + '%'}" aria-valuetext="{{info.article1Score}}%"  style="width: {{info.article1Score/100 * 100}}%;"></div>
+           		                <p class="text-xs">&nbsp;{{info.article1Score}}</p>    
+               			    </div>
+                        </td>
+					</tr>
+					<tr>
+						<td class="w-10">Function,Global Tasks</td>
+                        <td class="w-md">
+   	                        <div class="progress ng-isolate-scope" animate="false" value="dynamic" type="info">
+       	                    	<div class="progress-bar progress-bar-info" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="{{info.article2Score}}" aria-valuemin="0" aria-valuemax="100" ng-style="{width: percent + '%'}" aria-valuetext="{{info.article2Score}}%"  style="width: {{info.article2Score/100 * 100}}%;"></div>
+           		                <p class="text-xs">&nbsp;{{info.article2Score}}</p>    
+               			    </div>
+                        </td>
+					</tr>
+					<tr>
+						<td class="w-10">Text Type</td>
+                        <td class="w-md">
+   	                        <div class="progress ng-isolate-scope" animate="false" value="dynamic" type="info">
+       	                    	<div class="progress-bar progress-bar-info" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="{{info.article3Score}}" aria-valuemin="0" aria-valuemax="100" ng-style="{width: percent + '%'}" aria-valuetext="{{info.article3Score}}%"  style="width: {{info.article3Score/100 * 100}}%;"></div>
+           		                <p class="text-xs">&nbsp;{{info.article3Score}}</p>    
+               			    </div>
+                        </td>
+					</tr>
+					<tr>
+						<td class="w-10">Contents Context</td>
+                        <td class="w-md">
+   	                        <div class="progress ng-isolate-scope" animate="false" value="dynamic" type="info">
+       	                    	<div class="progress-bar progress-bar-info" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="{{info.article4Score}}" aria-valuemin="0" aria-valuemax="100" ng-style="{width: percent + '%'}" aria-valuetext="{{info.article4Score}}%"  style="width: {{info.article4Score/100 * 100}}%;"></div>
+           		                <p class="text-xs">&nbsp;{{info.article4Score}}</p>    
+               			    </div>
+                        </td>
+					</tr>
+					<tr>
+						<td class="w-10">Comprehensibility</td>
+                        <td class="w-md">
+   	                        <div class="progress ng-isolate-scope" animate="false" value="dynamic" type="info">
+       	                    	<div class="progress-bar progress-bar-info" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="{{info.article5Score}}" aria-valuemin="0" aria-valuemax="100" ng-style="{width: percent + '%'}" aria-valuetext="{{info.article5Score}}%"  style="width: {{info.article5Score/100 * 100}}%;"></div>
+           		                <p class="text-xs">&nbsp;{{info.article5Score}}</p>    
+               			    </div>
+                        </td>
+					</tr>
+        		</tbody>
+      		</table>
+			
+	        <table class="table table-test center_align m-b-none" ng-if="info.tpCd == 'CILS'">
+				<tbody>
+					<tr>
+						<td class="w-10">Speaking</td>
+                        <td class="w-md">
+   	                        <div class="progress ng-isolate-scope" animate="false" value="dynamic" type="info">
+       	                    	<div class="progress-bar progress-bar-info" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="{{info.article1Score}}" aria-valuemin="0" aria-valuemax="100" ng-style="{width: percent + '%'}" aria-valuetext="{{info.article1Score}}%"  style="width: {{info.article1Score/100 * 100}}%;"></div>
+           		                <p class="text-xs">&nbsp;{{info.article1Score}}</p>    
+               			    </div>
+                        </td>
+					</tr>
+					<tr>
+						<td class="w-10">Listening</td>
+                        <td class="w-md">
+   	                        <div class="progress ng-isolate-scope" animate="false" value="dynamic" type="info">
+       	                    	<div class="progress-bar progress-bar-info" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="{{info.article2Score}}" aria-valuemin="0" aria-valuemax="100" ng-style="{width: percent + '%'}" aria-valuetext="{{info.article2Score}}%"  style="width: {{info.article2Score/100 * 100}}%;"></div>
+           		                <p class="text-xs">&nbsp;{{info.article2Score}}</p>    
+               			    </div>
+                        </td>
+					</tr>
+					<tr>
+						<td class="w-10">Reading</td>
+                        <td class="w-md">
+   	                        <div class="progress ng-isolate-scope" animate="false" value="dynamic" type="info">
+       	                    	<div class="progress-bar progress-bar-info" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="{{info.article3Score}}" aria-valuemin="0" aria-valuemax="100" ng-style="{width: percent + '%'}" aria-valuetext="{{info.article3Score}}%"  style="width: {{info.article3Score/100 * 100}}%;"></div>
+           		                <p class="text-xs">&nbsp;{{info.article3Score}}</p>    
+               			    </div>
+                        </td>
+					</tr>
+					<tr>
+						<td class="w-10">Writing</td>
+                        <td class="w-md">
+   	                        <div class="progress ng-isolate-scope" animate="false" value="dynamic" type="info">
+       	                    	<div class="progress-bar progress-bar-info" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="{{info.article4Score}}" aria-valuemin="0" aria-valuemax="100" ng-style="{width: percent + '%'}" aria-valuetext="{{info.article4Score}}%"  style="width: {{info.article4Score/100 * 100}}%;"></div>
+           		                <p class="text-xs">&nbsp;{{info.article4Score}}</p>    
+               			    </div>
+                        </td>
+					</tr>
+					<tr>
+						<td class="w-10">Grammar</td>
+                        <td class="w-md">
+   	                        <div class="progress ng-isolate-scope" animate="false" value="dynamic" type="info">
+       	                    	<div class="progress-bar progress-bar-info" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="{{info.article5Score}}" aria-valuemin="0" aria-valuemax="100" ng-style="{width: percent + '%'}" aria-valuetext="{{info.article5Score}}%"  style="width: {{info.article5Score/100 * 100}}%;"></div>
+           		                <p class="text-xs">&nbsp;{{info.article5Score}}</p>    
+               			    </div>
+                        </td>
+					</tr>
+        		</tbody>
+      		</table>    
+
+        </div>
+        <!-----pc용 테이블---->
+                	<div class="wrapper widthfix-lg m-auto">
+        		<div class="panel panel-default m-b-none hidden-xs hidden-sm border">
+			        <div class="table-responsive">
+			            <table class="table table-test center_align m-b-none" ng-if="info.tpCd == NULL">
+							<tbody>
+								<tr>
+									<td>점수가 공개되지 않았습니다.</td>
+								</tr>
+							</tbody>
+				   		</table>
+				   		
+				   		<table class="table table-test center_align m-b-none" ng-if="info.tpCd == 'Business'">
+			        		<thead>
+					            <tr class="active">            
+						            <th>Average Score</th>
+						            <th colspan="100%"><span class="primary">{{info.avgScore}}</span></th>
+					            </tr>
+			          			<tr class="active">
+			            			<th rowspan="2">Level</th>
+			            			<th colspan="3">입문</th>
+			            			<th colspan="3">초급</th>
+			            			<th colspan="3">중급</th>
+			            			<th colspan="3">고급</th>
+			          			</tr>
+								<tr class="active">
+									<th>Lv.1</th>
+									<th>Lv.2</th>
+									<th>Lv.3</th>
+									<th>Lv.4</th>
+									<th>Lv.5</th>
+									<th>Lv.6</th>
+									<th>Lv.7</th>
+									<th>Lv.8</th>
+									<th>Lv.9</th>
+									<th>Lv.10</th>
+									<th>Lv.11</th>
+									<th>Lv.12</th>
+								</tr>
+								<tr class="active">
+									<th>Level</th>
+									<th>A1</th>
+									<th>A1</th>
+									<th>A2</th>
+									<th>A2</th>
+									<th>B1</th>
+									<th>B1</th>
+									<th>B2</th>
+									<th>B2</th>
+									<th>C1</th>
+									<th>C1</th>
+									<th>C2</th>
+									<th>C2</th>									
+								</tr>
+								<tr class="active">
+									<th>Score</th>
+									<th>20~23</th>
+									<th>24~26</th>
+									<th>27~29</th>
+									<th>30~32</th>
+									<th>33~35</th>
+									<th>36~38</th>
+									<th>39~41</th>
+									<th>42~44</th>
+									<th>45~47</th>
+									<th>48~50</th>
+									<th>51~53</th>
+									<th>54~56</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th>Speaking</th>
+									<td>{{info.article1Level == 'Lv1' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == 'Lv2' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == 'Lv3' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == 'Lv4' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == 'Lv5' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == 'Lv6' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == 'Lv7' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == 'Lv8' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == 'Lv9' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == 'Lv10' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == 'Lv11' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == 'Lv12' ? info.article1Score : ''}}</td>
+								</tr>
+								<tr>
+									<th>Listening</th>
+									<td>{{info.article2Level == 'Lv1' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == 'Lv2' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == 'Lv3' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == 'Lv4' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == 'Lv5' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == 'Lv6' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == 'Lv7' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == 'Lv8' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == 'Lv9' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == 'Lv10' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == 'Lv11' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == 'Lv12' ? info.article2Score : ''}}</td>
+								</tr>
+								<tr>
+									<th>Pronunciation</th>
+									<td>{{info.article3Level == 'Lv1' ? info.article3Score : ''}}</td>
+									<td>{{info.article3Level == 'Lv2' ? info.article3Score : ''}}</td>
+									<td>{{info.article3Level == 'Lv3' ? info.article3Score : ''}}</td>
+									<td>{{info.article3Level == 'Lv4' ? info.article3Score : ''}}</td>
+									<td>{{info.article3Level == 'Lv5' ? info.article3Score : ''}}</td>
+									<td>{{info.article3Level == 'Lv6' ? info.article3Score : ''}}</td>
+									<td>{{info.article3Level == 'Lv7' ? info.article3Score : ''}}</td>
+									<td>{{info.article3Level == 'Lv8' ? info.article3Score : ''}}</td>
+									<td>{{info.article3Level == 'Lv9' ? info.article3Score : ''}}</td>
+									<td>{{info.article3Level == 'Lv10' ? info.article3Score : ''}}</td>
+									<td>{{info.article3Level == 'Lv11' ? info.article3Score : ''}}</td>
+									<td>{{info.article3Level == 'Lv12' ? info.article3Score : ''}}</td>
+								</tr>
+								<tr>
+									<th>Vocabulary</th>
+									<td>{{info.article4Level == 'Lv1' ? info.article4Score : ''}}</td>
+									<td>{{info.article4Level == 'Lv2' ? info.article4Score : ''}}</td>
+									<td>{{info.article4Level == 'Lv3' ? info.article4Score : ''}}</td>
+									<td>{{info.article4Level == 'Lv4' ? info.article4Score : ''}}</td>
+									<td>{{info.article4Level == 'Lv5' ? info.article4Score : ''}}</td>
+									<td>{{info.article4Level == 'Lv6' ? info.article4Score : ''}}</td>
+									<td>{{info.article4Level == 'Lv7' ? info.article4Score : ''}}</td>
+									<td>{{info.article4Level == 'Lv8' ? info.article4Score : ''}}</td>
+									<td>{{info.article4Level == 'Lv9' ? info.article4Score : ''}}</td>
+									<td>{{info.article4Level == 'Lv10' ? info.article4Score : ''}}</td>
+									<td>{{info.article4Level == 'Lv11' ? info.article4Score : ''}}</td>
+									<td>{{info.article4Level == 'Lv12' ? info.article4Score : ''}}</td>
+								</tr>
+								<tr>
+									<th>Grammar</th>
+									<td>{{info.article5Level == 'Lv1' ? info.article5Score : ''}}</td>
+									<td>{{info.article5Level == 'Lv2' ? info.article5Score : ''}}</td>
+									<td>{{info.article5Level == 'Lv3' ? info.article5Score : ''}}</td>
+									<td>{{info.article5Level == 'Lv4' ? info.article5Score : ''}}</td>
+									<td>{{info.article5Level == 'Lv5' ? info.article5Score : ''}}</td>
+									<td>{{info.article5Level == 'Lv6' ? info.article5Score : ''}}</td>
+									<td>{{info.article5Level == 'Lv7' ? info.article5Score : ''}}</td>
+									<td>{{info.article5Level == 'Lv8' ? info.article5Score : ''}}</td>
+									<td>{{info.article5Level == 'Lv9' ? info.article5Score : ''}}</td>
+									<td>{{info.article5Level == 'Lv10' ? info.article5Score : ''}}</td>
+									<td>{{info.article5Level == 'Lv11' ? info.article5Score : ''}}</td>
+									<td>{{info.article5Level == 'Lv12' ? info.article5Score : ''}}</td>
+								</tr>
+			        		</tbody>
+			        		<tfoot>
+			        			<tr class="active">
+			        				<td colspan="5">
+			        					<p class="tt text-left">Comment</p>
+					        			<p class="primary text-thin text-left">{{info.cnts}}</p>
+			        				</td>
+			        				<td colspan="4">
+			        					<p class="tt text-left">Weak Points</p>
+					        			<p class="primary text-thin text-left">{{info.weakPoints}}</p>
+			        				</td>
+			        				<td colspan="4">
+			        					<p class="tt text-left">Action Plan</p>
+					        			<p class="primary text-thin text-left">{{info.actionPlan}}</p>
+			        				</td>
+			        			</tr>
+			        		</tfoot>
+			      		</table>
+			      		
+			      		<table class="table table-test center_align m-b-none" ng-if="info.tpCd == 'TOEIC'">
+			        		<thead>
+					            <tr class="active">            
+						            <th>Average Score</th>
+						            <th colspan="100%"><span class="primary">{{info.avgScore}}</span></th>
+					            </tr>
+<!-- 					            <tr class="active">            
+						            <th>Level</th>
+						            <th colspan="100%"><span class="primary">A2</span></th>
+					            </tr> -->
+			          			<tr class="active">
+			            			<th rowspan="2">Level</th>
+			            			<th colspan="2">입문</th>
+			            			<th colspan="2">초급</th>
+			            			<th colspan="2">중급</th>
+			            			<th colspan="2">고급</th>
+			          			</tr>
+								<tr class="active">
+									<th>Lv.1</th>
+									<th>Lv.2</th>
+									<th>Lv.3</th>
+									<th>Lv.4</th>
+									<th>Lv.5</th>
+									<th>Lv.6</th>
+									<th>Lv.7</th>
+									<th>Lv.8</th>
+								</tr>
+								<tr class="active">
+									<th>Score</th>
+									<th>0~295</th>
+									<th>300~395</th>
+									<th>400~495</th>
+									<th>500~595</th>
+									<th>600~695</th>
+									<th>700~795</th>
+									<th>800~895</th>
+									<th>900~990</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active">
+									<th>L/C</th>
+									<td>{{info.article1Level == 'LV.1' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == 'LV.2' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == 'LV.3' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == 'LV.4' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == 'LV.5' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == 'LV.6' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == 'LV.7' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == 'LV.8' ? info.article1Score : ''}}</td>
+								</tr>
+								<tr class="active">
+									<th>R/C</th>
+									<td>{{info.article2Level == 'LV.1' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == 'LV.2' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == 'LV.3' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == 'LV.4' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == 'LV.5' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == 'LV.6' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == 'LV.7' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == 'LV.8' ? info.article2Score : ''}}</td>
+								</tr>
+			        		</tbody>
+			      		</table>
+			
+			      		<table class="table table-test center_align m-b-none" ng-if="info.tpCd == 'TOEICS'">
+			        		<thead>
+					            <tr class="active">            
+						            <th>Average Score</th>
+						            <th colspan="100%"><span class="primary">{{info.avgScore}}</span></th>
+					            </tr>
+			          			<tr class="active">
+			            			<th rowspan="2">Level</th>
+			            			<th colspan="2">입문</th>
+			            			<th colspan="2">초급</th>
+			            			<th colspan="2">중급</th>
+			            			<th colspan="2">고급</th>
+			          			</tr>
+								<tr class="active">
+									<th>Lv.1</th>
+									<th>Lv.2</th>
+									<th>Lv.3</th>
+									<th>Lv.4</th>
+									<th>Lv.5</th>
+									<th>Lv.6</th>
+									<th>Lv.7</th>
+									<th>Lv.8</th>
+								</tr>
+								<tr class="active">
+									<th>Score</th>
+									<th>0~30</th>
+									<th>40~50</th>
+									<th>60~70</th>
+									<th>80~100</th>
+									<th>110~120</th>
+									<th>130~150</th>
+									<th>160~180</th>
+									<th>190~200</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active">
+									<th>Pronunciation</th>
+									<td>{{info.article1Level == 'LV.1' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == 'LV.2' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == 'LV.3' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == 'LV.4' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == 'LV.5' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == 'LV.6' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == 'LV.7' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == 'LV.8' ? info.article1Score : ''}}</td>
+								</tr>
+								<tr class="active">
+									<th>Intonation and Stress</th>
+									<td>{{info.article2Level == 'LV.1' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == 'LV.2' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == 'LV.3' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == 'LV.4' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == 'LV.5' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == 'LV.6' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == 'LV.7' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == 'LV.8' ? info.article2Score : ''}}</td>
+								</tr>
+								<tr class="active">
+									<th>Grammar</th>
+									<td>{{info.article3Level == 'LV.1' ? info.article3Score : ''}}</td>
+									<td>{{info.article3Level == 'LV.2' ? info.article3Score : ''}}</td>
+									<td>{{info.article3Level == 'LV.3' ? info.article3Score : ''}}</td>
+									<td>{{info.article3Level == 'LV.4' ? info.article3Score : ''}}</td>
+									<td>{{info.article3Level == 'LV.5' ? info.article3Score : ''}}</td>
+									<td>{{info.article3Level == 'LV.6' ? info.article3Score : ''}}</td>
+									<td>{{info.article3Level == 'LV.7' ? info.article3Score : ''}}</td>
+									<td>{{info.article3Level == 'LV.8' ? info.article3Score : ''}}</td>
+								</tr>
+								<tr class="active">
+									<th>Vocabulary and Cohesion</th>
+									<td>{{info.article4Level == 'LV.1' ? info.article4Score : ''}}</td>
+									<td>{{info.article4Level == 'LV.2' ? info.article4Score : ''}}</td>
+									<td>{{info.article4Level == 'LV.3' ? info.article4Score : ''}}</td>
+									<td>{{info.article4Level == 'LV.4' ? info.article4Score : ''}}</td>
+									<td>{{info.article4Level == 'LV.5' ? info.article4Score : ''}}</td>
+									<td>{{info.article4Level == 'LV.6' ? info.article4Score : ''}}</td>
+									<td>{{info.article4Level == 'LV.7' ? info.article4Score : ''}}</td>
+									<td>{{info.article4Level == 'LV.8' ? info.article4Score : ''}}</td>
+								</tr>
+								<tr class="active">
+									<th>Relevance of content and Completeness of content</th>
+									<td>{{info.article5Level == 'LV.1' ? info.article5Score : ''}}</td>
+									<td>{{info.article5Level == 'LV.2' ? info.article5Score : ''}}</td>
+									<td>{{info.article5Level == 'LV.3' ? info.article5Score : ''}}</td>
+									<td>{{info.article5Level == 'LV.4' ? info.article5Score : ''}}</td>
+									<td>{{info.article5Level == 'LV.5' ? info.article5Score : ''}}</td>
+									<td>{{info.article5Level == 'LV.6' ? info.article5Score : ''}}</td>
+									<td>{{info.article5Level == 'LV.7' ? info.article5Score : ''}}</td>
+									<td>{{info.article5Level == 'LV.8' ? info.article5Score : ''}}</td>
+								</tr>
+			        		</tbody>
+			      		</table>
+			
+			      		<table class="table table-test center_align m-b-none" ng-if="info.tpCd == 'OPIC'">
+			        		<thead>
+					            <tr class="active">            
+						            <th>Average Score</th>
+						            <th colspan="100%"><span class="primary">{{info.avgScore}}</span></th>
+					            </tr>
+			          			<tr class="active">
+			            			<th rowspan="2">Level</th>
+			            			<th colspan="3">입문</th>
+			            			<th colspan="3">초중급</th>
+			            			<th>고급</th>
+			          			</tr>
+								<tr class="active">
+									<th>7급</th>
+									<th>6급</th>
+									<th>5급</th>
+									<th>4급</th>
+									<th>3급</th>
+									<th>2급</th>
+									<th>1급</th>
+								</tr>
+								<tr class="active">
+									<th>Level</th>
+									<th>NL</th>
+									<th>NM</th>
+									<th>NH</th>
+									<th>IL</th>
+									<th>IM</th>
+									<th>IH</th>
+									<th>AL</th>
+								</tr>
+								<tr class="active">
+									<th>Score</th>
+									<th>1~5</th>
+									<th>6~20</th>
+									<th>21~40</th>
+									<th>41~60</th>
+									<th>61~70</th>
+									<th>71~80</th>
+									<th>81~100</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td class="active">Language control</td>
+									<td>{{info.article1Level == 'NL' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == 'NM' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == 'NH' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == 'IL' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == 'IM' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == 'IH' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == 'AL' ? info.article1Score : ''}}</td>
+								</tr>
+								<tr>
+									<td class="active">Function,Global Tasks</td>
+									<td>{{info.article2Level == 'NL' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == 'NM' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == 'NH' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == 'IL' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == 'IM' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == 'IH' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == 'AL' ? info.article2Score : ''}}</td>
+								</tr>
+								<tr>
+									<td class="active">Text Type</td>
+									<td>{{info.article3Level == 'NL' ? info.article3Score : ''}}</td>
+									<td>{{info.article3Level == 'NM' ? info.article3Score : ''}}</td>
+									<td>{{info.article3Level == 'NH' ? info.article3Score : ''}}</td>
+									<td>{{info.article3Level == 'IL' ? info.article3Score : ''}}</td>
+									<td>{{info.article3Level == 'IM' ? info.article3Score : ''}}</td>
+									<td>{{info.article3Level == 'IH' ? info.article3Score : ''}}</td>
+									<td>{{info.article3Level == 'AL' ? info.article3Score : ''}}</td>
+								</tr>
+								<tr>
+									<td class="active">Contents Context</td>
+									<td>{{info.article4Level == 'NL' ? info.article4Score : ''}}</td>
+									<td>{{info.article4Level == 'NM' ? info.article4Score : ''}}</td>
+									<td>{{info.article4Level == 'NH' ? info.article4Score : ''}}</td>
+									<td>{{info.article4Level == 'IL' ? info.article4Score : ''}}</td>
+									<td>{{info.article4Level == 'IM' ? info.article4Score : ''}}</td>
+									<td>{{info.article4Level == 'IH' ? info.article4Score : ''}}</td>
+									<td>{{info.article4Level == 'AL' ? info.article4Score : ''}}</td>
+								</tr>
+								<tr>
+									<td class="active">Comprehensibility</td>
+									<td>{{info.article5Level == 'NL' ? info.article5Score : ''}}</td>
+									<td>{{info.article5Level == 'NM' ? info.article5Score : ''}}</td>
+									<td>{{info.article5Level == 'NH' ? info.article5Score : ''}}</td>
+									<td>{{info.article5Level == 'IL' ? info.article5Score : ''}}</td>
+									<td>{{info.article5Level == 'IM' ? info.article5Score : ''}}</td>
+									<td>{{info.article5Level == 'IH' ? info.article5Score : ''}}</td>
+									<td>{{info.article5Level == 'AL' ? info.article5Score : ''}}</td>
+								</tr>
+			        		</tbody>
+			      		</table>
+			
+			      		<table class="table table-test center_align m-b-none" ng-if="info.tpCd == 'HSK'">
+			        		<thead>
+					            <tr class="active">            
+						            <th>Average Score</th>
+						            <th colspan="100%"><span class="primary">{{info.avgScore}}</span></th>
+					            </tr>
+			          			<tr class="active">
+			            			<th rowspan="2">Level</th>
+			            			<th colspan="2">초급</th>
+			            			<th colspan="2">중급</th>
+			            			<th colspan="2">고급</th>
+			          			</tr>
+								<tr class="active">
+									<th>1급</th>
+									<th>2급</th>
+									<th>3급</th>
+									<th>4급</th>
+									<th>5급</th>
+									<th>6급</th>
+								</tr>
+								<tr class="active">
+									<th>Score</th>
+									<th>0~30</th>
+									<th>31~50</th>
+									<th>51~70</th>
+									<th>71~80</th>
+									<th>81~90</th>
+									<th>91~100</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active">
+									<th>Listening</th>
+									<td>{{info.article1Level == '1급' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == '2급' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == '3급' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == '4급' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == '5급' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == '6급' ? info.article1Score : ''}}</td>
+								</tr>
+								<tr class="active">
+									<th>Reading</th>
+									<td>{{info.article2Level == '1급' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == '2급' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == '3급' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == '4급' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == '5급' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == '6급' ? info.article2Score : ''}}</td>
+								</tr>
+								<tr class="active">
+									<th>Writing</th>
+									<td>{{info.article3Level == '1급' ? info.article3Score : ''}}</td>
+									<td>{{info.article3Level == '2급' ? info.article3Score : ''}}</td>
+									<td>{{info.article3Level == '3급' ? info.article3Score : ''}}</td>
+									<td>{{info.article3Level == '4급' ? info.article3Score : ''}}</td>
+									<td>{{info.article3Level == '5급' ? info.article3Score : ''}}</td>
+									<td>{{info.article3Level == '6급' ? info.article3Score : ''}}</td>
+								</tr>
+			        		</tbody>
+			      		</table>
+			
+			      		<table class="table table-test center_align m-b-none" ng-if="info.tpCd == 'JLPT'">
+			        		<thead>
+					            <tr class="active">            
+						            <th>Average Score</th>
+						            <th colspan="100%"><span class="primary">{{info.avgScore}}</span></th>
+					            </tr>
+			          			<tr class="active">
+			            			<th rowspan="2">Level</th>
+			            			<th colspan="2">초급</th>
+			            			<th colspan="2">중급</th>
+			            			<th>고급</th>
+			          			</tr>
+								<tr class="active">
+									<th>N5</th>
+									<th>N4</th>
+									<th>N3</th>
+									<th>N2</th>
+									<th>N1</th>
+								</tr>
+								<tr class="active">
+									<th>Score</th>
+									<th>0~30</th>
+									<th>31~50</th>
+									<th>51~70</th>
+									<th>71~90</th>
+									<th>91~100</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active">
+									<th>Language Knowledge</th>
+									<td>{{info.article1Level == 'N5' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == 'N4' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == 'N3' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == 'N2' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == 'N1' ? info.article1Score : ''}}</td>
+								</tr>
+								<tr class="active">
+									<th>Reading</th>
+									<td>{{info.article2Level == 'N5' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == 'N4' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == 'N3' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == 'N2' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == 'N1' ? info.article2Score : ''}}</td>
+								</tr>
+								<tr class="active">
+									<th>Listening</th>
+									<td>{{info.article3Level == 'N5' ? info.article3Score : ''}}</td>
+									<td>{{info.article3Level == 'N4' ? info.article3Score : ''}}</td>
+									<td>{{info.article3Level == 'N3' ? info.article3Score : ''}}</td>
+									<td>{{info.article3Level == 'N2' ? info.article3Score : ''}}</td>
+									<td>{{info.article3Level == 'N1' ? info.article3Score : ''}}</td>
+								</tr>
+			        		</tbody>
+			      		</table>
+			
+				        <table class="table table-test center_align m-b-none" ng-if="info.tpCd == 'FLEX'">
+			        		<thead>
+					            <tr class="active">            
+						            <th>Average Score</th>
+						            <th colspan="100%"><span class="primary">{{info.avgScore}}</span></th>
+					            </tr>
+			          			<tr class="active">
+			            			<th rowspan="2">Level</th>
+			            			<th colspan="3">초급</th>
+			            			<th colspan="3">중급</th>
+			            			<th colspan="3">고급</th>
+			          			</tr>
+								<tr class="active">
+									<th>3C</th>
+									<th>3B</th>
+									<th>3A</th>
+									<th>2C</th>
+									<th>2B</th>
+									<th>2A</th>
+									<th>1C</th>
+									<th>1B</th>
+									<th>1A</th>
+								</tr>
+								<tr class="active">
+									<th>Score</th>
+									<th>325~425</th>
+									<th>426~525</th>
+									<th>526~625</th>
+									<th>626~700</th>
+									<th>701~775</th>
+									<th>776~850</th>
+									<th>851~900</th>
+									<th>901~950</th>
+									<th>951~1000</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active">
+									<th>Listening & Reading</th>
+									<td>{{info.article1Level == '3C' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == '3B' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == '3A' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == '2C' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == '2B' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == '2A' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == '1C' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == '1B' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == '1A' ? info.article1Score : ''}}</td>
+								</tr>
+							</tbody>
+							<thead>
+			          			<tr class="active">
+			            			<th rowspan="2">Level</th>
+			            			<th colspan="3">초급</th>
+			            			<th colspan="3">중급</th>
+			            			<th colspan="3">고급</th>
+			          			</tr>
+								<tr class="active">
+									<th>3C</th>
+									<th>3B</th>
+									<th>3A</th>
+									<th>2C</th>
+									<th>2B</th>
+									<th>2A</th>
+									<th>1C</th>
+									<th>1B</th>
+									<th>1A</th>
+								</tr>
+								<tr class="active">
+									<th>Score</th>
+									<th>110~129</th>
+									<th>130~149</th>
+									<th>150~169</th>
+									<th>170~184</th>
+									<th>185~199</th>
+									<th>200~214</th>
+									<th>215~226</th>
+									<th>227~238</th>
+									<th>239~250</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active">
+									<th>Writing</th>
+									<td>{{info.article2Level == '3C' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == '3B' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == '3A' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == '2C' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == '2B' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == '2A' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == '1C' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == '1B' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == '1A' ? info.article2Score : ''}}</td>
+								</tr>
+								<tr class="active">
+									<th>Speaking</th>
+									<td>{{info.article3Level == '3C' ? info.article3Score : ''}}</td>
+									<td>{{info.article3Level == '3B' ? info.article3Score : ''}}</td>
+									<td>{{info.article3Level == '3A' ? info.article3Score : ''}}</td>
+									<td>{{info.article3Level == '2C' ? info.article3Score : ''}}</td>
+									<td>{{info.article3Level == '2B' ? info.article3Score : ''}}</td>
+									<td>{{info.article3Level == '2A' ? info.article3Score : ''}}</td>
+									<td>{{info.article3Level == '1C' ? info.article3Score : ''}}</td>
+									<td>{{info.article3Level == '1B' ? info.article3Score : ''}}</td>
+									<td>{{info.article3Level == '1A' ? info.article3Score : ''}}</td>
+								</tr>
+			        		</tbody>
+			      		</table>
+			
+				        <table class="table table-test center_align m-b-none" ng-if="info.tpCd == 'OPI'">
+			        		<thead>
+					            <tr class="active">            
+						            <th>Average Score</th>
+						            <th colspan="100%"><span class="primary">{{info.avgScore}}</span></th>
+					            </tr>
+			          			<tr class="active">
+			            			<th rowspan="2">Level</th>
+			            			<th colspan="2">입문</th>
+			            			<th colspan="3">초급</th>
+			            			<th colspan="3">중급</th>
+			            			<th colspan="2">고급</th>
+			          			</tr>
+								<tr class="active">
+									<th>1~4</th>
+									<th>5~20</th>
+									<th>21~30</th>
+									<th>31~40</th>
+									<th>41~50</th>
+									<th>51~60</th>
+									<th>61~70</th>
+									<th>71~80</th>
+									<th>81~90</th>
+									<th>91~100</th>
+								</tr>
+								<tr class="active">
+									<th>Level</th>
+									<th>NL</th>
+									<th>NM</th>
+									<th>NH</th>
+									<th>IL</th>
+									<th>IM</th>
+									<th>IH</th>
+									<th>AL</th>
+									<th>AM</th>
+									<th>AH</th>
+									<th>S</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th>Language control</th>
+									<td>{{info.article1Level == 'NL' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == 'NM' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == 'NH' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == 'IL' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == 'IM' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == 'IH' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == 'AL' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == 'AM' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == 'AH' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == 'S' ? info.article1Score : ''}}</td>
+								</tr>
+								<tr>
+									<th>Function,Global Tasks</th>
+									<td>{{info.article2Level == 'NL' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == 'NM' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == 'NH' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == 'IL' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == 'IM' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == 'IH' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == 'AL' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == 'AM' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == 'AH' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == 'S' ? info.article2Score : ''}}</td>
+								</tr>
+								<tr>
+									<th>Text Type</th>
+									<td>{{info.article3Level == 'NL' ? info.article3Score : ''}}</td>
+									<td>{{info.article3Level == 'NM' ? info.article3Score : ''}}</td>
+									<td>{{info.article3Level == 'NH' ? info.article3Score : ''}}</td>
+									<td>{{info.article3Level == 'IL' ? info.article3Score : ''}}</td>
+									<td>{{info.article3Level == 'IM' ? info.article3Score : ''}}</td>
+									<td>{{info.article3Level == 'IH' ? info.article3Score : ''}}</td>
+									<td>{{info.article3Level == 'AL' ? info.article3Score : ''}}</td>
+									<td>{{info.article3Level == 'AM' ? info.article3Score : ''}}</td>
+									<td>{{info.article3Level == 'AH' ? info.article3Score : ''}}</td>
+									<td>{{info.article3Level == 'S' ? info.article3Score : ''}}</td>
+								</tr>
+								<tr>
+									<th>Contents Context</th>
+									<td>{{info.article4Level == 'NL' ? info.article4Score : ''}}</td>
+									<td>{{info.article4Level == 'NM' ? info.article4Score : ''}}</td>
+									<td>{{info.article4Level == 'NH' ? info.article4Score : ''}}</td>
+									<td>{{info.article4Level == 'IL' ? info.article4Score : ''}}</td>
+									<td>{{info.article4Level == 'IM' ? info.article4Score : ''}}</td>
+									<td>{{info.article4Level == 'IH' ? info.article4Score : ''}}</td>
+									<td>{{info.article4Level == 'AL' ? info.article4Score : ''}}</td>
+									<td>{{info.article4Level == 'AM' ? info.article4Score : ''}}</td>
+									<td>{{info.article4Level == 'AH' ? info.article4Score : ''}}</td>
+									<td>{{info.article4Level == 'S' ? info.article4Score : ''}}</td>
+								</tr>
+								<tr>
+									<th>Comprehensibility</th>
+									<td>{{info.article5Level == 'NL' ? info.article5Score : ''}}</td>
+									<td>{{info.article5Level == 'NM' ? info.article5Score : ''}}</td>
+									<td>{{info.article5Level == 'NH' ? info.article5Score : ''}}</td>
+									<td>{{info.article5Level == 'IL' ? info.article5Score : ''}}</td>
+									<td>{{info.article5Level == 'IM' ? info.article5Score : ''}}</td>
+									<td>{{info.article5Level == 'IH' ? info.article5Score : ''}}</td>
+									<td>{{info.article5Level == 'AL' ? info.article5Score : ''}}</td>
+									<td>{{info.article5Level == 'AM' ? info.article5Score : ''}}</td>
+									<td>{{info.article5Level == 'AH' ? info.article5Score : ''}}</td>
+									<td>{{info.article5Level == 'S' ? info.article5Score : ''}}</td>
+								</tr>
+			        		</tbody>
+			      		</table>
+			
+				        <table class="table table-test center_align m-b-none" ng-if="info.tpCd == 'CILS'">
+			        		<thead>
+					            <tr class="active">            
+						            <th>Average Score</th>
+						            <th colspan="100%"><span class="primary">{{info.avgScore}}</span></th>
+					            </tr>
+			          			<tr class="active">
+			            			<th rowspan="2">Level</th>
+			            			<th colspan="2">초급</th>
+			            			<th colspan="2">중급</th>
+			            			<th colspan="2">고급</th>
+			          			</tr>
+								<tr class="active">
+									<th>Lv.1</th>
+									<th>Lv.2</th>
+									<th>Lv.3</th>
+									<th>Lv.4</th>
+									<th>Lv.5</th>
+									<th>Lv.6</th>
+								</tr>
+								<tr class="active">
+									<th>Level</th>
+									<th>A1</th>
+									<th>A2</th>
+									<th>B1</th>
+									<th>B2</th>
+									<th>C1</th>
+									<th>C2</th>
+								</tr>
+								<tr class="active">
+									<th>Score</th>
+									<th>0~100</th>
+									<th>0~100</th>
+									<th>0~100</th>
+									<th>0~100</th>
+									<th>0~100</th>
+									<th>0~100</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th>Speaking</th>
+									<td>{{info.article1Level == 'A1' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == 'A2' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == 'B1' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == 'B2' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == 'C1' ? info.article1Score : ''}}</td>
+									<td>{{info.article1Level == 'C2' ? info.article1Score : ''}}</td>
+								</tr>
+								<tr>
+									<th>Listening</th>
+									<td>{{info.article2Level == 'A1' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == 'A2' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == 'B1' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == 'B2' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == 'C1' ? info.article2Score : ''}}</td>
+									<td>{{info.article2Level == 'C2' ? info.article2Score : ''}}</td>
+								</tr>
+								<tr>
+									<th>Reading</th>
+									<td>{{info.article3Level == 'A1' ? info.article3Score : ''}}</td>
+									<td>{{info.article3Level == 'A2' ? info.article3Score : ''}}</td>
+									<td>{{info.article3Level == 'B1' ? info.article3Score : ''}}</td>
+									<td>{{info.article3Level == 'B2' ? info.article3Score : ''}}</td>
+									<td>{{info.article3Level == 'C1' ? info.article3Score : ''}}</td>
+									<td>{{info.article3Level == 'C2' ? info.article3Score : ''}}</td>
+								</tr>
+								<tr>
+									<th>Writing</th>
+									<td>{{info.article4Level == 'A1' ? info.article4Score : ''}}</td>
+									<td>{{info.article4Level == 'A2' ? info.article4Score : ''}}</td>
+									<td>{{info.article4Level == 'B1' ? info.article4Score : ''}}</td>
+									<td>{{info.article4Level == 'B2' ? info.article4Score : ''}}</td>
+									<td>{{info.article4Level == 'C1' ? info.article4Score : ''}}</td>
+									<td>{{info.article4Level == 'C2' ? info.article4Score : ''}}</td>
+								</tr>
+								<tr>
+									<th>Grammar</th>
+									<td>{{info.article5Level == 'A1' ? info.article5Score : ''}}</td>
+									<td>{{info.article5Level == 'A2' ? info.article5Score : ''}}</td>
+									<td>{{info.article5Level == 'B1' ? info.article5Score : ''}}</td>
+									<td>{{info.article5Level == 'B2' ? info.article5Score : ''}}</td>
+									<td>{{info.article5Level == 'C1' ? info.article5Score : ''}}</td>
+									<td>{{info.article5Level == 'C2' ? info.article5Score : ''}}</td>
+								</tr>
+			        		</tbody>
+			      		</table>
+			      		<div class="wrapper bg-gray" ng-if="info.tpCd != null && info.tpCd != 'Business'">
+					      	<div class="padder">
+					    		<p class="tt">Comment</p>
+					        	<p class="text-thin">{{info.cnts}}</p>
+					    	</div>
+				    	</div>
+					</div>
+      			</div>
+    		</div>
+        <!----pc용 테이블 e---->
+        </div>
+</div>
+		<!-- 모바일 s -->
+        <div class="wrapper bg-gray hidden-md hidden-lg" ng-if="info.tpCd != null && info.tpCd != 'Business'">
+          <div class="padder">
+          <p class="tt">Comment</p>
+          <p class="primary text-thin">{{info.cnts}}</p>
+          </div>      
+        </div>
+        <div class="wrapper bg-gray hidden-md hidden-lg" ng-if="info.tpCd != null && info.tpCd == 'Business'">
+			<div class="padder">
+	    		<p class="tt">Comment</p>
+	        	<p class="text-thin">{{info.cnts}}</p>
+	    	</div>
+	    	<div class="padder">
+	    		<p class="tt">Weak Points</p>
+	        	<p class="text-thin">{{info.weakPoints}}</p>
+	    	</div>      
+	    	<div class="padder">
+	    		<p class="tt">Action Plan</p>
+	        	<p class="text-thin">{{info.actionPlan}}</p>
+	    	</div>      
+	    </div>
+	    <!-- 모바일 e -->
+</div>
+    
+    <!--로고 hide , back button show--->
+<script>
+    $(document).ready(function(){
+        $('.app').addClass('back')
+    })
+</script>
+<script>
+    $(document).ready(function(){
+        $('.app-content-body').addClass('bg-gray');
+        $('.app').addClass('bg-gray');
+        $('.app').addClass('back');
+    })
+</script>

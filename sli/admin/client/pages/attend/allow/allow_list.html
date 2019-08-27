@@ -1,0 +1,188 @@
+
+  	<div class="app-content-body" ng-controller="AllowController" ng-init="init()">
+<div class="wrapper-md">
+  <div class="panel panel-default">
+    <div class="panel-heading font-bold">
+      출석인정신청관리
+    </div>
+    <div class="panel-body">
+      <form class="form-horizontal ng-pristine ng-valid" method="get">
+          <div class="form-group b-n">
+          <label class="col-sm-1 control-label">고객사명</label>
+          <div class="col-sm-2">
+            <select name="account" class="form-control input-sm"
+            	ng-model="seclec_company_list"
+            	ng-options="seclec_company_list.cpCd as seclec_company_list.compNm for  seclec_company_list in company_list"
+            	ng-change="myFunc()">
+              <option value="">전체</option>
+            </select>
+          </div>
+          <label class="col-sm-1 col-sm-offset-1 control-label">담당 강사</label>
+          <div class="col-sm-2">
+            <select name="account" class="form-control input-sm"
+            	ng-model="select_teacher_list"
+            	ng-options="select_teacher_list.tcCd as select_teacher_list.userName for select_teacher_list in teacher_list"
+            	ng-change="myFunc()">
+              	<option value="">전체</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group b-n">
+          <label class="col-sm-1 control-label">인정일자</label>
+          <div class="col-sm-4 no-padder-left">
+            <div class="col-sm-4 no-padder-right">
+            <div class="input-group input-group-sm m-t-xs date dateStr">
+                  <input type="text" class="form-control" ng-model="shStartDt" style="min-width:78px;">
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-calendar"></i></button>
+                  </span>
+                </div>
+            </div>
+            <label class="control-label col-sm-1 text-center">─</label>
+            <div class="col-sm-4 no-padder">
+            <div class="input-group input-group-sm m-t-xs date dateEnd">
+                  <input type="text" class="form-control" ng-model="shEndDt" style="min-width:78px;">
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-calendar"></i></button>
+                  </span>
+                </div>
+            </div>
+          </div>
+        </div>
+          <div class="form-group b-n">
+          <label class="col-sm-1 control-label">강의명</label>
+          <div class="col-sm-2">
+            <select name="account" class="form-control input-sm"
+            	ng-model="select_lectur_list" ng-change="setStartEndDt()"
+            	ng-options="select_lectur_list.ltCd as select_lectur_list.lectureNm for select_lectur_list in lectur_list">
+              <option value="">전체</option>
+            </select>
+          </div>
+          <label class="col-sm-1 col-sm-offset-1 control-label">처리상태</label>
+          <div class="col-sm-2">
+            <select name="account" class="form-control input-sm"
+            	ng-model="select_approve_flag">
+              	<option value="">전체</option>
+              	<option value="N">미처리</option>
+              	<option value="S">승인</option>
+              	<option value="R">반려</option>
+            </select>
+          </div>
+        </div>
+      </form>
+    </div>
+      <div class="panel-footer">
+          <div class="row">
+            <button type="submit" class="btn btn-dark pull-right btn-m" ng-click="getAttendAbsenceList()">조회</button>        
+          </div>
+      </div>
+  </div>
+    <div class="panel panel-default">            
+    <div class="table-responsive teacher_table">
+      <table class="table b-t b-light" id="allow">
+        <thead>
+          <tr class="active">
+            <th>No</th>
+            <th>고객사명</th>
+            <th>과목</th>
+            <th>강의명</th>
+            <th>강사명</th>
+            <th>신청수강생</th>
+            <th>인정일자</th>  
+            <th>인정사유</th>
+            <th>첨부파일</th>
+            <th>승인/반려일</th>
+            <th>처리상태</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="x in attend_list">
+            <td>{{generateListNo(current_page, total_allow, $index)}}</td>
+            <td>{{x.compNm}}</td>
+            <td>{{x.subjectNmae}}</td>  
+            <td>{{x.lectureNm}}</td>
+            <td>{{x.teacherNm}}</td>
+            <td>{{x.studentNm}}</td>  
+            <td>{{x.absenceDt}}</td>  
+            <td>{{x.recognizeCdNm}}</td>
+            <td><a class="primary underline">{{x.fileUrl}}</a></td>
+            <td>{{x.approveDt}}</td>
+            <td>
+            	<span ng-if="x.approveFlag == 'R'">반려</span>
+            	<span ng-if="x.approveFlag == 'S'">승인</span>
+            	<i class="fa fa-comments" ng-if="x.approveFlag != 'N'" style="margin-left:10px" ng-click="showApproveCnts(x)"></i>
+            </td>
+            <td>                
+                <button class="btn btn-off" ng-if="x.approveFlag == 'N' || x.approveFlag == 'R'" ng-click="regApprove(x, 'S')">승인</button>
+                <button class="btn btn-add m-l-xs" ng-if="x.approveFlag == 'N' || x.approveFlag == 'S'" ng-click="regApprove(x, 'R')">반려</button>
+            </td>  
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    </div>
+    <div class="row" ng-if="total_allow > app.page_size">
+        <div class=" text-center">                
+          <ul class="pagination pagination-sm m-t-none m-b-none">
+            <li ng-click="previousPageClick()"><a href=""><i class="fa fa-chevron-left"></i></a></li>
+            <li ng-repeat="page in getRange(total_pages) track by $index" 
+						class="{{current_page == $index + 1 ? 'active' : ''}}"
+						ng-click="setCurrentPage($index + 1)"><a href="">{{$index + 1}}</a></li>
+            <li ng-click="nextPageClick()"><a href=""><i class="fa fa-chevron-right"></i></a></li>
+          </ul>
+            
+        </div>
+      </div>
+      <button type="submit" class="btn btn-border pull-right" ng-click="exportEcel()">엑셀 다운로드&nbsp; <i class="fa fa-file-excel-o"></i></button>
+</div>
+	</div>
+<script type="text/javascript">
+	$(function() {
+		$(".dateStr, .dateEnd").datepicker({
+			format : "yyyy-mm-dd",
+			autoclose: true
+		});		
+				
+		var startDt = new Date();		
+		startDt.setDate(startDt.getDate() - 14);
+		
+		$(".dateStr").datepicker('setDate', startDt);		
+		$(".dateEnd").datepicker('setDate', new Date());
+	});
+</script>
+
+<script type="text/ng-template" id="reg_approve.html">
+  	<div class="modal-header">
+    	<h4 class="text-center" ng-if="items.changeApproveFlag == 'R'">반려하시겠습니까?</h4>
+		<h4 class="text-center" ng-if="items.changeApproveFlag == 'S'">승인하시겠습니까?</h4>
+  	</div>
+  	<div class="modal-body">
+    	<table class="table">
+        	<tr>
+				<th>메모</th>
+              	<td><textarea class="form-control" required ng-model="items.approveCnts" ></textarea></td>
+          	</tr>
+      	</table>
+  	</div>
+  	<div class="modal-footer">
+    	<span class="btn btn-primary" ng-click="save()">등록</span>
+      	<span class="btn btn-default" ng-click="cancel()">취소</span>
+  	</div>
+</script>
+
+<script type="text/ng-template" id="reg_approve2.html">
+  	<div class="modal-header">
+    	<h4 class="text-center">메모</h4>
+  	</div>
+  	<div class="modal-body">
+    	<table class="table">
+        	<tr>
+              	<td style="text-align:left; border:none;"><pre>{{items.approveCnts}}</pre></td>
+          	</tr>
+      	</table>
+  	</div>
+  	<div class="modal-footer">
+      	<span class="btn btn-default" ng-click="cancel()">닫기</span>
+  	</div>
+</script>

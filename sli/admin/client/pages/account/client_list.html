@@ -1,0 +1,77 @@
+
+<div class="app-content-body" ng-controller="ClientListController" ng-init="init()">
+	<div class="wrapper-md">
+		<div class="panel panel-default">
+			<div class="panel-heading font-bold b-n">
+				청구료 정산
+				<button type="submit" class="btn btn-primary pull-right btn-m"	ui-sref="app.account.client">등록</button>
+			</div>
+		</div>
+		<div class="row">
+			<form class="form-horizontal ng-pristine ng-valid m-b-sm">
+				<div class="form-group b-n">
+					<label class="col-sm-1 control-label">정산구분</label>
+					<div class="col-sm-2 no-padder">
+           				<select name="account" class="form-control input-sm" ng-model="select_complete" ng-change="getClientFeeListCount(); getClientFeeList();">
+           					<option value="">전체</option>
+           					<option value="N">미완료</option>
+           					<option value="Y">정산완료</option>
+          				</select>
+					</div>
+				</div>
+			</form>
+		</div>
+    	<div class="panel panel-default m-b-none m-t-xl" >
+  			<table class="table table-bordered b-t b-light" id="tblCustomers">
+        		<thead>
+        			<tr class="active">            
+            			<th class="w-sm">정산 시작일</th>
+            			<th class="w-sm">정산 종료일 </th>
+            			<th class="w-sm">업체수</th>
+            			<th class="w-sm">강의수</th>
+            			<th class="w-sm">정산강의수</th>
+            			<th class="w-sm">미정산강의수</th>
+            			<th class="w-sm">등록일</th>
+            			<th class="w-sm">정산완료일</th>
+            			<th class="w-sm">상세보기</th>
+          			</tr>
+        		</thead>
+        		<tbody>
+        		<!--강의료정산 row--> 
+         			<tr ng-repeat="x in teacherFeeList">
+			            <td>{{x.startDt}}</td> 
+            			<td>{{x.endDt}}</td>
+            			<td>{{x.cpCnt | number:0}}</td> 
+            			<td>{{x.totalCnt | number:0}}</td>  
+            			<td>{{x.completeCnt | number:0}}</td>
+            			<td>{{x.totalCnt - x.completeCnt | number:0}}</td>
+            			<td>{{x.regDt}}</a></td>
+            			<td>{{x.completeDt}}</td> 
+            			<td><a class="primary underline" ui-sref="app.account.client_view({ptCd: x.ptCd})">상세보기</a></td>
+          			</tr>
+        <!--강의료정산 합산row-->
+        		</tbody>
+      		</table>
+    	</div>
+		<div class="row" ng-if="total_list > app.page_size">
+			<div class=" text-center">
+				<ul class="pagination pagination-sm m-t-none m-b-none">
+					<li ng-click="previousPageClick()"><a href=""><i class="fa fa-chevron-left"></i></a></li>
+					<li ng-repeat="page in getRange(total_pages) track by $index" 
+						class="{{current_page == $index + 1 ? 'active' : ''}}"
+						ng-click="setCurrentPage($index + 1)"><a href="">{{$index + 1}}</a></li>
+					<li ng-click="nextPageClick()"><a href=""><i class="fa fa-chevron-right"></i></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	$(document).ready(function() {
+		$(".date").datepicker({
+			format: 'yyyy-mm-dd',
+			autoclose: true
+		});
+	})
+</script>

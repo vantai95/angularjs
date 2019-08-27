@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Collections>
+    	    	
+    	<!-- CalculateList Start-->
+    	<ParameterMeta ID="startPage" IsReadOnly="false" Enable="true">
+			<RegBy>Teacher</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>NoticeInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalculateList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="endPage" IsReadOnly="false" Enable="true">
+			<RegBy>Teacher</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>NoticeInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalculateList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="tcCd" IsReadOnly="false" Enable="true">
+			<RegBy>Teacher</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Teacher</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalculateList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="stdDt" IsReadOnly="false" Enable="true">
+			<RegBy>Teacher</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Teacher</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalculateList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="endDt" IsReadOnly="false" Enable="true">
+			<RegBy>Teacher</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Teacher</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalculateList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<!-- CalculateList End-->
+    	
+    	<!-- CalculateListCnt Start-->    	
+		<ParameterMeta ID="tcCd" IsReadOnly="false" Enable="true">
+			<RegBy>Teacher</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Teacher</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalculateListCnt</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="stdDt" IsReadOnly="false" Enable="true">
+			<RegBy>Teacher</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Teacher</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalculateListCnt</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="endDt" IsReadOnly="false" Enable="true">
+			<RegBy>Teacher</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Teacher</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CalculateListCnt</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<!-- CalculateListCnt End-->
+    	
+    </Collections>
+</MetaCollection>

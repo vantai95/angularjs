@@ -1,0 +1,74 @@
+<div class="app-content-body" ng-controller="SubjectListController" ng-init="init()">
+  <div class="wrapper-md" ng-view>
+    <div class="panel panel-default">
+      <div class="panel-heading font-bold b-n">
+        과목마스터
+        <button type="submit" class="btn btn-primary pull-right btn-m" ng-click="showAddMajorModal()">영역신규등록</button>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="table-responsive teacher_table">
+        <table class="table b-t b-light">
+          <thead>
+            <tr class="active">
+              <th>코드</th>
+              <th>영역</th>
+              <th>과목</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="sub in subjects ">
+              <td>{{ sub.titleCd }}</td>
+              <td>{{ sub.titleCdnm }}</td>
+              <td>{{ sub.subjectName }}</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>
+                <select 
+                class="form-control input-sm"
+                ng-model="major";
+                ng-options="item as item.codeName1 for item in majors "
+                >
+                <option value="">영역선택</option>
+                </select>
+              </td>
+              <td>
+                <div class="w-md m-auto">
+                  <div class="col-sm-8">
+                    <input class="form-control input"  ng-model="subject.subjectName" value="" type="text" maxlength="50" placeholder="과목명">
+                  </div>
+                  <div class="col-sm-4 no-padder">
+                    <button type="submit"  ng-click="addSubject()" class="btn btn-primary m-t-xs">과목추가</button>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/ng-template" id="addMajor_modal.html">
+  <div class="modal-header">
+      <h4 class="text-center">영역 신규 등록</h4>
+  </div>
+  <div class="modal-body">
+      <table class="table">
+          <tr>
+              <input class="form-control input"  required ng-model="majorNew" type="text" maxLength="50" placeholder="영역 명">
+          </tr>
+      </table>
+  </div>
+  <div class="modal-footer">
+      <span class="btn btn-primary" ng-click="addMajor()">등록</span>
+      <span class="btn btn-default" ng-click="cancel()">취소</span>
+  </div>
+</script>
+
+<style>
+  .modal-dialog {
+    width: 360px;
+  }
+</style>

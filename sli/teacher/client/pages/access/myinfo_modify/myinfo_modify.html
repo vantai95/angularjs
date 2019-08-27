@@ -1,0 +1,234 @@
+<div ng-controller="MyinfoModify" ng-init="init()">
+	<div class="container signin_wrapper forgot_wrapper wrapper widthfix">
+		<div class="panel panel-default panel-devide no-shadow">
+			<div
+				class="panel-heading font-bold text-center b-n m-b-md pc-text-left">
+				<span data-langNum="21">개인정보 변경</span>
+			</div>
+			<div class="col-xs-12 col-sm-4 no-padder">
+				<div class="panel-body">
+					<form class="form-horizontal text-md">
+						<div class="form-group">
+							<div class="col-xs-4">
+								<label class=" control-label"> <span data-langNum="22">이름</span></label>
+							</div>
+							<div class="col-xs-8">
+								<label class=" control-label">
+									{{teacher_user_detail.userName}} / {{teacher_user_detail.nickName}}
+								</label>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-xs-4">
+								<label class=" control-label"> <span data-langNum="23">휴대폰번호</span></label>
+							</div>
+							<div class="col-xs-8">
+								<label class=" control-label">{{teacher_user_detail.mobile}}</label>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-xs-4">
+								<label class=" control-label"> <span data-langNum="24">아이디</span></label>
+							</div>
+							<div class="col-xs-8">
+								<label class=" control-label">
+									{{teacher_user_detail.userId}}</label>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-xs-4">
+								<label class=" control-label"> <span data-langNum="25">비밀번호</span></label>
+							</div>
+							<div class="col-xs-8">
+								<input class="form-control input-lg" type="password" style="font:normal;font-family:normal;" ng-model="teacher_user_detail.newUserPw">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-xs-4">
+								<label class=" control-label"> <span data-langNum="26">비밀번호 확인</span></label>
+							</div>
+							<div class="col-xs-8">
+								<input class="form-control input-lg" type="password" style="font:normal;font-family:normal;" ng-model="teacher_user_detail.userPw_confirm">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-xs-4">
+								<label class=" control-label"> <span data-langNum="27">성별</span></label>
+							</div>
+							<div class="col-xs-4 no-padder-right">
+								<button ng-click="teacher_user_detail.gender='M'"
+									ng-class="teacher_user_detail.gender=='M' ? 'btn-borderPrimary' : 'btn-borderDefault'"
+									class="btn btn-lg  w-full">남</button>
+							</div>
+							<div class="col-xs-4 no-padder-left">
+								<button ng-click="teacher_user_detail.gender='F'"
+									ng-class="teacher_user_detail.gender=='F' ? 'btn-borderPrimary' : 'btn-borderDefault'"
+									class="btn btn-lg w-full">여</button>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-xs-4">
+								<label class=" control-label"> <span data-langNum="28">생년월일</span></label>
+							</div>
+							<div class="col-xs-8 ">
+								<div class="col-xs-4 no-padder">
+									<input class="form-control input-lg" type="text"
+										ng-model="teacher_user_detail.year">
+								</div>
+								<div class="col-xs-4 no-padder">
+									<input class="form-control input-lg" type="text"
+										ng-model="teacher_user_detail.month">
+								</div>
+								<div class="col-xs-4 no-padder">
+									<input class="form-control input-lg" type="text"
+										ng-model="teacher_user_detail.day">
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-xs-4">
+								<label class=" control-label"> <span data-langNum="29">이메일</span></label>
+							</div>
+							<div class="col-xs-3 no-padder-right">
+								<input class="form-control input-lg" type="text"
+									ng-model="teacher_user_detail.email_name">
+							</div>
+							<div class="col-xs-1 no-padder-left">
+								<label class=" control-label"> @</label>
+							</div>
+							<div class="col-xs-4 no-padder-left">
+								<input class="form-control input-lg" type="text"
+									ng-model="teacher_user_detail.email_domain">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-xs-4">
+								<label class=" control-label"> <span data-langNum="30">계좌번호</span></label>
+							</div>
+							<div class="col-xs-8">
+								<select name="account" class="form-control input-lg"
+									ng-model="teacher_user_detail.bankCd"
+									ng-options="item.codeId as item.codeName1 for item in bank_list">
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-xs-4">
+								<label class=" control-label"> </label>
+							</div>
+							<div class="col-xs-8">
+								<input class="form-control input-lg" type="text"
+									ng-model="teacher_user_detail.bankAccount">
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-8 no-padder-right hidden-xs hidden-sm">
+				<div class="panel-body">
+					<form class="form-horizontal text-md">
+						<div class="form-group">
+							<div class="col-xs-2">
+								<label class=" control-label"> <span data-langNum="31">주소</span></label>
+							</div>
+							<div class="col-xs-4 no-padder-right">
+								<input class="form-control input-lg" type="text"
+									ng-model="teacher_user_detail.postNo" placeholder="우편번호검색" readonly ng-click="execDaumPostcode()">
+							</div>
+							<div class="col-xs-6">
+								<input class="form-control input-lg" type="text"
+									ng-model="teacher_user_detail.addr" placeholder="주소를 입력하세요" readonly ng-click="execDaumPostcode()">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-xs-2">
+								<label class=" control-label"> </label>
+							</div>
+							<div class="col-xs-10">
+								<input class="form-control input-lg" type="text"
+									ng-model="teacher_user_detail.dtlAddr">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-xs-2">
+								<label class=" control-label"> <span data-langNum="32">담당과목</span></label>
+							</div>
+							<div class="col-xs-10">
+								<select name="account" class="form-control input-lg"
+									ng-model="teacher_user_detail.subjectCd"
+									ng-options="item.sjCd as item.subjectName for item in subjects">
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-xs-2">
+								<label class=" control-label"><span data-langNum="33">강의지역</span></label>
+							</div>
+							<div class="col-xs-10 no-padder">
+								<div class="radio col-sm-12">
+									<label class="i-checks no-padder m-n"><input
+										ng-model="value_check_all" ng-change="clickCheckAll()"
+										type="checkbox"> <i class="m-n"></i> 전체 </label>&nbsp;&nbsp;(&nbsp;&nbsp;&nbsp;&nbsp;
+									<label ng-repeat="lecture_area in lecture_areas"
+										class="i-checks no-padder m-n"> <input type="checkbox"
+										ng-model="lecture_area.check" ng-change="setCheckAll()">
+										<i class="m-n"></i> {{lecture_area.codeName1}}
+									</label> )
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-xs-2">
+								<label class=" control-label"><span data-langNum="34">강사경력</span></label>
+							</div>
+							<div class="col-xs-10">								
+								<textarea class="b h-lg m-t-none" ng-model="teacher_user_detail.career"></textarea>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-xs-2">
+								<label class=" control-label"> <span data-langNum="35">강사사진</span></label>
+							</div>
+							<div class="col-xs-10">
+								<button class="btn btn-sm btn-info m-t-xs" ng-if="!files['photo'] && rvFiles.fileName == ''">
+								파일 첨부
+					                <input type="file" select-ng-files ng-model="files['photo']" ng-change="fileUpload('photo')"
+					                  style="opacity: 0; position: absolute; left: 0; width: 100px;height: 32px; top: 5px" />
+								</button>
+					            <label class="uploader" ng-if="files['photo']" ng-repeat="file in files['photo']">
+					               {{ file.name }}
+					              <button type="button" id="file" class="btn btn-xs btn-default" ng-click="files['photo'] = null;">
+					                <i class="fa fa-times primary"></i>
+					              </button>
+					            </label>					            
+					            
+					            <label class="uploader control-label m-l-none" ng-repeat="file in rvFiles" ng-if="rvFiles.fileName != ''">
+					          	  	<a href="{{file.pathUrl}}/{{file.fileName}}" target="_blank" style="max-width:135px;">{{file.originalName}}</a>
+					          	  	<button type="button" id="file" class="btn btn-xs btn-default" ng-click="rvFiles.fileName = ''">
+						               <i class="fa fa-times primary"></i>
+						            </button>
+					            </label>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row widthfix-xs m-auto m-t-xl marginBTN">
+		<div class="col-xs-6 no-padder">
+			<button type="submit" ui-sref="app.index.dashboard" class="btn btn-xl btn-dark btn-block"><span data-langNum="36">취소</span></button>
+		</div>
+		<div class="col-xs-6 no-padder">
+			<button ng-click="save()" class="btn btn-xl btn-primary btn-block"><span data-langNum="37">수정완료</span></button>
+		</div>
+	</div>
+</div>
+
+<div style="position:fixed; z-index:9; width:100%; height:100%; left:0; top:0; display:none" id="daum_wrap">
+	<div id="layer" style="z-index:9999; display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
+		<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
+	</div>
+</div>
+
+<script src="assets/js/language.js"></script>

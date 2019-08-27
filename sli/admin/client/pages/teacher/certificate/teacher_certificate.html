@@ -1,0 +1,254 @@
+
+<div class="app-content-body "
+	ng-controller="TeacherCertificationController" ng-init="init()">
+	<div class="wrapper-md">
+		<div class="panel panel-default">
+			<div class="panel-heading font-bold">증명서발급요청조회</div>
+			<div class="panel-body">
+				<form class="form-horizontal" method="get">
+					<div class="form-group b-n">
+						<label class="col-sm-1 control-label">신청일자</label>
+						<div class="col-sm-4 no-padder-left">
+							<div class="col-sm-4 no-padder-right">
+								<div class="input-group input-group-sm m-t-xs date dateStr">
+									<input type="text" class="form-control" ng-model="application_from_date" /> 
+										<span class="input-group-btn">
+										<button type="button" class="btn btn-default">
+											<i class="glyphicon glyphicon-calendar"></i>
+										</button>
+									</span>
+								</div>
+							</div>
+							<label class="control-label col-sm-1 text-center">─</label>
+							<div class="col-sm-4 no-padder">
+								<div class="input-group input-group-sm m-t-xs date dateEnd">
+									<input type="text" class="form-control" ng-model="appliation_to_date"
+										> <span
+										class="input-group-btn">
+										<button type="button" class="btn btn-default">
+											<i class="glyphicon glyphicon-calendar"></i>
+										</button>
+									</span>
+								</div>
+							</div>
+						</div>
+						<label class="col-sm-1 col-sm-offset-1 control-label">발급요청일자</label>
+						<div class="col-sm-4 no-padder-left">
+							<div class="col-sm-4 no-padder-right">
+								<div class="input-group input-group-sm m-t-xs date dateStr">
+									<input type="text" class="form-control" ng-model="request_from_date"
+										> <span
+										class="input-group-btn">
+										<button type="button" class="btn btn-default">
+											<i class="glyphicon glyphicon-calendar"></i>
+										</button>
+									</span>
+								</div>
+							</div>
+							<label class="control-label col-sm-1 text-center">─</label>
+							<div class="col-sm-4 no-padder">
+								<div class="input-group input-group-sm m-t-xs date dateEnd">
+									<input type="text" class="form-control" ng-model="request_to_date"
+										> <span
+										class="input-group-btn">
+										<button type="button" class="btn btn-default">
+											<i class="glyphicon glyphicon-calendar"></i>
+										</button>
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="form-group b-n">
+						<label class="col-sm-1 control-label">증명서 종류</label>
+						<div class="col-sm-2">
+							<select name="certificate_type" class="form-control input-sm" ng-model="selected_certificate_type" ng-options="certificate_type.codeId as certificate_type.codeName1 for certificate_type in certificate_types">
+								<option value="">전체</option>
+							</select>
+						</div>
+						<label class="col-sm-1 col-sm-offset-3 control-label">처리상태</label>
+						<div class="col-sm-2">
+							<select name="process_status" class="form-control input-sm"
+								ng-model="selected_status"
+								ng-options="status.id as status.name for status in process_statuses">
+							</select>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="panel-footer">
+				<div class="row">
+					<button type="submit" class="btn btn-dark pull-right btn-m"
+						ng-click="getCertificates(); getCertificatesCount();">조회</button>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="table-responsive teacher_table">
+				<table class="table b-t b-light" ng-if="certificates.length > 0">
+					<thead>
+						<tr class="active">
+							<th>No</th>
+							<th>신청자</th>
+							<th>종류</th>
+							<th>발급사유</th>
+							<th>신청일자</th>
+							<th>발급요청일자</th>
+							<th>처리일자</th>
+							<th colspan="2">파일</th>
+							<th>처리상태</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="certificate in certificates">
+							<td>{{generateListNo(current_page, total_cetificates, $index)}}</td>
+							<td><a class="primary underline"
+								ng-click="teacherDetailPopUp(certificate.tcCd)">{{certificate.regUserNm}}</a></td>
+							<td>{{certificate.certificateTypeNm}}</td>
+							<td>{{certificate.issueCnts}}</td>
+							<td>{{certificate.regDt | date: "yy-MM-dd"}}</td>
+							<td>{{certificate.requestDt | date: "yy-MM-dd"}}</td>
+							<td>{{certificate.issueDt | date: "yy-MM-dd"}}</td>
+							<td class="w-xxs" style="padding:0;">
+								<div class="col-sm-4" ng-if="certificate.issueYn == 'N'">
+									<button class="btn btn-sm btn-info m-t-xs">
+					                  	파일 첨부
+					                <input type="file" select-ng-files ng-model="certificateFile.proof" ng-change="fileUpload(certificate.cfaCd);"
+					                  style="opacity: 0; position: absolute; left: 0; width: 100px;height: 32px; top: 5px" />
+					              	</button>
+				              	</div>
+				              	<div class="col-sm-4" ng-if="certificate.issueYn == 'Y'">
+				              		<button class="btn btn-sm btn-border">				              		
+				              			<a href="{{certificate.pathServer}}/{{certificate.fileName}}" target="_blank">다운로드</a>
+				              		</button>
+				              	</div>
+							</td>
+							<td class="w-xxs" style="padding:0;">
+								<div class="col-sm-4" ng-if="certificate.issueYn == 'Y'">
+				              		<button class="btn btn-sm btn-danger m-t-xs" ng-click="fileDelete(certificate)">				              		
+				              			파일삭제
+				              		</button>				              		
+				              	</div>
+							</td>
+							<td>{{certificate.issueYnNm}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="row" ng-if="total_cetificates > app.page_size">
+			<div class=" text-center">
+				<ul class="pagination pagination-sm m-t-none m-b-none">
+					<li ng-click="previousPageClick()"><a href=""><i
+							class="fa fa-chevron-left"></i></a></li>
+					<li ng-repeat="page in getRange(total_pages) track by $index"
+						class="{{current_page == $index + 1 ? 'active' : ''}}"
+						ng-click="setCurrentPage($index + 1)"><a href="">{{$index
+							+ 1}}</a></li>
+					<li ng-click="nextPageClick()"><a href=""><i
+							class="fa fa-chevron-right"></i></a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="panel panel-default default_result"
+			ng-if="certificates.length == 0">
+			<p class="text-center text-lg">선택된 항목이 없습니다.</p>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$(function() {		
+		$(".dateStr, .dateEnd").datepicker({
+			format : "yyyy-mm-dd",
+			autoclose: true
+		});		
+				
+		var startDt = new Date();		
+		startDt.setDate(startDt.getDate() - 14);
+		
+		$(".dateStr").datepicker('setDate', startDt);		
+		$(".dateEnd").datepicker('setDate', new Date());
+	});
+</script>
+
+<script type="text/ng-template" id="popup">
+  <div class="popup_wrap">
+      <div class="popup_header">
+        강사 경력 정보 조회<span class="pull-right closebtn " ng-click="cancel()"><img src="assets/img/close.png" class="img-full" alt="..."></span>
+    </div>
+    <div class="popup_body">
+        <div class="heightfix-md">
+            <div class="col-sm-4">
+                <div class="clearfix hidden-xs text-center show" id="aside-user">
+      <div class="dropdown wrapper">
+        <a ui-sref="app.page.profile">
+          <span class="thumb-lg w-auto-folded avatar m-t-sm">
+            <img src="assets/img/profile.png" class="img-full" alt="profile">
+          </span>
+        </a>
+          <ul class="dropdown-menu animated fadeInRight w hidden-folded">
+                <li class="wrapper  m-t-n-xs">
+                  <span class="arrow top hidden-folded arrow"></span>
+                        <div class="dropdown_link"><a>정보수정</a> &nbsp;&nbsp; | &nbsp;&nbsp;<a>로그아웃</a></div>
+                </li>
+              </ul>
+      </div>
+    </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="table-responsive b-n">
+                  <table class="table mini-table m-b-none">
+                    <tbody>
+                      <tr>
+                        <td>강사명</td>
+                        <td>{{teacher_detail.userName}}</td>
+                      </tr>
+                      <tr>
+                        <td>생년월일</td>
+                        <td>{{teacher_detail.birthday}}</td>
+                      </tr>
+                      <tr>
+                        <td>계약일</td>
+                        <td>{{teacher_detail.contractStartDt}}</td>
+                      </tr>   
+                      <tr>
+                        <td>해촉일</td>
+                        <td>{{teacher_detail.contractEndDt}}</td>
+                      </tr>
+                      <tr>
+                        <td>경력기간</td>
+                        <td><span class="primary">{{teacher_detail.careerPeriod}}</span></td>
+                      </tr>    
+                    </tbody>
+                  </table>
+                </div>
+            </div>
+        </div>
+        <div class="row text-md no-padder-left m-b-sm">
+        <span>강의 이력</span>
+    </div>  
+        <div class="table-responsive heightmax">
+      <table class="table b-t b-light popup_table left_align">
+        <thead>
+          <tr class="active">
+            <th>강의명</th>
+            <th>고객사명</th>
+            <th>시작일</th>
+            <th>종료일</th>  
+          </tr>
+        </thead>
+        <tbody>
+		  <tr ng-repeat="lecture in lectures">
+ 			<td><a class="primary underline" ui-sref="app.subject.lecture_detail({id: lecture.ltCd})">{{lecture.lectureNm}}</a></td>
+            <td>{{lecture.cpCdNm}}</td>
+            <td>{{lecture.startDt | date: "yy-MM-dd"}}</td>
+            <td>{{lecture.endDt | date: "yy-MM-dd"}}</td> 
+		  </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    </div>  
+  </div>
+</script>

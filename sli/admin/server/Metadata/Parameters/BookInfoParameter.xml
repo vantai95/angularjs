@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Collections>
+    	<!-- BookInfoList Start-->
+    	<ParameterMeta ID="startPage" IsReadOnly="false" Enable="true">
+			<RegBy>BookInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>BookInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>BookInfoList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="endPage" IsReadOnly="false" Enable="true">
+			<RegBy>BookInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>BookInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>BookInfoList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="sjCd" IsReadOnly="false" Enable="true">
+			<RegBy>BookInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>BookInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>BookInfoList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="bookName" IsReadOnly="false" Enable="true">
+			<RegBy>BookInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>BookInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>BookInfoList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<!-- BookInfoList End-->
+    	
+    	<!-- BookInfoListCnt Start-->    	
+		<ParameterMeta ID="sjCd" IsReadOnly="false" Enable="true">
+			<RegBy>BookInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>BookInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>BookInfoListCnt</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="bookName" IsReadOnly="false" Enable="true">
+			<RegBy>BookInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>BookInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>BookInfoListCnt</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<!-- BookInfoListCnt End-->
+    	    	
+    	<!-- BookInfoDetail Start-->
+    	<ParameterMeta ID="bkCd" IsReadOnly="false" Enable="true">
+			<RegBy>BookInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>BookInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>BookInfoDetail</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>		
+    	<!-- BookInfoDetail End-->
+    	
+    	<!-- BookInfoSave Start-->    	
+    	<ParameterMeta ID="saveType" IsReadOnly="false" Enable="true">
+			<RegBy>BookInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>BookInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>BookInfoSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>    
+    	<ParameterMeta ID="bkCd" IsReadOnly="false" Enable="true">
+			<RegBy>BookInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>BookInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>BookInfoSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>    
+    	<ParameterMeta ID="titleCd" IsReadOnly="false" Enable="true">
+			<RegBy>BookInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>BookInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>BookInfoSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="sjCd" IsReadOnly="false" Enable="true">
+			<RegBy>BookInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>BookInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>BookInfoSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="bookName" IsReadOnly="false" Enable="true">
+			<RegBy>BookInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>BookInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>BookInfoSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="bookMoney" IsReadOnly="false" Enable="true">
+			<RegBy>BookInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>BookInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>BookInfoSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="publisher" IsReadOnly="false" Enable="true">
+			<RegBy>BookInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>BookInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>BookInfoSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="author" IsReadOnly="false" Enable="true">
+			<RegBy>BookInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>BookInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>BookInfoSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>		
+		<ParameterMeta ID="bookContents" IsReadOnly="false" Enable="true">
+			<RegBy>BookInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>BookInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>BookInfoSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="buyUrl" IsReadOnly="false" Enable="true">
+			<RegBy>BookInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>BookInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>BookInfoSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="regUser" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>BookInfoSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="updUser" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>BookInfoSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>		
+		<ParameterMeta ID="result" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>BookInfoSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Output</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="message" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>BookInfoSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Output</Direction>
+		</ParameterMeta>		
+    	<!-- BookInfoSave End-->
+    	
+    	<!-- BookInfoListPopup Start-->
+    	<ParameterMeta ID="sjCd" IsReadOnly="false" Enable="true">
+			<RegBy>BookInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>BookInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>BookInfoListPopup</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>    	
+    	<ParameterMeta ID="bookName" IsReadOnly="false" Enable="true">
+			<RegBy>BookInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>BookInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>BookInfoListPopup</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="updUser" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CustomerDeleteCompany</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<!-- BookInfoListPopup End-->
+
+    	<!-- GetBookInfoRelation Start-->
+    	<ParameterMeta ID="bkCd" IsReadOnly="false" Enable="true">
+			<RegBy>BookInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>BookInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>GetBookInfoRelation</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>    	
+    	<!-- GetBookInfoRelation Start-->
+    </Collections>
+</MetaCollection>

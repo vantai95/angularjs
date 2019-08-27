@@ -1,0 +1,140 @@
+
+<!-- content -->
+<div class="app-content-body" ng-controller="DataWriteController" ng-init="init()">
+	<div class="wrapper-md">
+		<div class="panel panel-default panel-devide">
+			<div class="panel-heading font-bold">자료실 신규등록</div>
+			<div class="panel-body">
+				<form class="form-horizontal" method="get">
+					<div class="form-group">						
+						<div class="col-bg col-sm-1">
+							<label class=" control-label"><span class="dot">*</span> 고객사명</label>
+						</div>
+						<div class="col-sm-3">
+							<select name="account" class="form-control input-sm"
+								ng-model="dataInfo.cpCd"
+								ng-options="item.cpCd as item.compNm for item in customer_companies"
+								ng-change="getLectureListBox()">
+								<option value="">전체</option>
+							</select>
+						</div>
+						<div class="col-bg col-sm-1">
+							<label class=" control-label"><span class="dot">*</span> 강의명</label>
+						</div>
+						<div class="col-sm-3">
+							<select name="account" class="form-control input-sm"
+								ng-model="dataInfo.ltCd"
+								ng-options="item.ltCd as item.lectureNm for item in lectures"
+								ng-change="changeCompany()">
+								<option value="">-- 고객사명을 선택해주세요. --</option>
+							</select>
+						</div>
+					</div>					
+					<div class="form-group">
+						<div class="col-bg col-sm-1">
+							<label class=" control-label"><span class="dot">*</span> 제목</label>
+						</div>
+						<div class="col-sm-11">
+							<input class="form-control input-sm" ng-model="dataInfo.dataTitle" type="text" maxlength="100">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-1">
+							<label class=" control-label">내용</label>
+						</div>
+						<div class="col-sm-11">
+							<textarea class="h-full b m-t-none" ng-model="dataInfo.dataCnts"></textarea>
+						</div>
+					</div>
+					<div class="form-group b-n">
+						<div class="col-bg col-sm-1 heightfix-md">
+							<label class=" control-label">첨부파일</label>
+						</div>
+						<div class="col-sm-11">
+				            <div class="uploader_wrap">
+				  				<label class="btn btn-sm btn-info m-t-xs" ng-if="!upload.file1">
+				                 	 파일 첨부1
+				                  <input type="file" select-ng-files ng-model="upload.file1"
+				                    style="opacity: 0; position: absolute; left: 0; width: 100px;height: 32px; top: 5px" ng-change="fileUpload(0);" />
+				                </label>
+				                <label class="uploader" ng-repeat="file in upload.file1">
+				                  {{ file.name }}
+				                  <button type="button" class="btn btn-xs btn-default" ng-click="upload.file1 = null">
+				                    <i class="fa fa-times primary"></i>
+				                  </button>
+				                </label>
+				            </div>
+				       	</div>
+				       	<div class="col-sm-11">
+				            <div class="uploader_wrap">
+				  				<label class="btn btn-sm btn-info m-t-xs" ng-if="!upload.file2">
+				                 	 파일 첨부2
+				                  <input type="file" select-ng-files ng-model="upload.file2"
+				                    style="opacity: 0; position: absolute; left: 0; width: 100px;height: 32px; top: 5px" ng-change="fileUpload(1);" />
+				                </label>
+				                <label class="uploader" ng-repeat="file in upload.file2">
+				                  {{ file.name }}
+				                  <button type="button" class="btn btn-xs btn-default" ng-click="upload.file2 = null">
+				                    <i class="fa fa-times primary"></i>
+				                  </button>
+				                </label>
+				            </div>
+				       	</div>
+				       	<div class="col-sm-11">
+				            <div class="uploader_wrap">
+				  				<label class="btn btn-sm btn-info m-t-xs" ng-if="!upload.file3">
+				                 	 파일 첨부3
+				                  <input type="file" select-ng-files ng-model="upload.file3"
+				                    style="opacity: 0; position: absolute; left: 0; width: 100px;height: 32px; top: 5px" ng-change="fileUpload(2);" />
+				                </label>
+				                <label class="uploader" ng-repeat="file in upload.file3">
+				                  {{ file.name }}
+				                  <button type="button" class="btn btn-xs btn-default" ng-click="upload.file3 = null">
+				                    <i class="fa fa-times primary"></i>
+				                  </button>
+				                </label>
+				            </div>
+				       	</div>
+				       	<div class="col-sm-11">
+				            <div class="uploader_wrap">
+				  				<label class="btn btn-sm btn-info m-t-xs" ng-if="!upload.file4">
+				                 	 파일 첨부4
+				                  <input type="file" select-ng-files ng-model="upload.file4"
+				                    style="opacity: 0; position: absolute; left: 0; width: 100px;height: 32px; top: 5px" ng-change="fileUpload(3);" />
+				                </label>
+				                <label class="uploader" ng-repeat="file in upload.file4">
+				                  {{ file.name }}
+				                  <button type="button" class="btn btn-xs btn-default" ng-click="upload.file4 = null">
+				                    <i class="fa fa-times primary"></i>
+				                  </button>
+				                </label>
+				            </div>
+				       	</div>
+				       	<div class="col-sm-11">
+				            <div class="uploader_wrap">
+				  				<label class="btn btn-sm btn-info m-t-xs" ng-if="!upload.file5">
+				                 	 파일 첨부5
+				                  <input type="file" select-ng-files ng-model="upload.file5"
+				                    style="opacity: 0; position: absolute; left: 0; width: 100px;height: 32px; top: 5px" ng-change="fileUpload(4);" />
+				                </label>
+				                <label class="uploader" ng-repeat="file in upload.file5">
+				                  {{ file.name }}
+				                  <button type="button" class="btn btn-xs btn-default" ng-click="upload.file5 = null">
+				                    <i class="fa fa-times primary"></i>
+				                  </button>
+				                </label>
+				            </div>
+				       	</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="text-center m-t-lg">
+			<button ng-click="cancelUpdating()" class="btn btn-dark btn-w">취소</button>
+			&nbsp;
+			<button ng-click="saveDataInfo()" class="btn btn-primary btn-w">등록</button>						
+		</div>
+	</div>
+
+</div>
+<!-- /content -->

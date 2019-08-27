@@ -1,0 +1,430 @@
+
+<div class="app-content-body" ng-controller="TeacherViewController" ng-init="init()">
+	<div class="wrapper-md">
+  		<div class="panel panel-default">
+    		<div class="panel-heading font-bold">강사료 정산</div>
+    		<div class="panel-body">
+      			<form class="form-horizontal ng-pristine ng-valid" method="get">
+        			<div class="form-group b-n">
+          				<label class="col-sm-1 control-label">기간</label>
+          				<div class="col-sm-3 no-padder-left">
+          					<label class="control-label">
+	          					{{info.startDt}} - {{info.endDt}}
+          					</label>
+          				</div>
+          				<label class="col-sm-1 control-label">정렬기준</label>
+          				<div class="col-sm-3 no-padder-left">
+            				<div class="col-sm-4 no-padder-right radio">
+								<label class="i-checks"> 
+									<input type="radio" name="select_order" value="t" ng-model="select_order" ng-change="search()"><i></i> 강사별
+								</label> 
+            				</div>
+            				<div class="col-sm-4 no-padder-left radio">
+								<label class="i-checks"> 
+									<input type="radio" name="select_order" value="c" ng-model="select_order" ng-change="search()"><i></i> 업체별
+								</label> 
+            				</div>
+          				</div>
+        			</div>
+      			</form>
+    		</div>
+  		</div>
+    	<div class="panel panel-default m-b-none m-t-xl" ng-show="search_order == 't'">
+  			<table class="table table-bordered b-t b-light" id="tblCustomers" ng-repeat="(key, all) in teacher_fee_list">
+        		<thead>
+        			<tr class="active">            
+            			<th rowspan="2" class="w-sm">강사명</th>
+            			<th rowspan="2" class="w-sm">업체명 </th>
+            			<th rowspan="2" class="w-sm">강의명</th>
+            			<th class="w-sm">강의기간</th>
+            			<th class="w-sm">수업횟수</th>
+            			<th rowspan="2" class="w-sm">강사료단가</th>
+            			<th class="w-sm">청구금액</th>
+            			<th rowspan="2" class="w-sm">가감액</th>
+            			<th rowspan="2" class="w-sm">예상정산금액</th>
+            			<th rowspan="2" class="w-sm">최종정산금액</th>
+            			<th rowspan="2" class="w-sm">수업일자</th>
+            			<th rowspan="2" class="w-sm">정산완료</th>
+          			</tr>
+        			<tr class="active">            
+            			<th class="w-sm">강의시간</th>
+            			<th class="w-sm">단위</th>            
+            			<th class="w-sm">세금</th>
+          			</tr>    
+        		</thead>
+        		<tbody>
+        		<!--강의료정산 row--> 
+         			<tr  ng-repeat-start="x in all.name">
+			            <td rowspan="{{all.name.length * 2 + 2}}" ng-if="$index == 0"><a class="primary underline" ui-sref="app.teacher.detail({id : x.tcCd})" target="_blank">{{x.teacherNm}}</a></td> 
+            			<td rowspan="2">{{x.compNm}}</td>
+            			<td rowspan="2"><a class="primary underline" ui-sref="app.subject.lecture_detail({id : x.ltCd})" target="_blank">{{x.lectureNm}}</a></td> 
+            			<td>
+            				<span ng-if="x.completeYn != 'Y'">{{x.startDt}}~{{x.endDt}}</span>
+            				<span ng-if="x.completeYn == 'Y'">{{x.cStartDt}}~{{x.cEndDt}}</span>
+            			</td>  
+            			<td>
+            				<a class="primary underline" ui-sref="app.attend.default({ltCd: x.ltCd, cpCd:x.cpCd, tcCd: x.tcCd})" target="_blank" ng-if="x.completeYn != 'Y'">{{x.attCnt}}</a>
+            				<a class="primary underline" ui-sref="app.attend.default({ltCd: x.ltCd, cpCd:x.cpCd, tcCd: x.tcCd})" target="_blank" ng-if="x.completeYn == 'Y'">{{x.cCnt}}</a>
+            			</td>  
+            			<td rowspan="2">
+            				<span ng-if="x.completeYn != 'Y'">{{x.teacherFee | number:0}}</span>
+            				<span ng-if="x.completeYn == 'Y'">{{x.cTeacherFee | number:0}}</span>
+            			</td>
+            			<td>
+            				<span ng-if="x.completeYn != 'Y'">{{x.unit_money | number:0}}</span>
+            				<span ng-if="x.completeYn == 'Y'">{{x.cTotalFee | number:0}}</span>
+            			</td>
+            			<td rowspan="2"><a class="primary underline" ng-click="openPopup(x);">{{x.tempMoney | number:0}}</a></td>
+            			<td rowspan="2">
+            				<span ng-if="x.completeYn != 'Y'">{{(x.unit_money)- (x.unit_money * 0.033) + x.tempMoney | number:0}}</span>
+            				<span ng-if="x.completeYn == 'Y'">{{(x.cTotalFee)- (x.cTotalVat) + x.tempMoney | number:0}}</span>
+            			</td> 
+            
+            			<td rowspan="2">
+               				<div ng-if="x.completeYn != 'Y'">
+            					{{x.lastMoneyYn == 'Y' ? x.lastMoney : (x.unit_money)- (x.unit_money * 0.033) + x.tempMoney | number : 0}}
+            					<i class="fa fa-comments" ng-if="x.lastMoneyYn == 'Y'" style="margin-left:10px" ng-click="showLast2(x)"></i>
+            				</div>
+               				<div ng-if="x.completeYn == 'Y'">
+            					{{x.lastMoney | number : 0}}
+            					<i class="fa fa-comments" ng-if="x.lastMoneyYn == 'Y'" style="margin-left:10px" ng-click="showLast2(x)"></i>
+            				</div>
+           					<button type="submit" class="btn btn-borderPrimary" ng-click="showLast(x)" ng-if="x.completeYn != 'Y' && x.lastMoneyYn =='Y'">수정</button>
+           					<button type="submit" class="btn btn-borderPrimary" ng-click="showLast(x)" ng-if="x.completeYn != 'Y' && x.lastMoneyYn =='N'">확정</button>
+            			</td> 
+            			<td rowspan="2"><button type="submit" class="btn btn-borderPrimary" ng-click="show(x);">확인</button></td>
+            			<td rowspan="2">
+            				<div ng-if="x.completeYn == 'Y'">
+            					정산완료<br>{{x.completeDt}}
+            				</div>
+            				<div ng-if="x.completeYn != 'Y'">
+            					<button type="submit" class="btn btn-borderPrimary" ng-click="complete(x);">정산완료</button>
+            				</div>
+            			</td> 
+          			</tr>
+          			<tr ng-repeat-end="x in all.name">
+            			<td><span ng-repeat="y in x.schedules" style="display:block">{{y}}</span></td>  
+            			<td>
+            				<span ng-if="x.completeYn != 'Y'">{{x.teacherFeeUnitNm}}</span>
+            				<span ng-if="x.completeYn == 'Y'">{{x.cUnit}}</span>
+            			</td>
+            			<td>
+            				<span ng-if="x.completeYn != 'Y'">{{x.unit_money * 0.033 | number:0}}</span>
+            				<span ng-if="x.completeYn == 'Y'">{{x.cTotalVat | number:0}}</span>
+            			</td>  
+          			</tr>    
+        <!--강의료정산 row-->
+            
+        <!--강의료정산 합산row-->    
+         			<tr class="bg-gray">
+            			<td rowspan="2"><a class="primary underline"></a></td> 
+            			<td rowspan="2"><a class="primary underline"></a></td> 
+            			<td rowspan="2"></td>  
+            			<td rowspan="2"><a class="primary underline"></a></td>  
+            			<td rowspan="2"></td>
+            			<td>{{all.total | number:0}}</td><!-- 청구금액 -->
+            			<td rowspan="2">{{all.amTotal | number:0}}</td><!-- 가감액 -->
+            			<td rowspan="2">{{all.tempTotal | number:0}}</td><!-- 예상정산금액 -->
+            			<td rowspan="2">{{all.last_total | number:0}}</td><!-- 최종정산금액 -->
+            			<td rowspan="2"></td> 
+            			<td rowspan="2">
+           					<button type="submit" class="btn btn-borderPrimary" ng-click="completeAll(all);">전체완료</button>
+            			</td>
+          			</tr>
+          			<tr class="bg-gray">
+            			<td>{{all.total * 0.033 | number:0}}</td>  
+          			</tr>    
+        <!--강의료정산 합산row-->
+        		</tbody>
+      		</table>
+    	</div>
+    	<div class="panel panel-default m-b-none m-t-xl" ng-show="search_order == 'c'">
+  			<table class="table table-bordered b-t b-light" id="tblCustomers" ng-repeat="(key, all) in teacher_fee_list">
+        		<thead>
+        			<tr class="active">            
+            			<th rowspan="2" class="w-sm">업체명</th>
+            			<th rowspan="2" class="w-sm">강사명 </th>
+            			<th rowspan="2" class="w-sm">강의명</th>
+            			<th class="w-sm">강의기간</th>
+            			<th class="w-sm">수업횟수</th>
+            			<th rowspan="2" class="w-sm">강사료단가</th>
+            			<th class="w-sm">청구금액</th>
+            			<th rowspan="2" class="w-sm">가감액</th>
+            			<th rowspan="2" class="w-sm">예상정산금액</th>
+            			<th rowspan="2" class="w-sm">최종정산금액</th>
+            			<th rowspan="2" class="w-sm">수업일자</th>
+            			<th rowspan="2" class="w-sm">정산완료</th>
+          			</tr>
+        			<tr class="active">            
+            			<th class="w-sm">강의시간</th>
+            			<th class="w-sm">단위</th>            
+            			<th class="w-sm">세금</th>
+          			</tr>    
+        		</thead>
+        		<tbody>
+        		<!--강의료정산 row--> 
+         			<tr  ng-repeat-start="x in all.name">
+			            <td rowspan="{{all.name.length * 2 + 2}}" ng-if="$index == 0"><a class="primary underline" ui-sref="app.teacher.detail({id : x.tcCd})" target="_blank">{{x.compNm}}</a></td> 
+            			<td rowspan="2">{{x.teacherNm}}</td>
+            			<td rowspan="2"><a class="primary underline" ui-sref="app.subject.lecture_detail({id : x.ltCd})" target="_blank">{{x.lectureNm}}</a></td> 
+            			<td>
+            				<span ng-if="x.completeYn != 'Y'">{{x.startDt}}~{{x.endDt}}</span>
+            				<span ng-if="x.completeYn == 'Y'">{{x.cStartDt}}~{{x.cEndDt}}</span>
+            			</td>  
+            			<td>
+            				<a class="primary underline" ui-sref="app.attend.default({ltCd: x.ltCd, cpCd:x.cpCd, tcCd: x.tcCd})" target="_blank" ng-if="x.completeYn != 'Y'">{{x.attCnt}}</a>
+            				<a class="primary underline" ui-sref="app.attend.default({ltCd: x.ltCd, cpCd:x.cpCd, tcCd: x.tcCd})" target="_blank" ng-if="x.completeYn == 'Y'">{{x.cCnt}}</a>
+            			</td>  
+            			<td rowspan="2">
+            				<span ng-if="x.completeYn != 'Y'">{{x.teacherFee | number:0}}</span>
+            				<span ng-if="x.completeYn == 'Y'">{{x.cTeacherFee | number:0}}</span>
+            			</td>
+            			<td>
+            				<span ng-if="x.completeYn != 'Y'">{{x.unit_money | number:0}}</span>
+            				<span ng-if="x.completeYn == 'Y'">{{x.cTotalFee | number:0}}</span>
+            			</td>
+            			<td rowspan="2"><a class="primary underline" ng-click="openPopup(x);">{{x.tempMoney | number:0}}</a></td>
+            			<td rowspan="2">
+            				<span ng-if="x.completeYn != 'Y'">{{(x.unit_money)- (x.unit_money * 0.033) + x.tempMoney | number:0}}</span>
+            				<span ng-if="x.completeYn == 'Y'">{{(x.cTotalFee)- (x.cTotalVat) + x.tempMoney | number:0}}</span>
+            			</td> 
+            
+            			<td rowspan="2">
+               				<div ng-if="x.completeYn != 'Y'">
+            					{{x.lastMoneyYn == 'Y' ? x.lastMoney : (x.unit_money)- (x.unit_money * 0.033) + x.tempMoney | number : 0}}
+            					<i class="fa fa-comments" ng-if="x.lastMoneyYn == 'Y'" style="margin-left:10px" ng-click="showLast2(x)"></i>
+            				</div>
+               				<div ng-if="x.completeYn == 'Y'">
+            					{{x.lastMoney | number : 0}}
+            					<i class="fa fa-comments" ng-if="x.lastMoneyYn == 'Y'" style="margin-left:10px" ng-click="showLast2(x)"></i>
+            				</div>
+           					<button type="submit" class="btn btn-borderPrimary" ng-click="showLast(x)" ng-if="x.completeYn != 'Y' && x.lastMoneyYn =='Y'">수정</button>
+           					<button type="submit" class="btn btn-borderPrimary" ng-click="showLast(x)" ng-if="x.completeYn != 'Y' && x.lastMoneyYn =='N'">확정</button>
+            			</td> 
+            			<td rowspan="2"><button type="submit" class="btn btn-borderPrimary" ng-click="show(x);">확인</button></td>
+            			<td rowspan="2">
+            				<div ng-if="x.completeYn == 'Y'">
+            					정산완료<br>{{x.completeDt}}
+            				</div>
+            				<div ng-if="x.completeYn != 'Y'">
+            					<button type="submit" class="btn btn-borderPrimary" ng-click="complete(x);">정산완료</button>
+            				</div>
+            			</td> 
+          			</tr>
+          			<tr ng-repeat-end="x in all.name">
+            			<td><span ng-repeat="y in x.schedules" style="display:block">{{y}}</span></td>  
+            			<td>
+            				<span ng-if="x.completeYn != 'Y'">{{x.teacherFeeUnitNm}}</span>
+            				<span ng-if="x.completeYn == 'Y'">{{x.cUnit}}</span>
+            			</td>
+            			<td>
+            				<span ng-if="x.completeYn != 'Y'">{{x.unit_money * 0.033 | number:0}}</span>
+            				<span ng-if="x.completeYn == 'Y'">{{x.cTotalVat | number:0}}</span>
+            			</td>  
+          			</tr>    
+        <!--강의료정산 row-->
+            
+        <!--강의료정산 합산row-->    
+         			<tr class="bg-gray">
+            			<td rowspan="2"><a class="primary underline"></a></td> 
+            			<td rowspan="2"><a class="primary underline"></a></td> 
+            			<td rowspan="2"></td>  
+            			<td rowspan="2"><a class="primary underline"></a></td>  
+            			<td rowspan="2"></td>
+            			<td>{{all.total | number:0}}</td><!-- 청구금액 -->
+            			<td rowspan="2">{{all.amTotal | number:0}}</td><!-- 가감액 -->
+            			<td rowspan="2">{{all.tempTotal | number:0}}</td><!-- 예상정산금액 -->
+            			<td rowspan="2">{{all.last_total | number:0}}</td><!-- 최종정산금액 -->
+            			<td rowspan="2"></td> 
+            			<td rowspan="2">
+           					<button type="submit" class="btn btn-borderPrimary" ng-click="completeAll(all);">전체완료</button>
+            			</td>
+          			</tr>
+          			<tr class="bg-gray">
+            			<td>{{all.total * 0.033 | number:0}}</td>  
+          			</tr>    
+        <!--강의료정산 합산row-->
+        		</tbody>
+      		</table>
+    	</div>
+       	<div class="row m-t-lg">                
+            <button type="submit" class="btn btn-border pull-left a " ng-click="exportEcel()">엑셀 다운로드&nbsp; <i class="fa fa-file-excel-o"></i></button>        
+            <button type="submit" class="btn btn-primary pull-right btn-m" ng-click="delete_item()" style="margin-left:20px">삭제&nbsp; </button>        
+            <button type="submit" class="btn btn-primary pull-right btn-m" ng-click="cancel()">목록으로&nbsp; </button>        
+        </div>
+	</div>
+</div>
+<script type="text/ng-template" id="show.html">
+	<div class="popup_wrap" >
+		<div class="popup_header">
+        	수업일자<span class="pull-right closebtn " data-ng-click="cancel()"><img src="assets/img/close.png" class="img-full" alt="..."></span>
+    	</div>
+	<div class="popup_body no-padder-top">
+		<div class=" text-md m-t-md">
+			<span ng-if="item.completeYn != 'Y'">{{item.scheduleDtAll}}</span>
+			<span ng-if="item.completeYn == 'Y'">{{item.cAttDay}}</span>
+		</div>
+	</div>
+	</div>
+</script>
+<script type="text/ng-template" id="complete.html">
+  	<div class="modal-header">
+		<h4 class="text-center" >최종금액 수정</h4>
+  	</div>
+  	<div class="modal-body">
+    	<table class="table">
+        	<tr>
+				<th>금액</th>
+              	<td>
+					<input class="form-control input" required ng-model="items.lastMoney" type="text" placeholder="">
+				</td>
+          	</tr>
+        	<tr>
+				<th>사유</th>
+              	<td><textarea class="form-control"  required ng-model="items.lastRemark" ></textarea></td>
+          	</tr>
+      	</table>
+  	</div>
+  	<div class="modal-footer">
+    	<span class="btn btn-primary" ng-click="save()">등록</span>
+      	<span class="btn btn-default" ng-click="cancel()">취소</span>
+  	</div>
+</script>
+<script type="text/ng-template" id="complete2.html">
+  	<div class="modal-header">
+    	<h4 class="text-center">수정사유</h4>
+  	</div>
+  	<div class="modal-body">
+    	<table class="table">
+        	<tr>
+              	<td style="text-align:left; border:none;"><pre>{{items.lastRemark}}</pre></td>
+          	</tr>
+      	</table>
+  	</div>
+  	<div class="modal-footer">
+      	<span class="btn btn-default" ng-click="cancel()">닫기</span>
+  	</div>
+</script>
+<script type="text/ng-template" id="custom_modal.html">
+
+  <div class="popup_wrap" ng-init="init()">
+      <div class="popup_header">
+        강사료 지급액 가감<span class="pull-right closebtn " data-ng-click="cancel()"><img src="assets/img/close.png" class="img-full" alt="..."></span>
+    </div>
+    <div class="popup_body no-padder-top">
+        <div>
+    <div class="panel-body text-md m-t-md">
+      <form class="form-horizontal ng-pristine ng-valid" method="get">
+        <div class="form-group b-n">
+          	<label class="col-sm-2 control-label"><b>강사명</b></label>
+        	<label class="col-sm-2 control-label">{{selected.teacherNm}}</label>
+         	<label class="col-sm-2 control-label"><b>강의명</b></label>
+			<label class="col-sm-2 control-label">{{selected.lectureNm}}</label>
+<!--          <div class="col-sm-4 no-padder-left">
+            	<div class="col-sm-5 no-padder">
+            		<input class="form-control input-sm date" type="text" ng-model="shStartDt">
+            	</div>
+            	<label class="control-label col-sm-2 text-center">─</label>
+            	<div class="col-sm-5 no-padder">
+            		<input class="form-control input-sm date" type="text" ng-model="shEndDt">
+            	</div>
+          	</div>
+            <div class="col-sm-1">
+                <button type="submit" class="btn btn-dark m-t-xs btn-m" ng-click="submit()">조회</button>  
+            </div> -->    
+        </div>  
+      </form>
+    </div>
+    <div class="row white text-md m-b-sm m-t-sm">
+       <div class="pull-right">총 가감액 : {{total | number:0}}원</div>
+    </div>
+      <div class="table-responsive heightmax">
+      <table class="table b-t b-light popup_table center_align m-b-none">
+        <thead>
+          <tr class="active">
+            <th>No</th>
+            <th>가감사유</th>
+            <th>가산액</th>
+            <th>차감액</th>  
+            <th>일자</th>
+            <th class="w-xxs"></th>  
+            <th class="w-xxs"></th>  
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="x in teacher_fee_tem">
+            <td>{{teacher_fee_tem.length - $index}}</td>
+            <td>
+				<span ng-if="x.checked == true">{{x.itemCnts}}</span>
+				<input type="text" value="" ng-model="x.itemCnts"  ng-readonly="x.checked" ng-style="x.checked == true ? {'display' : 'none'} : {'display' : 'block'}">
+			</td>
+            <td>
+				<span ng-if="x.checked == true">{{x.addMoney | number:0}}</span>
+				<input type="text" value="" ng-model="x.addMoney"  ng-readonly="x.checked" ng-style="x.checked == true ? {'display' : 'none'} : {'display' : 'block'}">
+			</td>
+            <td>
+				<span ng-if="x.checked == true">{{x.minusMoney | number:0}}</span>
+				<input type="text" value="" ng-model="x.minusMoney" ng-readonly="x.checked" ng-style="x.checked == true ? {'display' : 'none'} : {'display' : 'block'}">
+			</td>
+            <td>
+				<span  ng-if="x.checked == true">{{x.occurDt}}</span>
+				<div class="input-group input-group-sm m-t-xs date"  ng-if="x.checked == false" ng-click="date_picker()">
+                     <input type="text" class="form-control" ng-model="x.occurDt" style="background: white;">
+                     <span class="input-group-btn">
+                         <button type="button"  class="btn btn-default"><i class="glyphicon glyphicon-calendar"></i></button>
+                     </span>
+                </div>
+			</td>  
+            <td>
+				<a class="primary underline" ng-if="selected.completeYn != 'Y' && x.checked == true" ng-click="x.checked = !x.checked">수정</a>
+				<a class="primary underline" ng-if="selected.completeYn != 'Y' && x.checked == false" ng-click="saveItem(x)">저장</a>
+			</td> 
+            <td>
+				<a class="primary underline" ng-if="selected.completeYn != 'Y' && x.checked == true" ng-click="deleted(x.cbCd)">삭제</a>
+				<a class="primary underline" ng-if="selected.completeYn != 'Y' && x.checked == false" ng-click="x.checked = !x.checked">취소</a>
+			</td>   
+          </tr>
+          <tr ng-show="selected.completeYn != 'Y'">
+            <td> </td>
+            <td><input class="form-control input-sm" type="text" ng-model="itemCnts"></td>
+            <td><input class="form-control input-sm" type="text" ng-model="addMoney"></td>
+            <td><input class="form-control input-sm" type="text" ng-model="minusMoney"></td>
+            <td>
+                <div class="input-group input-group-sm m-t-xs date">
+                          <input type="text" class="form-control date"  ng-model="occurDt" id="add_date">
+                          <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ><i class="glyphicon glyphicon-calendar"></i></button>
+                          </span>
+                        </div>
+            </td>  
+            <td colspan="2"><a class="primary underline" ng-click="create()">등록</a></td> 
+          </tr>    
+        </tbody>
+      </table>
+    </div>        
+    </div>  
+    </div>  
+  </div>
+<script>
+		$(".date").datepicker({
+		format: 'yyyy-mm-dd',
+		autoclose: true
+	});
+	$('#add_date').datepicker('setDate', new Date());
+//	setTimeout(function(){ $(".select2").select2();}, 10);
+	
+	</script>
+</script>
+
+<style>
+    .modal-dialog{width:800px;}
+</style>
+<script>
+	$(document).ready(function() {
+		$(".date").datepicker({
+			format: 'yyyy-mm-dd',
+			autoclose: true
+		});
+//		$(".select2").select2();
+	})
+</script>

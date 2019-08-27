@@ -1,0 +1,126 @@
+
+<div class="app-content-body" ng-controller="LectureController" ng-init="init()">  
+    <!--강의목록 s---->
+    <div class="panel panel-body no-shadow m-b-n-xs padder-vsm bg-gray">
+        <div class="pc-padder">
+        <form class="form-horizontal widthfix m-auto pull-none col-xs-12 col-sm-4 no-padder">
+        <div class="form-group b-n pc-padder">
+          <div class="col-xs-4 col-sm-3 no-padder-left">
+            <label class="control-label text-md"><span data-langNum="65">강의목록</span></label>
+          </div>    
+          <div class="col-xs-8 col-sm-9 no-padder">
+            <select name="account" class="form-control m-t-xs"
+			ng-model="ltCd" ng-change="getMyLectureDetail()"
+			ng-options="item.ltCd as item.lectureNm for item in lecture_list_box">
+              <option value="">제목</option>
+            </select>
+          </div>
+        </div> 
+      </form>
+      </div>        
+    </div>
+    <!--강의목록 e---->
+    <!--LNB s-->
+    <div class="lnb_wraper">
+        <div class="lnb_wrap clearfix">
+            <a class="lnb active" ui-sref="app.mylecture.lecture({ltCd: ltCd})"><span data-langNum="38">기본 정보</span></a>
+            <a class="lnb" ui-sref="app.mylecture.student({ltCd: ltCd})"><span data-langNum="39">수강생현황</span></a>
+            <a class="lnb" ui-sref="app.mylecture.lvtest({ltCd: ltCd})"><span data-langNum="40">레벨테스트</span></a>
+            <a class="lnb" ui-sref="app.mylecture.attend({ltCd: ltCd})"><span data-langNum="41">출석현황</span></a>
+            <a class="lnb" ui-sref="app.mylecture.test({ltCd: ltCd})"><span data-langNum="42">성취도평가</span></a>
+            <a class="lnb" ui-sref="app.mylecture.alert_list({ltCd: ltCd})"><span data-langNum="43">알림게시판</span></a>
+        </div>
+    </div>
+    <!--LNB e-->
+<div class="wrapper-md m-auto widthfix-sm">
+    <!---강의 panel--->
+        
+            <div class="panel panel-default no-shadow" >
+                <div class="panel-heading font-bold text-left b-n">
+                    {{my_lecture_detail.lectureNm}} <span class="hidden-xs hidden-sm">[{{my_lecture_detail.ltCd}}]</span>
+                </div>
+                <div class="panel-body no-padder">
+                <div class="b-n">
+                  <table class="table mini-table m-b-none">
+                    <tbody>
+                      <tr>
+                        <td class="w-20"><span data-langNum="13">강의코드</span></td>
+                        <td class="w-40">{{my_lecture_detail.ltCd}}</td>
+                      </tr>
+                      <tr>
+                        <td><span data-langNum="14">고객사명</span></td>
+                        <td>{{my_lecture_detail.compNm}}</td>
+                      </tr>
+                      <tr>
+                        <td><span data-langNum="15">강의일시</span></td>
+                        <td>{{my_lecture_detail.nextClass}}</td>
+                      </tr>
+                      <tr>
+                        <td><span data-langNum="16">강의장소</span> </td>
+                        <td>{{my_lecture_detail.lecturePlaceNm}} </td></a>
+                      </tr>   
+                      <tr>
+						<td>
+						</td>
+						<td>
+							{{my_lecture_detail.postNo}} {{my_lecture_detail.addr}} {{my_lecture_detail.dtlAddr}} <br>
+							<span class="m-l-xs" ng-click="showMap(my_lecture_detail)"><img width="62"	src="./assets/img/map_ico.jpg"></span>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<div class="col-sm-8" id="map_{{my_lecture_detail.ltCd}}" style="width:100%; height:200px;margin-top:10px;display:none"></div>
+						</td>
+					</tr>
+                      <tr>
+                        <td><span data-langNum="17">수강인원</span></td>
+                        <td>{{my_lecture_detail.studentCnt}}명</td>
+                      </tr>
+                      <tr>
+                        <td><span data-langNum="18">담당자</span></td>
+                        <td>{{my_lecture_detail.sliNm}} {{my_lecture_detail.sliMobile}}</td>
+                      </tr>
+                      <tr>
+                        <td class="w-20"><span data-langNum="44">수업진척률</span></td>
+                        <td class="w-40">
+                        	<div class="progress">
+	                        	<div class="progress-bar progress-bar-info" role="progressbar" 
+								 aria-valuemin="0" aria-valuemax="100"  ng-style="{ 'width': ((my_lecture_detail.nowAttCnt   /my_lecture_detail.lectureTotalCnt)  * 100) + '%' }">
+								</div>
+							</div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><span data-langNum="45">출석률</span></td>
+                        <td>
+                        	<div class="progress">
+								 <div class="progress-bar progress-bar-info" role="progressbar" 
+									  aria-valuemin="0" aria-valuemax="100"  ng-style="{ 'width': my_lecture_detail.attendRate + '%' }">
+							    </div>
+							</div>
+                        </td>
+                      </tr>    
+                    </tbody>
+                  </table>
+                </div>   
+                </div>
+              </div>
+            
+              <!---강의 panel end---> 
+            <div class="clearfix"></div>
+                <div class="mini_notice">
+                <p class="tt m-t-xl padder"><span data-langNum="43">알림</span></p>      
+                <div class="line"></div>
+                <div class="padder" ng-repeat="notice_info in notice_info_list">{{notice_info.regDt}} {{notice_info.notiTitle}}</div>
+<!--                 <div class="padder">2018.09.12 신규 홈페이지가 오픈하였습니다.</div> -->
+                </div>    
+            </div>
+</div>
+    
+    <!--로고 hide , back button show--->
+<script>
+    $(document).ready(function(){
+        $('.app').addClass('back')
+    })
+</script>
+<script src="assets/js/language.js"></script>

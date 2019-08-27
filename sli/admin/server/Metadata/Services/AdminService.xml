@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Collections>
+		<ServiceMeta ID="AdminUserList" Enable="true" IsReadOnly="false">
+			<RegBy>admin</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>admin</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>AdminUserList</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>AdminUserList</PageName>
+		      <PageTitle>AdminUserList List</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+      	<ServiceMeta ID="AdminUserListCnt" Enable="true" IsReadOnly="false">
+			<RegBy>admin</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>admin</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>AdminUserListCnt</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>AdminUserListCnt</PageName>
+		      <PageTitle>AdminUserListCnt</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+      	<ServiceMeta ID="AdminUserDetail" Enable="true" IsReadOnly="false">
+			<RegBy>admin</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>admin</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>AdminUserDetail</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>AdminUserDetail</PageName>
+		      <PageTitle>AdminUserDetail</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+      	<ServiceMeta ID="AdminUserSave" Enable="true" IsReadOnly="false">
+			<RegBy>admin</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>admin</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>AdminUserSave</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>AdminUserSave</PageName>
+		      <PageTitle>AdminUserSave</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>      	
+      	<ServiceMeta ID="AdminGroupSave" Enable="true" IsReadOnly="false">
+			<RegBy>admin</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>admin</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>AdminGroupSave</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>AdminGroupSave</PageName>
+		      <PageTitle>AdminGroupSave</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>      	
+      	<ServiceMeta ID="AdminGroupList" Enable="true" IsReadOnly="false">
+			<RegBy>admin</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>admin</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>AdminGroupList</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>AdminGroupList</PageName>
+		      <PageTitle>AdminGroupList</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+      	<ServiceMeta ID="AdminGroupUserListCnt" Enable="true" IsReadOnly="false">
+			<RegBy>admin</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>admin</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>AdminGroupUserListCnt</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>AdminGroupUserListCnt</PageName>
+		      <PageTitle>AdminGroupUserListCnt</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta> 
+      	<ServiceMeta ID="AdminGroupUserList" Enable="true" IsReadOnly="false">
+			<RegBy>admin</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>admin</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>AdminGroupUserList</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>AdminGroupUserList</PageName>
+		      <PageTitle>AdminGroupUserList</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+      	<ServiceMeta ID="GroupMenuList" Enable="true" IsReadOnly="false">
+			<RegBy>admin</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>admin</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>GroupMenuList</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>GroupMenuList</PageName>
+		      <PageTitle>GroupMenuList</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+      	<ServiceMeta ID="MenuMasterList" Enable="true" IsReadOnly="false">
+			<RegBy>admin</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>admin</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>MenuMasterList</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>MenuMasterList</PageName>
+		      <PageTitle>MenuMasterList</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+      	<ServiceMeta ID="MenuSubList" Enable="true" IsReadOnly="false">
+			<RegBy>admin</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>admin</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>MenuSubList</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>MenuSubList</PageName>
+		      <PageTitle>MenuSubList</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+      	<ServiceMeta ID="MenuAuthSave" Enable="true" IsReadOnly="false">
+	        <RegBy>admin</RegBy>
+	        <RegDate>2016-11-07T12:00:00</RegDate>
+	        <ModBy>admin</ModBy>
+	        <ModDate>2016-11-07T12:00:00</ModDate>
+	        <Executions>
+	            <ExecutionID>MenuAuthSave</ExecutionID>
+	        </Executions>
+	        <BLPType>PreExecuteJava</BLPType>
+	        <BLPFile>AdminMenuAuth.class</BLPFile>
+	        <BLPTimeoutMin>10</BLPTimeoutMin>
+	        <Namespace>com.engine.sli.admin</Namespace>
+	        <ClassName>AdminMenuAuth</ClassName>
+	        <RTFType>TRANSACTION</RTFType>
+	        <RTFAddress />
+	        <RTFCustomer />
+	        <RTFServiceID />
+	        <PageName>MENU</PageName>
+	        <PageTitle>MENU</PageTitle>
+	        <RTFTime>0</RTFTime>
+	        <ReturnType>DataSet</ReturnType>
+	    </ServiceMeta>
+      	<ServiceMeta ID="AdminUserLogin" Enable="true" IsReadOnly="false">
+			<RegBy>admin</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>admin</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>AdminUserLogin</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>AdminUserLogin</PageName>
+		      <PageTitle>AdminUserLogin</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+      	<ServiceMeta ID="NewPassword" Enable="true" IsReadOnly="false">
+			<RegBy>account</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>account</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>NewPassword</ExecutionID>
+		      </Executions>
+		      <BLPType>PostExecuteJava</BLPType>
+			  <BLPFile>NewPassword.class</BLPFile>
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+	          <Namespace>com.engine.sli.admin</Namespace>
+	          <ClassName>NewPassword</ClassName>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>NewPassword</PageName>
+		      <PageTitle>NewPassword</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+
+      	<ServiceMeta ID="NewPasswordT" Enable="true" IsReadOnly="false">
+			<RegBy>account</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>account</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>NewPasswordT</ExecutionID>
+		      </Executions>
+		      <BLPType>PostExecuteJava</BLPType>
+			  <BLPFile>NewPassword_T.class</BLPFile>
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+	          <Namespace>com.engine.sli.admin</Namespace>
+	          <ClassName>NewPassword_T</ClassName>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>NewPassword</PageName>
+		      <PageTitle>NewPassword</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+      	
+      	<ServiceMeta ID="NewPasswordS" Enable="true" IsReadOnly="false">
+			<RegBy>account</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>account</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>NewPasswordS</ExecutionID>
+		      </Executions>
+		      <BLPType>PostExecuteJava</BLPType>
+			  <BLPFile>NewPassword_S.class</BLPFile>
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+	          <Namespace>com.engine.sli.admin</Namespace>
+	          <ClassName>NewPassword_S</ClassName>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>NewPassword</PageName>
+		      <PageTitle>NewPassword</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+
+      	<ServiceMeta ID="CheckMenuAuth" Enable="true" IsReadOnly="false">
+	        <RegBy>menuAuth</RegBy>
+	        <RegDate>2016-11-07T12:00:00</RegDate>
+	        <ModBy>menuAuth</ModBy>
+	        <ModDate>2016-11-07T12:00:00</ModDate>
+	        <Executions>
+	            <ExecutionID>CheckMenuAuth</ExecutionID>
+	        </Executions>
+	        <BLPType>PreExecuteJava</BLPType>
+	        <BLPFile>AdminCheckAuth.class</BLPFile>
+	        <BLPTimeoutMin>10</BLPTimeoutMin>
+	        <Namespace>com.engine.sli.admin</Namespace>
+	        <ClassName>AdminCheckAuth</ClassName>
+	        <RTFType>TRANSACTION</RTFType>
+	        <RTFAddress />
+	        <RTFCustomer />
+	        <RTFServiceID />
+	        <PageName>menuAuth</PageName>
+	        <PageTitle>menuAuth</PageTitle>
+	        <RTFTime>0</RTFTime>
+	        <ReturnType>DataSet</ReturnType>
+	    </ServiceMeta>
+    </Collections>
+</MetaCollection>

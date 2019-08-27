@@ -1,0 +1,759 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Collections>
+    	<!-- MyLectureList End-->
+    	<ParameterMeta ID="tcCd" IsReadOnly="false" Enable="true">
+			<RegBy>lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>MyLectureList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="stateFlag" IsReadOnly="false" Enable="true">
+			<RegBy>lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>MyLectureList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<!-- MyLectureList End-->	
+    	
+    	<!-- MyLectureDetail End-->
+    	<ParameterMeta ID="ltCd" IsReadOnly="false" Enable="true">
+			<RegBy>lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>MyLectureDetail</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>		
+    	<!-- MyLectureDetail End-->
+    	
+    	<!-- LectureListBox End-->
+    	<ParameterMeta ID="tcCd" IsReadOnly="false" Enable="true">
+			<RegBy>lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LectureListBox</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="cpCd" IsReadOnly="false" Enable="true">
+			<RegBy>lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LectureListBox</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<!-- LectureListBox End-->
+    	
+    	<!-- LectureScheduleList Start-->
+    	<ParameterMeta ID="shLtCd" IsReadOnly="false" Enable="true">
+			<RegBy>lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LectureScheduleList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<!-- LectureScheduleList End-->
+    	
+    	<!-- LectureScheduleSave Start-->
+		<ParameterMeta ID="saveType" IsReadOnly="false" Enable="true">
+			<RegBy>Lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LectureScheduleSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="lsCd" IsReadOnly="false" Enable="true">
+			<RegBy>Lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LectureScheduleSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="ltCd" IsReadOnly="false" Enable="true">
+			<RegBy>Lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LectureScheduleSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="orderNo" IsReadOnly="false" Enable="true">
+			<RegBy>Lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LectureScheduleSave</ExecutionID>
+			<Value xsi:type="xsd:string">0</Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="lectureType" IsReadOnly="false" Enable="true">
+			<RegBy>Lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LectureScheduleSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="scheduleDt" IsReadOnly="false" Enable="true">
+			<RegBy>Lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LectureScheduleSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="scheduleStartTime" IsReadOnly="false" Enable="true">
+			<RegBy>Lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LectureScheduleSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="scheduleEndTime" IsReadOnly="false" Enable="true">
+			<RegBy>Lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LectureScheduleSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="scheduleWeek" IsReadOnly="false" Enable="true">
+			<RegBy>Lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LectureScheduleSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="scheduleCnts" IsReadOnly="false" Enable="true">
+			<RegBy>Lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LectureScheduleSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>		
+		<ParameterMeta ID="enrichCancelDt" IsReadOnly="false" Enable="true">
+			<RegBy>Lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LectureScheduleSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="enrichCancelTime" IsReadOnly="false" Enable="true">
+			<RegBy>Lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LectureScheduleSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>		
+		<ParameterMeta ID="enrichCancelState" IsReadOnly="false" Enable="true">
+			<RegBy>Lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LectureScheduleSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="regUser" IsReadOnly="false" Enable="true">
+			<RegBy>Lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LectureScheduleSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>	
+		<ParameterMeta ID="updUser" IsReadOnly="false" Enable="true">
+			<RegBy>Lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LectureScheduleSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>				
+		<!-- LectureScheduleSave End-->
+
+		<!-- GetLevelTest Start-->		
+		<ParameterMeta ID="ltCd" IsReadOnly="false" Enable="true">
+			<RegBy>Lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>GetLevelTest</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Output</Direction>
+		</ParameterMeta>		
+		<!-- GetLevelTest End-->		
+
+		<!-- GetLevelTestResult Start-->		
+		<ParameterMeta ID="ltCd" IsReadOnly="false" Enable="true">
+			<RegBy>Lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>GetLevelTestResult</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Output</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="stCd" IsReadOnly="false" Enable="true">
+			<RegBy>Lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>GetLevelTestResult</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Output</Direction>
+		</ParameterMeta>
+		<!-- GetLevelTestResult End-->		
+
+		<!-- LevelTestResultSave Start-->
+    	<ParameterMeta ID="saveType" IsReadOnly="false" Enable="true">
+			<RegBy>Lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LevelTestResultSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<ParameterMeta ID="lagCd" IsReadOnly="false" Enable="true">
+			<RegBy>Lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LevelTestResultSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<ParameterMeta ID="lvCd" IsReadOnly="false" Enable="true">
+			<RegBy>Lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LevelTestResultSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<ParameterMeta ID="stCd" IsReadOnly="false" Enable="true">
+			<RegBy>Lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LevelTestResultSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<ParameterMeta ID="article1Level" IsReadOnly="false" Enable="true">
+			<RegBy>Lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LevelTestResultSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<ParameterMeta ID="article2Level" IsReadOnly="false" Enable="true">
+			<RegBy>Lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LevelTestResultSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<ParameterMeta ID="article3Level" IsReadOnly="false" Enable="true">
+			<RegBy>Lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LevelTestResultSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<ParameterMeta ID="article4Level" IsReadOnly="false" Enable="true">
+			<RegBy>Lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LevelTestResultSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<ParameterMeta ID="article5Level" IsReadOnly="false" Enable="true">
+			<RegBy>Lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LevelTestResultSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<ParameterMeta ID="article6Level" IsReadOnly="false" Enable="true">
+			<RegBy>Lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LevelTestResultSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<ParameterMeta ID="article7Level" IsReadOnly="false" Enable="true">
+			<RegBy>Lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LevelTestResultSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<ParameterMeta ID="article8Level" IsReadOnly="false" Enable="true">
+			<RegBy>Lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LevelTestResultSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<ParameterMeta ID="article9Level" IsReadOnly="false" Enable="true">
+			<RegBy>Lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LevelTestResultSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<ParameterMeta ID="article10Level" IsReadOnly="false" Enable="true">
+			<RegBy>Lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LevelTestResultSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<ParameterMeta ID="article1Score" IsReadOnly="false" Enable="true">
+			<RegBy>Lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LevelTestResultSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<ParameterMeta ID="article2Score" IsReadOnly="false" Enable="true">
+			<RegBy>Lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LevelTestResultSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<ParameterMeta ID="article3Score" IsReadOnly="false" Enable="true">
+			<RegBy>Lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LevelTestResultSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<ParameterMeta ID="article4Score" IsReadOnly="false" Enable="true">
+			<RegBy>Lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LevelTestResultSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<ParameterMeta ID="article5Score" IsReadOnly="false" Enable="true">
+			<RegBy>Lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LevelTestResultSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<ParameterMeta ID="article6Score" IsReadOnly="false" Enable="true">
+			<RegBy>Lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LevelTestResultSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<ParameterMeta ID="article7Score" IsReadOnly="false" Enable="true">
+			<RegBy>Lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LevelTestResultSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<ParameterMeta ID="article8Score" IsReadOnly="false" Enable="true">
+			<RegBy>Lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LevelTestResultSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<ParameterMeta ID="article9Score" IsReadOnly="false" Enable="true">
+			<RegBy>Lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LevelTestResultSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<ParameterMeta ID="article10Score" IsReadOnly="false" Enable="true">
+			<RegBy>Lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LevelTestResultSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<ParameterMeta ID="totalScore" IsReadOnly="false" Enable="true">
+			<RegBy>Lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LevelTestResultSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<ParameterMeta ID="avgScore" IsReadOnly="false" Enable="true">
+			<RegBy>Lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LevelTestResultSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<ParameterMeta ID="cnts" IsReadOnly="false" Enable="true">
+			<RegBy>Lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LevelTestResultSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="weakPoints" IsReadOnly="false" Enable="true">
+			<RegBy>Lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LevelTestResultSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="actionPlan" IsReadOnly="false" Enable="true">
+			<RegBy>Lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LevelTestResultSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<ParameterMeta ID="regUser" IsReadOnly="false" Enable="true">
+			<RegBy>Lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LevelTestResultSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<ParameterMeta ID="result" IsReadOnly="false" Enable="true">
+			<RegBy>Lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LevelTestResultSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<ParameterMeta ID="message" IsReadOnly="false" Enable="true">
+			<RegBy>Lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LevelTestResultSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<!-- LevelTestResultSave End-->
+		    	
+		<!-- TestList Start-->
+    	<ParameterMeta ID="ltCd" IsReadOnly="false" Enable="true">
+			<RegBy>Lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>TestList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<!-- TestList End-->
+
+		<!-- GetTestResult Start-->		
+		<ParameterMeta ID="ltCd" IsReadOnly="false" Enable="true">
+			<RegBy>Lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>GetTestResult</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Output</Direction>
+		</ParameterMeta>		
+		<ParameterMeta ID="lvCd" IsReadOnly="false" Enable="true">
+			<RegBy>Lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>GetTestResult</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Output</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="stCd" IsReadOnly="false" Enable="true">
+			<RegBy>Lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>GetTestResult</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Output</Direction>
+		</ParameterMeta>
+		<!-- GetTestResult End-->		
+
+    	<!-- MyLectureStats Start-->
+    	<!-- <ParameterMeta ID="tcCd" IsReadOnly="false" Enable="true">
+			<RegBy>lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>MyLectureStats</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta> -->
+    	<!-- MyLectureStats End-->
+    	
+    	<!-- LectureEnrichList Start-->
+    	<ParameterMeta ID="ltCd" IsReadOnly="false" Enable="true">
+			<RegBy>lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LectureEnrichList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="enrichCancelState" IsReadOnly="false" Enable="true">
+			<RegBy>lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LectureEnrichList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<!-- LectureEnrichList End-->
+    	
+    	<!-- LectureScheduleTime Start-->
+    	<ParameterMeta ID="ltCd" IsReadOnly="false" Enable="true">
+			<RegBy>lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LectureScheduleTime</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="scheduleDt" IsReadOnly="false" Enable="true">
+			<RegBy>lecture</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>lecture</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>LectureScheduleTime</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<!-- LectureScheduleTime End-->
+    	
+    </Collections>
+</MetaCollection>

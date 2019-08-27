@@ -1,0 +1,155 @@
+ <!-- content -->
+  	<div class="app-content-body ">
+<div class="wrapper-md" ng-controller="CompanyInsertController" ng-init="init()">
+  <div class="panel panel-default panel-devide">
+    <div class="panel-heading font-bold">
+      고객사관리
+    </div>
+    <div class="panel-body">
+      <form class="form-horizontal" method="get">
+        <div class="form-group">
+          <div class="col-bg col-sm-2"><label class=" control-label"><span class="dot">*</span> 회원구분</label></div>
+          <div class="col-sm-2">
+            <select name="account" class="form-control input-sm"
+            	ng-model="company.compStatus"
+            	ng-options="membership.codeId as membership.codeName1 for membership in memberships">
+            	<option value="">선택</option>>
+            </select>
+          </div>
+            <div class="col-bg col-sm-2 col-sm-offset-3"><label class=" control-label">
+                <span class="dot">*</span> 기업모드</label></div>
+          <div class="col-sm-2">
+            <select name="account" class="form-control input-sm"
+            	ng-model="company.compType"
+            	ng-options="corporate_mode.codeId as corporate_mode.codeName1 for corporate_mode in corporate_modes">
+              	<option value="">선택</option>
+            </select>
+          </div>
+        </div>
+          <div class="form-group">
+          <div class="col-bg col-sm-2"><label class=" control-label"><span class="dot">*</span> 업체명</label></div>
+          <div class="col-sm-2">
+            <input class="form-control input-sm" ng-model="company.compNm" type="text" maxlength="40">
+          </div>
+            <div class="col-bg col-sm-2 col-sm-offset-3"><label class=" control-label label-indent"> 업체코드</label></div>
+          <div class="col-sm-2">
+            <input class="form-control input-sm" type="text" value="※ 자동생성" readonly style="border: none; background:#fff">
+          </div>
+        </div>
+          <div class="form-group">
+          <div class="col-bg col-sm-2"><label class="control-label"><span class="dot">*</span> 고객사 담당자</label></div>
+          <div class="col-sm-2">
+            <select name="account" class="form-control input-sm"
+            	ng-model="company.sliCsId" 
+                ng-options="contact.userId as contact.userName for contact in contacts" 
+                ng-change="setCompanyContact()">
+                <option value="">담당자선택</option>
+            </select>
+          </div>
+        <div class="col-sm-2">
+            <input class="form-control input-sm" type="text" placeholder="휴대폰번호" ng-model="company.sliCsMobile" readonly>
+          </div>
+          <div class="col-sm-12 no-padder">
+          <div class="col-bg col-sm-2"><label class=" control-label text-xxs label-indent">"empty"</label></div>
+        <div class="col-sm-4">
+            <input class="form-control input-sm" type="text" placeholder="이메일주소" ng-model="company.sliCsEmail" readonly/>
+          </div>
+        </div>
+        </div>
+          <div class="form-group">
+          <div class="col-bg col-sm-2"><label class=" control-label label-indent">회계처리 정보</label></div>
+          <div class="col-sm-4">
+            <select  class="form-control input-sm" 
+	                ng-model="company.accountType" 
+	                ng-options="accounting.codeId as accounting.codeName1 for accounting in accountings">
+              		<option value="">선택</option>
+            </select>
+          </div>
+        </div>
+          <div class="form-group">
+          <div class="col-bg col-sm-2"><label class=" control-label label-indent">기업로고</label></div>
+          <div class="col-sm-4">
+              <label class="btn btn-sm btn-info m-t-xs" ng-if="!company.logos">
+                  	파일 첨부
+                <input type="file" select-ng-files ng-model="company.logos"
+                  style="opacity: 0; position: absolute; left: 0; width: 100px;height: 32px; top: 5px" ng-change="logoUpload();"/>
+              </label>
+              <label class="uploader" ng-if="company.logos" ng-repeat="file in company.logos">
+                {{ file.name }}
+                <button type="button" id="file" class="btn btn-xs btn-default" ng-click="company.logos = null;">
+                  <i class="fa fa-times primary"></i>
+                </button>
+              </label>
+          </div>
+          <div class="col-bg col-sm-2 col-sm-offset-1"><label class=" control-label">
+                <span class="dot">*</span> 영업담당자</label></div>
+          <div class="col-sm-2">
+            <select name="account" class="form-control input-sm"
+            	ng-model="company.sliSaId" 
+                ng-options="sale.userId as sale.userName for sale in sales">
+               <option value="">담당자선택</option>>
+            </select>
+          </div>      
+        </div>
+        <div class="form-group">
+          <div class="col-bg col-sm-2"><label class=" control-label label-indent">메모</label></div>
+          <div class="col-sm-4">
+            <input class="form-control input-sm" type="text" ng-model="company.cnts" maxlength="255">
+          </div>
+        </div>          
+      </form>
+    </div>
+  </div>
+    <div class="panel panel-default panel-devide">
+    <div class="panel-heading font-bold">
+      사이트 설정
+    </div>
+    <div class="panel-body">
+      <form class="form-horizontal" method="get">
+          <div class="form-group">
+          <div class="col-bg col-sm-2"><label class=" control-label"><span class="dot">*</span> 고객사 URL</label></div>
+          <div class="col-sm-4">
+            <input class="form-control input-sm" type="text" placeholder="http://www.asdfqwer.asd" ng-model="company.url" name="url" maxlength="255">
+          </div>
+        </div>
+          <div class="form-group">
+          <div class="col-bg col-sm-2"><label class="control-label"><span class="dot">*</span> 대표 색상</label></div>
+          <div class="col-sm-2">
+               <div class="input-group input-group-sm m-t-xs" colorpicker ng-model="company.color" colorpicker-position="top">
+                <input type="text" class="form-control" placeholder="색상선택" ng-model="company.color" maxlength="7"/>
+                <span class="input-group-addon">
+                  <i class="glyphicon glyphicon-tint" style="color: {{!company.color ? '#ccc': company.color}}"></i>
+                </span>
+              </div>
+          </div>
+        </div>
+          <div class="form-group">
+          <div class="col-bg col-sm-2"><label class="control-label"><span class="dot">*</span> 메인 배너</label></div>
+          <div class="col-sm-4">
+            <div class="uploader_wrap">
+  				<label class="btn btn-sm btn-info m-t-xs" ng-if="!company.banners">
+                 	 파일 첨부
+                  <input type="file" id="banner_file" select-ng-files ng-model="company.banners"
+                    style="opacity: 0; position: absolute; left: 0; width: 100px;height: 32px; top: 5px" ng-change="bannerUpload();" />
+                </label>
+                <label class="uploader" ng-repeat="file in company.banners">
+                  {{ file.name }}
+                  <button type="button" class="btn btn-xs btn-default" ng-click="company.banners = null">
+                    <i class="fa fa-times primary"></i>
+                  </button>
+                </label>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+        <div class="text-center m-t-lg">
+            <button class="btn btn-dark btn-w" ui-sref="app.company.list">취소</button>&nbsp;
+            <button class="btn btn-primary btn-w" ng-click="saveCompany()">등록</button>
+          </div>
+</div>
+
+
+	</div>
+  <!-- /content -->

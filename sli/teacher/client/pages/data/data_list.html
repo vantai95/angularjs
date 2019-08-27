@@ -1,0 +1,100 @@
+<div ng-controller="DataListController" ng-init="init()">
+	<div class="app-content-body ">
+		<div class="panel panel-body no-shadow bg-gray">
+			<form class="form-horizontal clearfix widthfix-lg m-auto"
+				method="get">
+				
+				<div class="form-group b-n col-sm-4">
+					<label class="col-xs-12 control-label" data-langNum="5">자료실</label>					
+					<div class="col-xs-5 no-padder-left">
+						<select name="account" class="form-control input-sm"
+							ng-model="dataInfo.shCpCd"
+							ng-options="item.cpCd as item.compNm for item in customerCompanyListBox" ng-change="getLectureListBox()">
+							<option value="">-고객사 선택-</option>
+						</select>
+					</div>
+					<div class="col-xs-5 no-padder-left">
+						<select name="account" class="form-control input-sm"
+								ng-model="dataInfo.shLtCd" 
+								ng-options="item.ltCd as item.lectureNm for item in lectureListBox ">
+							<option value="">-강의 선택-</option>
+						</select>
+					</div>					
+					<div class="col-xs-2 no-padder">						
+						<div class="input-group input-group-sm m-t-xs">							
+							<span class="input-group-btn">
+								<button type="submit" ng-click="searchList()" class="btn btn-dark btn-s">조회</button>
+							</span>
+						</div>
+					</div>					
+				</div>
+			</form>
+		</div>
+		
+		<div class="wrapper-md widthfix-lg m-auto m-b-xs">
+			<button type="submit" class="btn btn-xl btn-primary w-full pc-btn-w-sm pull-right" ui-sref="app.data.write">신규등록</button>
+		</div>
+		
+		<div class="wrapper-md widthfix-lg m-auto">		
+			<!-- accordion / caret class 동작 확인, 1열 적용-->
+			<!-- <div class="acc_wrap">
+				<uib-accordion close-others="oneAtATime" close-others="true">
+				<div class="panel-default" ng-repeat="dataInfo in dataInfoList">
+					<uib-accordion-heading>
+					<div class="no-padder notice_tt text-md col-xs-12 col-sm-1">{{generateListNo(current_page,dataInfoList.length, $index)}}</div>					
+					<div class="no-padder notice_tt text-md col-xs-12 col-sm-2">{{dataInfo.cpCdNm}}</div>					
+					<div class="no-padder notice_tt text-md col-xs-12 col-sm-4">{{dataInfo.lectureNm}}</div>
+					<div class="no-padder notice_tt text-md col-xs-12 col-sm-4">{{dataInfo.dataTitle}}</div>					
+					<div class="no-padder notice_dt gray m-t-xs col-xs-12 col-sm-1">{{dataInfo.regDt}}</div>					
+					</uib-accordion-heading>					
+				</div>
+				</uib-accordion>
+			</div> -->					
+						
+			<div class="acc_wrap b-b">
+				<!---list s--->
+				<div class="panel-group m-b-none">
+					<table class="table b-t b-light nopadTable-sm m-b-none">
+						<tbody>
+							<tr class="heightfix-sm2" ng-repeat="dataInfo in dataInfoList">
+								<td class="w-xxxs">{{$index+1}}</td>
+								<td class="text-left">
+									<div>{{dataInfo.cpCdNm}}</div>
+								</td>
+								<td class="text-left">
+									<div>{{dataInfo.lectureNm}}</div>
+								</td>								
+								<td class="text-left">
+									<div class="underline"><a class="primary" ui-sref="app.data.view({id: dataInfo.daCd})">{{dataInfo.dataTitle}}</div>
+								</td>
+								<td>
+									<div>{{dataInfo.regDt}}</div>
+								</td>
+							</tr>
+							<tr class="heightfix-sm2" ng-if="dataInfoList.length == 0">
+								<td>조회된 데이터가 없습니다.</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<!---list e--->
+			</div>		
+						
+			<!-- / accordion -->
+			<div class="row">				
+				<br>
+				<div ng-if="app.page_size < total_cnt">
+					<button class="btn btn-borderDefault w-full widthfix-xs m-auto pc-block btnMoreList" ng-click="nextPageClick()" data-langNum="9">더보기</button>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<script class="ng-scope" type="text/javascript">
+	$(document).ready(function() {
+		$('.app').addClass('back')
+	})
+</script>
+<script src="assets/js/language.js"></script>

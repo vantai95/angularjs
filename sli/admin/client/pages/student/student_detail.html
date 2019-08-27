@@ -1,0 +1,1767 @@
+
+  	<div class="app-content-body" ng-controller="StudentDetailController" ng-init="init()">
+<div class="wrapper-md">
+  <div class="panel panel-default m-b-none">
+    <div class="panel-heading font-bold">
+      수강생현황
+		<button type="submit" class="btn btn-danger pull-right btn-m" ng-if="student.lastDropFlag != 'W'" ng-click="changeDrop('W')">Drop</button>
+        <button type="submit" class="btn pull-right btn-m" ng-if="student.lastDropFlag == 'W'" ng-click="changeDrop('R')">Drop 해제</button>
+    </div>
+    <div class="panel-body white text-md">
+      <form class="form-horizontal" method="get">
+        <div class="form-group b-n">
+          <label class="col-sm-3 control-label"><b>수강생</b> : {{student.userName}} ({{student.compNm}})</label>
+        </div>
+        <div class="form-group b-n">
+            <label class="col-sm-3 control-label"><b>강의명</b> : {{student.lectureNm}} ( 강사 : {{student.teacherNm}}) </label>
+            <label class="col-sm-3 control-label"><b>강의기간</b> : {{student.startDt}} ~ {{student.endDt}} </label>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+    <div class="row panel-body white text-lg">
+        1. 출결현황 (출석률 <span class="primary">{{student.attendRate}}%</span> 출석 <span class="primary">{{student.attCntY}}</span>회 결석 <span class="danger">{{student.attCntN}}</span>회)
+    </div>
+    
+    <div class="form-group b-n">
+	    <div class="col-sm-5 no-padder-left">
+	        <div class="col-sm-3 no-padder-right">
+	            <input class="form-control input-sm date dateStr" type="text" ng-model="student.startDt" readonly style="background: white; min-width:80px;">
+	        </div>
+	        <label class="control-label col-sm-1 text-center" style="line-height:40px;">─</label>
+	        <div class="col-sm-3 no-padder-left">
+	            <input class="form-control input-sm date dateEnd" type="text" ng-model="student.endDt" readonly style="background: white; min-width:80px;">
+	        </div>
+	        <div class="col-sm-4 no-padder-left">
+	        	<button type="submit" class="form-control btn btn-dark btn-s" ng-click="getAttendStudentList('N')" style="height:30px; margin-top: 5px;">기간 조회</button>
+	        </div>
+	    </div>	    
+	</div>
+	    
+    <div class="table-horizontal-wrap">
+	    <div class="panel panel-default m-t-xs inline">
+		    <table class="table table-bordered b-t b-light" ng-if="apply_student_list.length > 0">		        
+		        <thead>
+		            <tr class="active">
+		                <th ng-repeat="attDate in attDateList track by $index" style="min-width:95px;">
+		                    {{attDate.date | date: 'MM-dd'}}({{attDate.week}})
+		                </th>
+		            </tr>
+		        </thead>
+		        <tbody>
+		            <tr ng-repeat="apply_student in apply_student_list track by $index">	                
+		                <td ng-repeat="status in apply_student.status track by $index" ng-bind-html="status" class="{{getStyle(status)}}"></td>
+		            </tr>
+		        </tbody>	
+		    </table>
+		</div>
+	</div>
+    <!--출결현황-->
+    
+       <div class="row panel-body white text-lg ">
+           2. 레벨테스트 [{{lvtest_info.tpCd}}]
+       </div>
+       <div class="panel panel-default m-b-none">
+	    <table class="table table-test center_align m-b-none" ng-if="lvtest_detail.tpCd == null || lvtest_detail.tpCd == ''">
+	        <tbody>
+	            <tr>
+	                <td>점수가 공개되지 않았습니다.</td>
+	            </tr>
+	        </tbody>
+	    </table>
+	    
+	    <table class="table table-test center_align m-b-none" ng-if="lvtest_detail.tpCd == 'Business'">
+	        <thead>
+	            <tr class="active">
+	                <th>Average Score</th>
+	                <th colspan="100%"><span class="primary">{{lvtest_detail.avgScore}}</span></th>
+	            </tr>
+	            <tr class="active">
+	                <th rowspan="2">Level</th>
+	                <th colspan="3">입문</th>
+	                <th colspan="3">초급</th>
+	                <th colspan="3">중급</th>
+	                <th colspan="3">고급</th>
+	            </tr>
+	            <tr class="active">
+	                <th>Lv.1</th>
+	                <th>Lv.2</th>
+	                <th>Lv.3</th>
+	                <th>Lv.4</th>
+	                <th>Lv.5</th>
+	                <th>Lv.6</th>
+	                <th>Lv.7</th>
+	                <th>Lv.8</th>
+	                <th>Lv.9</th>
+	                <th>Lv.10</th>
+	                <th>Lv.11</th>
+	                <th>Lv.12</th>
+	            </tr>
+	            <tr class="active">
+	                <th>Level</th>
+	                <th>A1</th>
+	                <th>A1</th>
+	                <th>A2</th>
+	                <th>A2</th>
+	                <th>B1</th>
+	                <th>B1</th>
+	                <th>B2</th>
+	                <th>B2</th>
+	                <th>C1</th>
+	                <th>C1</th>
+	                <th>C2</th>
+	                <th>C2</th>
+	            </tr>
+	            <tr class="active">
+	                <th>Score</th>
+	                <th>20~23</th>
+					<th>24~26</th>
+					<th>27~29</th>
+					<th>30~32</th>
+					<th>33~35</th>
+					<th>36~38</th>
+					<th>39~41</th>
+					<th>42~44</th>
+					<th>45~47</th>
+					<th>48~50</th>
+					<th>51~53</th>
+					<th>54~56</th>
+	            </tr>
+	        </thead>
+	        <tbody>	            
+	            <tr>
+					<th>Speaking</th>
+					<td>{{lvtest_detail.article1Level == 'Lv1' ? lvtest_detail.article1Score : ''}}</td>
+					<td>{{lvtest_detail.article1Level == 'Lv2' ? lvtest_detail.article1Score : ''}}</td>
+					<td>{{lvtest_detail.article1Level == 'Lv3' ? lvtest_detail.article1Score : ''}}</td>
+					<td>{{lvtest_detail.article1Level == 'Lv4' ? lvtest_detail.article1Score : ''}}</td>
+					<td>{{lvtest_detail.article1Level == 'Lv5' ? lvtest_detail.article1Score : ''}}</td>
+					<td>{{lvtest_detail.article1Level == 'Lv6' ? lvtest_detail.article1Score : ''}}</td>
+					<td>{{lvtest_detail.article1Level == 'Lv7' ? lvtest_detail.article1Score : ''}}</td>
+					<td>{{lvtest_detail.article1Level == 'Lv8' ? lvtest_detail.article1Score : ''}}</td>
+					<td>{{lvtest_detail.article1Level == 'Lv9' ? lvtest_detail.article1Score : ''}}</td>
+					<td>{{lvtest_detail.article1Level == 'Lv10' ? lvtest_detail.article1Score : ''}}</td>
+					<td>{{lvtest_detail.article1Level == 'Lv11' ? lvtest_detail.article1Score : ''}}</td>
+					<td>{{lvtest_detail.article1Level == 'Lv12' ? lvtest_detail.article1Score : ''}}</td>
+				</tr>
+				<tr>
+					<th>Listening</th>
+					<td>{{lvtest_detail.article2Level == 'Lv1' ? lvtest_detail.article2Score : ''}}</td>
+					<td>{{lvtest_detail.article2Level == 'Lv2' ? lvtest_detail.article2Score : ''}}</td>
+					<td>{{lvtest_detail.article2Level == 'Lv3' ? lvtest_detail.article2Score : ''}}</td>
+					<td>{{lvtest_detail.article2Level == 'Lv4' ? lvtest_detail.article2Score : ''}}</td>
+					<td>{{lvtest_detail.article2Level == 'Lv5' ? lvtest_detail.article2Score : ''}}</td>
+					<td>{{lvtest_detail.article2Level == 'Lv6' ? lvtest_detail.article2Score : ''}}</td>
+					<td>{{lvtest_detail.article2Level == 'Lv7' ? lvtest_detail.article2Score : ''}}</td>
+					<td>{{lvtest_detail.article2Level == 'Lv8' ? lvtest_detail.article2Score : ''}}</td>
+					<td>{{lvtest_detail.article2Level == 'Lv9' ? lvtest_detail.article2Score : ''}}</td>
+					<td>{{lvtest_detail.article2Level == 'Lv10' ? lvtest_detail.article2Score : ''}}</td>
+					<td>{{lvtest_detail.article2Level == 'Lv11' ? lvtest_detail.article2Score : ''}}</td>
+					<td>{{lvtest_detail.article2Level == 'Lv12' ? lvtest_detail.article2Score : ''}}</td>
+				</tr>
+				<tr>
+					<th>Pronunciation</th>
+					<td>{{lvtest_detail.article3Level == 'Lv1' ? lvtest_detail.article3Score : ''}}</td>
+					<td>{{lvtest_detail.article3Level == 'Lv2' ? lvtest_detail.article3Score : ''}}</td>
+					<td>{{lvtest_detail.article3Level == 'Lv3' ? lvtest_detail.article3Score : ''}}</td>
+					<td>{{lvtest_detail.article3Level == 'Lv4' ? lvtest_detail.article3Score : ''}}</td>
+					<td>{{lvtest_detail.article3Level == 'Lv5' ? lvtest_detail.article3Score : ''}}</td>
+					<td>{{lvtest_detail.article3Level == 'Lv6' ? lvtest_detail.article3Score : ''}}</td>
+					<td>{{lvtest_detail.article3Level == 'Lv7' ? lvtest_detail.article3Score : ''}}</td>
+					<td>{{lvtest_detail.article3Level == 'Lv8' ? lvtest_detail.article3Score : ''}}</td>
+					<td>{{lvtest_detail.article3Level == 'Lv9' ? lvtest_detail.article3Score : ''}}</td>
+					<td>{{lvtest_detail.article3Level == 'Lv10' ? lvtest_detail.article3Score : ''}}</td>
+					<td>{{lvtest_detail.article3Level == 'Lv11' ? lvtest_detail.article3Score : ''}}</td>
+					<td>{{lvtest_detail.article3Level == 'Lv12' ? lvtest_detail.article3Score : ''}}</td>
+				</tr>
+				<tr>
+					<th>Vocabulary</th>
+					<td>{{lvtest_detail.article4Level == 'Lv1' ? lvtest_detail.article4Score : ''}}</td>
+					<td>{{lvtest_detail.article4Level == 'Lv2' ? lvtest_detail.article4Score : ''}}</td>
+					<td>{{lvtest_detail.article4Level == 'Lv3' ? lvtest_detail.article4Score : ''}}</td>
+					<td>{{lvtest_detail.article4Level == 'Lv4' ? lvtest_detail.article4Score : ''}}</td>
+					<td>{{lvtest_detail.article4Level == 'Lv5' ? lvtest_detail.article4Score : ''}}</td>
+					<td>{{lvtest_detail.article4Level == 'Lv6' ? lvtest_detail.article4Score : ''}}</td>
+					<td>{{lvtest_detail.article4Level == 'Lv7' ? lvtest_detail.article4Score : ''}}</td>
+					<td>{{lvtest_detail.article4Level == 'Lv8' ? lvtest_detail.article4Score : ''}}</td>
+					<td>{{lvtest_detail.article4Level == 'Lv9' ? lvtest_detail.article4Score : ''}}</td>
+					<td>{{lvtest_detail.article4Level == 'Lv10' ? lvtest_detail.article4Score : ''}}</td>
+					<td>{{lvtest_detail.article4Level == 'Lv11' ? lvtest_detail.article4Score : ''}}</td>
+					<td>{{lvtest_detail.article4Level == 'Lv12' ? lvtest_detail.article4Score : ''}}</td>
+				</tr>
+				<tr>
+					<th>Grammar</th>
+					<td>{{lvtest_detail.article5Level == 'Lv1' ? lvtest_detail.article5Score : ''}}</td>
+					<td>{{lvtest_detail.article5Level == 'Lv2' ? lvtest_detail.article5Score : ''}}</td>
+					<td>{{lvtest_detail.article5Level == 'Lv3' ? lvtest_detail.article5Score : ''}}</td>
+					<td>{{lvtest_detail.article5Level == 'Lv4' ? lvtest_detail.article5Score : ''}}</td>
+					<td>{{lvtest_detail.article5Level == 'Lv5' ? lvtest_detail.article5Score : ''}}</td>
+					<td>{{lvtest_detail.article5Level == 'Lv6' ? lvtest_detail.article5Score : ''}}</td>
+					<td>{{lvtest_detail.article5Level == 'Lv7' ? lvtest_detail.article5Score : ''}}</td>
+					<td>{{lvtest_detail.article5Level == 'Lv8' ? lvtest_detail.article5Score : ''}}</td>
+					<td>{{lvtest_detail.article5Level == 'Lv9' ? lvtest_detail.article5Score : ''}}</td>
+					<td>{{lvtest_detail.article5Level == 'Lv10' ? lvtest_detail.article5Score : ''}}</td>
+					<td>{{lvtest_detail.article5Level == 'Lv11' ? lvtest_detail.article5Score : ''}}</td>
+					<td>{{lvtest_detail.article5Level == 'Lv12' ? lvtest_detail.article5Score : ''}}</td>
+				</tr>
+	        </tbody>
+	        <tfoot>
+       			<tr class="active">
+       				<td colspan="5">
+       					<p class="tt text-left">Comment</p>
+	        			<p class="primary text-thin text-left">{{lvtest_detail.cnts}}</p>
+       				</td>
+       				<td colspan="4">
+       					<p class="tt text-left">Weak Points</p>
+	        			<p class="primary text-thin text-left">{{lvtest_detail.weakPoints}}</p>
+       				</td>
+       				<td colspan="4">
+       					<p class="tt text-left">Action Plan</p>
+	        			<p class="primary text-thin text-left">{{lvtest_detail.actionPlan}}</p>
+       				</td>
+       			</tr>
+       		</tfoot>
+	    </table>
+	    <table class="table table-test center_align m-b-none" ng-if="lvtest_detail.tpCd == 'TOEIC'">
+	        <thead>
+	            <tr class="active">
+	                <th>Average Score</th>
+	                <th colspan="100%"><span class="primary">{{lvtest_detail.avgScore}}</span></th>
+	            </tr>	            
+	            <tr class="active">
+	                <th rowspan="2">Level</th>
+	                <th colspan="2">입문</th>
+	                <th colspan="2">초급</th>
+	                <th colspan="2">중급</th>
+	                <th colspan="2">고급</th>
+	            </tr>
+	            <tr class="active">
+	                <th>Lv.1</th>
+	                <th>Lv.2</th>
+	                <th>Lv.3</th>
+	                <th>Lv.4</th>
+	                <th>Lv.5</th>
+	                <th>Lv.6</th>
+	                <th>Lv.7</th>
+	                <th>Lv.8</th>
+	            </tr>
+	            <tr class="active">
+	                <th>Score</th>
+	                <th>0~295</th>
+	                <th>300~395</th>
+	                <th>400~495</th>
+	                <th>500~595</th>
+	                <th>600~695</th>
+	                <th>700~795</th>
+	                <th>800~895</th>
+	                <th>900~990</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	            <tr class="active">
+	                <th>L/C</th>
+	                <td>{{lvtest_detail.article1Level == 'LV.1' ? lvtest_detail.article1Score : ''}}</td>
+	                <td>{{lvtest_detail.article1Level == 'LV.2' ? lvtest_detail.article1Score : ''}}</td>
+	                <td>{{lvtest_detail.article1Level == 'LV.3' ? lvtest_detail.article1Score : ''}}</td>
+	                <td>{{lvtest_detail.article1Level == 'LV.4' ? lvtest_detail.article1Score : ''}}</td>
+	                <td>{{lvtest_detail.article1Level == 'LV.5' ? lvtest_detail.article1Score : ''}}</td>
+	                <td>{{lvtest_detail.article1Level == 'LV.6' ? lvtest_detail.article1Score : ''}}</td>
+	                <td>{{lvtest_detail.article1Level == 'LV.7' ? lvtest_detail.article1Score : ''}}</td>
+	                <td>{{lvtest_detail.article1Level == 'LV.8' ? lvtest_detail.article1Score : ''}}</td>
+	            </tr>
+	            <tr class="active">
+	                <th>R/C</th>
+	                <td>{{lvtest_detail.article2Level == 'LV.1' ? lvtest_detail.article2Score : ''}}</td>
+	                <td>{{lvtest_detail.article2Level == 'LV.2' ? lvtest_detail.article2Score : ''}}</td>
+	                <td>{{lvtest_detail.article2Level == 'LV.3' ? lvtest_detail.article2Score : ''}}</td>
+	                <td>{{lvtest_detail.article2Level == 'LV.4' ? lvtest_detail.article2Score : ''}}</td>
+	                <td>{{lvtest_detail.article2Level == 'LV.5' ? lvtest_detail.article2Score : ''}}</td>
+	                <td>{{lvtest_detail.article2Level == 'LV.6' ? lvtest_detail.article2Score : ''}}</td>
+	                <td>{{lvtest_detail.article2Level == 'LV.7' ? lvtest_detail.article2Score : ''}}</td>
+	                <td>{{lvtest_detail.article2Level == 'LV.8' ? lvtest_detail.article2Score : ''}}</td>
+	            </tr>
+	        </tbody>
+	    </table>
+	
+	    <table class="table table-test center_align m-b-none" ng-if="lvtest_detail.tpCd == 'TOEICS'">
+	        <thead>
+	            <tr class="active">
+	                <th>Average Score</th>
+	                <th colspan="100%"><span class="primary">{{lvtest_detail.avgScore}}</span></th>
+	            </tr>
+	            <tr class="active">
+	                <th rowspan="2">Level</th>
+	                <th colspan="2">입문</th>
+	                <th colspan="2">초급</th>
+	                <th colspan="2">중급</th>
+	                <th>고급</th>
+	            </tr>
+	            <tr class="active">
+	                <th>Lv.1</th>
+	                <th>Lv.2</th>
+	                <th>Lv.3</th>
+	                <th>Lv.4</th>
+	                <th>Lv.5</th>
+	                <th>Lv.6</th>
+	                <th>Lv.7</th>
+	                <th>Lv.8</th>
+	            </tr>
+	            <tr class="active">
+	                <th>Score</th>
+	                <th>0~30</th>
+	                <th>40~50</th>
+	                <th>60~70</th>
+	                <th>80~100</th>
+	                <th>110~120</th>
+	                <th>130~150</th>
+	                <th>160~180</th>
+	                <th>190~200</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	            <tr class="active">
+	                <th>Pronunciation</th>
+	                <td>{{lvtest_detail.article1Level == 'LV.1' ? lvtest_detail.article1Score : ''}}</td>
+	                <td>{{lvtest_detail.article1Level == 'LV.2' ? lvtest_detail.article1Score : ''}}</td>
+	                <td>{{lvtest_detail.article1Level == 'LV.3' ? lvtest_detail.article1Score : ''}}</td>
+	                <td>{{lvtest_detail.article1Level == 'LV.4' ? lvtest_detail.article1Score : ''}}</td>
+	                <td>{{lvtest_detail.article1Level == 'LV.5' ? lvtest_detail.article1Score : ''}}</td>
+	                <td>{{lvtest_detail.article1Level == 'LV.6' ? lvtest_detail.article1Score : ''}}</td>
+	                <td>{{lvtest_detail.article1Level == 'LV.7' ? lvtest_detail.article1Score : ''}}</td>
+	                <td>{{lvtest_detail.article1Level == 'LV.8' ? lvtest_detail.article1Score : ''}}</td>
+	            </tr>
+	            <tr class="active">
+	                <th>Intonation and Stress</th>
+	                <td>{{lvtest_detail.article2Level == 'LV.1' ? lvtest_detail.article2Score : ''}}</td>
+	                <td>{{lvtest_detail.article2Level == 'LV.2' ? lvtest_detail.article2Score : ''}}</td>
+	                <td>{{lvtest_detail.article2Level == 'LV.3' ? lvtest_detail.article2Score : ''}}</td>
+	                <td>{{lvtest_detail.article2Level == 'LV.4' ? lvtest_detail.article2Score : ''}}</td>
+	                <td>{{lvtest_detail.article2Level == 'LV.5' ? lvtest_detail.article2Score : ''}}</td>
+	                <td>{{lvtest_detail.article2Level == 'LV.6' ? lvtest_detail.article2Score : ''}}</td>
+	                <td>{{lvtest_detail.article2Level == 'LV.7' ? lvtest_detail.article2Score : ''}}</td>
+	                <td>{{lvtest_detail.article2Level == 'LV.8' ? lvtest_detail.article2Score : ''}}</td>
+	            </tr>
+	            <tr class="active">
+	                <th>Grammar</th>
+	                <td>{{lvtest_detail.article3Level == 'LV.1' ? lvtest_detail.article3Score : ''}}</td>
+	                <td>{{lvtest_detail.article3Level == 'LV.2' ? lvtest_detail.article3Score : ''}}</td>
+	                <td>{{lvtest_detail.article3Level == 'LV.3' ? lvtest_detail.article3Score : ''}}</td>
+	                <td>{{lvtest_detail.article3Level == 'LV.4' ? lvtest_detail.article3Score : ''}}</td>
+	                <td>{{lvtest_detail.article3Level == 'LV.5' ? lvtest_detail.article3Score : ''}}</td>
+	                <td>{{lvtest_detail.article3Level == 'LV.6' ? lvtest_detail.article3Score : ''}}</td>
+	                <td>{{lvtest_detail.article3Level == 'LV.7' ? lvtest_detail.article3Score : ''}}</td>
+	                <td>{{lvtest_detail.article3Level == 'LV.8' ? lvtest_detail.article3Score : ''}}</td>
+	            </tr>
+	            <tr class="active">
+	                <th>Vocabulary and Cohesion</th>
+	                <td>{{lvtest_detail.article4Level == 'LV.1' ? lvtest_detail.article4Score : ''}}</td>
+	                <td>{{lvtest_detail.article4Level == 'LV.2' ? lvtest_detail.article4Score : ''}}</td>
+	                <td>{{lvtest_detail.article4Level == 'LV.3' ? lvtest_detail.article4Score : ''}}</td>
+	                <td>{{lvtest_detail.article4Level == 'LV.4' ? lvtest_detail.article4Score : ''}}</td>
+	                <td>{{lvtest_detail.article4Level == 'LV.5' ? lvtest_detail.article4Score : ''}}</td>
+	                <td>{{lvtest_detail.article4Level == 'LV.6' ? lvtest_detail.article4Score : ''}}</td>
+	                <td>{{lvtest_detail.article4Level == 'LV.7' ? lvtest_detail.article4Score : ''}}</td>
+	                <td>{{lvtest_detail.article4Level == 'LV.8' ? lvtest_detail.article4Score : ''}}</td>
+	            </tr>
+	            <tr class="active">
+	                <th>Relevance of content and Completeness of content</th>
+	                <td>{{lvtest_detail.article5Level == 'LV.1' ? lvtest_detail.article5Score : ''}}</td>
+	                <td>{{lvtest_detail.article5Level == 'LV.2' ? lvtest_detail.article5Score : ''}}</td>
+	                <td>{{lvtest_detail.article5Level == 'LV.3' ? lvtest_detail.article5Score : ''}}</td>
+	                <td>{{lvtest_detail.article5Level == 'LV.4' ? lvtest_detail.article5Score : ''}}</td>
+	                <td>{{lvtest_detail.article5Level == 'LV.5' ? lvtest_detail.article5Score : ''}}</td>
+	                <td>{{lvtest_detail.article5Level == 'LV.6' ? lvtest_detail.article5Score : ''}}</td>
+	                <td>{{lvtest_detail.article5Level == 'LV.7' ? lvtest_detail.article5Score : ''}}</td>
+	                <td>{{lvtest_detail.article5Level == 'LV.8' ? lvtest_detail.article5Score : ''}}</td>
+	            </tr>
+	        </tbody>
+	    </table>
+	
+	    <table class="table table-test center_align m-b-none" ng-if="lvtest_detail.tpCd == 'OPIC'">
+	        <thead>
+	            <tr class="active">
+	                <th>Average Score</th>
+	                <th colspan="100%"><span class="primary">{{lvtest_detail.avgScore}}</span></th>
+	            </tr>
+	            <tr class="active">
+	                <th rowspan="2">Level</th>
+	                <th colspan="3">입문</th>
+	                <th colspan="3">초중급</th>
+	                <th>고급</th>
+	            </tr>
+	            <tr class="active">
+	                <th>7급</th>
+	                <th>6급</th>
+	                <th>5급</th>
+	                <th>4급</th>
+	                <th>3급</th>
+	                <th>2급</th>
+	                <th>1급</th>
+	            </tr>
+	            <tr class="active">
+	                <th>Level</th>
+	                <th>NL</th>
+	                <th>NM</th>
+	                <th>NH</th>
+	                <th>IL</th>
+	                <th>IM</th>
+	                <th>IH</th>
+	                <th>AL</th>
+	            </tr>
+	            <tr class="active">
+	                <th>Score</th>
+	                <th>1~5</th>
+	                <th>6~20</th>
+	                <th>21~40</th>
+	                <th>41~60</th>
+	                <th>61~70</th>
+	                <th>71~80</th>
+	                <th>81~100</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	            <tr>
+	                <td class="active">Language control</td>
+	                <td>{{lvtest_detail.article1Level == 'NL' ? lvtest_detail.article1Score : ''}}</td>
+	                <td>{{lvtest_detail.article1Level == 'NM' ? lvtest_detail.article1Score : ''}}</td>
+	                <td>{{lvtest_detail.article1Level == 'NH' ? lvtest_detail.article1Score : ''}}</td>
+	                <td>{{lvtest_detail.article1Level == 'IL' ? lvtest_detail.article1Score : ''}}</td>
+	                <td>{{lvtest_detail.article1Level == 'IM' ? lvtest_detail.article1Score : ''}}</td>
+	                <td>{{lvtest_detail.article1Level == 'IH' ? lvtest_detail.article1Score : ''}}</td>
+	                <td>{{lvtest_detail.article1Level == 'AL' ? lvtest_detail.article1Score : ''}}</td>
+	            </tr>
+	            <tr>
+	                <td class="active">Function,Global Tasks</td>
+	                <td>{{lvtest_detail.article2Level == 'NL' ? lvtest_detail.article2Score : ''}}</td>
+	                <td>{{lvtest_detail.article2Level == 'NM' ? lvtest_detail.article2Score : ''}}</td>
+	                <td>{{lvtest_detail.article2Level == 'NH' ? lvtest_detail.article2Score : ''}}</td>
+	                <td>{{lvtest_detail.article2Level == 'IL' ? lvtest_detail.article2Score : ''}}</td>
+	                <td>{{lvtest_detail.article2Level == 'IM' ? lvtest_detail.article2Score : ''}}</td>
+	                <td>{{lvtest_detail.article2Level == 'IH' ? lvtest_detail.article2Score : ''}}</td>
+	                <td>{{lvtest_detail.article2Level == 'AL' ? lvtest_detail.article2Score : ''}}</td>
+	            </tr>
+	            <tr>
+	                <td class="active">Text Type</td>
+	                <td>{{lvtest_detail.article3Level == 'NL' ? lvtest_detail.article3Score : ''}}</td>
+	                <td>{{lvtest_detail.article3Level == 'NM' ? lvtest_detail.article3Score : ''}}</td>
+	                <td>{{lvtest_detail.article3Level == 'NH' ? lvtest_detail.article3Score : ''}}</td>
+	                <td>{{lvtest_detail.article3Level == 'IL' ? lvtest_detail.article3Score : ''}}</td>
+	                <td>{{lvtest_detail.article3Level == 'IM' ? lvtest_detail.article3Score : ''}}</td>
+	                <td>{{lvtest_detail.article3Level == 'IH' ? lvtest_detail.article3Score : ''}}</td>
+	                <td>{{lvtest_detail.article3Level == 'AL' ? lvtest_detail.article3Score : ''}}</td>
+	            </tr>
+	            <tr>
+	                <td class="active">Contents Context</td>
+	                <td>{{lvtest_detail.article4Level == 'NL' ? lvtest_detail.article4Score : ''}}</td>
+	                <td>{{lvtest_detail.article4Level == 'NM' ? lvtest_detail.article4Score : ''}}</td>
+	                <td>{{lvtest_detail.article4Level == 'NH' ? lvtest_detail.article4Score : ''}}</td>
+	                <td>{{lvtest_detail.article4Level == 'IL' ? lvtest_detail.article4Score : ''}}</td>
+	                <td>{{lvtest_detail.article4Level == 'IM' ? lvtest_detail.article4Score : ''}}</td>
+	                <td>{{lvtest_detail.article4Level == 'IH' ? lvtest_detail.article4Score : ''}}</td>
+	                <td>{{lvtest_detail.article4Level == 'AL' ? lvtest_detail.article4Score : ''}}</td>
+	            </tr>
+	            <tr>
+	                <td class="active">Comprehensibility</td>
+	                <td>{{lvtest_detail.article5Level == 'NL' ? lvtest_detail.article5Score : ''}}</td>
+	                <td>{{lvtest_detail.article5Level == 'NM' ? lvtest_detail.article5Score : ''}}</td>
+	                <td>{{lvtest_detail.article5Level == 'NH' ? lvtest_detail.article5Score : ''}}</td>
+	                <td>{{lvtest_detail.article5Level == 'IL' ? lvtest_detail.article5Score : ''}}</td>
+	                <td>{{lvtest_detail.article5Level == 'IM' ? lvtest_detail.article5Score : ''}}</td>
+	                <td>{{lvtest_detail.article5Level == 'IH' ? lvtest_detail.article5Score : ''}}</td>
+	                <td>{{lvtest_detail.article5Level == 'AL' ? lvtest_detail.article5Score : ''}}</td>
+	            </tr>
+	        </tbody>
+	    </table>
+	
+	    <table class="table table-test center_align m-b-none" ng-if="lvtest_detail.tpCd == 'HSK'">
+	        <thead>
+	            <tr class="active">
+	                <th>Average Score</th>
+	                <th colspan="100%"><span class="primary">{{lvtest_detail.avgScore}}</span></th>
+	            </tr>
+	            <tr class="active">
+	                <th rowspan="2">Level</th>
+	                <th colspan="2">초급</th>
+	                <th colspan="2">중급</th>
+	                <th colspan="2">고급</th>
+	            </tr>
+	            <tr class="active">
+	                <th>1급</th>
+	                <th>2급</th>
+	                <th>3급</th>
+	                <th>4급</th>
+	                <th>5급</th>
+	                <th>6급</th>
+	            </tr>
+	            <tr class="active">
+	                <th>Score</th>
+	                <th>0~30</th>
+	                <th>31~50</th>
+	                <th>51~70</th>
+	                <th>71~80</th>
+	                <th>81~90</th>
+	                <th>91~100</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	            <tr class="active">
+	                <th>Listening</th>
+	                <td>{{lvtest_detail.article1Level == '1급' ? lvtest_detail.article1Score : ''}}</td>
+	                <td>{{lvtest_detail.article1Level == '2급' ? lvtest_detail.article1Score : ''}}</td>
+	                <td>{{lvtest_detail.article1Level == '3급' ? lvtest_detail.article1Score : ''}}</td>
+	                <td>{{lvtest_detail.article1Level == '4급' ? lvtest_detail.article1Score : ''}}</td>
+	                <td>{{lvtest_detail.article1Level == '5급' ? lvtest_detail.article1Score : ''}}</td>
+	                <td>{{lvtest_detail.article1Level == '6급' ? lvtest_detail.article1Score : ''}}</td>
+	            </tr>
+	            <tr class="active">
+	                <th>Reading</th>
+	                <td>{{lvtest_detail.article2Level == '1급' ? lvtest_detail.article2Score : ''}}</td>
+	                <td>{{lvtest_detail.article2Level == '2급' ? lvtest_detail.article2Score : ''}}</td>
+	                <td>{{lvtest_detail.article2Level == '3급' ? lvtest_detail.article2Score : ''}}</td>
+	                <td>{{lvtest_detail.article2Level == '4급' ? lvtest_detail.article2Score : ''}}</td>
+	                <td>{{lvtest_detail.article2Level == '5급' ? lvtest_detail.article2Score : ''}}</td>
+	                <td>{{lvtest_detail.article2Level == '6급' ? lvtest_detail.article2Score : ''}}</td>
+	            </tr>
+	            <tr class="active">
+	                <th>Writing</th>
+	                <td>{{lvtest_detail.article3Level == '1급' ? lvtest_detail.article3Score : ''}}</td>
+	                <td>{{lvtest_detail.article3Level == '2급' ? lvtest_detail.article3Score : ''}}</td>
+	                <td>{{lvtest_detail.article3Level == '3급' ? lvtest_detail.article3Score : ''}}</td>
+	                <td>{{lvtest_detail.article3Level == '4급' ? lvtest_detail.article3Score : ''}}</td>
+	                <td>{{lvtest_detail.article3Level == '5급' ? lvtest_detail.article3Score : ''}}</td>
+	                <td>{{lvtest_detail.article3Level == '6급' ? lvtest_detail.article3Score : ''}}</td>
+	            </tr>
+	        </tbody>
+	    </table>
+	
+	    <table class="table table-test center_align m-b-none" ng-if="lvtest_detail.tpCd == 'JLPT'">
+	        <thead>
+	            <tr class="active">
+	                <th>Average Score</th>
+	                <th colspan="100%"><span class="primary">{{lvtest_detail.avgScore}}</span></th>
+	            </tr>
+	            <tr class="active">
+	                <th rowspan="2">Level</th>
+	                <th colspan="2">초급</th>
+	                <th colspan="2">중급</th>
+	                <th>고급</th>
+	            </tr>
+	            <tr class="active">
+	                <th>N5</th>
+	                <th>N4</th>
+	                <th>N3</th>
+	                <th>N2</th>
+	                <th>N1</th>
+	            </tr>
+	            <tr class="active">
+	                <th>Score</th>
+	                <th>0~30</th>
+	                <th>31~50</th>
+	                <th>51~70</th>
+	                <th>71~90</th>
+	                <th>91~100</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	            <tr class="active">
+	                <th>Language Knowledge</th>
+	                <td>{{lvtest_detail.article1Level == 'N5' ? lvtest_detail.article1Score : ''}}</td>
+	                <td>{{lvtest_detail.article1Level == 'N4' ? lvtest_detail.article1Score : ''}}</td>
+	                <td>{{lvtest_detail.article1Level == 'N3' ? lvtest_detail.article1Score : ''}}</td>
+	                <td>{{lvtest_detail.article1Level == 'N2' ? lvtest_detail.article1Score : ''}}</td>
+	                <td>{{lvtest_detail.article1Level == 'N1' ? lvtest_detail.article1Score : ''}}</td>
+	            </tr>
+	            <tr class="active">
+	                <th>Reading</th>
+	                <td>{{lvtest_detail.article2Level == 'N5' ? lvtest_detail.article2Score : ''}}</td>
+	                <td>{{lvtest_detail.article2Level == 'N4' ? lvtest_detail.article2Score : ''}}</td>
+	                <td>{{lvtest_detail.article2Level == 'N3' ? lvtest_detail.article2Score : ''}}</td>
+	                <td>{{lvtest_detail.article2Level == 'N2' ? lvtest_detail.article2Score : ''}}</td>
+	                <td>{{lvtest_detail.article2Level == 'N1' ? lvtest_detail.article2Score : ''}}</td>
+	            </tr>
+	            <tr class="active">
+	                <th>Listening</th>
+	                <td>{{lvtest_detail.article3Level == 'N5' ? lvtest_detail.article3Score : ''}}</td>
+	                <td>{{lvtest_detail.article3Level == 'N4' ? lvtest_detail.article3Score : ''}}</td>
+	                <td>{{lvtest_detail.article3Level == 'N3' ? lvtest_detail.article3Score : ''}}</td>
+	                <td>{{lvtest_detail.article3Level == 'N2' ? lvtest_detail.article3Score : ''}}</td>
+	                <td>{{lvtest_detail.article3Level == 'N1' ? lvtest_detail.article3Score : ''}}</td>
+	            </tr>
+	        </tbody>
+	    </table>
+	
+	    <table class="table table-test center_align m-b-none" ng-if="lvtest_detail.tpCd == 'FLEX'">
+	        <thead>
+	            <tr class="active">
+	                <th>Average Score</th>
+	                <th colspan="100%"><span class="primary">{{lvtest_detail.avgScore}}</span></th>
+	            </tr>
+	            <tr class="active">
+	                <th rowspan="2">Level</th>
+	                <th colspan="3">초급</th>
+	                <th colspan="3">중급</th>
+	                <th colspan="3">고급</th>
+	            </tr>
+	            <tr class="active">
+	                <th>3C</th>
+	                <th>3B</th>
+	                <th>3A</th>
+	                <th>2C</th>
+	                <th>2B</th>
+	                <th>2A</th>
+	                <th>1C</th>
+	                <th>1B</th>
+	                <th>1A</th>
+	            </tr>
+	            <tr class="active">
+	                <th>Score</th>
+	                <th>325~425</th>
+	                <th>426~525</th>
+	                <th>526~625</th>
+	                <th>626~700</th>
+	                <th>701~775</th>
+	                <th>776~850</th>
+	                <th>851~900</th>
+	                <th>901~950</th>
+	                <th>951~1000</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	            <tr class="active">
+	                <th>Listening & Reading</th>
+	                <td>{{lvtest_detail.article1Level == '3C' ? lvtest_detail.article1Score : ''}}</td>
+	                <td>{{lvtest_detail.article1Level == '3B' ? lvtest_detail.article1Score : ''}}</td>
+	                <td>{{lvtest_detail.article1Level == '3A' ? lvtest_detail.article1Score : ''}}</td>
+	                <td>{{lvtest_detail.article1Level == '2C' ? lvtest_detail.article1Score : ''}}</td>
+	                <td>{{lvtest_detail.article1Level == '2B' ? lvtest_detail.article1Score : ''}}</td>
+	                <td>{{lvtest_detail.article1Level == '2A' ? lvtest_detail.article1Score : ''}}</td>
+	                <td>{{lvtest_detail.article1Level == '1C' ? lvtest_detail.article1Score : ''}}</td>
+	                <td>{{lvtest_detail.article1Level == '1B' ? lvtest_detail.article1Score : ''}}</td>
+	                <td>{{lvtest_detail.article1Level == '1A' ? lvtest_detail.article1Score : ''}}</td>
+	            </tr>
+	        </tbody>
+	        <thead>
+	            <tr class="active">
+	                <th rowspan="2">Level</th>
+	                <th colspan="3">초급</th>
+	                <th colspan="3">중급</th>
+	                <th colspan="3">고급</th>
+	            </tr>
+	            <tr class="active">
+	                <th>3C</th>
+	                <th>3B</th>
+	                <th>3A</th>
+	                <th>2C</th>
+	                <th>2B</th>
+	                <th>2A</th>
+	                <th>1C</th>
+	                <th>1B</th>
+	                <th>1A</th>
+	            </tr>
+	            <tr class="active">
+	                <th>Score</th>
+	                <th>110~129</th>
+	                <th>130~149</th>
+	                <th>150~169</th>
+	                <th>170~184</th>
+	                <th>185~199</th>
+	                <th>200~214</th>
+	                <th>215~226</th>
+	                <th>227~238</th>
+	                <th>239~250</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	            <tr class="active">
+	                <th>Writing</th>
+	                <td>{{lvtest_detail.article2Level == '3C' ? lvtest_detail.article2Score : ''}}</td>
+	                <td>{{lvtest_detail.article2Level == '3B' ? lvtest_detail.article2Score : ''}}</td>
+	                <td>{{lvtest_detail.article2Level == '3A' ? lvtest_detail.article2Score : ''}}</td>
+	                <td>{{lvtest_detail.article2Level == '2C' ? lvtest_detail.article2Score : ''}}</td>
+	                <td>{{lvtest_detail.article2Level == '2B' ? lvtest_detail.article2Score : ''}}</td>
+	                <td>{{lvtest_detail.article2Level == '2A' ? lvtest_detail.article2Score : ''}}</td>
+	                <td>{{lvtest_detail.article2Level == '1C' ? lvtest_detail.article2Score : ''}}</td>
+	                <td>{{lvtest_detail.article2Level == '1B' ? lvtest_detail.article2Score : ''}}</td>
+	                <td>{{lvtest_detail.article2Level == '1A' ? lvtest_detail.article2Score : ''}}</td>
+	            </tr>
+	            <tr class="active">
+	                <th>Speaking</th>
+	                <td>{{lvtest_detail.article3Level == '3C' ? lvtest_detail.article3Score : ''}}</td>
+	                <td>{{lvtest_detail.article3Level == '3B' ? lvtest_detail.article3Score : ''}}</td>
+	                <td>{{lvtest_detail.article3Level == '3A' ? lvtest_detail.article3Score : ''}}</td>
+	                <td>{{lvtest_detail.article3Level == '2C' ? lvtest_detail.article3Score : ''}}</td>
+	                <td>{{lvtest_detail.article3Level == '2B' ? lvtest_detail.article3Score : ''}}</td>
+	                <td>{{lvtest_detail.article3Level == '2A' ? lvtest_detail.article3Score : ''}}</td>
+	                <td>{{lvtest_detail.article3Level == '1C' ? lvtest_detail.article3Score : ''}}</td>
+	                <td>{{lvtest_detail.article3Level == '1B' ? lvtest_detail.article3Score : ''}}</td>
+	                <td>{{lvtest_detail.article3Level == '1A' ? lvtest_detail.article3Score : ''}}</td>
+	            </tr>
+	        </tbody>
+	    </table>
+	
+	    <table class="table table-test center_align m-b-none" ng-if="lvtest_detail.tpCd == 'OPI'">
+	        <thead>
+	            <tr class="active">
+	                <th>Average Score</th>
+	                <th colspan="100%"><span class="primary">{{lvtest_detail.avgScore}}</span></th>
+	            </tr>
+	            <tr class="active">
+	                <th rowspan="2">Level</th>
+	                <th colspan="2">입문</th>
+	                <th colspan="3">초급</th>
+	                <th colspan="3">중급</th>
+	                <th colspan="2">고급</th>
+	            </tr>
+	            <tr class="active">
+	                <th>1~4</th>
+	                <th>5~20</th>
+	                <th>21~30</th>
+	                <th>31~40</th>
+	                <th>41~50</th>
+	                <th>51~60</th>
+	                <th>61~70</th>
+	                <th>71~80</th>
+	                <th>81~90</th>
+	                <th>91~100</th>
+	            </tr>
+	            <tr class="active">
+	                <th>Level</th>
+	                <th>NL</th>
+	                <th>NM</th>
+	                <th>NH</th>
+	                <th>IL</th>
+	                <th>IM</th>
+	                <th>IH</th>
+	                <th>AL</th>
+	                <th>AM</th>
+	                <th>AH</th>
+	                <th>S</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	            <tr>
+	                <th>Language control</th>
+	                <td>{{lvtest_detail.article1Level == 'NL' ? lvtest_detail.article1Score : ''}}</td>
+	                <td>{{lvtest_detail.article1Level == 'NM' ? lvtest_detail.article1Score : ''}}</td>
+	                <td>{{lvtest_detail.article1Level == 'NH' ? lvtest_detail.article1Score : ''}}</td>
+	                <td>{{lvtest_detail.article1Level == 'IL' ? lvtest_detail.article1Score : ''}}</td>
+	                <td>{{lvtest_detail.article1Level == 'IM' ? lvtest_detail.article1Score : ''}}</td>
+	                <td>{{lvtest_detail.article1Level == 'IH' ? lvtest_detail.article1Score : ''}}</td>
+	                <td>{{lvtest_detail.article1Level == 'AL' ? lvtest_detail.article1Score : ''}}</td>
+	                <td>{{lvtest_detail.article1Level == 'AM' ? lvtest_detail.article1Score : ''}}</td>
+	                <td>{{lvtest_detail.article1Level == 'AH' ? lvtest_detail.article1Score : ''}}</td>
+	                <td>{{lvtest_detail.article1Level == 'S' ? lvtest_detail.article1Score : ''}}</td>
+	            </tr>
+	            <tr>
+	                <th>Function,Global Tasks</th>
+	                <td>{{lvtest_detail.article2Level == 'NL' ? lvtest_detail.article2Score : ''}}</td>
+	                <td>{{lvtest_detail.article2Level == 'NM' ? lvtest_detail.article2Score : ''}}</td>
+	                <td>{{lvtest_detail.article2Level == 'NH' ? lvtest_detail.article2Score : ''}}</td>
+	                <td>{{lvtest_detail.article2Level == 'IL' ? lvtest_detail.article2Score : ''}}</td>
+	                <td>{{lvtest_detail.article2Level == 'IM' ? lvtest_detail.article2Score : ''}}</td>
+	                <td>{{lvtest_detail.article2Level == 'IH' ? lvtest_detail.article2Score : ''}}</td>
+	                <td>{{lvtest_detail.article2Level == 'AL' ? lvtest_detail.article2Score : ''}}</td>
+	                <td>{{lvtest_detail.article2Level == 'AM' ? lvtest_detail.article2Score : ''}}</td>
+	                <td>{{lvtest_detail.article2Level == 'AH' ? lvtest_detail.article2Score : ''}}</td>
+	                <td>{{lvtest_detail.article2Level == 'S' ? lvtest_detail.article2Score : ''}}</td>
+	            </tr>
+	            <tr>
+	                <th>Text Type</th>
+	                <td>{{lvtest_detail.article3Level == 'NL' ? lvtest_detail.article3Score : ''}}</td>
+	                <td>{{lvtest_detail.article3Level == 'NM' ? lvtest_detail.article3Score : ''}}</td>
+	                <td>{{lvtest_detail.article3Level == 'NH' ? lvtest_detail.article3Score : ''}}</td>
+	                <td>{{lvtest_detail.article3Level == 'IL' ? lvtest_detail.article3Score : ''}}</td>
+	                <td>{{lvtest_detail.article3Level == 'IM' ? lvtest_detail.article3Score : ''}}</td>
+	                <td>{{lvtest_detail.article3Level == 'IH' ? lvtest_detail.article3Score : ''}}</td>
+	                <td>{{lvtest_detail.article3Level == 'AL' ? lvtest_detail.article3Score : ''}}</td>
+	                <td>{{lvtest_detail.article3Level == 'AM' ? lvtest_detail.article3Score : ''}}</td>
+	                <td>{{lvtest_detail.article3Level == 'AH' ? lvtest_detail.article3Score : ''}}</td>
+	                <td>{{lvtest_detail.article3Level == 'S' ? lvtest_detail.article3Score : ''}}</td>
+	            </tr>
+	            <tr>
+	                <th>Contents Context</th>
+	                <td>{{lvtest_detail.article4Level == 'NL' ? lvtest_detail.article4Score : ''}}</td>
+	                <td>{{lvtest_detail.article4Level == 'NM' ? lvtest_detail.article4Score : ''}}</td>
+	                <td>{{lvtest_detail.article4Level == 'NH' ? lvtest_detail.article4Score : ''}}</td>
+	                <td>{{lvtest_detail.article4Level == 'IL' ? lvtest_detail.article4Score : ''}}</td>
+	                <td>{{lvtest_detail.article4Level == 'IM' ? lvtest_detail.article4Score : ''}}</td>
+	                <td>{{lvtest_detail.article4Level == 'IH' ? lvtest_detail.article4Score : ''}}</td>
+	                <td>{{lvtest_detail.article4Level == 'AL' ? lvtest_detail.article4Score : ''}}</td>
+	                <td>{{lvtest_detail.article4Level == 'AM' ? lvtest_detail.article4Score : ''}}</td>
+	                <td>{{lvtest_detail.article4Level == 'AH' ? lvtest_detail.article4Score : ''}}</td>
+	                <td>{{lvtest_detail.article4Level == 'S' ? lvtest_detail.article4Score : ''}}</td>
+	            </tr>
+	            <tr>
+	                <th>Comprehensibility</th>
+	                <td>{{lvtest_detail.article5Level == 'NL' ? lvtest_detail.article5Score : ''}}</td>
+	                <td>{{lvtest_detail.article5Level == 'NM' ? lvtest_detail.article5Score : ''}}</td>
+	                <td>{{lvtest_detail.article5Level == 'NH' ? lvtest_detail.article5Score : ''}}</td>
+	                <td>{{lvtest_detail.article5Level == 'IL' ? lvtest_detail.article5Score : ''}}</td>
+	                <td>{{lvtest_detail.article5Level == 'IM' ? lvtest_detail.article5Score : ''}}</td>
+	                <td>{{lvtest_detail.article5Level == 'IH' ? lvtest_detail.article5Score : ''}}</td>
+	                <td>{{lvtest_detail.article5Level == 'AL' ? lvtest_detail.article5Score : ''}}</td>
+	                <td>{{lvtest_detail.article5Level == 'AM' ? lvtest_detail.article5Score : ''}}</td>
+	                <td>{{lvtest_detail.article5Level == 'AH' ? lvtest_detail.article5Score : ''}}</td>
+	                <td>{{lvtest_detail.article5Level == 'S' ? lvtest_detail.article5Score : ''}}</td>
+	            </tr>
+	        </tbody>
+	    </table>
+	
+	    <table class="table table-test center_align m-b-none" ng-if="lvtest_detail.tpCd == 'CILS'">
+	        <thead>
+	            <tr class="active">
+	                <th>Average Score</th>
+	                <th colspan="100%"><span class="primary">{{lvtest_detail.avgScore}}</span></th>
+	            </tr>
+	            <tr class="active">
+	                <th rowspan="2">Level</th>
+	                <th colspan="2">초급</th>
+	                <th colspan="2">중급</th>
+	                <th colspan="2">고급</th>
+	            </tr>
+	            <tr class="active">
+	                <th>Lv.1</th>
+	                <th>Lv.2</th>
+	                <th>Lv.3</th>
+	                <th>Lv.4</th>
+	                <th>Lv.5</th>
+	                <th>Lv.6</th>
+	            </tr>
+	            <tr class="active">
+	                <th>Level</th>
+	                <th>A1</th>
+	                <th>A2</th>
+	                <th>B1</th>
+	                <th>B2</th>
+	                <th>C1</th>
+	                <th>C2</th>
+	            </tr>
+	            <tr class="active">
+	                <th>Score</th>
+	                <th>0~100</th>
+	                <th>0~100</th>
+	                <th>0~100</th>
+	                <th>0~100</th>
+	                <th>0~100</th>
+	                <th>0~100</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	            <tr>
+	                <th>Speaking</th>
+	                <td>{{lvtest_detail.article1Level == 'A1' ? lvtest_detail.article1Score : ''}}</td>
+	                <td>{{lvtest_detail.article1Level == 'A2' ? lvtest_detail.article1Score : ''}}</td>
+	                <td>{{lvtest_detail.article1Level == 'B1' ? lvtest_detail.article1Score : ''}}</td>
+	                <td>{{lvtest_detail.article1Level == 'B2' ? lvtest_detail.article1Score : ''}}</td>
+	                <td>{{lvtest_detail.article1Level == 'C1' ? lvtest_detail.article1Score : ''}}</td>
+	                <td>{{lvtest_detail.article1Level == 'C2' ? lvtest_detail.article1Score : ''}}</td>
+	            </tr>
+	            <tr>
+	                <th>Listening</th>
+	                <td>{{lvtest_detail.article2Level == 'A1' ? lvtest_detail.article2Score : ''}}</td>
+	                <td>{{lvtest_detail.article2Level == 'A2' ? lvtest_detail.article2Score : ''}}</td>
+	                <td>{{lvtest_detail.article2Level == 'B1' ? lvtest_detail.article2Score : ''}}</td>
+	                <td>{{lvtest_detail.article2Level == 'B2' ? lvtest_detail.article2Score : ''}}</td>
+	                <td>{{lvtest_detail.article2Level == 'C1' ? lvtest_detail.article2Score : ''}}</td>
+	                <td>{{lvtest_detail.article2Level == 'C2' ? lvtest_detail.article2Score : ''}}</td>
+	            </tr>
+	            <tr>
+	                <th>Reading</th>
+	                <td>{{lvtest_detail.article3Level == 'A1' ? lvtest_detail.article3Score : ''}}</td>
+	                <td>{{lvtest_detail.article3Level == 'A2' ? lvtest_detail.article3Score : ''}}</td>
+	                <td>{{lvtest_detail.article3Level == 'B1' ? lvtest_detail.article3Score : ''}}</td>
+	                <td>{{lvtest_detail.article3Level == 'B2' ? lvtest_detail.article3Score : ''}}</td>
+	                <td>{{lvtest_detail.article3Level == 'C1' ? lvtest_detail.article3Score : ''}}</td>
+	                <td>{{lvtest_detail.article3Level == 'C2' ? lvtest_detail.article3Score : ''}}</td>
+	            </tr>
+	            <tr>
+	                <th>Writing</th>
+	                <td>{{lvtest_detail.article4Level == 'A1' ? lvtest_detail.article4Score : ''}}</td>
+	                <td>{{lvtest_detail.article4Level == 'A2' ? lvtest_detail.article4Score : ''}}</td>
+	                <td>{{lvtest_detail.article4Level == 'B1' ? lvtest_detail.article4Score : ''}}</td>
+	                <td>{{lvtest_detail.article4Level == 'B2' ? lvtest_detail.article4Score : ''}}</td>
+	                <td>{{lvtest_detail.article4Level == 'C1' ? lvtest_detail.article4Score : ''}}</td>
+	                <td>{{lvtest_detail.article4Level == 'C2' ? lvtest_detail.article4Score : ''}}</td>
+	            </tr>
+	            <tr>
+	                <th>Grammar</th>
+	                <td>{{lvtest_detail.article5Level == 'A1' ? lvtest_detail.article5Score : ''}}</td>
+	                <td>{{lvtest_detail.article5Level == 'A2' ? lvtest_detail.article5Score : ''}}</td>
+	                <td>{{lvtest_detail.article5Level == 'B1' ? lvtest_detail.article5Score : ''}}</td>
+	                <td>{{lvtest_detail.article5Level == 'B2' ? lvtest_detail.article5Score : ''}}</td>
+	                <td>{{lvtest_detail.article5Level == 'C1' ? lvtest_detail.article5Score : ''}}</td>
+	                <td>{{lvtest_detail.article5Level == 'C2' ? lvtest_detail.article5Score : ''}}</td>
+	            </tr>
+	        </tbody>
+	    </table>
+	    <div class="wrapper bg-gray" ng-if="lvtest_detail.tpCd != null && lvtest_detail.tpCd != '' && lvtest_detail.tpCd != 'Business'">
+	        <div class="padder">
+	            <p class="tt">Comment</p>
+	            <p class="primary text-thin">{{lvtest_detail.cnts}}</p>
+	        </div>
+	    </div>
+	</div>
+    
+    <div class="row panel-body white text-lg">
+        3. 성취도평가 [{{lvtest_info.tpCd}}]
+		<span class="pull-right text-md">
+       		<span style="display:inline-block;">평가선택</span>
+		    <select class="form-control m-t-xs" ng-model="lvCd" ng-change="changeTest()" ng-options="item.lvCd as item.testKindName for item in test_list" style="width:180px;display:inline-block;">
+		    </select>
+		</span>
+    </div>
+    <div class="panel panel-default m-b-none">
+  		<table class="table table-bordered b-t b-light" ng-if="test_detail.tpCd == null || test_detail.tpCd == ''">
+		    <tbody>
+		        <tr>
+		            <td>점수가 공개되지 않았습니다.</td>
+		        </tr>
+		    </tbody>
+		</table>
+		<table class="table table-test center_align m-b-none" ng-if="test_detail.tpCd == 'Business'">
+		    <thead>
+		        <tr class="active">
+		            <th>Average Score</th>
+		            <th colspan="100%"><span class="primary">{{test_detail.avgScore}}</span></th>
+		        </tr>
+		        <tr class="active">
+		            <th rowspan="2">Level</th>
+	                <th colspan="3">입문</th>
+	                <th colspan="3">초급</th>
+	                <th colspan="3">중급</th>
+	                <th colspan="3">고급</th>
+		        </tr>
+		        <tr class="active">
+	                <th>Lv.1</th>
+	                <th>Lv.2</th>
+	                <th>Lv.3</th>
+	                <th>Lv.4</th>
+	                <th>Lv.5</th>
+	                <th>Lv.6</th>
+	                <th>Lv.7</th>
+	                <th>Lv.8</th>
+	                <th>Lv.9</th>
+	                <th>Lv.10</th>
+	                <th>Lv.11</th>
+	                <th>Lv.12</th>
+	            </tr>
+	            <tr class="active">
+	                <th>Level</th>
+	                <th>A1</th>
+	                <th>A1</th>
+	                <th>A2</th>
+	                <th>A2</th>
+	                <th>B1</th>
+	                <th>B1</th>
+	                <th>B2</th>
+	                <th>B2</th>
+	                <th>C1</th>
+	                <th>C1</th>
+	                <th>C2</th>
+	                <th>C2</th>
+	            </tr>
+		        <tr class="active">
+		            <th>Score</th>
+		            <th>20~23</th>
+					<th>24~26</th>
+					<th>27~29</th>
+					<th>30~32</th>
+					<th>33~35</th>
+					<th>36~38</th>
+					<th>39~41</th>
+					<th>42~44</th>
+					<th>45~47</th>
+					<th>48~50</th>
+					<th>51~53</th>
+					<th>54~56</th>
+		        </tr>
+		    </thead>
+		    <tbody>
+		        	            <tr>
+					<th>Speaking</th>
+					<td>{{test_detail.article1Level == 'Lv1' ? test_detail.article1Score : ''}}</td>
+					<td>{{test_detail.article1Level == 'Lv2' ? test_detail.article1Score : ''}}</td>
+					<td>{{test_detail.article1Level == 'Lv3' ? test_detail.article1Score : ''}}</td>
+					<td>{{test_detail.article1Level == 'Lv4' ? test_detail.article1Score : ''}}</td>
+					<td>{{test_detail.article1Level == 'Lv5' ? test_detail.article1Score : ''}}</td>
+					<td>{{test_detail.article1Level == 'Lv6' ? test_detail.article1Score : ''}}</td>
+					<td>{{test_detail.article1Level == 'Lv7' ? test_detail.article1Score : ''}}</td>
+					<td>{{test_detail.article1Level == 'Lv8' ? test_detail.article1Score : ''}}</td>
+					<td>{{test_detail.article1Level == 'Lv9' ? test_detail.article1Score : ''}}</td>
+					<td>{{test_detail.article1Level == 'Lv10' ? test_detail.article1Score : ''}}</td>
+					<td>{{test_detail.article1Level == 'Lv11' ? test_detail.article1Score : ''}}</td>
+					<td>{{test_detail.article1Level == 'Lv12' ? test_detail.article1Score : ''}}</td>
+				</tr>
+				<tr>
+					<th>Listening</th>
+					<td>{{test_detail.article2Level == 'Lv1' ? test_detail.article2Score : ''}}</td>
+					<td>{{test_detail.article2Level == 'Lv2' ? test_detail.article2Score : ''}}</td>
+					<td>{{test_detail.article2Level == 'Lv3' ? test_detail.article2Score : ''}}</td>
+					<td>{{test_detail.article2Level == 'Lv4' ? test_detail.article2Score : ''}}</td>
+					<td>{{test_detail.article2Level == 'Lv5' ? test_detail.article2Score : ''}}</td>
+					<td>{{test_detail.article2Level == 'Lv6' ? test_detail.article2Score : ''}}</td>
+					<td>{{test_detail.article2Level == 'Lv7' ? test_detail.article2Score : ''}}</td>
+					<td>{{test_detail.article2Level == 'Lv8' ? test_detail.article2Score : ''}}</td>
+					<td>{{test_detail.article2Level == 'Lv9' ? test_detail.article2Score : ''}}</td>
+					<td>{{test_detail.article2Level == 'Lv10' ? test_detail.article2Score : ''}}</td>
+					<td>{{test_detail.article2Level == 'Lv11' ? test_detail.article2Score : ''}}</td>
+					<td>{{test_detail.article2Level == 'Lv12' ? test_detail.article2Score : ''}}</td>
+				</tr>
+				<tr>
+					<th>Pronunciation</th>
+					<td>{{test_detail.article3Level == 'Lv1' ? test_detail.article3Score : ''}}</td>
+					<td>{{test_detail.article3Level == 'Lv2' ? test_detail.article3Score : ''}}</td>
+					<td>{{test_detail.article3Level == 'Lv3' ? test_detail.article3Score : ''}}</td>
+					<td>{{test_detail.article3Level == 'Lv4' ? test_detail.article3Score : ''}}</td>
+					<td>{{test_detail.article3Level == 'Lv5' ? test_detail.article3Score : ''}}</td>
+					<td>{{test_detail.article3Level == 'Lv6' ? test_detail.article3Score : ''}}</td>
+					<td>{{test_detail.article3Level == 'Lv7' ? test_detail.article3Score : ''}}</td>
+					<td>{{test_detail.article3Level == 'Lv8' ? test_detail.article3Score : ''}}</td>
+					<td>{{test_detail.article3Level == 'Lv9' ? test_detail.article3Score : ''}}</td>
+					<td>{{test_detail.article3Level == 'Lv10' ? test_detail.article3Score : ''}}</td>
+					<td>{{test_detail.article3Level == 'Lv11' ? test_detail.article3Score : ''}}</td>
+					<td>{{test_detail.article3Level == 'Lv12' ? test_detail.article3Score : ''}}</td>
+				</tr>
+				<tr>
+					<th>Vocabulary</th>
+					<td>{{test_detail.article4Level == 'Lv1' ? test_detail.article4Score : ''}}</td>
+					<td>{{test_detail.article4Level == 'Lv2' ? test_detail.article4Score : ''}}</td>
+					<td>{{test_detail.article4Level == 'Lv3' ? test_detail.article4Score : ''}}</td>
+					<td>{{test_detail.article4Level == 'Lv4' ? test_detail.article4Score : ''}}</td>
+					<td>{{test_detail.article4Level == 'Lv5' ? test_detail.article4Score : ''}}</td>
+					<td>{{test_detail.article4Level == 'Lv6' ? test_detail.article4Score : ''}}</td>
+					<td>{{test_detail.article4Level == 'Lv7' ? test_detail.article4Score : ''}}</td>
+					<td>{{test_detail.article4Level == 'Lv8' ? test_detail.article4Score : ''}}</td>
+					<td>{{test_detail.article4Level == 'Lv9' ? test_detail.article4Score : ''}}</td>
+					<td>{{test_detail.article4Level == 'Lv10' ? test_detail.article4Score : ''}}</td>
+					<td>{{test_detail.article4Level == 'Lv11' ? test_detail.article4Score : ''}}</td>
+					<td>{{test_detail.article4Level == 'Lv12' ? test_detail.article4Score : ''}}</td>
+				</tr>
+				<tr>
+					<th>Grammar</th>
+					<td>{{test_detail.article5Level == 'Lv1' ? test_detail.article5Score : ''}}</td>
+					<td>{{test_detail.article5Level == 'Lv2' ? test_detail.article5Score : ''}}</td>
+					<td>{{test_detail.article5Level == 'Lv3' ? test_detail.article5Score : ''}}</td>
+					<td>{{test_detail.article5Level == 'Lv4' ? test_detail.article5Score : ''}}</td>
+					<td>{{test_detail.article5Level == 'Lv5' ? test_detail.article5Score : ''}}</td>
+					<td>{{test_detail.article5Level == 'Lv6' ? test_detail.article5Score : ''}}</td>
+					<td>{{test_detail.article5Level == 'Lv7' ? test_detail.article5Score : ''}}</td>
+					<td>{{test_detail.article5Level == 'Lv8' ? test_detail.article5Score : ''}}</td>
+					<td>{{test_detail.article5Level == 'Lv9' ? test_detail.article5Score : ''}}</td>
+					<td>{{test_detail.article5Level == 'Lv10' ? test_detail.article5Score : ''}}</td>
+					<td>{{test_detail.article5Level == 'Lv11' ? test_detail.article5Score : ''}}</td>
+					<td>{{test_detail.article5Level == 'Lv12' ? test_detail.article5Score : ''}}</td>
+				</tr>
+		    </tbody>
+		    <tfoot>
+       			<tr class="active">
+       				<td colspan="5">
+       					<p class="tt text-left">Comment</p>
+	        			<p class="primary text-thin text-left">{{test_detail.cnts}}</p>
+       				</td>
+       				<td colspan="4">
+       					<p class="tt text-left">Weak Points</p>
+	        			<p class="primary text-thin text-left">{{test_detail.weakPoints}}</p>
+       				</td>
+       				<td colspan="4">
+       					<p class="tt text-left">Action Plan</p>
+	        			<p class="primary text-thin text-left">{{test_detail.actionPlan}}</p>
+       				</td>
+       			</tr>
+       		</tfoot>
+		</table>
+		<table class="table table-bordered b-t b-light" ng-if="test_detail.tpCd == 'TOEIC'">
+		    <thead>
+		        <tr class="active">
+		            <th>Average Score</th>
+		            <th colspan="100%"><span class="primary">{{test_detail.avgScore}}</span></th>
+		        </tr>
+		        <!-- 					            <tr class="active">            
+		                <th>Level</th>
+		                <th colspan="100%"><span class="primary">A2</span></th>
+		            </tr> -->
+		        <tr class="active">
+		            <th rowspan="2">Level</th>
+		            <th colspan="2">입문</th>
+		            <th colspan="2">초급</th>
+		            <th colspan="2">중급</th>
+		            <th>고급</th>
+		        </tr>
+		        <tr class="active">
+		            <th>Lv.1</th>
+		            <th>Lv.2</th>
+		            <th>Lv.3</th>
+		            <th>Lv.4</th>
+		            <th>Lv.5</th>
+		            <th>Lv.6</th>
+		            <th>Lv.7</th>
+		            <th>Lv.8</th>
+		        </tr>
+		        <tr class="active">
+		            <th>Score</th>
+		            <th>0~295</th>
+		            <th>300~395</th>
+		            <th>400~495</th>
+		            <th>500~595</th>
+		            <th>600~695</th>
+		            <th>700~795</th>
+		            <th>800~895</th>
+		            <th>900~990</th>
+		        </tr>
+		    </thead>
+		    <tbody>
+		        <tr class="active">
+		            <th>L/C</th>
+		            <td>{{test_detail.article1Level == 'LV.1' ? test_detail.article1Score : ''}}</td>
+		            <td>{{test_detail.article1Level == 'LV.2' ? test_detail.article1Score : ''}}</td>
+		            <td>{{test_detail.article1Level == 'LV.3' ? test_detail.article1Score : ''}}</td>
+		            <td>{{test_detail.article1Level == 'LV.4' ? test_detail.article1Score : ''}}</td>
+		            <td>{{test_detail.article1Level == 'LV.5' ? test_detail.article1Score : ''}}</td>
+		            <td>{{test_detail.article1Level == 'LV.6' ? test_detail.article1Score : ''}}</td>
+		            <td>{{test_detail.article1Level == 'LV.7' ? test_detail.article1Score : ''}}</td>
+		            <td>{{test_detail.article1Level == 'LV.8' ? test_detail.article1Score : ''}}</td>
+		        </tr>
+		        <tr class="active">
+		            <th>R/C</th>
+		            <td>{{test_detail.article2Level == 'LV.1' ? test_detail.article2Score : ''}}</td>
+		            <td>{{test_detail.article2Level == 'LV.2' ? test_detail.article2Score : ''}}</td>
+		            <td>{{test_detail.article2Level == 'LV.3' ? test_detail.article2Score : ''}}</td>
+		            <td>{{test_detail.article2Level == 'LV.4' ? test_detail.article2Score : ''}}</td>
+		            <td>{{test_detail.article2Level == 'LV.5' ? test_detail.article2Score : ''}}</td>
+		            <td>{{test_detail.article2Level == 'LV.6' ? test_detail.article2Score : ''}}</td>
+		            <td>{{test_detail.article2Level == 'LV.7' ? test_detail.article2Score : ''}}</td>
+		            <td>{{test_detail.article2Level == 'LV.8' ? test_detail.article2Score : ''}}</td>
+		        </tr>
+		    </tbody>
+		</table>
+		
+		<table class="table table-test center_align m-b-none" ng-if="test_detail.tpCd == 'TOEICS'">
+		    <thead>
+		        <tr class="active">
+		            <th>Average Score</th>
+		            <th colspan="100%"><span class="primary">{{test_detail.avgScore}}</span></th>
+		        </tr>
+		        <tr class="active">
+		            <th rowspan="2">Level</th>
+		            <th colspan="2">입문</th>
+		            <th colspan="2">초급</th>
+		            <th colspan="2">중급</th>
+		            <th colspan="2">고급</th>
+		        </tr>
+		        <tr class="active">
+		            <th>Lv.1</th>
+		            <th>Lv.2</th>
+		            <th>Lv.3</th>
+		            <th>Lv.4</th>
+		            <th>Lv.5</th>
+		            <th>Lv.6</th>
+		            <th>Lv.7</th>
+		            <th>Lv.8</th>
+		        </tr>
+		        <tr class="active">
+		            <th>Score</th>
+		            <th>0~30</th>
+		            <th>40~50</th>
+		            <th>60~70</th>
+		            <th>80~100</th>
+		            <th>110~120</th>
+		            <th>130~150</th>
+		            <th>160~180</th>
+		            <th>190~200</th>
+		        </tr>
+		    </thead>
+		    <tbody>
+		        <tr class="active">
+		            <th>Pronunciation</th>
+		            <td>{{test_detail.article1Level == 'LV.1' ? test_detail.article1Score : ''}}</td>
+		            <td>{{test_detail.article1Level == 'LV.2' ? test_detail.article1Score : ''}}</td>
+		            <td>{{test_detail.article1Level == 'LV.3' ? test_detail.article1Score : ''}}</td>
+		            <td>{{test_detail.article1Level == 'LV.4' ? test_detail.article1Score : ''}}</td>
+		            <td>{{test_detail.article1Level == 'LV.5' ? test_detail.article1Score : ''}}</td>
+		            <td>{{test_detail.article1Level == 'LV.6' ? test_detail.article1Score : ''}}</td>
+		            <td>{{test_detail.article1Level == 'LV.7' ? test_detail.article1Score : ''}}</td>
+		            <td>{{test_detail.article1Level == 'LV.8' ? test_detail.article1Score : ''}}</td>
+		        </tr>
+		        <tr class="active">
+		            <th>Intonation and Stress</th>
+		            <td>{{test_detail.article2Level == 'LV.1' ? test_detail.article2Score : ''}}</td>
+		            <td>{{test_detail.article2Level == 'LV.2' ? test_detail.article2Score : ''}}</td>
+		            <td>{{test_detail.article2Level == 'LV.3' ? test_detail.article2Score : ''}}</td>
+		            <td>{{test_detail.article2Level == 'LV.4' ? test_detail.article2Score : ''}}</td>
+		            <td>{{test_detail.article2Level == 'LV.5' ? test_detail.article2Score : ''}}</td>
+		            <td>{{test_detail.article2Level == 'LV.6' ? test_detail.article2Score : ''}}</td>
+		            <td>{{test_detail.article2Level == 'LV.7' ? test_detail.article2Score : ''}}</td>
+		            <td>{{test_detail.article2Level == 'LV.8' ? test_detail.article2Score : ''}}</td>
+		        </tr>
+		        <tr class="active">
+		            <th>Grammar</th>
+		            <td>{{test_detail.article3Level == 'LV.1' ? test_detail.article3Score : ''}}</td>
+		            <td>{{test_detail.article3Level == 'LV.2' ? test_detail.article3Score : ''}}</td>
+		            <td>{{test_detail.article3Level == 'LV.3' ? test_detail.article3Score : ''}}</td>
+		            <td>{{test_detail.article3Level == 'LV.4' ? test_detail.article3Score : ''}}</td>
+		            <td>{{test_detail.article3Level == 'LV.5' ? test_detail.article3Score : ''}}</td>
+		            <td>{{test_detail.article3Level == 'LV.6' ? test_detail.article3Score : ''}}</td>
+		            <td>{{test_detail.article3Level == 'LV.7' ? test_detail.article3Score : ''}}</td>
+		            <td>{{test_detail.article3Level == 'LV.8' ? test_detail.article3Score : ''}}</td>
+		        </tr>
+		        <tr class="active">
+		            <th>Vocabulary and Cohesion</th>
+		            <td>{{test_detail.article4Level == 'LV.1' ? test_detail.article4Score : ''}}</td>
+		            <td>{{test_detail.article4Level == 'LV.2' ? test_detail.article4Score : ''}}</td>
+		            <td>{{test_detail.article4Level == 'LV.3' ? test_detail.article4Score : ''}}</td>
+		            <td>{{test_detail.article4Level == 'LV.4' ? test_detail.article4Score : ''}}</td>
+		            <td>{{test_detail.article4Level == 'LV.5' ? test_detail.article4Score : ''}}</td>
+		            <td>{{test_detail.article4Level == 'LV.6' ? test_detail.article4Score : ''}}</td>
+		            <td>{{test_detail.article4Level == 'LV.7' ? test_detail.article4Score : ''}}</td>
+		            <td>{{test_detail.article4Level == 'LV.8' ? test_detail.article4Score : ''}}</td>
+		        </tr>
+		        <tr class="active">
+		            <th>Relevance of content and Completeness of content</th>
+		            <td>{{test_detail.article5Level == 'LV.1' ? test_detail.article5Score : ''}}</td>
+		            <td>{{test_detail.article5Level == 'LV.2' ? test_detail.article5Score : ''}}</td>
+		            <td>{{test_detail.article5Level == 'LV.3' ? test_detail.article5Score : ''}}</td>
+		            <td>{{test_detail.article5Level == 'LV.4' ? test_detail.article5Score : ''}}</td>
+		            <td>{{test_detail.article5Level == 'LV.5' ? test_detail.article5Score : ''}}</td>
+		            <td>{{test_detail.article5Level == 'LV.6' ? test_detail.article5Score : ''}}</td>
+		            <td>{{test_detail.article5Level == 'LV.7' ? test_detail.article5Score : ''}}</td>
+		            <td>{{test_detail.article5Level == 'LV.8' ? test_detail.article5Score : ''}}</td>
+		        </tr>
+		    </tbody>
+		</table>
+		
+		<table class="table table-test center_align m-b-none" ng-if="test_detail.tpCd == 'OPIC'">
+		    <thead>
+		        <tr class="active">
+		            <th>Average Score</th>
+		            <th colspan="100%"><span class="primary">{{test_detail.avgScore}}</span></th>
+		        </tr>
+		        <tr class="active">
+		            <th rowspan="2">Level</th>
+		            <th colspan="3">입문</th>
+		            <th colspan="3">초중급</th>
+		            <th>고급</th>
+		        </tr>
+		        <tr class="active">
+		            <th>7급</th>
+		            <th>6급</th>
+		            <th>5급</th>
+		            <th>4급</th>
+		            <th>3급</th>
+		            <th>2급</th>
+		            <th>1급</th>
+		        </tr>
+		        <tr class="active">
+		            <th>Level</th>
+		            <th>NL</th>
+		            <th>NM</th>
+		            <th>NH</th>
+		            <th>IL</th>
+		            <th>IM</th>
+		            <th>IH</th>
+		            <th>AL</th>
+		        </tr>
+		        <tr class="active">
+		            <th>Score</th>
+		            <th>1~5</th>
+		            <th>6~20</th>
+		            <th>21~40</th>
+		            <th>41~60</th>
+		            <th>61~70</th>
+		            <th>71~80</th>
+		            <th>81~100</th>
+		        </tr>
+		    </thead>
+		    <tbody>
+		        <tr>
+		            <td class="active">Language control</td>
+		            <td>{{test_detail.article1Level == 'NL' ? test_detail.article1Score : ''}}</td>
+		            <td>{{test_detail.article1Level == 'NM' ? test_detail.article1Score : ''}}</td>
+		            <td>{{test_detail.article1Level == 'NH' ? test_detail.article1Score : ''}}</td>
+		            <td>{{test_detail.article1Level == 'IL' ? test_detail.article1Score : ''}}</td>
+		            <td>{{test_detail.article1Level == 'IM' ? test_detail.article1Score : ''}}</td>
+		            <td>{{test_detail.article1Level == 'IH' ? test_detail.article1Score : ''}}</td>
+		            <td>{{test_detail.article1Level == 'AL' ? test_detail.article1Score : ''}}</td>
+		        </tr>
+		        <tr>
+		            <td class="active">Function,Global Tasks</td>
+		            <td>{{test_detail.article2Level == 'NL' ? test_detail.article2Score : ''}}</td>
+		            <td>{{test_detail.article2Level == 'NM' ? test_detail.article2Score : ''}}</td>
+		            <td>{{test_detail.article2Level == 'NH' ? test_detail.article2Score : ''}}</td>
+		            <td>{{test_detail.article2Level == 'IL' ? test_detail.article2Score : ''}}</td>
+		            <td>{{test_detail.article2Level == 'IM' ? test_detail.article2Score : ''}}</td>
+		            <td>{{test_detail.article2Level == 'IH' ? test_detail.article2Score : ''}}</td>
+		            <td>{{test_detail.article2Level == 'AL' ? test_detail.article2Score : ''}}</td>
+		        </tr>
+		        <tr>
+		            <td class="active">Text Type</td>
+		            <td>{{test_detail.article3Level == 'NL' ? test_detail.article3Score : ''}}</td>
+		            <td>{{test_detail.article3Level == 'NM' ? test_detail.article3Score : ''}}</td>
+		            <td>{{test_detail.article3Level == 'NH' ? test_detail.article3Score : ''}}</td>
+		            <td>{{test_detail.article3Level == 'IL' ? test_detail.article3Score : ''}}</td>
+		            <td>{{test_detail.article3Level == 'IM' ? test_detail.article3Score : ''}}</td>
+		            <td>{{test_detail.article3Level == 'IH' ? test_detail.article3Score : ''}}</td>
+		            <td>{{test_detail.article3Level == 'AL' ? test_detail.article3Score : ''}}</td>
+		        </tr>
+		        <tr>
+		            <td class="active">Contents Context</td>
+		            <td>{{test_detail.article4Level == 'NL' ? test_detail.article4Score : ''}}</td>
+		            <td>{{test_detail.article4Level == 'NM' ? test_detail.article4Score : ''}}</td>
+		            <td>{{test_detail.article4Level == 'NH' ? test_detail.article4Score : ''}}</td>
+		            <td>{{test_detail.article4Level == 'IL' ? test_detail.article4Score : ''}}</td>
+		            <td>{{test_detail.article4Level == 'IM' ? test_detail.article4Score : ''}}</td>
+		            <td>{{test_detail.article4Level == 'IH' ? test_detail.article4Score : ''}}</td>
+		            <td>{{test_detail.article4Level == 'AL' ? test_detail.article4Score : ''}}</td>
+		        </tr>
+		        <tr>
+		            <td class="active">Comprehensibility</td>
+		            <td>{{test_detail.article5Level == 'NL' ? test_detail.article5Score : ''}}</td>
+		            <td>{{test_detail.article5Level == 'NM' ? test_detail.article5Score : ''}}</td>
+		            <td>{{test_detail.article5Level == 'NH' ? test_detail.article5Score : ''}}</td>
+		            <td>{{test_detail.article5Level == 'IL' ? test_detail.article5Score : ''}}</td>
+		            <td>{{test_detail.article5Level == 'IM' ? test_detail.article5Score : ''}}</td>
+		            <td>{{test_detail.article5Level == 'IH' ? test_detail.article5Score : ''}}</td>
+		            <td>{{test_detail.article5Level == 'AL' ? test_detail.article5Score : ''}}</td>
+		        </tr>
+		    </tbody>
+		</table>
+		
+		<table class="table table-test center_align m-b-none" ng-if="test_detail.tpCd == 'HSK'">
+		    <thead>
+		        <tr class="active">
+		            <th>Average Score</th>
+		            <th colspan="100%"><span class="primary">{{test_detail.avgScore}}</span></th>
+		        </tr>
+		        <tr class="active">
+		            <th rowspan="2">Level</th>
+		            <th colspan="2">초급</th>
+		            <th colspan="2">중급</th>
+		            <th colspan="2">고급</th>
+		        </tr>
+		        <tr class="active">
+		            <th>1급</th>
+		            <th>2급</th>
+		            <th>3급</th>
+		            <th>4급</th>
+		            <th>5급</th>
+		            <th>6급</th>
+		        </tr>
+		        <tr class="active">
+		            <th>Score</th>
+		            <th>0~200</th>
+		            <th>0~200</th>
+		            <th>0~300</th>
+		            <th>0~300</th>
+		            <th>0~300</th>
+		            <th>0~300</th>
+		        </tr>
+		    </thead>
+		    <tbody>
+		        <tr class="active">
+		            <th>Listening</th>
+		            <td>{{test_detail.article1Level == '1급' ? test_detail.article1Score : ''}}</td>
+		            <td>{{test_detail.article1Level == '2급' ? test_detail.article1Score : ''}}</td>
+		            <td>{{test_detail.article1Level == '3급' ? test_detail.article1Score : ''}}</td>
+		            <td>{{test_detail.article1Level == '4급' ? test_detail.article1Score : ''}}</td>
+		            <td>{{test_detail.article1Level == '5급' ? test_detail.article1Score : ''}}</td>
+		            <td>{{test_detail.article1Level == '6급' ? test_detail.article1Score : ''}}</td>
+		        </tr>
+		        <tr class="active">
+		            <th>Reading</th>
+		            <td>{{test_detail.article2Level == '1급' ? test_detail.article2Score : ''}}</td>
+		            <td>{{test_detail.article2Level == '2급' ? test_detail.article2Score : ''}}</td>
+		            <td>{{test_detail.article2Level == '3급' ? test_detail.article2Score : ''}}</td>
+		            <td>{{test_detail.article2Level == '4급' ? test_detail.article2Score : ''}}</td>
+		            <td>{{test_detail.article2Level == '5급' ? test_detail.article2Score : ''}}</td>
+		            <td>{{test_detail.article2Level == '6급' ? test_detail.article2Score : ''}}</td>
+		        </tr>
+		        <tr class="active">
+		            <th>Writing</th>
+		            <td>{{test_detail.article3Level == '1급' ? test_detail.article3Score : ''}}</td>
+		            <td>{{test_detail.article3Level == '2급' ? test_detail.article3Score : ''}}</td>
+		            <td>{{test_detail.article3Level == '3급' ? test_detail.article3Score : ''}}</td>
+		            <td>{{test_detail.article3Level == '4급' ? test_detail.article3Score : ''}}</td>
+		            <td>{{test_detail.article3Level == '5급' ? test_detail.article3Score : ''}}</td>
+		            <td>{{test_detail.article3Level == '6급' ? test_detail.article3Score : ''}}</td>
+		        </tr>
+		    </tbody>
+		</table>
+		
+		<table class="table table-test center_align m-b-none" ng-if="test_detail.tpCd == 'JLPT'">
+		    <thead>
+		        <tr class="active">
+		            <th>Average Score</th>
+		            <th colspan="100%"><span class="primary">{{test_detail.avgScore}}</span></th>
+		        </tr>
+		        <tr class="active">
+		            <th rowspan="2">Level</th>
+		            <th colspan="2">초급</th>
+		            <th colspan="2">중급</th>
+		            <th>고급</th>
+		        </tr>
+		        <tr class="active">
+		            <th>N5</th>
+		            <th>N4</th>
+		            <th>N3</th>
+		            <th>N2</th>
+		            <th>N1</th>
+		        </tr>
+		        <tr class="active">
+		            <th>Score</th>
+		            <th>0~180</th>
+		            <th>0~180</th>
+		            <th>0~180</th>
+		            <th>0~180</th>
+		            <th>0~180</th>
+		        </tr>
+		    </thead>
+		    <tbody>
+		        <tr class="active">
+		            <th>Language Knowledge</th>
+		            <td>{{test_detail.article1Level == 'N5' ? test_detail.article1Score : ''}}</td>
+		            <td>{{test_detail.article1Level == 'N4' ? test_detail.article1Score : ''}}</td>
+		            <td>{{test_detail.article1Level == 'N3' ? test_detail.article1Score : ''}}</td>
+		            <td>{{test_detail.article1Level == 'N2' ? test_detail.article1Score : ''}}</td>
+		            <td>{{test_detail.article1Level == 'N1' ? test_detail.article1Score : ''}}</td>
+		        </tr>
+		        <tr class="active">
+		            <th>Reading</th>
+		            <td>{{test_detail.article2Level == 'N5' ? test_detail.article2Score : ''}}</td>
+		            <td>{{test_detail.article2Level == 'N4' ? test_detail.article2Score : ''}}</td>
+		            <td>{{test_detail.article2Level == 'N3' ? test_detail.article2Score : ''}}</td>
+		            <td>{{test_detail.article2Level == 'N2' ? test_detail.article2Score : ''}}</td>
+		            <td>{{test_detail.article2Level == 'N1' ? test_detail.article2Score : ''}}</td>
+		        </tr>
+		        <tr class="active">
+		            <th>Listening</th>
+		            <td>{{test_detail.article3Level == 'N5' ? test_detail.article3Score : ''}}</td>
+		            <td>{{test_detail.article3Level == 'N4' ? test_detail.article3Score : ''}}</td>
+		            <td>{{test_detail.article3Level == 'N3' ? test_detail.article3Score : ''}}</td>
+		            <td>{{test_detail.article3Level == 'N2' ? test_detail.article3Score : ''}}</td>
+		            <td>{{test_detail.article3Level == 'N1' ? test_detail.article3Score : ''}}</td>
+		        </tr>
+		    </tbody>
+		</table>
+		
+		<table class="table table-test center_align m-b-none" ng-if="test_detail.tpCd == 'FLEX'">
+		    <thead>
+		        <tr class="active">
+		            <th>Average Score</th>
+		            <th colspan="100%"><span class="primary">{{test_detail.avgScore}}</span></th>
+		        </tr>
+		        <tr class="active">
+		            <th rowspan="2">Level</th>
+		            <th colspan="3">초급</th>
+		            <th colspan="3">중급</th>
+		            <th colspan="3">고급</th>
+		        </tr>
+		        <tr class="active">
+		            <th>3C</th>
+		            <th>3B</th>
+		            <th>3A</th>
+		            <th>2C</th>
+		            <th>2B</th>
+		            <th>2A</th>
+		            <th>1C</th>
+		            <th>1B</th>
+		            <th>1A</th>
+		        </tr>
+		        <tr class="active">
+		            <th>Score</th>
+		            <th>325~425</th>
+		            <th>426~525</th>
+		            <th>526~625</th>
+		            <th>626~700</th>
+		            <th>701~775</th>
+		            <th>776~850</th>
+		            <th>851~900</th>
+		            <th>901~950</th>
+		            <th>951~1000</th>
+		        </tr>
+		    </thead>
+		    <tbody>
+		        <tr class="active">
+		            <th>Listening & Reading</th>
+		            <td>{{test_detail.article1Level == '3C' ? test_detail.article1Score : ''}}</td>
+		            <td>{{test_detail.article1Level == '3B' ? test_detail.article1Score : ''}}</td>
+		            <td>{{test_detail.article1Level == '3A' ? test_detail.article1Score : ''}}</td>
+		            <td>{{test_detail.article1Level == '2C' ? test_detail.article1Score : ''}}</td>
+		            <td>{{test_detail.article1Level == '2B' ? test_detail.article1Score : ''}}</td>
+		            <td>{{test_detail.article1Level == '2A' ? test_detail.article1Score : ''}}</td>
+		            <td>{{test_detail.article1Level == '1C' ? test_detail.article1Score : ''}}</td>
+		            <td>{{test_detail.article1Level == '1B' ? test_detail.article1Score : ''}}</td>
+		            <td>{{test_detail.article1Level == '1A' ? test_detail.article1Score : ''}}</td>
+		        </tr>
+		    </tbody>
+		    <thead>
+		        <tr class="active">
+		            <th rowspan="2">Level</th>
+		            <th colspan="3">초급</th>
+		            <th colspan="3">중급</th>
+		            <th colspan="3">고급</th>
+		        </tr>
+		        <tr class="active">
+		            <th>3C</th>
+		            <th>3B</th>
+		            <th>3A</th>
+		            <th>2C</th>
+		            <th>2B</th>
+		            <th>2A</th>
+		            <th>1C</th>
+		            <th>1B</th>
+		            <th>1A</th>
+		        </tr>
+		        <tr class="active">
+		            <th>Score</th>
+		            <th>110~129</th>
+		            <th>130~149</th>
+		            <th>150~169</th>
+		            <th>170~184</th>
+		            <th>185~199</th>
+		            <th>200~214</th>
+		            <th>215~226</th>
+		            <th>227~238</th>
+		            <th>239~250</th>
+		        </tr>
+		    </thead>
+		    <tbody>
+		        <tr class="active">
+		            <th>Writing</th>
+		            <td>{{test_detail.article2Level == '3C' ? test_detail.article2Score : ''}}</td>
+		            <td>{{test_detail.article2Level == '3B' ? test_detail.article2Score : ''}}</td>
+		            <td>{{test_detail.article2Level == '3A' ? test_detail.article2Score : ''}}</td>
+		            <td>{{test_detail.article2Level == '2C' ? test_detail.article2Score : ''}}</td>
+		            <td>{{test_detail.article2Level == '2B' ? test_detail.article2Score : ''}}</td>
+		            <td>{{test_detail.article2Level == '2A' ? test_detail.article2Score : ''}}</td>
+		            <td>{{test_detail.article2Level == '1C' ? test_detail.article2Score : ''}}</td>
+		            <td>{{test_detail.article2Level == '1B' ? test_detail.article2Score : ''}}</td>
+		            <td>{{test_detail.article2Level == '1A' ? test_detail.article2Score : ''}}</td>
+		        </tr>
+		        <tr class="active">
+		            <th>Speaking</th>
+		            <td>{{test_detail.article3Level == '3C' ? test_detail.article3Score : ''}}</td>
+		            <td>{{test_detail.article3Level == '3B' ? test_detail.article3Score : ''}}</td>
+		            <td>{{test_detail.article3Level == '3A' ? test_detail.article3Score : ''}}</td>
+		            <td>{{test_detail.article3Level == '2C' ? test_detail.article3Score : ''}}</td>
+		            <td>{{test_detail.article3Level == '2B' ? test_detail.article3Score : ''}}</td>
+		            <td>{{test_detail.article3Level == '2A' ? test_detail.article3Score : ''}}</td>
+		            <td>{{test_detail.article3Level == '1C' ? test_detail.article3Score : ''}}</td>
+		            <td>{{test_detail.article3Level == '1B' ? test_detail.article3Score : ''}}</td>
+		            <td>{{test_detail.article3Level == '1A' ? test_detail.article3Score : ''}}</td>
+		        </tr>
+		    </tbody>
+		</table>
+		
+		<table class="table table-test center_align m-b-none" ng-if="test_detail.tpCd == 'OPI'">
+		    <thead>
+		        <tr class="active">
+		            <th>Average Score</th>
+		            <th colspan="100%"><span class="primary">{{test_detail.avgScore}}</span></th>
+		        </tr>
+		        <tr class="active">
+		            <th rowspan="2">Level</th>
+		            <th colspan="2">입문</th>
+		            <th colspan="3">초급</th>
+		            <th colspan="3">중급</th>
+		            <th colspan="2">고급</th>
+		        </tr>
+		        <tr class="active">
+		            <th>1~4</th>
+		            <th>5~20</th>
+		            <th>21~30</th>
+		            <th>31~40</th>
+		            <th>41~50</th>
+		            <th>51~60</th>
+		            <th>61~70</th>
+		            <th>71~80</th>
+		            <th>81~90</th>
+		            <th>91~100</th>
+		        </tr>
+		        <tr class="active">
+		            <th>Level</th>
+		            <th>NL</th>
+		            <th>NM</th>
+		            <th>NH</th>
+		            <th>IL</th>
+		            <th>IM</th>
+		            <th>IH</th>
+		            <th>AL</th>
+		            <th>AM</th>
+		            <th>AH</th>
+		            <th>S</th>
+		        </tr>
+		    </thead>
+		    <tbody>
+		        <tr>
+		            <th>Language control</th>
+		            <td>{{test_detail.article1Level == 'NL' ? test_detail.article1Score : ''}}</td>
+		            <td>{{test_detail.article1Level == 'NM' ? test_detail.article1Score : ''}}</td>
+		            <td>{{test_detail.article1Level == 'NH' ? test_detail.article1Score : ''}}</td>
+		            <td>{{test_detail.article1Level == 'IL' ? test_detail.article1Score : ''}}</td>
+		            <td>{{test_detail.article1Level == 'IM' ? test_detail.article1Score : ''}}</td>
+		            <td>{{test_detail.article1Level == 'IH' ? test_detail.article1Score : ''}}</td>
+		            <td>{{test_detail.article1Level == 'AL' ? test_detail.article1Score : ''}}</td>
+		            <td>{{test_detail.article1Level == 'AM' ? test_detail.article1Score : ''}}</td>
+		            <td>{{test_detail.article1Level == 'AH' ? test_detail.article1Score : ''}}</td>
+		            <td>{{test_detail.article1Level == 'S' ? test_detail.article1Score : ''}}</td>
+		        </tr>
+		        <tr>
+		            <th>Function,Global Tasks</th>
+		            <td>{{test_detail.article2Level == 'NL' ? test_detail.article2Score : ''}}</td>
+		            <td>{{test_detail.article2Level == 'NM' ? test_detail.article2Score : ''}}</td>
+		            <td>{{test_detail.article2Level == 'NH' ? test_detail.article2Score : ''}}</td>
+		            <td>{{test_detail.article2Level == 'IL' ? test_detail.article2Score : ''}}</td>
+		            <td>{{test_detail.article2Level == 'IM' ? test_detail.article2Score : ''}}</td>
+		            <td>{{test_detail.article2Level == 'IH' ? test_detail.article2Score : ''}}</td>
+		            <td>{{test_detail.article2Level == 'AL' ? test_detail.article2Score : ''}}</td>
+		            <td>{{test_detail.article2Level == 'AM' ? test_detail.article2Score : ''}}</td>
+		            <td>{{test_detail.article2Level == 'AH' ? test_detail.article2Score : ''}}</td>
+		            <td>{{test_detail.article2Level == 'S' ? test_detail.article2Score : ''}}</td>
+		        </tr>
+		        <tr>
+		            <th>Text Type</th>
+		            <td>{{test_detail.article3Level == 'NL' ? test_detail.article3Score : ''}}</td>
+		            <td>{{test_detail.article3Level == 'NM' ? test_detail.article3Score : ''}}</td>
+		            <td>{{test_detail.article3Level == 'NH' ? test_detail.article3Score : ''}}</td>
+		            <td>{{test_detail.article3Level == 'IL' ? test_detail.article3Score : ''}}</td>
+		            <td>{{test_detail.article3Level == 'IM' ? test_detail.article3Score : ''}}</td>
+		            <td>{{test_detail.article3Level == 'IH' ? test_detail.article3Score : ''}}</td>
+		            <td>{{test_detail.article3Level == 'AL' ? test_detail.article3Score : ''}}</td>
+		            <td>{{test_detail.article3Level == 'AM' ? test_detail.article3Score : ''}}</td>
+		            <td>{{test_detail.article3Level == 'AH' ? test_detail.article3Score : ''}}</td>
+		            <td>{{test_detail.article3Level == 'S' ? test_detail.article3Score : ''}}</td>
+		        </tr>
+		        <tr>
+		            <th>Contents Context</th>
+		            <td>{{test_detail.article4Level == 'NL' ? test_detail.article4Score : ''}}</td>
+		            <td>{{test_detail.article4Level == 'NM' ? test_detail.article4Score : ''}}</td>
+		            <td>{{test_detail.article4Level == 'NH' ? test_detail.article4Score : ''}}</td>
+		            <td>{{test_detail.article4Level == 'IL' ? test_detail.article4Score : ''}}</td>
+		            <td>{{test_detail.article4Level == 'IM' ? test_detail.article4Score : ''}}</td>
+		            <td>{{test_detail.article4Level == 'IH' ? test_detail.article4Score : ''}}</td>
+		            <td>{{test_detail.article4Level == 'AL' ? test_detail.article4Score : ''}}</td>
+		            <td>{{test_detail.article4Level == 'AM' ? test_detail.article4Score : ''}}</td>
+		            <td>{{test_detail.article4Level == 'AH' ? test_detail.article4Score : ''}}</td>
+		            <td>{{test_detail.article4Level == 'S' ? test_detail.article4Score : ''}}</td>
+		        </tr>
+		        <tr>
+		            <th>Comprehensibility</th>
+		            <td>{{test_detail.article5Level == 'NL' ? test_detail.article5Score : ''}}</td>
+		            <td>{{test_detail.article5Level == 'NM' ? test_detail.article5Score : ''}}</td>
+		            <td>{{test_detail.article5Level == 'NH' ? test_detail.article5Score : ''}}</td>
+		            <td>{{test_detail.article5Level == 'IL' ? test_detail.article5Score : ''}}</td>
+		            <td>{{test_detail.article5Level == 'IM' ? test_detail.article5Score : ''}}</td>
+		            <td>{{test_detail.article5Level == 'IH' ? test_detail.article5Score : ''}}</td>
+		            <td>{{test_detail.article5Level == 'AL' ? test_detail.article5Score : ''}}</td>
+		            <td>{{test_detail.article5Level == 'AM' ? test_detail.article5Score : ''}}</td>
+		            <td>{{test_detail.article5Level == 'AH' ? test_detail.article5Score : ''}}</td>
+		            <td>{{test_detail.article5Level == 'S' ? test_detail.article5Score : ''}}</td>
+		        </tr>
+		    </tbody>
+		</table>
+		
+		<table class="table table-test center_align m-b-none" ng-if="test_detail.tpCd == 'CILS'">
+		    <thead>
+		        <tr class="active">
+		            <th>Average Score</th>
+		            <th colspan="100%"><span class="primary">{{test_detail.avgScore}}</span></th>
+		        </tr>
+		        <tr class="active">
+		            <th rowspan="2">Level</th>
+		            <th colspan="2">초급</th>
+		            <th colspan="2">중급</th>
+		            <th colspan="2">고급</th>
+		        </tr>
+		        <tr class="active">
+		            <th>Lv.1</th>
+		            <th>Lv.2</th>
+		            <th>Lv.3</th>
+		            <th>Lv.4</th>
+		            <th>Lv.5</th>
+		            <th>Lv.6</th>
+		        </tr>
+		        <tr class="active">
+		            <th>Level</th>
+		            <th>A1</th>
+		            <th>A2</th>
+		            <th>B1</th>
+		            <th>B2</th>
+		            <th>C1</th>
+		            <th>C2</th>
+		        </tr>
+		        <tr class="active">
+		            <th>Score</th>
+		            <th>0~100</th>
+		            <th>0~100</th>
+		            <th>0~100</th>
+		            <th>0~100</th>
+		            <th>0~100</th>
+		            <th>0~100</th>
+		        </tr>
+		    </thead>
+		    <tbody>
+		        <tr>
+		            <th>Speaking</th>
+		            <td>{{test_detail.article1Level == 'A1' ? test_detail.article1Score : ''}}</td>
+		            <td>{{test_detail.article1Level == 'A2' ? test_detail.article1Score : ''}}</td>
+		            <td>{{test_detail.article1Level == 'B1' ? test_detail.article1Score : ''}}</td>
+		            <td>{{test_detail.article1Level == 'B2' ? test_detail.article1Score : ''}}</td>
+		            <td>{{test_detail.article1Level == 'C1' ? test_detail.article1Score : ''}}</td>
+		            <td>{{test_detail.article1Level == 'C2' ? test_detail.article1Score : ''}}</td>
+		        </tr>
+		        <tr>
+		            <th>Listening</th>
+		            <td>{{test_detail.article2Level == 'A1' ? test_detail.article2Score : ''}}</td>
+		            <td>{{test_detail.article2Level == 'A2' ? test_detail.article2Score : ''}}</td>
+		            <td>{{test_detail.article2Level == 'B1' ? test_detail.article2Score : ''}}</td>
+		            <td>{{test_detail.article2Level == 'B2' ? test_detail.article2Score : ''}}</td>
+		            <td>{{test_detail.article2Level == 'C1' ? test_detail.article2Score : ''}}</td>
+		            <td>{{test_detail.article2Level == 'C2' ? test_detail.article2Score : ''}}</td>
+		        </tr>
+		        <tr>
+		            <th>Reading</th>
+		            <td>{{test_detail.article3Level == 'A1' ? test_detail.article3Score : ''}}</td>
+		            <td>{{test_detail.article3Level == 'A2' ? test_detail.article3Score : ''}}</td>
+		            <td>{{test_detail.article3Level == 'B1' ? test_detail.article3Score : ''}}</td>
+		            <td>{{test_detail.article3Level == 'B2' ? test_detail.article3Score : ''}}</td>
+		            <td>{{test_detail.article3Level == 'C1' ? test_detail.article3Score : ''}}</td>
+		            <td>{{test_detail.article3Level == 'C2' ? test_detail.article3Score : ''}}</td>
+		        </tr>
+		        <tr>
+		            <th>Writing</th>
+		            <td>{{test_detail.article4Level == 'A1' ? test_detail.article4Score : ''}}</td>
+		            <td>{{test_detail.article4Level == 'A2' ? test_detail.article4Score : ''}}</td>
+		            <td>{{test_detail.article4Level == 'B1' ? test_detail.article4Score : ''}}</td>
+		            <td>{{test_detail.article4Level == 'B2' ? test_detail.article4Score : ''}}</td>
+		            <td>{{test_detail.article4Level == 'C1' ? test_detail.article4Score : ''}}</td>
+		            <td>{{test_detail.article4Level == 'C2' ? test_detail.article4Score : ''}}</td>
+		        </tr>
+		        <tr>
+		            <th>Grammar</th>
+		            <td>{{test_detail.article5Level == 'A1' ? test_detail.article5Score : ''}}</td>
+		            <td>{{test_detail.article5Level == 'A2' ? test_detail.article5Score : ''}}</td>
+		            <td>{{test_detail.article5Level == 'B1' ? test_detail.article5Score : ''}}</td>
+		            <td>{{test_detail.article5Level == 'B2' ? test_detail.article5Score : ''}}</td>
+		            <td>{{test_detail.article5Level == 'C1' ? test_detail.article5Score : ''}}</td>
+		            <td>{{test_detail.article5Level == 'C2' ? test_detail.article5Score : ''}}</td>
+		        </tr>
+		    </tbody>
+		</table>
+		<div class="wrapper bg-gray" ng-if="test_detail.tpCd != null && test_detail.tpCd != '' && test_detail.tpCd != 'Business'">
+		    <div class="padder">
+		        <p class="tt">Comment</p>
+		        <p class="text-thin">{{test_detail.cnts}}</p>
+		    </div>
+		</div>
+    </div>
+    </div>
+        <div class="text-center m-t-lg m-b-lg">
+            <button class="btn btn-dark btn-w" ui-sref="app.student.list({id: student.ltCd})">목록</button>
+          </div>
+</div>
+<script>
+	$(".date").datepicker({
+		format: 'yyyy-mm-dd',
+		autoclose: true
+	});
+</script>

@@ -1,0 +1,394 @@
+
+<div class="app-content-body " ng-controller="userController"
+	ng-init="init()">
+	<div class="wrapper-md">
+		<div class="panel panel-default">
+			<div class="panel-heading font-bold">
+				회원관리
+				
+				<button type="submit" class="btn btn-primary pull-right btn-m" ng-click="openStudentJoinLayerPopup()">수강생 신규등록</button>				
+				<button type="submit" class="btn btn-primary pull-right btn-m" ng-click="openStudentJoinLayerPopup2()" style="margin-right:20px;">수강생 일괄등록</button>
+				<button type="submit" class="btn btn-danger pull-right btn-m" ng-click="openStudentOutLayerPopup()" style="margin-right:20px;">일괄탈퇴</button>
+			</div>
+			<div class="panel-body">
+				<form id="user_form" class="form-horizontal" method="get">
+					<div class="form-group b-n">
+						<label class="col-sm-1 control-label">고객사명</label>
+						<div class="col-sm-2">
+							<select name="customer_company" class="form-control input-sm"
+								ng-options="customer_company.compNm for customer_company in customer_companies track by customer_company.cpCd"
+								ng-model="selected_customer_company">
+								<option value="" selected>전체</option>
+							</select>
+						</div>
+						<label class="col-sm-1 col-sm-offset-1 control-label">담당강사</label>
+						<div class="col-sm-2">
+							<select name="teacher" class="form-control input-sm"
+								ng-options="teacher.userName for teacher in teachers track by teacher.tcCd"
+								ng-model="selected_teacher">
+								<option value="" selected>전체</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group b-n">
+						<label class="col-sm-1 control-label">강의명</label>
+						<div class="col-sm-11">
+							<select name="lecture" class="form-control input-sm"
+								ng-options="lecture.lectureNm for lecture in lectures"
+								ng-model="selected_lecture">
+								<option value="" selected>전체</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group b-n">
+						<label class="col-sm-1 control-label">이름 / ID</label>
+						<div class="col-sm-2">
+							<input class="form-control input-sm" type="text" ng-model="username_student">
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="panel-footer">
+				<div class="row">
+					<button type="submit" class="btn btn-dark pull-right btn-m"
+						ui-sref="app.user.list" ng-click="searchListStudents()">조회</button>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="table-responsive teacher_table">
+				<table class="table b-t b-light" ng-if="students.length > 0">
+					<thead>
+						<tr class="active">
+							<th>No</th>
+							<th>고객사명</th>
+							<th>수강생</th>
+							<th>아이디</th>
+							<th>성별</th>
+							<th>생년월일</th>
+							<th>가입일자</th>
+							<th>수강여부</th>
+							<th>탈퇴유무</th>
+							<th>인증</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="user in students">
+							<td>{{generateListNo(current_page, total_students, $index)}}</td>
+							<td>{{user.compNm}}</td>
+							<td><a class="primary underline" ui-sref="app.user.detail({id: user.stCd})">{{user.userName}}</a></td>
+							<td>{{user.userId}}</td>
+							<td>{{user.genderNm}}</td>
+							<td>{{user.birthday}}</td>
+							<td>{{user.userRegDt}}</td>
+							<td>{{user.classYn}}</td>
+							<td>{{user.outYn}}</td>
+							<td ng-if="user.certifyYn == 'Y'">
+								완료
+							</td>
+							<td ng-if="user.certifyYn == 'N'">
+								<a	class="primary underline" ng-click="changeCertify(user)">대기</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="row" ng-if="total_students > app.page_size">
+			<div class=" text-center">
+				<ul class="pagination pagination-sm m-t-none m-b-none">
+					<li ng-click="previousPageClick()"><a href=""><i
+							class="fa fa-chevron-left"></i></a></li>
+					<li ng-repeat="page in getRange(total_pages) track by $index"
+						class="{{current_page == $index + 1 ? 'active' : ''}}"
+						ng-click="setCurrentPage($index + 1)"><a href="">{{$index
+							+ 1}}</a></li>
+					<li ng-click="nextPageClick()"><a href=""><i
+							class="fa fa-chevron-right"></i></a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="panel panel-default default_result"
+			ng-if="students.length == 0">
+			<p class="text-center text-lg">선택된 항목이 없습니다.</p>
+		</div>
+
+
+	</div>
+</div>
+
+<script type="text/ng-template" id="popup">
+  <div class="popup_wrap">
+      <div class="popup_header">
+        수강생 추가하기<span class="pull-right closebtn" ng-click="closeModalStudentJoinLayerPopup()"><img src="assets/img/close.png" class="img-full" alt="..."></span>
+    </div>
+    <div class="popup_body no-padder-top">
+        <div>
+    <div class="panel-body text-md m-t-md">
+      <form class="form-horizontal ng-pristine ng-valid" method="get">
+        <div class="form-group b-n">
+            <label class="col-sm-2 control-label"><span class="dot">*</span> 고객사명</label>
+            <div class="col-sm-4">
+            <select name="customer" class="form-control input-sm" ng-options="customer_company.compNm for customer_company in customer_list track by customer_company.cpCd" ng-model="student_insert.selected_customer">
+            </select>
+          </div>
+        </div>
+      </form>
+    </div>
+    <p class="m-t-md text-md">
+        * ID 미입력 시 고객사 코드 + 순번으로 임의기재됩니다.<br/> 
+* PW 미입력 시 아이디와 동일한 PW로 설정됩니다. 
+    </p>        
+    <div class="panel panel-default panel-devide">
+    <div class="panel-body">
+      <form class="form-horizontal ng-pristine ng-valid" method="get">
+        <div class="form-group">
+          <div class="col-bg col-sm-3"><label class=" control-label"><span class="dot">*</span> 이름</label></div>
+          <div class="col-sm-4">
+            <input class="form-control input-sm" type="text" maxlength="20" ng-model="student_insert.user_name" >
+          </div>
+        </div>
+        <div class="form-group">
+            <div class="col-bg col-sm-3"><label class=" control-label"><span class="dot">*</span>
+                 휴대폰번호</label></div>
+          <div class="col-sm-4">
+            <input class="form-control input-sm" type="text" maxlength="13" ng-model="student_insert.mobile">
+          </div>
+        </div>
+        <div class="form-group">
+            <div class="col-bg col-sm-3"><label class=" control-label">
+                 <span class="dot">*</span> 아이디</label></div>
+          <div class="col-sm-3">
+            <input class="form-control input-sm" type="text" maxlength="20" ng-model="student_insert.user_id">
+          </div>
+          <div class="col-sm-2 no-padder">
+            <button type="submit" class="btn btn-dark m-t-xs" ng-click="checkExist()">중복확인</button>
+          </div>
+<!--          <div class="col-sm-4 no-padder">
+            <label class=" control-label primary" ng-if="check_exist > 0">사용중인 아이디 입니다. </label>
+          </div> -->    
+        </div>
+        <div class="form-group">
+            <div class="col-bg col-sm-3"><label class=" control-label"><span class="dot">*</span> 
+                 비밀번호</label></div>
+          <div class="col-sm-4">
+            <input class="form-control input-sm" type="password" ng-model="student_insert.user_password">
+          </div>
+        </div>
+        <div class="form-group">
+            <div class="col-bg col-sm-3"><label class=" control-label">
+                <span class="dot">*</span>  비밀번호 확인</label></div>
+          <div class="col-sm-4">
+            <input class="form-control input-sm" type="password" ng-model="student_insert.retype_password">
+          </div>
+        </div>
+          <div class="form-group">
+               <div class="col-bg col-sm-3"><label class=" control-label">
+                   <span class="dot">*</span>  성별</label></div>
+          <div class="col-sm-4">
+            <div class="radio">
+              <label class="i-checks">
+                <input type="radio" name="a" value="M" checked="checked" ng-model="student_insert.gender">
+                <i></i>
+                	남
+              </label> &nbsp;&nbsp;&nbsp;
+              <label class="i-checks">
+                <input type="radio" name="a" value="F" ng-model="student_insert.gender">
+                <i></i>
+               	 여
+              </label>
+            </div>
+          </div>
+        </div>
+          <div class="form-group">
+          <div class="col-bg col-sm-3"><label class=" control-label">
+              <span class="dot">*</span> 생년월일</label></div>
+          <div class="col-sm-3 no-padder-right">
+            <div class="col-sm-9 no-padder"><input class="form-control input-sm" type="number" maxLength="4"
+								ng-keyup="foucusBirthday('year', year_of_birth)" ng-model="year_of_birth"></div>
+              <label class="col-sm-3 control-label ">년</label>
+          </div>
+              <div class="col-sm-3 no-padder">
+            <div class="col-sm-9 no-padder"><input class="form-control input-sm" type="number" maxLength="2" 
+								ng-keyup="foucusBirthday('month', month_of_birth)" ng-model="month_of_birth"></div>
+              <label class="col-sm-3 control-label">월</label>
+          </div>
+              <div class="col-sm-3 no-padder">
+            <div class="col-sm-9 no-padder"><input class="form-control input-sm" type="number" maxLength="2" 
+								ng-keyup="foucusBirthday('day', date_of_birth)" ng-model="date_of_birth"></div>
+              <label class="col-sm-3 control-label">일</label>
+          </div>
+        </div>
+          <div class="form-group">
+          <div class="col-bg col-sm-3"><label class="control-label"> <span class="dot">*</span> 부서명/직급</label></div>
+          <div class="col-sm-4">
+            <input class="form-control input-sm" type="text" maxlength="50" ng-model="student_insert.deptNm">
+          </div>
+        <div class="col-sm-2 no-padder">
+            <input class="form-control input-sm" type="text" maxlength="50" ng-model="student_insert.positionNm">
+          </div>
+          
+        </div>
+          <div class="form-group">
+          <div class="col-bg col-sm-3"><label class="control-label"><span class="dot">*</span> 이메일</label></div>
+          <div class="col-sm-4">
+            <input class="form-control input-sm" type="text" maxlength="100" ng-model="student_insert.email">
+          </div>
+        </div>
+
+<!--        <div class="form-group">
+          <div class="col-bg col-sm-3">
+            <label class="control-label">엑셀업로드</label>
+          </div>
+          <div class="col-sm-4">
+            <input class="form-control input-sm" ng-model="excel_file" ng-value="student_insert.excel_file" />
+            <input id="btn_upload" class="form-control input-sm" type="file" name="excel_file" onchange="angular.element(this).scope().getFiles()" ng-model="student.excel_file" style="display:none;" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+          </div>
+          
+          <div class="col-sm-3">
+              <button class="btn btn-white m-t-xs" ng-click="uploadFile()">파일첨부</button>
+          </div>  
+        </div>
+        <div class="form-group">
+            <div class="col-bg col-sm-3">
+            </div>
+            <div class="col-sm-4">
+                <a href="" class="text-primary" ng-click="downloadExcel()"><u>엑셀양식 다운받기</u></a>
+            </div>
+            
+            <div class="col-sm-3">
+            </div>
+          </div> -->
+      </form>
+    </div>
+  </div>        
+        <!--add del section end-->
+        <div class="text-center m-t-lg">
+            <button class="btn btn-primary btn-w" ng-click="createStudent()">저장</button>
+        </div>
+    </div>  
+    </div>  
+  </div>
+<script type="text/javascript">
+$(document).ready(function() {
+	Inputmask({mask: "999-9999-9999", clearMaskOnLostFocus: true, autoUnmask: true, greedy: false }).mask($("#phone"));
+});
+
+</script>
+</script>
+
+<script type="text/ng-template" id="popup2">
+	<div class="popup_wrap">
+    	<div class="popup_header">
+        	수강생 추가하기<span class="pull-right closebtn" ng-click="closeModalStudentJoinLayerPopup2()"><img src="assets/img/close.png" class="img-full" alt="..."></span>
+    	</div>
+    	<div class="popup_body no-padder-top">
+        	<div>
+    			<div class="panel-body text-md m-t-md">
+      				<form class="form-horizontal ng-pristine ng-valid" method="get">
+        				<div class="form-group b-n">
+            				<label class="col-sm-2 control-label"><span class="dot">*</span> 고객사명</label>
+            				<div class="col-sm-4">
+            					<select name="customer" class="form-control input-sm" ng-options="customer_company.compNm for customer_company in customer_list track by customer_company.cpCd" ng-model="selected_customer">
+            					</select>
+          					</div>
+        				</div>
+      				</form>
+    			</div>
+    			<p class="m-t-md text-md">
+        			* 엑셀파일내에 ID, PW, Email, 성별은 필수 입력입니다. 
+					<a class="primary underline" href="./assets/excel/회원가입_샘플.xlsx" style="float:right" download>[다운로드 엑셀파일 양식]</a>
+    			</p>        
+    		</div>  
+   			<div class="panel panel-default panel-devide">
+       		<!--add del section end-->
+	            <div class="uploader_wrap" style="position:relative;">
+  					<label class="btn btn-sm btn-info m-t-xs">
+        	         	 파일 첨부
+            	      <input type="file" id="upload_file" select-ng-files ng-model="user.files"
+                	    style="opacity: 0; position: absolute; left: 0; width: 100px;height: 32px; top: 5px" ng-change="fileUpload();" />
+                	</label>
+                	<label class="uploader" ng-repeat="file in user.files">
+                  		{{ file.name }}
+                  		<button type="button" class="btn btn-xs btn-default" ng-click="user.files = null; upload_file.fileName = '';">
+                    		<i class="fa fa-times primary"></i>
+                  		</button>
+                	</label>
+            	</div>
+   			</div>  
+   			<div class="text-center m-t-lg">
+       			<button class="btn btn-primary btn-w" ng-click="saveFile()">저장</button>
+   			</div>
+  		</div>
+	</div>
+</script>
+
+<script type="text/ng-template" id="popup3">
+	<div class="popup_wrap">
+    	<div class="popup_header">
+        	등록실패 리스트<span class="pull-right closebtn" ng-click="closeModal()"><img src="assets/img/close.png" class="img-full" alt="..."></span>
+    	</div>
+    	<div class="popup_body no-padder-top" style="max-height:600px; overflow:auto;">
+   			<div class="panel panel-default panel-devide">
+				<table class="table b-t b-light" ng-if="students.length > 0">
+					<thead>
+						<tr class="active">
+							<th>항목</th>
+							<th>에러메세지</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="list in errList">
+							<td>{{list.index}}</td>
+							<td>{{list.message}}</td>
+						</tr>
+					</tbody>
+				</table>
+   			</div>  
+   			<div class="text-center m-t-lg">
+       			<button class="btn btn-primary btn-w" ng-click="closeModal()">닫기</button>
+   			</div>
+  		</div>
+	</div>
+</script>
+
+<script type="text/ng-template" id="popupOutStudent">
+	<div class="popup_wrap" ng-init="outInit()">
+    	<div class="popup_header">
+        	수강생 일괄탈퇴<span class="pull-right closebtn" ng-click="closeModalStudentOutLayerPopup()"><img src="assets/img/close.png" class="img-full" alt="..."></span>
+    	</div>
+    	<div class="popup_body no-padder-top">
+        	<div>
+    			<div class="panel-body text-md m-t-md">
+      				<form class="form-horizontal ng-pristine ng-valid" method="get">
+        				<div class="form-group b-n">
+            				<label class="col-sm-2 control-label"> 고객사명</label>
+            				<div class="col-sm-4">
+            					<select class="form-control input-sm" ng-options="item.cpCd as item.compNm for item in out_companies_list" ng-model="out_company" ng-change="getOutStudentCnt(); getOutPopLecture();">
+									<option value="">선택</option>
+            					</select>
+          					</div>
+        				</div>
+						<div class="form-group b-n">
+            				<label class="col-sm-2 control-label"> 강의명</label>
+            				<div class="col-sm-8">
+            					<select class="form-control input-sm" ng-options="item.ltCd as item.lectureNm for item in out_lecture_list" ng-model="out_lecture" ng-change="getOutStudentCnt();">
+									<option value="">선택</option>
+            					</select>
+          					</div>
+        				</div>
+      				</form>
+    			</div>
+    			<p class="m-t-md text-md">
+        			선택된 유저 수 : {{out_user_cnt}} 명
+    			</p>        
+    		</div>
+   			<div class="text-center m-t-lg">
+       			<button class="btn btn-primary btn-w" ng-click="saveOutStudent()">탈퇴</button>
+   			</div>
+  		</div>
+	</div>
+</script>
+
+<script src="./pages/user/user_controller.js">
+</script>

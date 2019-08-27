@@ -1,0 +1,40 @@
+
+  	<div class="app-content-body" ng-controller="StudentController" ng-init="init()">
+    <div class="widthfix-md m-auto wrapper">
+        <div class="text-left text-md clearfix hidden-xs hidden-sm pc-padder">
+                    <p class="pc-big-sm ">수강지원센터
+                    </p>
+                </div>
+    <div class="panel panel-body no-shadow m-b-n-xs no-padder">
+        <form class="form-horizontal ng-pristine ng-valid">
+        <div class="form-group b-n">  
+          <div class="col-xs-12 col-sm-3 no-padder">
+            <select name="account" class="form-control m-t-xs"
+            	ng-model="select_type"
+            	ng-options="type.codeId as type.codeName1 for type in type_inquiry">
+              <option value="">구분</option>
+            </select>
+          </div>   
+        </div>
+        <div class="form-group b-n">  
+          <div class="col-xs-12 no-padder">
+            <input class="form-control" type="text" placeholder="제목" ng-model="inquiryTitle">
+          </div>    
+        </div>     
+      </form>
+    </div>    
+    <div class="b heightfix">
+        <textarea ng-model="inquiryCnts">
+
+        </textarea>
+    </div>
+    <div class="row m-t-lg widthfix-xs2 m-auto">
+    <div class="col-xs-6 no-padder col-sm-6">
+        <button type="submit" class="btn btn-xl btn-dark btn-block pc-btn-w-sm" ui-sref="app.student.student_help">취소</button>    
+    </div>
+    <div class="col-xs-6 no-padder col-sm-6">
+        <button type="submit" class="btn btn-xl btn-primary btn-block pc-btn-w-sm" ng-click="getSupportCenterSave()">등록</button>    
+    </div>
+</div>
+</div>            
+  </div>

@@ -1,0 +1,70 @@
+
+  	<div class="app-content-body" ng-controller="StudentHelpController" ng-init="init()">
+    <div class="wrapper-md widthfix-lg m-auto">
+                <div class="text-center text-sm clearfix">
+                    <p class="pc-big-sm ">* 강의나 수업진행 중 문의사항이 있다면 문의하시기 바랍니다. 
+                    </p>
+                </div>
+                <button type="submit" class="btn btn-xl btn-primary w-full m-t pc-btn-w-sm m-auto" ui-sref="app.student.student_help_add">문의하기</button>
+                 <!-- 패널 스타일 list -->
+                   		<div class="acc_wrap m-t b-b" >
+                    <div class="panel-group m-b-none" ng-repeat="support in support_list">
+                       <table class="table b-t b-light nopadTable-sm m-b-none" ng-click="moveDetail(support.answerYn, support.scCd)">
+                        <tbody>
+                          <tr>
+                             <td class="w-xxxs primary">{{support.inquiryTypeNm}}</td>
+                             <td class="text-left">{{support.inquiryTitle}}</td>
+                             <td class="w-xxxs">{{support.regDt}}</td>
+                             <td class="w-xxs primary">{{support.answerYnNm}}</td>
+                          </tr>      
+                        </tbody>
+                      </table> 
+                    </div>
+                    </div>
+                      
+                 <!--패널 스타일 list end -->
+                 <br>
+                 <div ng-if="app.page_size < total_support">
+                 	<button class="btn btn-borderDefault w-full widthfix-xs m-auto pc-block btnMoreList" ng-click="nextPageClick()">더보기</button>
+                 </div>
+      	</div>
+  </div>
+   
+
+<script type="text/ng-template" id="popup">
+  <div class="popup_wrap">
+      <div class="popup_header">
+        증명서 발급요청<span class="pull-right closebtn " data-ng-click="cancel()"><img src="assets/img/close.png" class="img-full" alt="..."></span>
+    </div>
+    <div class="popup_body">
+        <form class="form-horizontal ng-pristine ng-valid" method="get">
+        <div class="form-group b-n">
+          <div class="col-bg col-xs-5"><label class=" control-label">신청인</label></div>
+          <div class="col-xs-7"><label class=" control-label">나강사</label></div>
+        </div>
+        <div class="form-group b-n">
+          <div class="col-bg col-xs-5"><label class=" control-label">증명서 종류</label></div>
+          <div class="col-xs-7">
+            <select class="form-control input-sm">
+              <option value="메일선택">직접입력</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+            </select>
+          </div>
+        </div> 
+        <div class="form-group b-n">
+          <div class="col-bg col-xs-5"><label class=" control-label">발급요청일</label></div>
+          <div class="col-xs-7">
+                <input class="form-control input-sm" placeholder="20181031">
+          </div>
+        </div>    
+      </form>
+      <p class="m-t-md">발급사유</p>    
+      <div>
+        <textarea class="border"></textarea>  
+     </div>     
+    </div>   
+      <button type="submit" class="btn btn-xl btn-primary w-full m-t-lg">신청</button>       
+  </div>
+
+</script>

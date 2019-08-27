@@ -1,0 +1,60 @@
+ <!-- content -->
+  	<div class="app-content-body " ng-controller="studentQNADetailController" ng-init="init()">
+<div class="wrapper-md" >
+  <div class="panel panel-default panel-devide">
+    <div class="panel-heading font-bold">
+      수강생지원센터 
+    </div>
+    <div class="panel-body">
+      <form class="form-horizontal" method="get">
+        <div class="form-group">
+          <div class="col-bg col-sm-1"><label class=" control-label">구분</label></div>
+          <div class="col-sm-2">
+            <label class="control-label">{{support_center.inquiryTypeNm}}</label>
+          </div>
+            <div class="col-bg col-sm-1 col-sm-offset-1"><label class=" control-label">작성일</label></div>
+          <div class="col-sm-2">
+            <label class=" control-label">{{support_center.regDt}}</label>
+          </div>
+            <div class="col-bg col-sm-1 col-sm-offset-1"><label class=" control-label">상태</label></div>
+          <div class="col-sm-2">
+            <label class=" control-label">{{support_center.answerYnNm}}</label>
+          </div>
+        </div>
+          <div class="form-group">
+          <div class="col-bg col-sm-1"><label class=" control-label">작성자</label></div>
+          <div class="col-sm-2">
+            <label class=" control-label">{{support_center.userName}}</label>
+          </div>
+            <div class="col-bg col-sm-1 col-sm-offset-1"><label class=" control-label">고객사명</label></div>
+          <div class="col-sm-2">
+            <label class=" control-label">{{support_center.compNm}}</label>
+          </div>
+        </div>
+          <div class="form-group">
+          <div class="col-bg col-sm-1"><label class=" control-label">제목</label></div>
+          <div class="col-sm-11">
+            <label class=" control-label">{{support_center.inquiryTitle}}</label>
+          </div>
+        </div>
+          <div class="form-group">
+          <div class="col-bg col-sm-1 h-lg"><label class=" control-label">내용</label></div>
+          <div class="col-sm-11 h-lg">
+            <textarea class="h-lg m-t-none" readonly>{{support_center.inquiryCnts}}</textarea>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+    <div class="text-center m-t-lg">
+            <button ui-sref="app.student_qna.list" class="btn btn-dark btn-w">목록</button>&nbsp;
+            <button class="btn btn-danger btn-w" ng-click="deleteSupportCenter()">삭제</button>
+        <button class="btn btn-primary btn-w" ui-sref="app.student_qna.reply({id: support_center.scCd})">답변하기</button>
+          </div>
+</div>
+
+
+	</div>
+  <!-- /content -->
+  <script src="./pages/student_qna/student_qna_detail_controller.js">
+  </script>

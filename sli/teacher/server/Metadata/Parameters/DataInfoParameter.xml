@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Collections>
+    	<!-- DataInfoList Start-->
+    	<ParameterMeta ID="startPage" IsReadOnly="false" Enable="true">
+			<RegBy>DataInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>DataInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>DataInfoList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="endPage" IsReadOnly="false" Enable="true">
+			<RegBy>DataInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>DataInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>DataInfoList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shCpCd" IsReadOnly="false" Enable="true">
+			<RegBy>DataInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>DataInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>DataInfoList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>		
+		<ParameterMeta ID="shLtCd" IsReadOnly="false" Enable="true">
+			<RegBy>DataInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>DataInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>DataInfoList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shTcCd" IsReadOnly="false" Enable="true">
+			<RegBy>DataInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>DataInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>DataInfoList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="exceptYn" IsReadOnly="false" Enable="true">
+			<RegBy>DataInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>DataInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>DataInfoList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<!-- DataInfoList End-->
+    	
+    	<!-- DataInfoListCnt Start-->
+    	<ParameterMeta ID="shCpCd" IsReadOnly="false" Enable="true">
+			<RegBy>DataInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>DataInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>DataInfoListCnt</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shLtCd" IsReadOnly="false" Enable="true">
+			<RegBy>DataInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>DataInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>DataInfoListCnt</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shTcCd" IsReadOnly="false" Enable="true">
+			<RegBy>DataInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>DataInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>DataInfoListCnt</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="exceptYn" IsReadOnly="false" Enable="true">
+			<RegBy>DataInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>DataInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>DataInfoListCnt</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<!-- DataInfoListCnt End-->
+     	
+     	<!-- DataInfoDetail Start-->
+    	<ParameterMeta ID="daCd" IsReadOnly="false" Enable="true">
+			<RegBy>DataInfo</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>DataInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>DataInfoDetail</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<!-- DataInfoDetail Start-->
+		
+    </Collections>
+</MetaCollection>

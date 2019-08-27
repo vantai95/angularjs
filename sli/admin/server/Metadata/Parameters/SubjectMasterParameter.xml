@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Collections>
+    	  	
+    	<!-- SM_AreaInsert Start-->
+    	<ParameterMeta ID="titleNm" IsReadOnly="false" Enable="true">
+			<RegBy>SubjectMaster</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>SubjectMaster</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SM_AreaInsert</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="regUser" IsReadOnly="false" Enable="true">
+			<RegBy>SubjectMaster</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>SubjectMaster</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SM_AreaInsert</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<!-- SM_AreaInsert End-->
+    	   	    	    	
+    	<!-- SM_SubjectInsert Start-->
+    	<ParameterMeta ID="titleCd" IsReadOnly="false" Enable="true">
+			<RegBy>SubjectMaster</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>SubjectMaster</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SM_SubjectInsert</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>	
+    	<ParameterMeta ID="subjectName" IsReadOnly="false" Enable="true">
+			<RegBy>SubjectMaster</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>SubjectMaster</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SM_SubjectInsert</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="regUser" IsReadOnly="false" Enable="true">
+			<RegBy>SubjectMaster</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>SubjectMaster</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SM_AreaInsert</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>				
+    	<!-- SM_SubjectInsert End-->
+    	    	
+    	<!-- SubjectMasterList Start-->    	
+    	<ParameterMeta ID="titleCd" IsReadOnly="false" Enable="true">
+			<RegBy>SubjectMaster</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>SubjectList</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SubjectMasterList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<!-- SubjectMasterList End-->
+		
+		<!-- SubjectMasterListCnt Start-->    	
+    	<ParameterMeta ID="titleCd" IsReadOnly="false" Enable="true">
+			<RegBy>SubjectMaster</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>SubjectList</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>SubjectMasterListCnt</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<!-- SubjectMasterListCnt End-->
+    </Collections>
+</MetaCollection>

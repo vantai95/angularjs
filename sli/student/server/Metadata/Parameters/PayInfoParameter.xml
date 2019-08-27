@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Collections>
+    	<!-- MyPayList Start-->
+    	<ParameterMeta ID="startPage" IsReadOnly="false" Enable="true">
+			<RegBy>pay</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>pay</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>MyPayList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="endPage" IsReadOnly="false" Enable="true">
+			<RegBy>pay</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>pay</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>MyPayList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>		
+		<ParameterMeta ID="stCd" IsReadOnly="false" Enable="true">
+			<RegBy>pay</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>pay</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>MyPayList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shStartDt" IsReadOnly="false" Enable="true">
+			<RegBy>pay</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>pay</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>MyPayList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shEndDt" IsReadOnly="false" Enable="true">
+			<RegBy>pay</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>pay</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>MyPayList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<!-- MyPayList End-->
+    	
+    	<!-- MyPayListCnt Start-->    			
+		<ParameterMeta ID="stCd" IsReadOnly="false" Enable="true">
+			<RegBy>pay</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>pay</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>MyPayListCnt</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shStartDt" IsReadOnly="false" Enable="true">
+			<RegBy>pay</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>pay</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>MyPayListCnt</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="shEndDt" IsReadOnly="false" Enable="true">
+			<RegBy>pay</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>pay</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>MyPayListCnt</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<!-- MyPayListCnt End-->
+		
+		<!-- RefundPopInfo Start-->    			
+		<ParameterMeta ID="paCd" IsReadOnly="false" Enable="true">
+			<RegBy>pay</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>pay</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>RefundPopInfo</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>		
+		<!-- RefundPopInfo End-->
+		
+		<!-- AccountPaySave Start-->    	
+		<ParameterMeta ID="ltCd" IsReadOnly="false" Enable="true">
+			<RegBy>account</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>account</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>AccountPaySave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="stCd" IsReadOnly="false" Enable="true">
+			<RegBy>account</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>account</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>AccountPaySave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>		
+		<ParameterMeta ID="payMeans" IsReadOnly="false" Enable="true">
+			<RegBy>account</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>account</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>AccountPaySave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="payMoney" IsReadOnly="false" Enable="true">
+			<RegBy>account</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>account</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>AccountPaySave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>		
+		<ParameterMeta ID="regUser" IsReadOnly="false" Enable="true">
+			<RegBy>account</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>account</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>AccountPaySave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<!-- AccountPaySave End-->
+    	
+		<!-- AccountRefundSave Start -->
+    	<ParameterMeta ID="saveType" IsReadOnly="false" Enable="true">
+			<RegBy>account</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>account</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>AccountRefundSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="stCd" IsReadOnly="false" Enable="true">
+			<RegBy>account</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>account</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>AccountRefundSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="paCd" IsReadOnly="false" Enable="true">
+			<RegBy>account</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>account</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>AccountRefundSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="refundType" IsReadOnly="false" Enable="true">
+			<RegBy>account</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>account</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>AccountRefundSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="refundCnts" IsReadOnly="false" Enable="true">
+			<RegBy>account</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>account</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>AccountRefundSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="bankCd" IsReadOnly="false" Enable="true">
+			<RegBy>account</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>account</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>AccountRefundSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="bankAccount" IsReadOnly="false" Enable="true">
+			<RegBy>account</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>account</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>AccountRefundSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="regUser" IsReadOnly="false" Enable="true">
+			<RegBy>account</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>account</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>AccountRefundSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<!-- AccountRefundSave End -->
+
+		<!-- PaymentResult Start -->
+    	<ParameterMeta ID="orderCd" IsReadOnly="false" Enable="true">
+			<RegBy>account</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>account</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>PaymentResult</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<ParameterMeta ID="payMeans" IsReadOnly="false" Enable="true">
+			<RegBy>account</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>account</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>PaymentResult</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<ParameterMeta ID="payMoney" IsReadOnly="false" Enable="true">
+			<RegBy>account</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>account</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>PaymentResult</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<ParameterMeta ID="cardResult" IsReadOnly="false" Enable="true">
+			<RegBy>account</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>account</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>PaymentResult</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<ParameterMeta ID="payDate" IsReadOnly="false" Enable="true">
+			<RegBy>account</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>account</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>PaymentResult</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<ParameterMeta ID="financeCode" IsReadOnly="false" Enable="true">
+			<RegBy>account</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>account</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>PaymentResult</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<ParameterMeta ID="financeName" IsReadOnly="false" Enable="true">
+			<RegBy>account</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>account</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>PaymentResult</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<ParameterMeta ID="accountNum" IsReadOnly="false" Enable="true">
+			<RegBy>account</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>account</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>PaymentResult</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<ParameterMeta ID="payer" IsReadOnly="false" Enable="true">
+			<RegBy>account</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>account</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>PaymentResult</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<!-- PaymentResult End -->
+
+		<!-- PaymentResult2 Start -->
+    	<ParameterMeta ID="resFlag" IsReadOnly="false" Enable="true">
+			<RegBy>account</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>account</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>PaymentResult2</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<ParameterMeta ID="orderCd" IsReadOnly="false" Enable="true">
+			<RegBy>account</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>account</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>PaymentResult2</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<ParameterMeta ID="payType" IsReadOnly="false" Enable="true">
+			<RegBy>account</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>account</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>PaymentResult2</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<ParameterMeta ID="payMoney" IsReadOnly="false" Enable="true">
+			<RegBy>account</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>account</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>PaymentResult2</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<ParameterMeta ID="payDate" IsReadOnly="false" Enable="true">
+			<RegBy>account</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>account</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>PaymentResult2</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<ParameterMeta ID="financeCode" IsReadOnly="false" Enable="true">
+			<RegBy>account</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>account</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>PaymentResult2</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<ParameterMeta ID="financeName" IsReadOnly="false" Enable="true">
+			<RegBy>account</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>account</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>PaymentResult2</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<ParameterMeta ID="accountNum" IsReadOnly="false" Enable="true">
+			<RegBy>account</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>account</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>PaymentResult2</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<ParameterMeta ID="payer" IsReadOnly="false" Enable="true">
+			<RegBy>account</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>account</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>PaymentResult2</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<!-- PaymentResult2 End -->
+    </Collections>
+</MetaCollection>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Collections>
+		<ServiceMeta ID="SubjectMasterList" Enable="true" IsReadOnly="false">
+			<RegBy>SubjectMaster</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>SubjectMaster</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>SubjectMasterList</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>SubjectMasterList</PageName>
+		      <PageTitle>SubjectMasterList List</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+      	<ServiceMeta ID="SubjectMasterListCnt" Enable="true" IsReadOnly="false">
+			<RegBy>SubjectMaster</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>SubjectMaster</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>SubjectMasterListCnt</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>SubjectMasterListCnt</PageName>
+		      <PageTitle>SubjectMasterListCnt List</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>     
+      	<ServiceMeta ID="SM_AreaInsert" Enable="true" IsReadOnly="false">
+			<RegBy>SM_AreaInsert</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>SubjectMaster</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>SM_AreaInsert</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>SM_AreaInsert</PageName>
+		      <PageTitle>SM_AreaInsert</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>   	
+      	<ServiceMeta ID="SM_SubjectInsert" Enable="true" IsReadOnly="false">
+			<RegBy>SM_SubjectInsert</RegBy>
+		      <RegDate>2012-10-05T12:00:00</RegDate>
+		      <ModBy>SubjectMaster</ModBy>
+		      <ModDate>2012-10-05T12:00:00</ModDate>
+		      <Executions>
+		        <ExecutionID>SM_SubjectInsert</ExecutionID>
+		      </Executions>
+		      <BLPType>Bypass</BLPType>
+		      <BLPFile />
+		      <BLPTimeoutMin>10</BLPTimeoutMin>
+		      <Namespace/>
+		      <ClassName/>
+		      <RTFType>None</RTFType>
+		      <RTFAddress />
+		      <RTFCustomer />
+		      <RTFServiceID />
+		      <PageName>SM_SubjectInsert</PageName>
+		      <PageTitle>SM_SubjectInsert</PageTitle>
+		      <RTFTime>0</RTFTime>
+		      <ReturnType>DataSet</ReturnType>
+      	</ServiceMeta>
+      	
+      	     	      	
+    </Collections>
+</MetaCollection>

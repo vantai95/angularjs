@@ -1,0 +1,297 @@
+
+  	<div class="app-content-body" ng-controller="smsTeacherSortingController" ng-init="init()">
+<div class="wrapper-md">
+  <div class="panel panel-default">
+    <div class="panel-heading font-bold">
+      SMS 발송
+    </div>
+    <div class="panel-body">
+      <form class="form-horizontal" method="get">
+        <div class="form-group b-n">
+          <label class="col-sm-1 control-label">발송대상</label>
+          <div class="col-sm-2 no-padder">
+                <div class="radio">
+              <label class="i-checks">
+                <input type="radio" name="a" value="강사" checked="" ng-model="type" ng-click="getTeacherSMSList()">
+                <i></i>
+                강사
+              </label> &nbsp;&nbsp;&nbsp;
+                <label class="i-checks">
+                <input type="radio" name="a" value="수강생" ng-model="type" ng-click="getStudentSMSList()">
+                <i></i>
+                수강생
+               </label>
+            </div>        
+          </div>
+        </div>
+          <div class="form-group b-n">
+          <label class="col-sm-1 control-label">검색조건</label>
+          <div class="col-sm-2 no-padder-left">
+            <select name="status" class="form-control input-sm" ng-model="sms.lectureYn" ng-if="type == '강사'">
+              <option value="A">전체</option>
+              <option value="Y">강의중</option>
+              <option value="N">종료</option>
+            </select>
+            <select name="register_status" class="form-control input-sm" ng-model="sms.certifyYn" ng-if="type == '수강생'">
+              <option value="A">전체</option>
+              <option value="N">대기중</option>
+              <option value="Y">가입완료</option>
+            </select>
+          </div>
+              <div class="col-sm-2">
+            <select name="nationality" class="form-control input-sm" ng-model="sms.nationalType" ng-if="type == '강사'">
+              <option value=''>전체</option>
+              <option value='01'>내국인</option>
+              <option value='02'>원어민</option>
+              <option value='03'>교포</option>
+            </select>
+            <select name="join_status" class="form-control input-sm" ng-model="sms.lectureYn" ng-if="type == '수강생'">
+              <option value="A">전체</option>
+              <option value="Y">수강중</option>
+              <option value="N">수강대기</option>
+            </select>
+          </div>
+              <div class="col-sm-2">
+            <select name="condition" class="form-control input-sm" ng-model="sms.condition" ng-change="setOtherDefault()">
+            	<option>고객사</option>
+              	<option ng-if="type == '강사'">강의지역</option>
+            </select>
+          </div>
+          <div class="col-sm-2">
+            <select name="account" ng-show="sms.condition == '고객사'" ng-model="sms.shSmsCpcd" ng-options="company.cpCd as company.compNm for company in customer_company_list"  style="width: 100%; height: 32px; margin-top: 6px;" class="select2" multiple>
+            </select>
+            <select name="account" ng-show="sms.condition == '강의지역'" ng-model="sms.lectureArea" ng-options="lecture_area.codeId as lecture_area.codeName1 for lecture_area in lecture_areas" style="width: 100%; height: 32px; margin-top: 6px;" class="select2" multiple>
+            </select>
+          </div>
+          <div class="col-sm-1">
+            <button type="submit" class="btn btn-dark btn-m m-t-xs" ng-click="SearchSMS()">검색</button>        
+          </div>
+        </div>      
+      </form>
+    </div>
+  </div>
+    <div>
+    <div class="col-sm-5 no-padder-left">
+        <div class="row panel-body white text-xl">
+        검색된 회원 수 <span class="danger">{{sms_list.length}}</span>명
+    </div>
+    <div class="panel panel-default heightmax" style="position: inherit">
+    <div class="table-responsive teacher_table">
+      <table class="table b-t b-light" id="search_result_sms">
+        <thead>
+          <tr class="active myRow">
+            <th>
+              <label class="i-checks">
+                <input type="checkbox" ng-model="check_all" ng-click="checkAll()">
+                <i></i>
+              </label>
+            </th>
+            <th>구분</th>
+            <th>이름</th>
+            <th>고객사</th>
+            <th>연락처</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="sms in sms_list track by $index" class="myRow">
+            <td>
+              <label class="i-checks">
+                <input type="checkbox" ng-model="sms.selected" ng-change="updateCheckall()">
+                <i></i>
+              </label>
+            </td>
+            <td>
+            	{{type}}
+            </td>
+            <td>{{sms.tcNm}}{{sms.userName}}</td>
+            <td>{{sms.compNm}}</td>
+            <td>{{sms.mobile}}</td>   
+          </tr>
+        </tbody>
+      </table>
+    </div>              
+    </div>
+        <button type="submit" class="btn btn-border pull-right" ng-click="downExcel()">엑셀 다운로드&nbsp; <i class="fa fa-file-excel-o"></i></button>
+    </div>
+    <!--left side-->
+    <div class="col-sm-1 h-xxl w-auto">
+        <div class="h-xxl table-cell v-middle">
+        <a class="w-100" ng-click="addSendingSMS()"><img src="/Sites/sli/admin/client/assets/img/big_add_btn.png"></a>
+        </div>    
+    </div>
+    <!--right side-->
+    <div class="col-sm-5 no-padder-left">
+        <div class="row panel-body white text-xl">
+        메시지 발송 회원 수 <span class="danger">{{sending_sms.length}}</span>명
+    </div>
+    <div class="panel panel-default heightmax" style="position: inherit">            
+    <div class="table-responsive teacher_table">
+      <table class="table b-t b-light">
+        <thead>
+          <tr class="active">
+            <th>
+              <label class="i-checks">
+                <input type="checkbox" ng-model="select_all_right" ng-click="checkAll1()">
+                <i></i>
+              </label>
+            </th>
+            <th>구분</th>
+            <th>이름</th>
+            <th>고객사</th>
+            <th>연락처</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="sms in sending_sms">
+            <td>
+              <label class="i-checks">
+                <input type="checkbox" ng-model="sms.selected" ng-change="updateCheckall1()">
+                <i></i>
+              </label>
+            </td>
+            <td>{{type}}</td>
+            <td>{{sms.tcNm}}{{sms.userName}}</td>
+            <td>{{sms.compNm}}</td>
+            <td>{{sms.mobile}}</td>   
+          </tr>
+        </tbody>
+      </table>
+        
+    </div>              
+    </div>
+        <button type="submit" class="btn btn-dark pull-left btn-m m-t-xs" ng-click="deleteSelection()">선택삭제</button>
+        <button type="submit" class="btn btn-primary pull-right btn-m m-t-xs" ng-click="openPopup()">문자발송</button>
+    </div>
+    </div>
+</div>
+
+
+	</div>
+<script type="text/ng-template" id="smsTeacherSortingPopup.html">
+  <div class="popup_wrap" ng-init="initPopup()">
+      <div class="popup_header">
+        SMS 발송<span class="pull-right closebtn " data-ng-click="cancel()"><img src="assets/img/close.png" class="img-full" alt="..."></span>
+    </div>
+    <div class="popup_body no-padder-top">
+        <div>
+    <p class="m-t-md text-md">
+       총 수신 회원 수 : <span class="primary">{{sending_sms.length}}</span>명
+    </p>     
+    <div class="panel panel-default panel-devide m-t-md">
+    <div class="panel-body">
+      <form class="form-horizontal ng-pristine ng-valid" method="get">
+        <div class="form-group">
+          <div class="col-bg col-sm-2"><label class=" control-label"> 문자구분</label></div>
+          <div class="col-sm-10">
+							<select name="account" class="form-control input-sm"
+								ng-model="sms_new.smsType"
+								ng-options="item.cnts as item.cnts for item in sms_messages"
+								ng-change="changeSmsType()">
+								<option value="">직접입력</option>
+							</select>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-bg col-sm-2"><label class=" control-label"> 제목</label></div>
+          <div class="col-sm-10">
+            <input class="form-control input-sm" ng-model="sms_new.sendTitle">
+          </div>
+        </div>  
+        <div class="form-group">
+          <div class="col-bg col-sm-2"><label class=" control-label"> 회신번호</label></div>
+          <div class="col-sm-4">
+            <input class="form-control input-sm" ng-model="sms_new.replyTel" maxlength="12">
+          </div>
+        </div>          
+          <div class="form-group">
+          <div class="col-bg col-sm-2 h-lg" style="height:140px !important"><label class="control-label ">내용</label></div>
+        <div class="col-sm-10 h-lg padder-vsm" style="height:140px !important">
+            <textarea class="h-full b h-md2 m-t-none" ng-change="changeAreaText(sms_new.sendText)" maxlength="80" ng-model="sms_new.sendText"></textarea>
+            <div class="row">
+				<span class="pull-left">SMS는 90byte, LMS는 2,000byte까지 전송가능합니다.<br>
+							90byte가 넘어갈 경우 자동으로 LMS로 전송됩니다.</span>
+                <span class="pull-right">({{count_areatext}} byte / 2,000 byte)</span>
+            </div>
+          </div>
+        </div>
+          <div class="form-group b-n">
+           <div class="col-bg col-sm-2 "><label class=" control-label">
+                    발송구분</label></div>
+          <div class="col-sm-4">
+                <div class="radio">
+              <label class="i-checks">
+                <input type="radio" name="reserveYn" value="N" ng-true-value="'N'" ng-model="sms_new.reserveYn">
+                <i></i>
+                즉시발송
+              </label>
+            </div>        
+          </div>    
+        </div>
+          <div class="form-group">
+           <div class="col-bg col-sm-2 "><label class=" control-label">
+                    </label></div>
+          <div class="col-sm-2">
+                <div class="radio">
+                <label class="i-checks">
+                <input type="radio" name="reserveYn" value="Y" ng-true-value="'Y'" ng-model="sms_new.reserveYn">
+                <i></i>
+                예약발송
+               </label>
+            </div>        
+          </div>
+          <div class="col-sm-2 no-padder">
+            <input class="form-control input-sm date dateStr" type="text" ng-model="sms_new.sendDt">
+          </div>
+        <div class="col-sm-1 no-padder">
+			<label class="col-sm-1 control-label no-padder-left no-padder-right">&nbsp;&nbsp;</label>
+            <div class="col-sm-10 no-padder"><input class="form-control input-sm" type="number" min="0" max="23" ng-model="sms_new.hour">
+            </div> 
+          </div>
+        <div class="col-sm-1 no-padder">
+            <label class="col-sm-1 control-label no-padder-left no-padder-right">:</label>
+            <div class="col-sm-10 no-padder"><input class="form-control input-sm" type="number" min="0" max="59"  ng-model="sms_new.minute">
+            </div> 
+          </div>      
+        </div>
+          <div class="form-group">
+          <div class="col-bg col-sm-2"><label class=" control-label">테스트발송</label></div> 
+            <div class="col-sm-2">
+            <label class=" control-label">수신번호</label>
+          </div>
+            <div class="col-sm-2 no-padder">
+            <input class="form-control input-sm" type="text" maxlength="12" ng-model="send_mobile">
+          </div>
+            <div class="col-sm-2">
+            <button type="submit" class="btn btn-dark btn-m m-t-xs" ng-click="save('Y')">보내기</button>
+          </div>    
+        </div>
+      </form>
+    </div>
+  </div>
+        <!--add del section end-->
+        <div class="text-center m-t-lg">
+            <button class="btn btn-dark btn-w" ng-click="cancel()">취소</button>
+            <button class="btn btn-primary btn-w" ng-click="save('N')">저장</button>
+        </div>
+    </div>  
+    </div>  
+  </div>
+
+<script type="text/javascript">
+	$(function() {
+		$(".dateStr").datepicker({
+			format : "yyyy-mm-dd",
+			autoclose: true
+		});
+		$(".dateStr").datepicker('setDate', new Date());
+	});
+</script>
+</script>
+<style>
+    .modal-dialog{width:800px;}
+</style>
+<script>
+	setTimeout(function() {
+		$('.select2').select2();
+	}, 10);
+</script>

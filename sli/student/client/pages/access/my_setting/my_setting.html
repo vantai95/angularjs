@@ -1,0 +1,20 @@
+<div class="container w-auto-xs signin_wrapper forgot_wrapper w-xxxl wrapper" ng-controller="SettingController">
+    <a href="" class="row m-t-xl w-sm m-l-sm block wrapper-sm"><img class="w-full text-left pull-left" src="./assets/img/login_logo.png"></a>
+  <div class="block m-t-xxl text-left w-full wrapper-sm">
+        <h2>개인정보 변경</h2>
+        <p class="m-t-md text-sm ltr">안전한 정보 변경을 위하여 비밀번호를 다시 한 번<br>입력해주세요. 
+</p>
+    </div>
+  <div class="m-b-lg m-t-sm">
+    <div class="wrapper text-center no-padder">          
+    <form name="form" class="form-validation">
+      <div class="list-group list-group-md m-t-xs">
+        <div class="list-group-item linebox">
+          <input type="password" ng-model="userPw" placeholder="비밀번호" class="form-control no-border text-left no-padder-left" style="font:normal;font-family:normal;">
+        </div>
+      </div>
+      <button type="submit" class="btn btn-xl btn-primary btn-block m-t-lg" ng-click="getCheckPassword()">확인</button>
+    </form>
+  </div>  
+</div>
+</div>

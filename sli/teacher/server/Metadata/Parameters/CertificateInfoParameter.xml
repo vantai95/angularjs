@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Collections>
+    	    	
+    	<!-- CertificateList Start-->
+    	<ParameterMeta ID="startPage" IsReadOnly="false" Enable="true">
+			<RegBy>Teacher</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>NoticeInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CertificateList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="endPage" IsReadOnly="false" Enable="true">
+			<RegBy>Teacher</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>NoticeInfo</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CertificateList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>Int</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="userId" IsReadOnly="false" Enable="true">
+			<RegBy>Teacher</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Teacher</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CertificateList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<!-- CertificateList End-->
+    	
+    	<!-- CertificateListCnt Start-->    	
+		<ParameterMeta ID="userId" IsReadOnly="false" Enable="true">
+			<RegBy>Teacher</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Teacher</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CertificateListCnt</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<!-- CertificateListCnt End-->
+    	    	    	
+    	<!-- CertificateSave Start-->    	
+    	<ParameterMeta ID="saveType" IsReadOnly="false" Enable="true">
+			<RegBy>Certificate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Certificate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CertificateSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<ParameterMeta ID="cfaCd" IsReadOnly="false" Enable="true">
+			<RegBy>Certificate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Certificate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CertificateSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="certificateType" IsReadOnly="false" Enable="true">
+			<RegBy>Certificate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Certificate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CertificateSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="issueCnts" IsReadOnly="false" Enable="true">
+			<RegBy>Certificate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Certificate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CertificateSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="requestDt" IsReadOnly="false" Enable="true">
+			<RegBy>Certificate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Certificate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CertificateSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="regUser" IsReadOnly="false" Enable="true">
+			<RegBy>Certificate</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>Certificate</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CertificateSave</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>								
+    	<!-- CertificateSave End-->		    	
+    	   	
+    </Collections>
+</MetaCollection>

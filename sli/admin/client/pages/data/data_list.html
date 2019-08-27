@@ -1,0 +1,79 @@
+
+  	<div class="app-content-body" ng-controller="DataListController" ng-init="init()">
+<div class="wrapper-md">
+  <div class="panel panel-default">
+    <div class="panel-heading font-bold">
+      자료실
+        <button type="submit" class="btn btn-primary pull-right btn-m" ui-sref="app.data.write">등록</button>
+    </div>
+      
+    <div class="panel-body">
+      <form class="form-horizontal" method="get">
+          <div class="form-group b-n">
+          <label class="col-sm-1 control-label">고객사명</label>
+          <div class="col-sm-2 no-padder-left">
+            <select name="account" class="form-control input-sm"
+				ng-model="dataInfo.shCpCd"
+				ng-options="item.cpCd as item.compNm for item in customerCompanyListBox" ng-change="getLectureListBox()">
+				<option value="">전체</option>
+			</select>
+          </div>
+          <label class="col-sm-1 col-sm-offset-1 control-label">강의명</label>
+          <div class="col-sm-2 no-padder-left">
+            <select name="account" class="form-control input-sm"
+				ng-model="dataInfo.shLtCd"
+				ng-options="item.ltCd as item.lectureNm for item in lectureListBox ">
+				<option value="">전체</option>
+			</select>
+          </div>          
+          <div class="col-sm-1 no-padder-left">
+          	<input type="checkbox" id="chk" ng-model="dataInfo.chk" class="form-control input-sm" 
+											style="width:17px; height:17px; margin-top:10px; float:left;" ng-change="changeChk()"/>
+						&nbsp;&nbsp;<label for="chk" style="margin-top: 7px;">강의 제외</label>          
+          </div>
+        </div>          
+      </form>
+    </div>
+      <div class="panel-footer">
+          <div class="row">
+            <button type="submit" ng-click="getDataInfoCount(); getDataInfoList()" class="btn btn-dark pull-right btn-m">조회</button>        
+          </div>
+      </div>
+  </div>
+    <div class="panel panel-default">            
+    <div class="table-responsive teacher_table">
+      <table class="table b-t b-light">
+        <thead>
+          <tr class="active">
+            <th>No</th>
+            <th>고객사명</th>
+            <th>강의명</th>
+            <th>제목</th>
+            <th>등록일</th>
+          </tr>
+        </thead>
+        <tbody ng-repeat="dataInfo in dataInfoList">
+          <tr>
+            <td>{{total_cnt - $index - app.page_size * (current_page -1)}}</td>
+            <td class="underline"><a ui-sref="app.data.view({id: dataInfo.daCd})"><span class="primary">{{dataInfo.cpCdNm}}</a></td>
+            <td>{{dataInfo.lectureNm}}</td>
+            <td>{{dataInfo.dataTitle}}</td>
+            <td>{{dataInfo.regDt}}</td>  
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    </div>
+    <div class="row" ng-if="total_cnt > app.page_size">
+		<div class=" text-center">
+			<ul class="pagination pagination-sm m-t-none m-b-none">
+				<li ng-click="previousPageClick()"><a href=""><i class="fa fa-chevron-left"></i></a></li>
+				<li ng-repeat="page in getRange(total_pages) track by $index" 
+					class="{{current_page == $index + 1 ? 'active' : ''}}"
+					ng-click="setCurrentPage($index + 1)"><a href="">{{$index + 1}}</a></li>
+				<li ng-click="nextPageClick()"><a href=""><i class="fa fa-chevron-right"></i></a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+	</div>

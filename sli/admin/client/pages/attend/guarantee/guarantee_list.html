@@ -1,0 +1,149 @@
+
+<div class="app-content-body" ng-controller="GuaranteeController" ng-init="init()">
+	<div class="wrapper-md">
+		<div class="panel panel-default">
+			<div class="panel-heading font-bold">보장성수업관리</div>
+			<div class="panel-body">
+				<form class="form-horizontal ng-pristine ng-valid" method="get">
+					<div class="form-group b-n">
+						<label class="col-sm-1 control-label">고객사명</label>
+						<div class="col-sm-2">
+							<select class="form-control input-sm" ng-model="filter.cpCd"
+								ng-options="item.cpCd as item.compNm for item in customer_companies"
+								ng-change="getLectures()">
+								<option value="">전체</option>
+							</select>
+						</div>
+						<label class="col-sm-1 col-sm-offset-1 control-label">담당 강사</label>
+						<div class="col-sm-2">
+							<select class="form-control input-sm" ng-model="filter.tcCd"
+								ng-options="item.tcCd as item.userName for item in teachers"
+								ng-change="getLectures()">
+								<option value="">전체</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group b-n">
+						<label class="col-sm-1 control-label">기간</label>
+						<div class="col-sm-4 no-padder-left">
+							<div class="col-sm-4 no-padder-right">
+								<div class="input-group input-group-sm m-t-xs date dateStr">
+									<input type="text" class="form-control" ng-model="filter.startDate" style="min-width:78px;">
+									<span class="input-group-btn">
+										<button type="button" class="btn btn-default">
+											<i class="glyphicon glyphicon-calendar"></i>
+										</button>
+									</span>
+								</div>
+							</div>
+							<label class="control-label col-sm-1 text-center">─</label>
+							<div class="col-sm-4 no-padder">
+								<div class="input-group input-group-sm m-t-xs date dateEnd">
+									<input type="text" class="form-control" ng-model="filter.endDate" style="min-width:78px;">
+									<span class="input-group-btn">
+										<button type="button" class="btn btn-default">
+											<i class="glyphicon glyphicon-calendar"></i>
+										</button>
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="form-group b-n">
+						<label class="col-sm-1 control-label">강의명</label>
+						<div class="col-sm-11">
+							<select name="account" class="form-control input-sm"
+								ng-model="filter.ltCd"  ng-change="setStartEndDt()"
+								ng-options="item.ltCd as item.lectureNm for item in lectures">
+								<option value="">전체</option>
+							</select>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="panel-footer">
+				<div class="row">
+					<button type="submit" ng-click="getEnrichScheduleCount(); getEnrichSchedule();" class="btn btn-dark pull-right btn-m">조회</button>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="table-responsive teacher_table">
+				<table class="table b-t b-light" id="guarantee">
+					<thead>
+						<tr class="active">
+							<th>No</th>
+							<th>고객사명</th>
+							<th>과목</th>
+							<th>강의명</th>
+							<th>강사명</th>
+							<th>수강생</th>
+							<!-- <th>서명</th> -->
+							<th>강의일자</th>
+							<th>취소일자</th>
+							<th>통보시간</th>
+							<th>메모</th>
+							<th>상태</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="x in enrich_schedules ">
+							<td>{{generateListNo(current_page, total_enrich_schedules, $index)}}</td>
+							<td>{{x.compNm}}</td>
+							<td>{{x.subjectName}}</td>
+							<td>{{x.lectureNm}}</td>
+							<td>{{x.teacherNm}}</td>
+							<td>{{x.studentNm}}</td>
+							<!-- 
+							<td>
+								<div style="width:80px; border:1px solid #eee;">
+									<img class="img-full" src="">
+								</div>
+							</td>-->
+							<td>{{x.scheduleDt}} {{x.scheduleStartTime}}</td>
+							<td>{{x.enrichCancelDt}} {{x.enrichCancelTime }}</td>
+							<td>{{x.notiTime}}</td>							
+							<td>{{x.scheduleCnts }}</td>
+							<td>
+								<button ng-if="x.enrichCancelState == 'Y'" ng-click="saveLectureSchedule(x)" class="btn btn-off">출석확정</button>
+								<span ng-if="x.enrichCancelState == 'N'" >학생신청</span>
+								<span ng-if="x.enrichCancelState == 'S'" >출석확정</span>
+							</td>
+						</tr>
+						</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="row">
+			<div class=" text-center">
+				<ul class="pagination pagination-sm m-t-none m-b-none"  ng-if="total_lectures > app.page_size">
+					<li ng-click="previousPageClick()"><a href=""><i
+							class="fa fa-chevron-left"></i></a></li>
+					<li ng-repeat="page in getRange(total_pages) track by $index"
+						class="{{current_page == $index + 1 ? 'active' : ''}}"
+						ng-click="setCurrentPage($index + 1)"><a href="">{{$index
+							+ 1}}</a></li>
+					<li ng-click="nextPageClick()"><a href=""><i
+							class="fa fa-chevron-right"></i></a></li>
+				</ul>
+				<button type="submit" ng-click="exportEcel()" class="btn btn-border pull-right">
+					엑셀 다운로드&nbsp; <i class="fa fa-file-excel-o"></i>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	$(function() {
+		$(".dateStr, .dateEnd").datepicker({
+			format : "yyyy-mm-dd",
+			autoclose: true
+		});		
+				
+		var startDt = new Date();		
+		startDt.setDate(startDt.getDate() - 14);
+		
+		$(".dateStr").datepicker('setDate', startDt);		
+		$(".dateEnd").datepicker('setDate', new Date());
+	});
+</script>

@@ -1,0 +1,130 @@
+
+<div class="app-content-body" ng-controller="ServeyResultController" ng-init="init()">
+	<div class="wrapper-md" id="printSectionId">
+		<div class="panel panel-default m-b-none">
+			<div class="panel-heading font-bold">설문관리-통계</div>
+			<div class="panel-body white text-md">
+				<form class="form-horizontal" method="get">
+					<div class="form-group b-n">
+						<label class="col-sm-2 control-label"><b>고객사명</b> :
+							{{surv_stats_info.compNm}}</label> <label class="col-sm-2 control-label"><b>강의기간</b>
+							: {{surv_stats_info.startDt}} ~ {{surv_stats_info.endDt}} </label>
+					</div>
+					<div class="form-group b-n">
+						<label class="col-sm-2 control-label"><b>강사명</b> :
+							{{surv_stats_info.teacherNm}}</label> <label
+							class="col-sm-2 control-label"><b>강의명</b> :
+							{{surv_stats_info.lectureNm}}</label>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="row panel-body white text-xl">
+			만족도 평균 : <span class="danger">{{surv_stats_info.survAvg}}</span>점 <span
+				class="gray text-md m-l-sm">* 만족도 평균은 1번~5번 항목에 대한 응답평균입니다.</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			인원 (응답/총) : <span class="danger">{{surv_stats_info.answerUserCnt}}</span>명
+			/ {{surv_stats_info.totalUserCnt}}명
+		</div>
+		<div
+			class="panel panel-default m-t-xs default_result panel-body scrollable">
+			<div class="panel panel-default white col-sm-8 no-padder"
+				ng-repeat="surv_stats in surv_stats_titles">
+				<div class="panel-heading text-md">
+					{{surv_stats.orderNo}}.{{surv_stats.survTitle}}
+					 <span ng-if="surv_stats.survType=='M' && surv_stats.avgYn == 'Y'">평균 : <span
+						class="danger">{{surv_stats.subAvg}}</span>점</span> 
+				</div>
+				<div class="panel-body text-md white" ng-if="surv_stats.survType=='M' && surv_stats_multi[surv_stats.orderNo]">
+					<div class="row m-b m-t" ng-repeat="a in surv_stats_multi[surv_stats.orderNo].answers">
+						<div class="col-md-2 text-right">
+							{{a.survNm}} &nbsp; (<span class="danger">{{a.selectCnt}}
+							</span> )
+						</div>
+						<div class="col-md-8">
+							<div class="progress ng-isolate-scope" animate="false" value="dynamic" type="success">
+								<div class="progress-bar progress-bar-primary" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar" aria-valuenow="26" aria-valuemin="0"
+									style="transition: none 0s ease 0s;" ng-attr-style=" width: {{a.selectCnt/surv_stats_multi[surv_stats.orderNo].total* 100}}%"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!--설문패널-->
+				<div class="panel-body text-md white" ng-if="surv_stats.survType=='S'">
+					<div class="m-b m-t" ng-repeat="a in surv_stats_essay[surv_stats.orderNo]">
+						- {{a.selectCnts}}</div>
+				</div>
+			</div>
+		</div>
+		<!---panel end--->
+		<table id="exportResult" style="display:none">
+			<thead>
+				<tr>
+					<th>설문관리</th>
+				</tr>
+				<tr>
+					<th>고객사명:</th>
+					<th>{{surv_stats_info.compNm}}</th>
+					<th></th>
+					<th></th>
+					<th>강의기간:</th>
+					<th>{{surv_stats_info.startDt}}</th>
+					<th>{{surv_stats_info.endDt}}</th>
+				</tr>
+				<tr>
+					<th>강사명:</th>
+					<th>{{surv_stats_info.teacherNm}}</th>
+					<th></th>
+					<th></th>
+					<th>강의명:</th>
+					<th>{{surv_stats_info.lectureNm}}</th>
+				</tr>
+				<tr>
+					<th>만족도 평균 : <span class="danger">{{surv_stats_info.survAvg}}</span>점</th>
+					<th><span class="gray text-md m-l-sm">* 만족도 평균은 1번~5번 항목에 대한	응답평균입니다.</span></th>
+					<th>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 인원 (응답/총) : <span
+						class="danger">{{surv_stats_info.answerUserCnt}}</span>명 /
+						{{surv_stats_info.totalUserCnt}}명
+					</th>
+				</tr>
+				<tr></tr>
+				<tr>
+					<th>No</th>
+					<th>Quesion</th>
+					<th>Answer</th>
+				</tr>
+			</thead>
+			<tbody>
+
+				<tr ng-repeat="surv_stats in surv_stats_titles">
+					<td>{{$index + 1}}</td>
+					<td>{{surv_stats.survTitle}} <span ng-if="surv_stats.survType=='M'">평균 :{{surv_stats.subAvg}} 점</span> </td>
+					<td>
+						<div ng-if="surv_stats.survType=='M'"
+							ng-repeat="a in surv_stats_multi[surv_stats.orderNo].answers">
+							{{a.survNm}} - {{a.selectCnt}}</div>
+						<div ng-if="surv_stats.survType=='S'"
+							ng-repeat="a in surv_stats_essay[surv_stats.orderNo]">
+							{{a.selectCnts}}</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div>
+			<div class="row">
+				<button class="btn btn-info btn-m" ui-sref="app.survey.list">목록</button>
+				&nbsp;
+				<button ng-click="exportWeb()"
+					class="btn btn-dark btn-m pull-right ">인쇄</button>
+				<button type="submit" class="btn btn-border btn-m pull-right m-r-xs"
+					ng-click="exportEcel()">
+					엑셀 다운로드&nbsp; <i class="fa fa-file-excel-o"></i>
+				</button>
+
+			</div>
+		</div>
+	</div>
+
+
+</div>

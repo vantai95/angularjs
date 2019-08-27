@@ -1,0 +1,34 @@
+<div class="container w-auto-xs signin_wrapper forgot_wrapper w-xxxl" ng-controller="FindIdController">
+    <div class="wrapper-xs">
+    <a href class="row m-t-xl w-sm m-l-sm block wrapper-sm"><img class="w-full text-left pull-left" src="./assets/img/login_logo.png"></a>
+  <div class="block m-t-xl text-left w-full wrapper-sm">
+        <h2 class="text-3x">아이디 찾기</h2>
+        <p class="m-t-md text-sm ltr">가입된 이름과 휴대폰 번호를 입력해주세요.<br>휴대폰 번호로 아이디 정보를 알려드립니다. 
+</p>
+    </div>
+  <div class="m-b-lg m-t-sm">
+    <div class="wrapper text-center no-padder">          
+    <form name="form" class="form-validation">
+      <div class="list-group list-group-md m-t-xs">
+        <div class="list-group-item linebox">
+          <input type="text" placeholder="이름" class="form-control no-border text-left no-padder-left" ng-model="userName" />
+        </div>
+        <div class="list-group-item m-t-sm linebox">
+           <input type="text" placeholder="휴대폰 번호" class="form-control no-border text-left no-padder-left" ng-model="userPhone" maxlength="11" />
+            <button class="btn btn-borderPrimary absolute_r" ng-click="sendSMS();">인증번호</button>      
+        </div>
+          <div class="list-group-item m-t-sm linebox" ng-show="getAuthCode">
+          <input type="text" placeholder="인증번호" class="form-control no-border text-left no-padder-left" ng-model="code" />
+        </div>
+      </div>
+      <button type="submit" class="btn btn-xl btn-primary btn-block m-t-lg" ng-click="findId()">아이디 찾기</button>
+      <div class="text-left m-t-xl m-b small ">
+          등록된 정보가 확인되지 않는 경우 관리자에게 문의바랍니다.<br> 
+전화번호 000-000-0000  / <address> <a href="mailto:sli@sli.co.kr">e-mail. OOOO@sliedu.com</a></address><br>
+
+          </div>
+    </form>
+  </div>  
+</div>
+</div>
+</div>    

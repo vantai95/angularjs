@@ -1,0 +1,126 @@
+
+<!-- content -->
+<div class="app-content-body" ng-controller="AlarmWriteController" ng-init="init()">
+	<div class="wrapper-md">
+		<div class="panel panel-default panel-devide">
+			<div class="panel-heading font-bold">알림게시판 수정</div>
+			<div class="panel-body">
+				<form class="form-horizontal" method="get">
+					<div class="form-group">
+						<div class="col-bg col-sm-1">
+							<label class=" control-label">구분</label>
+						</div>
+						<div class="col-sm-2">
+							<select name="account" class="form-control input-sm"
+								ng-model="alarm.notiType"
+								ng-options="item.codeId as item.codeName1 for item in noti_types">
+								<option value="">전체</option>
+							</select>
+						</div>
+						<div class="col-bg col-sm-1 col-sm-offset-3">
+							<label class=" control-label">작성자</label>
+						</div>
+						<div class="col-sm-1">
+							<label class=" control-label">{{alarm.regUser}}</label>
+						</div>
+						<div class="col-sm-2">
+							<input class="form-control input-sm" ng-model="alarm.showRegNm" type="text">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-1">
+							<label class=" control-label">강사명</label>
+						</div>
+						<div class="col-sm-2">
+							<select name="account" class="form-control input-sm"
+								ng-model="alarm.tcCd"
+								ng-options="item.tcCd as item.userName for item in teachers"
+								ng-change="changeOption()">
+								<option value="">전체</option>
+							</select>
+						</div>
+						<div class="col-bg col-sm-1 col-sm-offset-3">
+							<label class=" control-label">고객사명</label>
+						</div>
+						<div class="col-sm-2">
+							<select name="account" class="form-control input-sm"
+								ng-model="alarm.cpCd"
+								ng-options="item.cpCd as item.compNm for item in customer_companies"
+								ng-change="changeOption()">
+								<option value="">전체</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-1">
+							<label class=" control-label">강의명</label>
+						</div>
+						<div class="col-sm-11">
+							<select name="account" class="form-control input-sm"
+								ng-model="alarm.ltCd"
+								ng-options="item.ltCd as item.lectureNm for item in lectures">
+								<option value="">---- 강사명 또는 고객사명을 선택해주세요. --------</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-1">
+							<label class=" control-label">제목</label>
+						</div>
+						<div class="col-sm-11">
+							<input class="form-control input-sm" ng-model="alarm.notiTitle"type="text">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-1 heightfix">
+							<label class=" control-label">내용</label>
+						</div>
+						<div class="col-sm-11">
+							<textarea class="b" ng-model="alarm.notiContents"></textarea>
+						</div>
+					</div>
+					<div class="form-group b-n">
+						<div class="col-bg col-sm-1">
+							<label class=" control-label">노출설정</label>
+						</div>
+						<div class="col-sm-11">
+							<div class="col-sm-2 no-padder">
+								<div class="radio">
+									<label class="i-checks"> <input type="radio" ng-model="alarm.showYn" value="N" ng-change="alarm.showDtYn = null; alarm.showStartDt = null; alarm.showEndDt = null;"> <i></i> 비노출
+									</label> &nbsp;&nbsp;&nbsp; <label class="i-checks"> <input
+										type="radio" value="Y" ng-model="alarm.showYn"> <i></i> 노출
+									</label>
+								</div>
+							</div>
+							<div class="col-sm-9 no-padder">
+								<div class="radio col-sm-3">
+									<label class="m-t-sm">(</label> <label class="i-checks">
+										<input ng-disabled="alarm.showYn != 'Y'" type="checkbox" ng-model="alarm.showDtYn" ng-true-value="'Y'" ng-false-value="'N'"> <i></i> 노출 기간 설정
+									</label>
+								</div>
+								<div class="col-sm-7 no-padder-left">
+									<div class="col-sm-4 no-padder-right">
+										<input class="form-control input-sm date dateStr" ng-model="alarm.showStartDt" type="text" ng-disabled="alarm.showYn != 'Y'">
+									</div>
+									<label class="control-label col-sm-1 text-center">─</label>
+									<div class="col-sm-4 no-padder-left">
+										<input class="form-control input-sm date dateEnd" ng-model="alarm.showEndDt" type="text" ng-disabled="alarm.showYn != 'Y'">
+									</div>
+									<label class="m-t-sm">)</label>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="text-center m-t-lg">
+			<button ng-click="cancelUpdating()" class="btn btn-dark btn-w">취소</button>
+			&nbsp;
+			<button ng-click="updateAlarm()"class="btn btn-primary btn-w">수정완료</button>
+		</div>
+	</div>
+
+
+</div>
+<!-- /content -->

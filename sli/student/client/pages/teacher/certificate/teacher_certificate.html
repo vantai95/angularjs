@@ -1,0 +1,173 @@
+
+  	<div class="app-content-body " ng-controller="teacherCertificationController">
+    <!-- tab -->
+    <div class="tab_wrap twotab">
+      <div ng-controller="TabsDemoCtrl">
+        <tabset class="tab-container">
+          <tab heading="증명서발급요청">
+            <div class="wrapper-md">
+                <div class="text-xs">
+                    <p>*강의나 수업진행 중 문의사항이 있다면 담당자에게 문의하시기 바랍니다.<br>
+                     ( 담당자 : 나영업 010 -2222-3333 )<br>
+                    <br>
+                    * 경력/재직/해촉 증명서가 필요한 경우 온라인상으로 신청 후 발급받을 수 있습니다.<br> 
+                     (6개월 이내 신청내역만 조회가능)
+                    </p>
+                </div>
+                <button type="submit" class="btn btn-xl btn-primary w-full m-t-lg" ng-click="openPopup()">신청하기</button>
+                 <!-- 패널 스타일 list -->
+                   <div class="acc_wrap m-t">
+                    <div class="panel-group">
+                        <div class="panel panel-heading clearfix no-padder-left no-padder-right no-shadow b-b">
+                            <div class="pull-left wrapper text-md">재직</div>
+                            <div class="pull-left ">
+                                <div class="text-md">금융기관 제출용</div>
+                                <div class="gray m-t-xs text-xs">신청일자 2018.09.12 / 발급일자 2018.09.12</div>
+                            </div>
+                            <i class="acc_caret download_caret"></i>
+                        </div>
+                        <div class="panel panel-heading clearfix no-padder-left no-padder-rightno-shadow b-b">
+                            <div class="pull-left wrapper text-md primary">경력</div>
+                            <div class="pull-left ">
+                                <div class="text-md">금융기관 제출용</div>
+                                <div class="gray m-t-xs text-xs">신청일자 2018.09.12 / 발급일자 2018.09.12</div>
+                            </div>
+                            <i class="acc_caret download_caret"></i>
+                        </div>
+                        <div class="panel panel-heading clearfix no-padder-left no-padder-right no-shadow b-b">
+                            <div class="pull-left wrapper text-md">재직</div>
+                            <div class="pull-left ">
+                                <div class="text-md">금융기관 제출용</div>
+                                <div class="gray m-t-xs text-xs">신청일자 2018.09.12 / 발급일자 2018.09.12</div>
+                            </div>
+                            <i class="acc_caret download_caret"></i>
+                        </div>
+                        <div class="panel panel-heading clearfix no-padder-left no-padder-right no-shadow b-b">
+                            <div class="pull-left wrapper text-md danger">해촉</div>
+                            <div class="pull-left ">
+                                <div class="text-md">금융기관 제출용</div>
+                                <div class="gray m-t-xs text-xs">신청일자 2018.09.12 / 발급일자 2018.09.12</div>
+                            </div>
+                            <i class="acc_caret download_caret"></i>
+                        </div>                        
+                    </div>
+                    </div>   
+                 <!--패널 스타일 list end -->   
+              </div>
+              <!--증명서발급요청 wrap end-->
+          </tab>
+          <tab heading="정산내역">
+            <div class="wrapper-md">
+                <div class="text-xs">
+                    <p>*강의나 수업진행 중 문의사항이 있다면 담당자에게 문의하시기 바랍니다.<br>
+                     ( 담당자 : 나영업 010 -2222-3333 )<br>
+                    <br>
+                    * 정산내역을 통하여 매월 지급내역을 확인할 수 있습니다.
+                    </p>
+                </div>
+                <div>
+                    <form class="form-horizontal ng-pristine ng-valid" method="get">
+                    <div class="form-group b-n">                      
+                      <div class="col-xs-4 no-padder">
+                        <input type="text" class="form-control input-sm text-center" placeholder="201710">
+                      </div>
+                      <div class="col-xs-1 no-padder">
+                        <label class="col-xs-12 control-label">─</label>
+                      </div>
+                      <div class="col-xs-4 no-padder">
+                        <input type="text" class="form-control input-sm text-center" placeholder="201810">
+                      </div>
+                      <div class="col-xs-3 no-padder-right">
+                        <button class="btn btn-primary btn-sm w-full m-t-xs" type="button">조회</button>
+                      </div>    
+                    </div> 
+                  </form>
+                </div>
+                 <!-- 패널 스타일 list -->
+                   <div class="acc_wrap m-t">
+                    <div class="panel-group">
+                        <div class="panel panel-heading clearfix no-padder-right no-shadow b-b">
+                            <div class="pull-left ">
+                                <div class="primary">2018.10</div>
+                                <div class="gray m-t-xs text-sm">입금 2018.09.12    [국민] 27090204******</div>
+                            </div>
+                            <div class="pull-right wrapper text-md">3,000,000 원</div>
+                        </div>
+                        <div class="panel panel-heading clearfix no-padder-right no-shadow b-b">
+                            <div class="pull-left ">
+                                <div class="primary">2018.10</div>
+                                <div class="gray m-t-xs text-sm">입금 2018.09.12    [국민] 27090204******</div>
+                            </div>
+                            <div class="pull-right wrapper text-md">3,000,000 원</div>
+                        </div> 
+                        <div class="panel panel-heading clearfix no-padder-right no-shadow b-b">
+                            <div class="pull-left ">
+                                <div class="primary">2018.10</div>
+                                <div class="gray m-t-xs text-sm">입금 2018.09.12    [국민] 27090204******</div>
+                            </div>
+                            <div class="pull-right wrapper text-md">3,000,000 원</div>
+                        </div> 
+                        <div class="panel panel-heading clearfix no-padder-right no-shadow b-b">
+                            <div class="pull-left ">
+                                <div class="primary">2018.10</div>
+                                <div class="gray m-t-xs text-sm">입금 2018.09.12    [국민] 27090204******</div>
+                            </div>
+                            <div class="pull-right wrapper text-md">3,000,000 원</div>
+                        </div> 
+                        <div class="panel panel-heading clearfix no-padder-right no-shadow b-b">
+                            <div class="pull-left ">
+                                <div class="primary">2018.10</div>
+                                <div class="gray m-t-xs text-sm">입금 2018.09.12    [국민] 27090204******</div>
+                            </div>
+                            <div class="pull-right wrapper text-md">3,000,000 원</div>
+                        </div> 
+                    </div>
+                    </div>   
+                 <!--패널 스타일 list end -->   
+              </div>
+              <!--정산내역 wrap end-->
+          </tab>    
+        </tabset>
+      </div>
+    </div>    
+      <!-- / tab -->        
+  </div>
+  
+
+<script type="text/ng-template" id="popup">
+  <div class="popup_wrap">
+      <div class="popup_header">
+        증명서 발급요청<span class="pull-right closebtn " data-ng-click="cancel()"><img src="assets/img/close.png" class="img-full" alt="..."></span>
+    </div>
+    <div class="popup_body">
+        <form class="form-horizontal ng-pristine ng-valid" method="get">
+        <div class="form-group b-n">
+          <div class="col-bg col-xs-5"><label class=" control-label">신청인</label></div>
+          <div class="col-xs-7"><label class=" control-label">나강사</label></div>
+        </div>
+        <div class="form-group b-n">
+          <div class="col-bg col-xs-5"><label class=" control-label">증명서 종류</label></div>
+          <div class="col-xs-7">
+            <select class="form-control input-sm">
+              <option value="메일선택">직접입력</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+            </select>
+          </div>
+        </div> 
+        <div class="form-group b-n">
+          <div class="col-bg col-xs-5"><label class=" control-label">발급요청일</label></div>
+          <div class="col-xs-7">
+                <input class="form-control input-sm" placeholder="20181031">
+          </div>
+        </div>    
+      </form>
+      <p class="m-t-md">발급사유</p>    
+      <div>
+        <textarea class="border"></textarea>  
+     </div>     
+    </div>   
+      <button type="submit" class="btn btn-xl btn-primary w-full m-t-lg">신청</button>       
+  </div>
+
+</script>

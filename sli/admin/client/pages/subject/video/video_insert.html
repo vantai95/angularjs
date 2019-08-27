@@ -1,0 +1,82 @@
+<!-- content -->
+<div class="app-content-body">
+  <div class="wrapper-md" ng-controller="VideoInsertController" ng-init="init()">
+    <div class="panel panel-default panel-devide">
+      <div class="panel-heading font-bold">강의동영상 신규등록</div>
+      <div class="panel-body">
+        <form class="form-horizontal" method="get" >
+          <div class="form-group">
+            <div class="col-bg col-sm-2">
+              <label class=" control-label">고객사</label>
+            </div>
+            <div class="col-sm-5">
+              	<select class="form-control input-sm" ng-model="filter.cpCd"
+					ng-options="item.cpCd as item.compNm for item in customer_companies"
+					ng-change="getLectures()">
+					<option value="">전체</option>
+				</select>
+            </div>            
+          </div>
+          <div class="form-group">
+            <div class="col-bg col-sm-2">
+              <label class=" control-label"> 강의명</label>
+            </div>
+            <div class="col-sm-5">
+              	<select name="account" class="form-control input-sm"
+					ng-model="filter.ltCd"  ng-change="setStartEndDt()"
+					ng-options="item.ltCd as item.lectureNm for item in lectures">
+					<option value="">전체</option>
+				</select>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-bg col-sm-2">
+              <label class=" control-label">회차</label>
+            </div>
+            <div class="col-sm-2">
+              <input class="form-control input-sm" type="number" maxlength="5" ng-model="videoInfo.orderNo" />
+            </div>
+          </div>          
+          <div class="form-group">
+            <div class="col-bg col-sm-2">
+				<label class=" control-label">제목</label>
+			</div>
+			<div class="col-sm-9">
+				<input class="form-control input-sm" type="text" ng-model="videoInfo.videoTitle" maxlength="100">
+			</div>
+          </div>
+          <div class="form-group">
+            <div class="col-bg col-sm-2">
+              <label class=" control-label">코멘트</label>
+            </div>
+            <div class="col-sm-9">
+              <input class="form-control input-sm" type="text" maxlength="100" ng-model="videoInfo.videoCnts" />
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-bg col-sm-2">
+              <label class=" control-label">링크주소</label>
+            </div>
+            <div class="col-sm-9">
+              <input class="form-control input-sm" type="text" maxlength="255" ng-model="videoInfo.fileUrl" />
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-bg col-sm-2">
+              <label class=" control-label">파일명</label>
+            </div>
+            <div class="col-sm-4">
+              <input class="form-control input-sm" type="text" maxlength="100" ng-model="videoInfo.fileName" />
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="text-center m-t-lg">
+      <button class="btn btn-dark btn-w" ng-click="cancel()">취소</button>&nbsp;
+      <button class="btn btn-primary btn-w"  ng-click="saveVideo()">등록</button>
+      <button class="btn btn-danger btn-w" ui-sref="app.video.video_detail({id: filter.ltCd})" ng-if="filter.ltCd">상세페이지 이동</button>
+    </div>
+  </div>
+</div>
+<!-- /content -->

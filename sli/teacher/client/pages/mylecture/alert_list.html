@@ -1,0 +1,70 @@
+
+<div class="app-content-body" ng-controller='AlertListController' ng-init='init()'>  
+     <!--강의목록 s---->
+    <div class="panel panel-body no-shadow m-b-n-xs padder-vsm bg-gray">
+        <div class="pc-padder">
+        <form class="form-horizontal widthfix m-auto pull-none col-xs-12 col-sm-4 no-padder">
+        <div class="form-group b-n pc-padder">
+          <div class="col-xs-4 col-sm-3 no-padder-left">
+            <label class="control-label text-md"><span data-langNum="65">강의목록</span></label>
+          </div>
+          <div class="col-xs-8 col-sm-9 no-padder">
+            <select name="account" class="form-control m-t-xs" ng-model="ltCd" ng-options="lecture.ltCd as lecture.lectureNm for lecture in lectureList" ng-change="changeLecture()">
+              <option value="">제목</option>
+            </select>
+          </div>
+        </div> 
+      </form>
+      </div>        
+    </div>
+    <!--강의목록 e---->
+    <!--LNB s-->
+    <div class="lnb_wraper">
+        <div class="lnb_wrap clearfix">
+            <a class="lnb" ui-sref="app.mylecture.lecture({ltCd: ltCd})"><span data-langNum="38">기본 정보</span></a>
+            <a class="lnb" ui-sref="app.mylecture.student({ltCd: ltCd})"><span data-langNum="39">수강생현황</span></a>
+            <a class="lnb" ui-sref="app.mylecture.lvtest({ltCd: ltCd})"><span data-langNum="40">레벨테스트</span></a>
+            <a class="lnb" ui-sref="app.mylecture.attend({ltCd: ltCd})"><span data-langNum="41">출석현황</span></a>
+            <a class="lnb" ui-sref="app.mylecture.test({ltCd: ltCd})"><span data-langNum="42">성취도평가</span></a>
+            <a class="lnb active" ui-sref="app.mylecture.alert_list({ltCd: ltCd})"><span data-langNum="43">알림게시판</span></a>
+        </div>
+    </div>
+    <!--LNB e-->
+<div class="wrapper-md widthfix-lg m-auto">
+    <div class="wrapper tt font-bold">
+        {{currentLectureNm}}
+    </div>
+    <!-- accordion / caret class 동작 확인, 1열 적용-->
+    <div class="acc_wrap">
+        <uib-accordion close-others="oneAtATime" ng-repeat="noticeInfo in noticeInfoList" ng-click="getNoticeAddViewCount(noticeInfo)">
+          <div uib-accordion-group is-open="notiInfo.open" class="panel-default">
+              <uib-accordion-heading>
+                  <div class="no-padder notice_tt text-md col-xs-12 col-sm-11 pull-right noticeInfo">{{noticeInfo.notiTitle}}</div>
+                  <div class="no-padder notice_dt gray m-t-xs col-xs-12 col-sm-1 noticeInfo">{{noticeInfo.regDt | date: 'yyyy.MM.dd'}}</div>
+                  <i class="acc_caret fa fa-caret-down" ng-class="{'fa-caret-up primary': notiInfo.open, 'fa-caret-down disabled': !notiInfo.open}"></i>
+              </uib-accordion-heading>
+              <div class='text-center'>
+             		{{noticeInfo.notiContents}}
+        	  </div>
+          </div>
+        </uib-accordion>
+    </div>
+    
+    <div ng-if="total_leture == 0" class="text-center">
+    	조회된 목록이 없습니다.
+    </div>
+      <!-- / accordion -->
+      <div ng-if="app.page_size < total_leture">
+   		<button class="btn btn-borderDefault w-full widthfix-xs m-auto pc-block btnMoreList" ng-click="nextPageClick()" data-langNum="9">더보기</button>
+   		<br>
+   	</div>
+</div>
+    <!--로고 hide , back button show--->
+<script>
+    $(document).ready(function(){
+        $('.app').addClass('back');
+    });
+    
+</script>
+<script src="assets/js/language.js"></script>
+</div>

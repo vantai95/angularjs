@@ -1,0 +1,46 @@
+
+  	<div class="app-content-body " ng-controller="StudentController" ng-init="init()">
+<div class="wrapper-md">
+  <div class="panel panel-default">
+    <div class="panel-heading font-bold">
+      수강생현황        
+    </div>
+    <div class="panel-body">
+      <form class="form-horizontal" method="get">
+        <div class="form-group b-n">
+          <label class="col-sm-1 control-label">담당강사</label>
+          <div class="col-sm-2">
+            <select name="account" class="form-control input-sm" ng-options="teacher.tcCd as teacher.userName for teacher in teacher_list" ng-model="student.teacher">
+              <option value="">전체</option>
+            </select>
+          </div>
+            <label class="col-sm-1 col-sm-offset-3 control-label">고객사명</label>
+          <div class="col-sm-2">
+            <select name="account" class="form-control input-sm" ng-options="company.cpCd as company.compNm for company in company_list" ng-model="student.company">
+              <option value="">전체</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group b-n">
+          <label class="col-sm-1 control-label">강의명</label>
+          <div class="col-sm-11">
+            <select name="account" class="form-control input-sm" ng-options="lecture.cpCd as lecture.lectureNm for lecture in lecture_list" ng-model="student.lecture">
+              <option value="">-----강사명 또는 고객사명을 선택해주세요.----- </option>
+            </select>
+          </div>
+        </div>  
+      </form>
+    </div>
+      <div class="panel-footer">
+          <div class="row">
+            <button type="submit" class="btn btn-dark pull-right btn-m"  ui-sref="app.student.list" ng-click="getStudentList()">조회</button>        
+          </div>
+      </div>
+  </div>
+    <div class="panel panel-default default_result">
+        <p class="text-center text-lg">선택된 강의가 없습니다.</p>
+    </div>
+</div>
+
+
+	</div>

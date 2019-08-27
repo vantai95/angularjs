@@ -1,0 +1,79 @@
+<div ng-controller="DataListController" ng-init="init()">
+	<div class="app-content-body ">
+		<div class="panel panel-body no-shadow bg-gray">
+			<form class="form-horizontal clearfix widthfix-lg m-auto"
+				method="get">
+				
+				<div class="form-group b-n col-sm-4">
+					<label class="col-xs-12 control-label">자료실</label>
+					<div class="col-xs-4 no-padder-left">						
+						<input type="checkbox" id="chk" ng-model="dataInfo.chk" class="form-control input-sm" 
+											style="width:17px; height:17px; margin:10px 0 0 10%; float:left;" ng-change="changeChk()"/>
+						&nbsp;<label for="chk" style="margin-top: 9px;">강의 제외</label>
+					</div>
+					<div class="col-xs-5 no-padder-left">
+						<select name="account" class="form-control input-sm"
+								ng-model="dataInfo.shLtCd" 
+								ng-options="item.ltCd as item.lectureNm for item in lectureListBox ">
+							<option value="">-강의 선택-</option>
+						</select>
+					</div>
+					<div class="col-xs-2 no-padder">						
+						<div class="input-group input-group-sm m-t-xs">							
+							<span class="input-group-btn">
+								<button type="submit" ng-click="searchList()" class="btn btn-dark btn-s">조회</button>
+							</span>
+						</div>
+					</div>					
+				</div>
+			</form>
+		</div>
+		
+		<div class="wrapper-md widthfix-lg m-auto">		
+			
+			<div class="acc_wrap b-b">
+				<!---list s--->
+				<div class="panel-group m-b-none">
+					<table class="table b-t b-light nopadTable-sm m-b-none">
+						<tbody>
+							<tr class="heightfix-sm2" ng-repeat="dataInfo in dataInfoList">
+								<td class="w-xxxs">{{$index+1}}</td>
+								<td class="text-left">
+									<div>{{dataInfo.cpCdNm}}</div>
+								</td>
+								<td class="text-left">
+									<div>{{dataInfo.lectureNm}}</div>
+								</td>								
+								<td class="text-left">
+									<div class="underline"><a class="primary" ui-sref="app.data.view({id: dataInfo.daCd})">{{dataInfo.dataTitle}}</div>
+								</td>
+								<td>
+									<div>{{dataInfo.regDt}}</div>
+								</td>
+							</tr>
+							<tr class="heightfix-sm2" ng-if="dataInfoList.length == 0">
+								<td>조회된 데이터가 없습니다.</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<!---list e--->
+			</div>		
+						
+			<!-- / accordion -->
+			<div class="row">				
+				<br>
+				<div ng-if="app.page_size < total_cnt">
+					<button class="btn btn-borderDefault w-full widthfix-xs m-auto pc-block btnMoreList" ng-click="nextPageClick()">더보기</button>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<script class="ng-scope" type="text/javascript">
+	$(document).ready(function() {
+		$('.app').addClass('back')
+	})
+</script>

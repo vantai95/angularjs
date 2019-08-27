@@ -1,0 +1,160 @@
+﻿<div class="app-content-body " ng-controller="teacherListController" ng-init="init()">
+  <div class="wrapper-md">
+    <div class="panel panel-default">
+      <div class="panel-heading font-bold">
+        강사관리
+          <button type="submit" class="btn btn-primary pull-right btn-m" ui-sref="app.teacher.insert">강사 신규등록</button>
+      </div>
+      <div class="panel-body">
+        <form class="form-horizontal" name="teacherListForm" action="">
+            <div class="form-group b-n">
+            <label class="col-sm-1 control-label">구분</label>
+            <div class="col-sm-2">
+              <select name="category" class="form-control input-sm" ng-options="category.id as category.name for category in categories" 
+              ng-model="selected_category">
+              </select>
+            </div>
+            <label class="col-sm-1 col-sm-offset-3 control-label">과목</label>
+            <div class="col-sm-2">
+              <select name="subject" class="form-control input-sm" ng-options="subject.sjCd as subject.subjectName for subject in subjects" 
+              ng-model="selected_subject">
+              <option value="">전체</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-group b-n">            
+            <label class="col-sm-1 control-label">고객사</label>
+            <div class="col-sm-2">
+                <select class="form-control input-sm" ng-model="select_company"
+					ng-options="item.cpCd as item.compNm for item in customer_companies">
+					<option value="">전체</option>
+				</select>
+              </select>
+            </div>
+            <label class="col-sm-1 col-sm-offset-3 control-label">강사명</label>
+            <div class="col-sm-2">
+              <input name="teacherName" class="form-control input-sm" type="text" ng-minlength="2" ng-model="user_name" />
+            </div>
+          </div>
+          
+          <div class="form-group b-n">
+            <label class="col-sm-1 control-label">담당지역</label>
+            <div class="col-sm-2">
+              <select multiple  name="responsibility" ng-model="selected_lecture_areas" style="width: 100%; min-height: 32px;"
+              class="select2" ng-options="lec_area.codeId as lec_area.codeName1 for lec_area in lecture_areas" ng-change="changeArea();">
+              </select>
+            </div>
+            <label class="col-sm-1 col-sm-offset-3 control-label">세부지역</label>
+            <div class="col-sm-1">								 
+				<select class="form-control input-sm" ng-model="subArea.select_sido" ng-options="m.codeId as m.codeName1 for m in sido_list" ng-change="gugunList();">
+					<option value=''>시도</option>
+				</select>
+			</div>
+			<div class="col-sm-1">
+				<select class="form-control input-sm" ng-model="subArea.select_gugun" ng-options="m.gugunCd as m.gugunNm for m in gugun_list">
+					<option value=''>구군</option>
+				</select>								
+			</div>
+          </div>
+          
+          
+          
+          <div class="form-group b-n">
+            <label class="col-sm-1 control-label">국적</label>
+            <div class="col-sm-2">
+               <select multiple  name="nationality" ng-model="selected_nationalities" style="width: 100%; min-height: 32px;"
+               class="select2" ng-options="nationality.codeId as nationality.codeName1 for nationality in nationalities"  >
+              </select>
+            </div>
+            <label class="col-sm-1 col-sm-offset-3 control-label">성별</label>
+            <div class="col-sm-2">
+                <select name="gender" ng-options="gender.id as gender.name for gender in genders" ng-model="selected_gender" class="form-control input-sm">
+              </select>
+            </div>
+          </div>
+          <div class="form-group b-n">
+            <label class="col-sm-1 control-label">정렬기준</label>
+            <div class="col-sm-2">
+                <select ng-model="order_type" class="form-control input-sm">
+               		<option value="1">이름</option>
+               		<option value="2">등록일</option>             		 
+              	</select>
+            </div>
+            <label class="col-sm-1 col-sm-offset-3 control-label">정렬방식</label>
+            <div class="col-sm-2">
+            	<div class="radio">
+					<label class="i-checks"> 
+						<input type="radio" name="order_sort" ng-model="order_sort" value="1"> <i></i>오름차순
+					</label> &nbsp;&nbsp; 
+					<label class="i-checks"> 
+						<input type="radio" name="order_sort" ng-model="order_sort" value="2"> <i></i>내림차순
+					</label>
+				</div>
+            </div>
+          </div>
+          <div class="panel-footer">
+            <div class="row">
+              <button type="button" class="btn btn-dark pull-right btn-m" ng-click="getTeacherCount(); getTeachers()">조회</button>        
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+      <div class="panel panel-default" ng-if="total_teachers > 0">
+      <div class="table-responsive teacher_table">
+        <table class="table b-t b-light">
+          <thead>
+            <tr class="active">
+              <th>No</th>
+              <th>구분</th>
+              <th>이름</th>
+              <th>담당과목</th>
+              <th>성별</th>
+              <th>국적</th>
+              <th>담당자</th>
+              <th>지역</th>
+              <th>계약일</th>  
+              <th>상세</th>  
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="teacher in teachers">
+            	<td>{{generateListNo(current_page, total_teachers, $index) }}</td>
+                <td>{{teacher.contractNm}}</td>
+                <td>{{teacher.userName}}</td>
+                <td>{{teacher.subjectCdnm}}</td>
+                <td>{{teacher.genderNm}}</td>
+                <td>{{teacher.nationalTypenm}}</td>
+                <td>{{teacher.sliIdnm}}</td>
+                <td>{{mapLectureAreas(teacher.lectureArea)}}</td>
+                <td>{{teacher.contractStartDt}}</td>
+                <td><a class="primary underline" ui-sref="app.teacher.detail({id: teacher.tcCd})">상세보기</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      </div>
+      <div class="row" ng-if="total_teachers > app.page_size">
+			<div class=" text-center">
+				<ul class="pagination pagination-sm m-t-none m-b-none">
+					<li ng-click="previousPageClick()"><a href=""><i
+							class="fa fa-chevron-left"></i></a></li>
+					<li ng-repeat="page in getRange(total_pages) track by $index"
+						class="{{current_page == $index + 1 ? 'active' : ''}}"
+						ng-click="setCurrentPage($index + 1)"><a href="">{{$index
+							+ 1}}</a></li>
+					<li ng-click="nextPageClick()"><a href=""><i
+							class="fa fa-chevron-right"></i></a></li>
+				</ul>
+			</div>
+		</div>
+      <div class="panel panel-default default_result" ng-if="total_teachers == 0">
+        <p class="text-center text-lg">선택된 항목이 없습니다.</p>
+      </div>    
+  </div>
+</div>
+
+<script>
+//  $('.select2').select2();
+</script>

@@ -1,0 +1,92 @@
+
+<div class="app-content-body " ng-controller="TeacherCertificationController" ng-init="init()">
+	<div class="tab_wrap twotab widthfix-md m-auto pc-tab pc-padder m-t-xs">	
+		<ul class="nav nav-tabs" ng-class="{'nav-stacked': vertical, 'nav-justified': justified}">
+			<li class="ng-scope ng-isolate-scope active" heading="증명서발급요청" ng-class="{active: active, disabled: disabled}">
+				<a class="ng-binding" ui-sref="app.teacher.certificate"><span data-langNum="69">증명서발급요청</span></a>
+			</li>
+		    <li class="ng-scope ng-isolate-scope" heading="정산내역" ng-class="{active: active, disabled: disabled}">
+		  		<a class="ng-binding" ui-sref="app.teacher.calculate"><span data-langNum="78">정산내역</span></a>
+			</li>
+		</ul>
+		
+      	<div class="wrapper-md">
+	        <div class="text-xs padder-v">
+	            <p>*<span data-langNum="70">강의나 수업진행 중 문의사항이 있다면 담당자에게 문의하시기 바랍니다.</span><br>
+	             ( <span data-langNum="18">담당자</span> : {{current_user.sliNm}} {{current_user.sliMobile}} )<br>
+	            <br>
+	            * <span data-langNum="71">경력/재직/해촉 증명서가 필요한 경우 온라인상으로 신청 후 발급받을 수 있습니다.</span><br> 
+	             <span data-langNum="72">(6개월 이내 신청내역만 조회가능)</span>
+	            </p>
+	        </div>
+	        <div class="clearfix m-t">
+		        <div class="pull-left hidden-xs hidden-sm text-sm padder-sm"><b class="text-lg"><span data-langNum="69">증명서 발급요청</span></b><br>증명서를 발급 요청하거나 발급된 증명서를 출력할 수 있습니다. </div>    
+		        <button type="submit" class="btn btn-xl btn-primary w-full pc-btn-w-sm pull-right" ng-click="openTeacherCertificationPopup()">신청하기</button>
+	        </div>    
+           <!-- 패널 스타일 list -->
+           	<div class="acc_wrap m-t">
+           		<div class="panel-group">
+	                <div class="panel panel-heading clearfix wrapper-xs no-padder-left no-padder-right no-shadow b-b" ng-repeat="certificate in certificate_list">
+	                     <div class="pull-left wrapper text-md">{{certificate.certificateTypeNm}}</div>
+	                     <div class="pull-left m-t-xs">
+	                         <div class="text-md">{{certificate.issueCnts}}</div>
+	                         <div class="dark m-t-xs text-xs">신청일자 {{certificate.requestDt}} / 발급일자 {{certificate.issueDt}}</div>
+	                     </div>
+	                 	<a class="primary underline text-sm" href="{{certificate.pathServer}}/{{certificate.fileName}}" target="_blank" ng-if="certificate.pathServer">
+							<i class="acc_caret download_caret" ></i>
+						</a>
+	               	</div>
+             	</div>
+          </div>   
+          <!--패널 스타일 list end -->   
+    	</div>
+     <!--증명서발급요청 wrap end-->
+	     <div ng-if="app.page_size < total_cnt">
+			<button class="btn btn-borderDefault w-full widthfix-xs m-auto pc-block btnMoreList" ng-click="nextPageClick()" data-langNum="9">더보기</button>
+		</div>
+	</div>
+</div>
+  
+
+<script type="text/ng-template" id="TeacherCertificationPopup">
+  <div class="popup_wrap" ng-init="init()">
+      <div class="popup_header">
+        증명서 발급요청<span class="pull-right closebtn " data-ng-click="cancel()"><img src="assets/img/close.png" class="img-full" alt="..."></span>
+    </div>
+    <div class="popup_body widthfix-xs m-auto">
+        <form class="form-horizontal b-b b-t">
+        <div class="form-group">
+          <div class="col-bg col-xs-4"><label class=" control-label"><span data-langNum="73">신청인</span></label></div>
+          <div class="col-xs-8"><label class=" control-label">나강사</label></div>
+        </div>
+        <div class="form-group">
+          <div class="col-bg col-xs-4"><label class=" control-label"><span data-langNum="74">증명서 종류</span></label></div>
+          <div class="col-xs-8">
+			<select name="certificate_type" class="form-control m-t-xs" ng-model="certificate.certificateType" ng-options="certificate_type.codeId as certificate_type.codeName1 for certificate_type in certificate_types">
+				<option value="">직접입력</option>
+			</select>
+          </div>
+        </div> 
+        <div class="form-group">
+          <div class="col-bg col-xs-4"><label class=" control-label"><span data-langNum="75">발급요청일</span></label></div>
+          <div class="col-xs-8 no-padder-right">
+                <input class="form-control input-sm date" type="text" ng-model="certificate.requestDt" readonly style="background-color: #fff;">
+          </div>
+        </div>    
+      </form>
+      <p class="m-t-md"><span data-langNum="76">발급사유</span></p>    
+      <div>
+        <textarea class="border" ng-model="certificate.issueCnts" maxLength="100"></textarea>  
+     </div>     
+    </div>   
+      <button type="submit" class="btn btn-xl btn-primary w-full m-t-lg" ng-click="saveCertificate()"><span data-langNum="52">신청</span></button>       
+  </div>
+	<script>
+		$(".date").datepicker({
+			format: 'yyyy-mm-dd',
+			autoclose: true
+		});
+	</script>
+
+</script>
+<script src="assets/js/language.js"></script>

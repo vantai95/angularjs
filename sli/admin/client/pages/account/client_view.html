@@ -1,0 +1,366 @@
+
+<div class="app-content-body" ng-controller="ClientViewController" ng-init="init()">
+	<div class="wrapper-md">
+  		<div class="panel panel-default">
+    		<div class="panel-heading font-bold">
+      			청구료 정산
+    		</div>
+    		<div class="panel-body">
+       			<div class="form-group b-n">
+       				<label class="col-sm-1 control-label">기간</label>
+       				<div class="col-sm-3 no-padder-left">
+       					<label class="control-label">
+          					{{info.startDt}} - {{info.endDt}}
+       					</label>
+       				</div>
+				</div>
+    		</div>
+  		</div>
+    	<div class="row panel-body white text-lg no-padder-right">
+        	청구료 정산 
+    	</div>
+    	<div class="panel panel-default m-b-none">
+  			<table class="table table-bordered b-t b-light">
+        		<thead>
+        			<tr class="active">            
+			            <th rowspan="2" class="w-sm">고객사</th>
+			            <th rowspan="2" class="w-sm">강사명</th>
+			            <th rowspan="2" class="w-sm">강의명</th>
+			            <th class="w-sm">강의기간</th>
+			            <th class="w-sm">수업횟수</th>
+			            <th class="w-sm">단가</th>
+			            <th rowspan="2" class="w-sm">청구금액</th>
+			            <th rowspan="2" class="w-sm">최종정산금액</th>
+			            <th rowspan="2" class="w-sm">수업일자</th>
+			            <th rowspan="2" class="w-sm">완료여부</th>
+    		      	</tr>
+	        	  	<tr class="active">            
+		            	<th class="w-sm">강의시간</th>
+		          		<th class="w-sm">단위</th>            
+		            	<th class="w-sm">면세여부</th>
+          			</tr>    
+        		</thead>
+        		<tbody  ng-repeat="x in educations">
+        <!--강의료정산 row-->    
+          
+        <!--강의료정산 row-->   
+          			<tr>
+            			<td rowspan="2">{{x.compNm}}</td>
+			            <td rowspan="2"><a class="primary underline" ui-sref="app.teacher.detail({id: x.tcCd})" target="_blank">{{x.teacherNm}}</td> 
+			            <td rowspan="2"><a class="primary underline" ui-sref="app.subject.lecture_detail({id: x.ltCd})" target="_blank">{{x.lectureNm}}</a></td> 
+			            <td>
+            				<span ng-if="x.completeYn != 'Y'">{{x.startDt}}~{{x.endDt}}</span>
+            				<span ng-if="x.completeYn == 'Y'">{{x.cStartDt}}~{{x.cEndDt}}</span>
+						</td>  
+			            <td>
+			            	<a class="primary underline" ui-sref="app.attend.default({ltCd: x.ltCd, cpCd:x.cpCd, tcCd: x.tcCd})" target="_blank" ng-if="x.completeYn != 'Y'">{{x.attCnt}}</a>
+			            	<a class="primary underline" ui-sref="app.attend.default({ltCd: x.ltCd, cpCd:x.cpCd, tcCd: x.tcCd})" target="_blank" ng-if="x.completeYn == 'Y'">{{x.cCnt}}</a>
+			            </td>  
+			            <td>
+			            	<span ng-if="x.completeYn != 'Y'">{{x.tuitionFee | number : 0}}</span>
+			            	<span ng-if="x.completeYn == 'Y'">{{x.cTuitionFee | number : 0}}</span>
+			            </td>
+			            <td rowspan="2">
+            				<span ng-if="x.completeYn != 'Y'">{{x.unit_money | number:0}}</span>
+            				<span ng-if="x.completeYn == 'Y'">{{x.cTotalFee | number:0}}</span>
+			            </td>
+			            <td rowspan="2">
+			            	<div>
+			            		{{x.lastMoney | number : 0}}
+			            		<i class="fa fa-comments" ng-if="x.lastYn == 'Y'" style="margin-left:10px" ng-click="showLast2(x)"></i>
+			            	</div>
+			           		<button type="submit" class="btn btn-borderPrimary" ng-click="showLast(x)" ng-if="x.completeYn != 'Y'">수정</button>
+			            </td> 
+			            <td rowspan="2"><button type="submit" class="btn btn-borderPrimary" ng-click="show(x);">확인</button></td>
+			            <td rowspan="2">
+			            	<div ng-if="x.completeYn == 'Y'">
+			            		정산완료<br>{{x.completeDt}}
+			            	</div>
+			            	<div ng-if="x.completeYn != 'Y'">
+			            		<button type="submit" class="btn btn-borderPrimary" ng-click="complete(x);">정산완료</button>
+			            	</div>
+			            </td> 
+	          		</tr>
+          			<tr>
+			          	<td><span ng-repeat="y in x.schedules" style="display:block">{{y}}</span></td>
+			            <td>{{x.tuitionFeeUnitNm}}</td>  
+			            <td>{{x.freeYnNm}}</td>
+		          	</tr>     
+          			<tr>
+          				<td colspan="100%">
+          					<div class="pull-left">
+								<button type="submit" class="btn btn-primary pull-left btn-m" ng-click="openClientInsertPopup(x)">기타항목추가</button>
+								<button type="submit" class="btn btn-primary pull-left btn-m" ng-click="x.show_add = !x.show_add" style="margin-left:20px; margin-right:20px;">기타항목상세</button>
+								<span>기타항목 : {{x.add_total | number : 0}}원 / {{x.addPrice.length}}건</span> 
+          					</div>
+		        			<div class="pull-right ">
+		            			총 청구금액: <b>{{x.total | number : 0}}</b>원 / VAT:<b>{{x.add_vat | number : 0}}</b>원 / 총금액 <b>{{x.total + x.add_vat | number : 0}}원</b>
+		        			</div>
+          		
+          				</td>
+          			</tr>
+          			<tr ng-show="x.show_add">
+          				<td colspan="100%">
+							<table class="table table-bordered b-t b-light">
+			    				<thead>
+				        			<tr class="active">            
+				            			<th class="w-sm">항목</th>
+							            <th class="w-sm">수량</th>
+							            <th class="w-sm">단가</th>
+							            <th class="w-sm">금액</th>
+							            <th class="w-sm">면세여부</th>
+				          			</tr>
+				        		</thead>
+			        			<tbody>
+			        <!--기타항목 row-->    
+				         			<tr ng-repeat="y in x.addPrice">
+							            <td>{{y.itemCnts}}</td>  
+							            <td>{{y.qnty}}</td>  
+							            <td>{{y.cost | number:0}}</td>
+							            <td>{{y.totalMoney | number:0}}</td>
+							            <td>{{y.freeYnNm}}</td> 
+				          			</tr> 
+			        <!--기타항목 row-->   
+			        			</tbody>
+							</table>
+          				</td>
+          			</tr>
+        		</tbody>
+      		</table>
+    	</div>
+    	<div class="row m-t-lg">                
+        	<div class="pull-right text-lg">
+            	총 청구금액: <b>{{unit_total | number : 0}}</b>원 / 총 최종 정산금액:<b>{{last_total | number : 0}}</b>원 / VAT:<b>{{vat_total | number : 0}}</b>원 
+            	<div class="text-right">총금액 <span class="primary text-2x">{{last_total + vat_total | number : 0}}원</span></div>
+        	</div>
+        </div>
+    	<div class="row m-t-lg">                
+            <button type="submit" class="btn btn-border pull-left" ng-click="exportEcel();">엑셀 다운로드&nbsp; <i class="fa fa-file-excel-o"></i></button>
+            <button type="submit" class="btn btn-primary pull-right btn-m" ng-click="cancel()" style="margin-left:20px">목록으로&nbsp; </button>        
+            <button type="submit" class="btn btn-primary pull-right btn-m" ng-click="delete_item()" style="margin-left:20px">삭제&nbsp; </button>        
+            <button type="submit" class="btn btn-primary pull-right btn-m" ng-click="completeAll()">전체 정산완료&nbsp; </button>        
+        </div>
+	</div>
+</div>
+<script type="text/ng-template" id="complete.html">
+  	<div class="modal-header">
+    	<h4 class="text-center">최종금액 수정</h4>
+  	</div>
+  	<div class="modal-body">
+    	<table class="table">
+        	<tr>
+				<th>수정금액</th>
+              	<td><input class="form-control input"  required ng-model="items.lastMoney" type="text" placeholder=""></td>
+          	</tr>
+        	<tr>
+				<th>수정사유</th>
+              	<td><textarea class="form-control"  required ng-model="items.lastRemark" ></textarea></td>
+          	</tr>
+      	</table>
+  	</div>
+  	<div class="modal-footer">
+    	<span class="btn btn-primary" ng-click="save()">등록</span>
+      	<span class="btn btn-default" ng-click="cancel()">취소</span>
+  	</div>
+</script>
+
+<script type="text/ng-template" id="complete2.html">
+  	<div class="modal-header">
+    	<h4 class="text-center">수정사유</h4>
+  	</div>
+  	<div class="modal-body">
+    	<table class="table">
+        	<tr>
+              	<td style="text-align:left; border:none;"><pre>{{items.lastRemark}}</pre></td>
+          	</tr>
+      	</table>
+  	</div>
+  	<div class="modal-footer">
+      	<span class="btn btn-default" ng-click="cancel()">닫기</span>
+  	</div>
+</script>
+
+<script type="text/ng-template" id="show.html">
+	<div class="popup_wrap" >
+		<div class="popup_header">
+        	출석날짜<span class="pull-right closebtn " data-ng-click="cancel()"><img src="assets/img/close.png" class="img-full" alt="..."></span>
+    	</div>
+	<div class="popup_body no-padder-top">
+		<div class=" text-md m-t-md" >
+			<span>{{item.scheduleDtAll}}</span>
+		</div>
+	</div>
+	</div>
+</script>
+<script type="text/ng-template" id="ClientInsertPopup">
+  <div class="popup_wrap" ng-init="init()">
+      <div class="popup_header">
+        교육비 정산 기타항목 추가<span class="pull-right closebtn " data-ng-click="cancel()"><img src="assets/img/close.png" class="img-full" alt="..."></span>
+    </div>
+    <div class="popup_body no-padder-top">
+        <div>
+    <div class="panel-body text-md m-t-md">
+<!--      <form class="form-horizontal ng-pristine ng-valid" method="get">
+        <div class="form-group b-n">
+          <label class="col-sm-2 control-label"><b>고객사명</b></label>
+          <div class="col-sm-3">
+            <select multiple name="account" class="select2 form_select" style="width: 100%;" 
+            	ng-model="select_company" 
+            	ng-options="select_company.cpCd as select_company.compNm for select_company in companie" ng-change="getLectureListBox();">
+              <option value="">전체</option>
+            </select>
+          </div>
+         <label class="col-sm-2 control-label"><b>기간</b></label>
+          <div class="col-sm-5">
+            <div class="col-sm-5 no-padder">
+            <div class="input-group input-group-sm m-t-xs date">
+                  <input type="text" class="form-control " ng-model="start_date" readonly style="background: white;">
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-calendar"></i></button>
+                  </span>
+                </div>
+            </div>
+            <label class="control-label col-sm-2 text-center">─</label>
+            <div class="col-sm-5 no-padder">
+            <div class="input-group input-group-sm m-t-xs date">
+                  <input type="text" class="form-control " ng-model="end_date" readonly style="background: white;">
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-calendar"></i></button>
+                  </span>
+                </div>
+            </div>
+          </div>    
+        </div>
+        <div class="form-group b-n">
+            <label class="col-sm-2 control-label"><b>강사명</b></label>
+          <div class="col-sm-3">
+             <select name="account" class="form-control input-sm" 
+            	ng-model="select_teacher" 
+            	ng-options="select_teacher.tcCd as select_teacher.userName for select_teacher in teacher" ng-change="getLectureListBox();">
+              	<option value="">전체</option>
+            </select>
+          </div>
+            <label class="col-sm-2 control-label"><b>강의명</b></label>
+            <div class="col-sm-3">
+            <select name="account" class="form-control input-sm" ng-model="select_shLtCd"
+              	ng-options="select_shLtCd.ltCd as select_shLtCd.lectureNm for select_shLtCd in lecture_list_box">
+              	<option value="">전체</option>
+           	  </select>
+            </div>
+            <div class="col-sm-1">
+                <button type="submit" class="btn btn-dark m-t-xs btn-m" ng-click="getEducationList()">조회</button>  
+            </div>
+        </div>  
+      </form> -->
+    </div>
+    <div class="row white text-md m-b-sm m-t-sm">
+       <div class="pull-right">총 가감액 : {{total | number : 0}} 원</div>
+    </div>
+      <div class="table-responsive heightmax">
+		
+      <table class="table b-t b-light popup_table center_align m-b-none">
+        <thead>
+          <tr class="active">
+            <th>No</th>
+            <th>사유</th>
+            <th>면세</th>
+            <th>단가</th>  
+            <th class="w-xxs">수량</th>  
+            <th>금액</th>
+            <th>일자</th>
+            <th class="w-xxs"></th>  
+            <th class="w-xxs"></th>  
+          </tr>
+        </thead>
+        <tbody>
+		
+          <tr ng-repeat="x in educations">
+            <td>{{educations.length - $index}}</td>
+            <td>
+				<span  ng-if="x.checked == true">{{x.itemCnts}}</span>
+				<input ng-if="x.checked == false" type="text" ng-model="x.itemCnts" >
+			</td>
+			<td>
+                <label class="i-checks">
+                <input type="checkbox"  ng-model="x.freeYn" ng-true-value="'Y'" ng-false-value="'N'" {{item.completeYn == 'N' ? 'readonly' : ''}}>
+                <i></i>
+              </label>    
+            </td>
+            <td>
+				<span  ng-if="x.checked == true">{{x.cost | number : 0}}</span>
+				<input ng-if="x.checked == false" type="text" ng-model="x.cost"  ng-change="setTotalMoney(x)"></td>
+            <td>
+				<span  ng-if="x.checked == true">{{x.qnty | number : 0}}</span>
+				<input ng-if="x.checked == false" type="text" ng-model="x.qnty"  ng-change="setTotalMoney(x)">
+			</td>
+            <td>
+				<span  ng-if="x.checked == true">{{x.totalMoney | number : 0}}</span>
+				<input ng-if="x.checked == false" type="text" ng-model="x.totalMoney">
+			</td>
+            <td>
+				<span  ng-if="x.checked == true">{{x.selectDt}}</span>
+				<div class="input-group input-group-sm m-t-xs date"  ng-if="x.checked == false" ng-click="date_picker()">
+                     <input type="text" class="form-control" ng-model="x.selectDt" style="background: white;" readonly>
+                     <span class="input-group-btn">
+                         <button type="button"  class="btn btn-default"><i class="glyphicon glyphicon-calendar"></i></button>
+                     </span>
+                </div>
+			</td>  	
+            <td>
+				<a class="primary underline" ng-if="item.completeYn == 'N' && x.checked == true" ng-click="x.checked = !x.checked">수정</a>
+				<a class="primary underline" ng-if="item.completeYn == 'N' && x.checked == false" ng-click="saveItem(x)">저장</a>
+			</td> 
+            <td>
+				<a class="primary underline" ng-if="item.completeYn == 'N' && x.checked == true" ng-click="deleted(x.caCd)">삭제</a>
+				<a class="primary underline" ng-if="item.completeYn == 'N' && x.checked == false" ng-click="x.checked = !x.checked">취소</a>
+			</td>   
+          </tr>
+          <tr ng-show="item.completeYn == 'N'">
+            <td></td>
+            <td><input class="form-control input-sm" type="text" ng-model="itemCnts"></td>
+            <td>
+                <label class="i-checks">
+                <input type="checkbox"  ng-model="freeYn" ng-true-value="'Y'" ng-false-value="'N'">
+                <i></i>
+              </label>    
+            </td>
+            <td><input class="form-control input-sm" type="text" ng-model="cost" ng-change="totalMoney = cost * qnty"></td>
+            <td><input class="form-control input-sm" type="text" ng-model="qnty" ng-change="totalMoney = cost * qnty"></td>
+            <td><input class="form-control input-sm" type="text" ng-model="totalMoney"></td>
+            <td>
+                <div class="input-group input-group-sm m-t-xs date" >
+                          <input type="text" class="form-control date" value="" ng-model="selectDt" readonly style="background: white;" id="add_date">
+                          <span class="input-group-btn">
+                            <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-calendar"></i></button>
+                          </span>
+                        </div>
+            </td>  
+            <td colspan="2"><a class="primary underline" ng-click="create()">등록</a></td> 
+          </tr> 
+        </tbody>
+      </table>
+    </div>        
+    </div>  
+    </div>  
+  </div>
+	<script>
+   		 $(".date").datepicker({
+			format: 'yyyy-mm-dd',
+			autoclose: true
+		});
+		$("#add_date").datepicker('setDate', new Date());
+/*		setTimeout(function(){ $(".select2.form_select").select2();}, 10);*/
+	
+	</script>
+</script>
+<style>
+    .modal-dialog{width:800px;}
+</style>
+<script>
+	$(".date").datepicker({
+		format: 'yyyy-mm-dd',
+		autoclose: true
+	});
+//	$(".select2").select2();	
+
+</script>

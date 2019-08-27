@@ -1,0 +1,262 @@
+
+<div class="app-content-body" ng-controller="TeacherController" ng-init="init()">
+	<div class="wrapper-md">
+  		<div class="panel panel-default">
+    		<div class="panel-heading font-bold">강사료 정산</div>
+    		<div class="panel-body">
+      			<form class="form-horizontal ng-pristine ng-valid" method="get">
+        			<div class="form-group b-n">
+          				<label class="col-sm-1 control-label">기간</label>
+          				<div class="col-sm-3 no-padder-left">
+            				<div class="col-sm-4 no-padder-right">
+            					<input class="form-control input-sm date" type="text" readonly style="background: white;" ng-model="start_date" id="start_date">
+            				</div>
+            				<label class="control-label col-sm-1 text-center">─</label>
+            				<div class="col-sm-4 no-padder-left">
+            					<input class="form-control input-sm date" type="text" readonly style="background: white;" ng-model="end_date" id="end_date">
+            				</div>
+          				</div>
+<!--           				<label class="col-sm-1 control-label">정산구분</label>
+          				<div class="col-sm-2">
+            				<select name="account" class="form-control input-sm" ng-model="select_complete" >
+              					<option value="">전체</option>
+              					<option value="N">미완료</option>
+              					<option value="Y">정산완료</option>
+            				</select>
+          				</div>  -->
+        			</div>
+          			<div class="form-group b-n">
+          				<label class="col-sm-1 control-label">고객사명</label>
+          				<div class="col-sm-2">
+            				<select multiple name="account" class="select2" style="width: 100%; min-height: 32px; margin-top:6px;" 
+            					ng-model="select_company" ng-change="getLectureListBox()" ng-options="select_company.cpCd as select_company.compNm for select_company in companies">
+              					<option value="">전체</option>
+            				</select>
+          				</div>
+          				<label class="col-sm-1 col-sm-offset-1 control-label">강사명</label>
+          				<div class="col-sm-2">
+            				<select name="account" class="form-control input-sm"
+            					ng-model="select_teacher" ng-change="getLectureListBox()" ng-options="select_teacher.tcCd as select_teacher.userName for select_teacher in teachers">
+              					<option value="">전체</option>
+            				</select>
+          				</div>
+        			</div>
+        			<div class="form-group b-n">
+          				<label class="col-sm-1 control-label">강의명</label>
+          				<div class="col-sm-11 ">
+              				<select name="account" class="form-control input-sm" ng-model="select_shLtCd"
+              					ng-options="select_shLtCd.ltCd as select_shLtCd.lectureNm for select_shLtCd in lecture_list_box">
+              					<option value="">전체</option>
+           	  				</select>
+          				</div>
+        			</div>
+        			<div class="form-group b-n">
+          				<label class="col-sm-1 control-label"></label>
+          				<div class="col-sm-11 ">
+              				<input class="form-control input-sm" type="text" placeholder="직접 검색" ng-model="shLectureNm">
+          				</div>
+        			</div>  
+        			<div class="form-group b-n">
+          				<label class="col-sm-1 control-label">정렬기준</label>
+          				<div class="col-sm-3 no-padder-left">
+            				<div class="col-sm-4 no-padder-right radio">
+								<label class="i-checks"> 
+									<input type="radio" name="select_order" value="t" ng-model="select_order"><i></i> 강사별
+								</label> 
+            				</div>
+            				<div class="col-sm-4 no-padder-left radio">
+								<label class="i-checks"> 
+									<input type="radio" name="select_order" value="c" ng-model="select_order"><i></i> 업체별
+								</label> 
+            				</div>
+          				</div>
+        			</div>
+      			</form>
+    		</div>
+      		<div class="panel-footer">
+          		<div class="row">
+            		<button type="" class="btn btn-dark pull-right btn-m" ng-click="search()">조회</button>        
+          		</div>
+      		</div>
+  		</div>
+    	<div class="panel panel-default m-b-none m-t-xl" ng-if="search_order == 't'">
+  			<table class="table table-bordered b-t b-light" id="tblCustomers" ng-repeat="(key, all) in teacher_fee_list">
+        		<thead>
+        			<tr class="active">            
+            			<th rowspan="2" class="w-sm">강사명</th>
+            			<th rowspan="2" class="w-sm">업체명 </th>
+            			<th rowspan="2" class="w-sm">강의명</th>
+            			<th class="w-sm">강의기간</th>
+            			<th class="w-sm">수업횟수</th>
+            			<th rowspan="2" class="w-sm">강사료단가</th>
+            			<th class="w-sm">청구금액</th>
+            			<th rowspan="2" class="w-sm">예상정산금액</th>
+            			<th rowspan="2" class="w-sm">수업일자</th>
+            			<th rowspan="2" class="w-sm">정산대상</th>
+          			</tr>
+        			<tr class="active">            
+            			<th class="w-sm">강의시간</th>
+            			<th class="w-sm">단위</th>            
+            			<th class="w-sm">세금</th>
+          			</tr>    
+        		</thead>
+        		<tbody>
+        		<!--강의료정산 row--> 
+         			<tr  ng-repeat-start="x in all.name">
+			            <td rowspan="{{all.name.length * 2 + 2}}" ng-if="$index == 0"><a class="primary underline" ui-sref="app.teacher.detail({id : x.tcCd})" target="_blank">{{x.teacherNm}}</a></td> 
+            			<td rowspan="2">{{x.compNm}}</td>
+            			<td rowspan="2"><a class="primary underline" ui-sref="app.subject.lecture_detail({id : x.ltCd})" target="_blank">{{x.lectureNm}}</a></td> 
+            			<td>{{x.startDt}}~{{x.endDt}}</td>  
+            			<td><a class="primary underline" ui-sref="app.attend.default({ltCd: x.ltCd, cpCd:x.cpCd, tcCd: x.tcCd})" target="_blank">{{x.attCnt}}</a></td>  
+            			<td rowspan="2">{{x.teacherFee | number:0}}</td>
+            			<td >{{x.unit_money | number:0}}</td>
+            			<td rowspan="2">{{(x.unit_money)- (x.unit_money * 0.033) + x.tempMoney | number:0}}</td> 
+            
+            			<td rowspan="2"><button type="submit" class="btn btn-borderPrimary" ng-click="show(x);">확인</button></td>
+            			<td rowspan="2">
+							<div class="radio ">
+				                <label class="i-checks">
+				                	<input type="checkbox" id="target_{{key}}_{{$index}}" name="target[]" value="{{x.ltCd}}" ng-click="changeTarget(key);"> <i></i>대상
+				                </label>
+            				</div>
+            			</td> 
+          			</tr>
+          			<tr ng-repeat-end="x in all.name">
+            			<td>{{x.schedule}}</td>  
+            			<td>{{x.teacherFeeUnitNm}}</td>
+            			<td>{{x.unit_money * 0.033 | number:0}}</td>  
+          			</tr>    
+        <!--강의료정산 row-->
+            
+        <!--강의료정산 합산row-->    
+         			<tr class="bg-gray">
+            			<td rowspan="2"><a class="primary underline"></a></td> 
+            			<td rowspan="2"><a class="primary underline"></a></td> 
+            			<td rowspan="2"></td>  
+            			<td rowspan="2"><a class="primary underline"></a></td>  
+            			<td rowspan="2"></td>
+            			<td>{{all.total | number:0}}</td><!-- 청구금액 -->
+            			<td rowspan="2">{{all.tempTotal | number:0}}</td><!-- 예상정산금액 -->
+            			<td rowspan="2"></td> 
+            			<td rowspan="2">
+							<div class="radio ">
+				                <label class="i-checks">
+				                	<input type="checkbox" id="target_{{key}}" ng-click="changeAllTarget(key);"> <i></i>전체
+				                </label>
+            				</div>
+            			</td>
+          			</tr>
+          			<tr class="bg-gray">
+            			<td>{{all.total * 0.033 | number:0}}</td>  
+          			</tr>    
+        <!--강의료정산 합산row-->
+        		</tbody>
+      		</table>
+    	</div>
+    	<div class="panel panel-default m-b-none m-t-xl" ng-if="search_order == 'c'">
+  			<table class="table table-bordered b-t b-light" id="tblCustomers" ng-repeat="(key, all) in teacher_fee_list">
+        		<thead>
+        			<tr class="active">            
+            			<th rowspan="2" class="w-sm">업체명</th>
+            			<th rowspan="2" class="w-sm">강사명 </th>
+            			<th rowspan="2" class="w-sm">강의명</th>
+            			<th class="w-sm">강의기간</th>
+            			<th class="w-sm">수업횟수</th>
+            			<th rowspan="2" class="w-sm">강사료단가</th>
+            			<th class="w-sm">청구금액</th>
+            			<th rowspan="2" class="w-sm">예상정산금액</th>
+            			<th rowspan="2" class="w-sm">수업일자</th>
+            			<th rowspan="2" class="w-sm">정산대상</th>
+          			</tr>
+        			<tr class="active">            
+            			<th class="w-sm">강의시간</th>
+            			<th class="w-sm">단위</th>            
+            			<th class="w-sm">세금</th>
+          			</tr>    
+        		</thead>
+        		<tbody>
+        		<!--강의료정산 row--> 
+         			<tr  ng-repeat-start="x in all.name">
+			            <td rowspan="{{all.name.length * 2 + 2}}" ng-if="$index == 0"><a class="primary underline" ui-sref="app.teacher.detail({id : x.tcCd})" target="_blank">{{x.compNm}}</a></td> 
+            			<td rowspan="2">{{x.teacherNm}}</td>
+            			<td rowspan="2"><a class="primary underline" ui-sref="app.subject.lecture_detail({id : x.ltCd})" target="_blank">{{x.lectureNm}}</a></td> 
+            			<td>{{x.startDt}}~{{x.endDt}}</td>  
+            			<td><a class="primary underline" ui-sref="app.attend.default({ltCd: x.ltCd, cpCd:x.cpCd, tcCd: x.tcCd})" target="_blank">{{x.attCnt}}</a></td>  
+            			<td rowspan="2">{{x.teacherFee | number:0}}</td>
+            			<td >{{x.unit_money | number:0}}</td>
+            			<td rowspan="2">{{(x.unit_money)- (x.unit_money * 0.033) + x.tempMoney | number:0}}</td> 
+            
+            			<td rowspan="2"><button type="submit" class="btn btn-borderPrimary" ng-click="show(x);">확인</button></td>
+            			<td rowspan="2">
+							<div class="radio ">
+				                <label class="i-checks">
+				                	<input type="checkbox" id="target_{{key}}_{{$index}}" name="target[]" value="{{x.ltCd}}" ng-click="changeTarget(key);"> <i></i>대상
+				                </label>
+            				</div>
+            			</td> 
+          			</tr>
+          			<tr ng-repeat-end="x in all.name">
+            			<td>{{x.scheduleWeek}} {{x.scheduleTime}}</td>  
+            			<td>{{x.teacherFeeUnitNm}}</td>
+            			<td>{{x.unit_money * 0.033 | number:0}}</td>  
+          			</tr>    
+        <!--강의료정산 row-->
+            
+        <!--강의료정산 합산row-->    
+         			<tr class="bg-gray">
+            			<td rowspan="2"><a class="primary underline"></a></td> 
+            			<td rowspan="2"><a class="primary underline"></a></td> 
+            			<td rowspan="2"></td>  
+            			<td rowspan="2"><a class="primary underline"></a></td>  
+            			<td rowspan="2"></td>
+            			<td>{{all.total | number:0}}</td><!-- 청구금액 -->
+            			<td rowspan="2">{{all.tempTotal | number:0}}</td><!-- 예상정산금액 -->
+            			<td rowspan="2"></td> 
+            			<td rowspan="2">
+							<div class="radio ">
+				                <label class="i-checks">
+				                	<input type="checkbox" id="target_{{key}}" ng-click="changeAllTarget(key);"> <i></i>전체
+				                </label>
+            				</div>
+            			</td>
+          			</tr>
+          			<tr class="bg-gray">
+            			<td>{{all.total * 0.033 | number:0}}</td>  
+          			</tr>    
+        <!--강의료정산 합산row-->
+        		</tbody>
+      		</table>
+    	</div>
+       	<div class="row m-t-lg">                
+            <button type="submit" class="btn btn-primary pull-right btn-m" ng-click="cancel()" style="margin-left:20px;">취소&nbsp; </button>        
+            <button type="submit" class="btn btn-primary pull-right btn-m"  style="margin-left:20px;" ng-click="saveAllTarget()">정산대상 전체 등록&nbsp; </button>        
+            <button type="submit" class="btn btn-primary pull-right btn-m" ng-click="saveTarget()">정산대상 선택 등록&nbsp; </button>        
+        </div>
+	</div>
+</div>
+
+<style>
+    .modal-dialog{width:800px;}
+</style>
+<script>
+	$(document).ready(function() {
+		$(".date").datepicker({
+			format: 'yyyy-mm-dd',
+			autoclose: true
+		});
+//		$(".select2").select2();
+	})
+</script>
+
+<script type="text/ng-template" id="show.html">
+	<div class="popup_wrap" >
+		<div class="popup_header">
+        	수업일자<span class="pull-right closebtn " data-ng-click="cancel()"><img src="assets/img/close.png" class="img-full" alt="..."></span>
+    	</div>
+	<div class="popup_body no-padder-top">
+		<div class=" text-md m-t-md">
+			{{item.scheduleDtAll}}
+		</div>
+	</div>
+	</div>
+</script>

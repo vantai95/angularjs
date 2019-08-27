@@ -1,0 +1,122 @@
+<!-- list -->
+<div class="popup_wrap bg-gray">
+    <div class="popup_header heightfix-xs">
+        <span class="pull-right closebtn " data-ng-click="cancel()"><img src="assets/img/close.png" class="img-full" alt="..." ui-toggle-class="off-screen" data-target=".app-aside" ui-scroll="app"></span>
+    </div>
+</div>    
+<ul class="nav">
+    <div class="dropdown wrapper-xl text-center text-sm ltr bg-gray no-padder-top">
+          <span class="thumb-lg w-auto-folded avatar">
+            <img src="assets/img/profile.png" class="img-full" alt="...">
+          </span>
+          <span class="clear">
+            <span class="block m-t-sm text-md">
+              {{current_user.userName}} ({{current_user.userId}})
+            </span>
+          </span>
+      </div>
+    <div class="list">
+    <li>
+        <a class="auto text-lg" ui-sref="app.notice.list">      
+          <span data-langNum="2">공지사항</span>
+        </a>
+        <ul class="nav-sub p-none">
+          <li class="nav-sub-header">
+            <a ui-sref="app.notice.list">
+              <span data-langNum="2">공지사항</span>
+            </a>
+          </li> 
+    </ul>
+    </li>     
+      <li class="active">
+        <a ui-sref="app.mylecture.index" class="auto text-lg">      
+          <span data-langNum="3">내강의실</span>
+        </a>
+        <ul class="nav-sub p-none">
+          <li class="nav-sub-header">
+            <a >
+              <span data-langNum="3">내강의실</span>
+            </a>
+          </li>
+          <li ui-sref-active="active" class="active" >
+            <a ui-sref="app.mylecture.student">
+              <span data-langNum="39">수강생현황</span>
+            </a>
+          </li>
+          <li ui-sref-active="active">
+            <a ui-sref="app.mylecture.lvtest">
+              <span data-langNum="40">레벨테스트</span>
+            </a>
+          </li>
+          <li ui-sref-active="active">
+            <a ui-sref="app.mylecture.attend">
+              <span data-langNum="41">출석현황</span>
+            </a>
+          </li>
+          <li ui-sref-active="active">
+            <a ui-sref="app.mylecture.test">
+              <span data-langNum="42">성취도평가</span>
+            </a>
+          </li>
+          <li ui-sref-active="active">
+            <a ui-sref="app.mylecture.alert_list">
+              <span data-langNum="43">알림게시판</span>
+            </a>
+          </li>    
+        </ul>
+    </li>    
+      <li class="active">
+        <a ui-sref="app.teacher.certificate" class="auto text-lg">      
+          <span data-langNum="4">강사지원센터</span>
+        </a>
+        <ul class="nav-sub p-none">
+          <li class="nav-sub-header">
+            <a ui-sref="app.teacher.certificate">
+              <span data-langNum="4">강사지원센터</span>
+            </a>
+          </li>
+          <li ui-sref-active="active">
+            <a ui-sref="app.teacher.certificate">
+              <span data-langNum="69">증명서 발급요청</span>
+            </a>
+          </li>
+          <li ui-sref-active="active">
+            <a ui-sref="app.teacher.certificate">
+              <span data-langNum="78">정산내역</span>
+            </a>
+          </li>   
+        </ul>
+        </li>    
+      
+    <li>
+        <a class="auto text-lg" ui-sref="app.data.list">      
+          <span data-langNum="5">자료실</span>
+        </a>
+        <ul class="nav-sub p-none">
+          <li class="nav-sub-header">
+            <a ui-sref="app.data.list">
+              <span data-langNum="5">자료실</span>
+            </a>
+          </li> 
+    	</ul>
+    </li>  
+  </div>
+</ul>
+<!-- / list -->
+<div style="text-align:center;">
+	<button class="btn btn-borderPrimary btn-rounded btn-add btn-ko" onclick="changeLanguge('ko');">KR</button>
+    <button class="btn btn-transparent btn-rounded btn-add btn-en" onclick="changeLanguge('en');">EN</button> 
+ </div>
+ <button type="submit" class="btn btn-xl btn-primary btn-block" ui-sref="access.login" data-langNum="0">로그아웃</button>
+
+ 
+<script>
+	
+	$(document).ready(function(){
+		if( null == localStorage.getItem('sli_lang')){
+			changeLanguge("ko");
+		}else{
+			changeLanguge(localStorage.getItem('sli_lang'));
+		}
+	});
+</script>

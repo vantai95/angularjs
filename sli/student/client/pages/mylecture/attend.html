@@ -1,0 +1,399 @@
+<div class="app-content-body" ng-controller="AttendController"
+	ng-init="init()">
+	<!--강의목록 s---->
+	<div class="panel panel-body no-shadow m-b-n-xs padder-vsm bg-gray">
+		<form
+			class="form-horizontal widthfix m-auto pull-none col-xs-12 col-sm-4 no-padder">
+			<div class="form-group b-n">
+				<div class="col-xs-3 col-sm-3 no-padder">
+					<label class="control-label text-md">강의목록</label>
+				</div>
+				<div class="col-xs-9 col-sm-9 no-padder">
+					<select name="account" class="form-control m-t-xs"
+						ng-model="select_lecture"
+						ng-options="lecture.ltCd as lecture.lectureNm for lecture in lectures"
+						ng-change="getAttendStudentList()">
+						<option value="">제목</option>
+					</select>
+				</div>
+			</div>
+		</form>
+	</div>
+	<!--강의목록 e---->
+	<!--LNB s-->
+	<div class="lnb_wraper">
+		<div class="lnb_wrap clearfix">
+			<a class="lnb" ui-sref="app.mylecture.lecture({ltCd: select_lecture})">기본 정보</a>
+            <a class="lnb" ui-sref="app.mylecture.video({ltCd: select_lecture})">강의영상</a>
+			<a class="lnb" ui-sref="app.mylecture.lvtest({ltCd: select_lecture})">레벨테스트</a> 
+			<a class="lnb active" ui-sref="app.mylecture.attend({ltCd: select_lecture})">출석현황</a> 
+			<a class="lnb" ui-sref="app.mylecture.test({ltCd: select_lecture})">성취도평가</a>
+			<a class="lnb" ui-sref="app.mylecture.alert_list({ltCd: select_lecture})">알림게시판</a>
+		</div>
+	</div>
+	<!--LNB e-->
+	<div class="widthfix-lg m-auto">
+		<div class="wrapper-md ">
+			<div class="wrapper m-b no-padder-top pc-padder widthfix-xs m-t">
+				<div class="text-center tt m-b pc-text-left font-bold">
+					{{lecture1.lectureNm}}</div>
+				<div>
+					<div class="m-b-xs">
+						<span class="text-sm">[총 {{attend_status[0].nowAttCnt}} 회차]
+							현재출석률</span> <span class="text-sm pull-right primary">{{attend_status[0].attRate}}%</span>
+					</div>
+					<div class="progress">
+						<div class="progress-bar progress-bar-info" role="progressbar"
+							aria-valuemin="0" aria-valuemax="100"
+							ng-style="{ 'width': attend_status[0].attRate + '%' }">
+						</div>
+					</div>
+					<div class="text-center text-md m-t-sm pc-text-left">
+						출석(확정) <span class="primary">{{attend_status[0].atAttend}}</span>회 결석 <span class="danger">{{attend_status[0].atAbsence}}</span>회
+						지각 {{attend_status[0].atLate}} 회
+					</div>
+				</div>
+			</div>
+			<div class="tt wrapper-xs">출석현황
+				<button type="submit" class="btn btn-m btn-primary pull-right m-b-sm" ng-if="lecture1.attendanceYn == 'Y'"
+						ng-click="openPopup2()">보장성 수업신청</button>							
+			</div>
+			<div class="teacher_table heightmax m-t-sm">
+				<table class="table table-bordered b-t b-light nopadTable">
+					<thead>
+						<tr>
+							<th class="w-15 no-padder">회차</th>
+							<th class="w-20 no-padder">수강일자</th>
+							<th class="w-10 no-padder">내용</th>
+							<th class="w-20 no-padder">수강시간</th>
+							<th class="w-10 no-padder hidden-md hidden-lg">출석현황</th>
+							<th class="w-5 no-padder hidden-xs hidden-sm">출석</th>
+							<th class="w-5 no-padder hidden-xs hidden-sm">결석</th>
+							<th class="w-5 no-padder hidden-xs hidden-sm">지각</th>
+							<th class="w-5 no-padder hidden-xs hidden-sm">출석인정</th>
+							<th class="w-5 no-padder hidden-xs hidden-sm">보장성</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="item in attend_students">
+							<td class="no-padder">{{$index + 1}}</td>
+							<td class="no-padder">{{item.attDate}}</td>
+							<td class="no-padder">
+								<button class="btn-primary btn padder-sm" ng-if="item.lectureType == '02'">휴강</button>
+								<button class="btn-primary btn padder-sm" ng-if="item.lectureType == '03'">보강</button>
+								<button class="btn-primary btn padder-sm" ng-if="item.lectureType == '04'">보장성</button>
+							</td>
+							<td class="no-padder">{{item.attStartTime}} ~ {{item.attEndTime}}</td>
+							<td class="no-padder hidden-md hidden-lg">
+								<span ng-if="item.attState == '01'">V</span>
+								<span ng-if="item.attState == '02'">X</span>
+								<span ng-if="item.attState == '03'">△</span>
+								<span ng-if="item.attState == '04'">◎</span>
+								<button
+									class="btn-borderPrimary btn padder-sm no-padder" ng-if="item.teacherRegDt != '' && item.studentRegDt == '' && item.lectureType != '04'"
+									ng-click="submitAbsence(item)">출석확정</button>
+							</td>
+							<td class="no-padder hidden-xs hidden-sm">
+								<span ng-if="item.attState == '01' && item.lectureType != '04'">V</span>
+								<button class="btn-borderPrimary btn padder-sm no-padder" ng-click="submitAbsence(item)"
+									ng-if="item.attState == '01' && item.teacherRegDt != '' && item.studentRegDt == '' && item.lectureType != '04'">출석확정</button>
+							</td>
+							<td class="no-padder hidden-xs hidden-sm">
+								<span ng-if="item.attState == '02' && item.lectureType != '04'">V</span>
+							</td>
+							<td class="no-padder hidden-xs hidden-sm">
+								<span ng-if="item.attState == '03' && item.lectureType != '04'">V</span>
+								<button class="btn-borderPrimary btn padder-sm no-padder" ng-click="submitAbsence(item)"
+									ng-if="item.attState == '03' && item.teacherRegDt != '' && item.studentRegDt == '' && item.lectureType != '04'">출석확정</button>
+							</td>
+							<td class="no-padder hidden-xs hidden-sm">
+								<span ng-if="item.attState == '04' && item.lectureType != '04'">◎</span>
+								<button class="btn-borderPrimary btn padder-sm no-padder" ng-click="submitAbsence(item)"
+									ng-if="item.attState == '04' && item.teacherRegDt != '' && item.studentRegDt == '' && item.lectureType != '04'">출석확정</button>
+							</td>
+							<td class="no-padder hidden-xs hidden-sm">
+								<span ng-if="item.lectureType == '04'">V</span>
+							</td>
+						</tr>
+							
+					</tbody>
+				</table>
+			</div>			
+		</div>
+		
+		<div class="wrapper no-padder-top">
+			<div class="tt m-b-none wrapper-xs">
+				출석인정신청 <span class="text-base">(승인/반려 처리완료 시 목록에서 사라집니다.)</span>
+				<button type="submit"
+					class="btn btn-m btn-primary pull-right m-t-sm hidden-xs hidden-sm"
+					ng-click="submitApplication()">출석인정 신청</button>
+			</div>
+			<div class="text-center gray wrapper-lg" ng-if="absence_list.length == 0">출석인정 신청 내역이 없습니다.</div>
+			<button type="submit"
+				class="btn btn-xl btn-primary btn-block m-t-sm hidden-md hidden-lg"
+				ng-click="openPopup3()">출석인정 신청</button>
+		</div>
+		<!---출석인정신청내역+버튼 wrap--->
+		<div>
+			<!---출석인정신청내역 s--->
+			<div class="wrapper-xs clearfix">
+				<!---panel--->
+				<div class="col-xs-6 col-sm-2 no-padder" ng-repeat="item in absence_list">
+					<div class="m-xs">
+						<div class="panel panel-default mini-panel m-b-none border">
+							<div class="panel-body no-padder">
+								<form class="form-horizontal ng-pristine ng-valid" method="get">
+									<div class="form-group b-n">
+										<div class="mini-content wrapper-sm padder-v">
+											<div class="row">
+												<div class="pull-left">
+													<span class="thumb-xs w-auto-folded avatar"> <img
+														src="assets/img/profile.png" class="img-full" alt="...">
+													</span>&nbsp;{{item.studentNm}}
+												</div>
+												<span class="pull-right m-t-xs">{{item.absenceDt2}}</span>
+											</div>
+											<div class="m-t-xs text-sm">{{item.detailCnts}}</div>
+											<a class="primary underline text-sm" href="{{item.pathServer}}/{{item.fileName}}" target="_blank" ng-if="item.pathServer">
+												{{item.originalName}}
+											</a>
+											<span ng-if="!item.pathServer">-</span>
+										</div>
+										<div class="row ng-scope">
+											<div class="no-padder">
+												<button type="submit"
+													class="btn btn-md btn-primary btn-block" ng-click="cancelAbsence(item.acCd)">신청취소</button>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!---panel end--->
+			</div>
+			<!---출석인정신청내역 e--->
+		</div>
+		<!----출석인정신청내역+버튼 wrap end---->
+	</div>
+</div>
+<script type="text/ng-template" id="popup3">
+  <div class="popup_wrap">
+      <div class="popup_header">
+        출석 인정 신청<span class="pull-right closebtn " data-ng-click="cancel()"><img src="assets/img/close.png" class="img-full" alt="..."></span>
+    </div>
+    <div class="popup_body">
+            <form class="form-horizontal ng-pristine ng-valid b-t b-b m-b">
+            <div class="form-group">
+              <div class="col-bg col-xs-4 no-padder"><label class=" control-label label-indent">신청인</label></div>
+              <div class="col-xs-8 no-padder"><label class=" control-label">{{current_user.userId}}</label></div>    
+            </div>
+            <div class="form-group">
+              <div class="col-bg col-xs-4 no-padder"><label class=" control-label label-indent">발급요청일</label></div>
+				<div class="col-xs-8 padder-sm date">
+					<div class="input-group m-t-xs">
+						<input class="form-control" type="text" ng-model="absenceDt" readonly style="background:#fff">
+						<span class="input-group-btn">
+							<button type="button" class="btn btn-default b-l-none no-shadow">
+								<i class="glyphicon glyphicon-calendar"></i>
+							</button>
+						</span>
+					</div>
+				</div>
+            </div>
+            <div class="form-group">
+              <div class="col-bg col-xs-4 no-padder"><label class=" control-label label-indent">인정사유</label></div>
+              <div class="col-xs-8 padder-sm">
+                  <select name="account" class="form-control m-t-xs m-l-xs" ng-model="recognizeCd"
+					ng-options="type_cd.codeId as type_cd.codeName1 for type_cd in types_cd">
+                      <option value="">제목</option>
+                    </select>
+                </div>   
+            </div> 
+            </form>        
+            <div>
+            <div class="tt m-b-none wrapper-xs">첨부서류</div>
+                <div class="form-group b-n">
+              
+              <div class="col-xs-4 no-padder">
+                  <button class="btn btn-dark btn-sm btn-info m-t-xs">
+					파일 첨부
+					<input type="file" select-ng-files ng-model="attendFile.att_file" ng-change="fileUpload();"
+					              style="opacity: 0; position: absolute; left: 0; width: 100px;height: 32px; top: 5px" />
+				  </button>
+			  	  <label class="uploader" ng-if="attendFile.att_file" ng-repeat="file in attendFile.att_file">
+                	{{ file.name }}
+                	<button type="button" id="file" class="btn btn-xs btn-default" ng-click="attendFile.att_file = null;">
+                  	<i class="fa fa-times primary"></i>
+                	</button>
+              	  </label>
+                </div>     
+            </div>    
+            </div>
+            <div>
+            <div class="tt m-b-none wrapper-xs">상세사유</div>
+             <div>
+                 <textarea class="border" ng-model="detailCnts"></textarea>
+            </div>  
+            </div>
+    </div>
+    
+      <div class="row m-t">
+<button type="submit" class="btn btn-xl btn-primary btn-block m-t-sm" ng-click="saveAttendAbsenceSave()">등록</button>
+        </div>
+  </div>
+
+	<style>
+		.dropdown-menu{right:auto}
+	</style>
+	<script>
+		$(".date").datepicker({
+			format: 'yyyy-mm-dd',
+			autoclose: true
+		});
+	</script>
+	
+</script>
+<script type="text/ng-template" id="popup4">
+<!-- 출석확정 가이드  
+강사가 출석을 등록하고, 학생이 서명하지 않은 상태에서는 '출석확정' 버튼이 나타남 
+'출석확정' 버튼은 출석/지각/출석인정 영역에 나타날 수 있음. 
+학생은 '출석확정'을 눌러 서명할 의무가 있음. 
+ex)
+ 1. 강사가 '출석'으로 등록 한 경우 : 출석 영역에 버튼표시
+ 2. 강사가 '지각'으로 등록 한 경우 : 지각 영역에 버튼 표시
+ 3. 강사가 '지각'으로 등록하고, 학생이 지각영역에 있는 '출석확정' 저장하지 않고, '출선인정신청' 한 경우 
+    -> 1) 관리자가 승인 전 : 지각 영역에 '출석확정' 버튼 표시
+    -> 2) 관리자가 승인 시 : 출석인정 영역에 '출석확정' 버튼이 표시 됨 
+    -> 3) 관리자가 거절 시 : 지각 영역에 '출석확정' 버튼 표시
+   (참고로 강사는 승인/거절 할 수 없음.)
+-->
+
+  	<div class="popup_wrap">
+      	<div class="popup_header">
+       	 	출석 확정<span class="pull-right closebtn " ng-click="cancel()"><img src="assets/img/close.png" class="img-full" alt="..."></span>
+    	</div>
+    	<div class="popup_body">
+            <form class="form-horizontal ng-pristine ng-valid b-t b-b m-b text-md">
+            	<div class="form-group">
+              		<div class="col-bg col-xs-4 no-padder"><label class=" control-label label-indent">일자</label></div>
+              		<div class="col-xs-8 no-padder"><label class=" control-label">{{tempAttItem.attDate}}</label></div>   
+            	</div>
+            	<div class="form-group">
+              		<div class="col-bg col-xs-4 no-padder"><label class=" control-label label-indent">시간</label></div>
+              		<div class="col-xs-8 no-padder">
+						<label class=" control-label">{{tempAttItem.attStartTime}} ~ {{tempAttItem.attEndTime}}</label>
+					</div>  
+            	</div>
+            	<div class="form-group">
+              		<div class="col-bg col-xs-4 no-padder"><label class=" control-label label-indent">상태</label></div>
+              		<div class="col-xs-8 no-padder"><label class=" control-label">출석확정 대기</label></div> 
+            	</div> 
+            </form>        
+            <div>
+            	<div class="m-b-none wrapper-sm">확인서명</div>
+             	<div class="heightfix-md border wrapper">
+                 	싸인패드영역
+           			<signature-pad accept="accept" clear="clear" height="220" width="568" dataurl="dataurl"></signature-pad>
+					<img ng-src="{{ signature.dataUrl }}" style="display:none" id="sign_img">
+            	</div>  
+            </div>
+    	</div>
+    
+      	<div class="row m-t-xl">
+			<button type="submit" class="btn btn-xl btn-primary col-xs-6" ng-click="approve()">등록</button>
+			<button type="submit" class="btn btn-xl btn-default col-xs-6" ng-click="clear()">삭제</button>
+        </div>
+  </div>
+
+</script>
+
+<script type="text/ng-template" id="popup2">
+<div class="popup_wrap">
+    <div class="popup_header">
+        보장성 수업신청<span class="pull-right closebtn " data-ng-click="cancel()"><img src="assets/img/close.png" class="img-full" alt="..."></span>
+    </div>
+    <div class="popup_body widthfix-xs m-auto">
+        <p class="m-t-md m-b-none">보장성 수업일자</p>
+        <div class="row">
+            <div class="col-xs-12 no-padder-left">
+                <div class="input-group input-group-md m-t date">
+                    <input type="text" class="form-control no-radius" readonly style="background: white;" ng-model="lectureNew2.scheduleDt">
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default no-shadow no-radius b-l-none"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <p class="m-t-lg">메모</p>
+        <div>
+            <textarea class="border" placeholder="" ng-model="lectureNew2.scheduleCnts" style="min-height: 80px"></textarea>
+        </div>
+        <div>
+            <div class="m-b-none wrapper-sm">
+				확인서명&nbsp;&nbsp;
+				<button type="submit" class="btn btn-sm btn-default" ng-click="clear()">지우기</button>			
+			</div>
+            <div class="heightfix-md border wrapper">
+                싸인패드영역
+                <signature-pad accept="accept" clear="clear" height="220" width="568" dataurl="dataurl"></signature-pad>
+                <img ng-src="{{ signature.dataUrl }}" style="display:none" id="sign_img">
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-xl btn-primary w-full m-t-lg" ng-click="approveEnrich()">등록</button>
+</div>
+	
+	<style>
+		.dropdown-menu{right:auto}
+	</style>
+	<script>
+		$(".date").datepicker({
+			format: 'yyyy-mm-dd',
+			autoclose: true
+		});
+	</script>
+
+</script>
+
+        <style>
+          .container2 {
+            border: 1px solid red;
+            padding: 10px 10px 40px 10px;
+            position: relative;
+            margin: 0 auto 0 auto;
+            height: 100%;
+          }
+
+          .container2 .signature {
+            border: 1px solid orange;
+            margin: 0 auto;
+            cursor: pointer;
+          }
+
+          .container2 .signature canvas {
+            border: 1px solid #999;
+            margin: 0 auto;
+            cursor: pointer;
+          }
+
+          .result {
+            border: 1px solid blue;
+            margin: 30px auto 0 auto;
+            height: 220px;
+            width: 568px;
+          }
+        </style>
+
+<!--로고 hide , back button show--->
+<script>
+    $(document).ready(function(){
+        $('.app').addClass('back')
+    })
+</script>
+<script>
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>

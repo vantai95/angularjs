@@ -1,0 +1,187 @@
+
+<div class="app-content-body" ng-controller="StudentController"
+	ng-init="init()">
+	<div class="wrapper-md">
+		<div class="row wrapper no-padder-top widthfix-xxs m-auto">
+			<span class="text-md primary text-center col-xs-6"
+				ui-sref="app.mylecture.index">진행중 강의</span> <span
+				class="text-md text-center col-xs-6"
+				ui-sref="app.mylecture.index_endLecture">종료된 강의</span>
+		</div>
+		<div class="widthfix-lg m-auto" >
+			<div ng-repeat="item in my_lecture_list">
+				<!---강의 컨텐츠 start---->
+				<div class="col-xs-12 col-sm-4 no-padder">
+					<div class="wrapper-xs">
+						<div class="panel panel-default border m-b-sm">
+							<div class="panel-heading font-bold rightAR text-left"
+								ui-sref="app.mylecture.lecture({ltCd : item.ltCd})">
+								{{item.lectureNm}}
+								<div class="text-xs font-thin text-ellipsis w-lg m-t-n-sm">{{item.lecturePlaceNm}}</div>
+							</div>
+							<div class="panel-body">
+								<div class="table-responsive b-n">
+									<table class="table mini-table m-b-none">
+										<tbody>
+											<tr>
+												<td class="w-xs">강의일시</td>
+												<td>{{item.startDt}} ~ {{item.endDt}}</td>
+											</tr>
+											<tr>
+												<td>강의시간</td>
+												<td>
+													<div ng-repeat="sc_item in item.schedule">
+														({{sc_item.scheduleWeekKor}}) {{sc_item.scheduleStartTime}} {{sc_item.scheduleEndTime}}
+													</div>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<div class="wrapper">
+									<div class="m-b-xs">
+										<span class="text-sm">진행률</span> <span
+											class="text-sm pull-right">{{item.nowAttCnt}}/{{item.lectureTotalCnt}}</span>
+									</div>
+									<div class="progress">
+									  <div class="progress-bar progress-bar-info" role="progressbar" 
+									  aria-valuemin="0" aria-valuemax="100"  ng-style="{ 'width': ((item.nowAttCnt / item.lectureTotalCnt) * 100) + '%' }">
+									  </div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!---강의 컨텐츠 end---->
+			</div>
+
+
+
+		</div>
+		<!---만족도설문 플로팅배너--->
+		<div class="fix float_banner survBtn" ng-if="survey_info[0].cnt > 0">
+			<span class="closeArea" ng-click="hideSurv()" style="display:block; z-index:4"></span>
+			<a class="banner" ng-click="openPopup()"> <img src="./assets/img/poll_banner.png" width="150"></a>
+		</div>
+		
+	</div>
+	<script type="text/ng-template" id="popup">
+  <div class="popup_wrap"  ng-init="init()">
+      <div class="popup_header">
+        수강만족도 설문<span class="pull-right closebtn" data-ng-click="cancel()"><img src="assets/img/close.png" class="img-full"></span>
+    </div>
+    <div class="wrapper-lg text-center">
+        <span class="w-xxs m-auto">
+            <img src="assets/img/sms_profile_ico.png" width="52">
+          </span>
+        <p class="m-t font-thin">안녕하세요, {{current_user.userName}} 회원님 ,보다 나은 수업을 위하여<br> 
+수강하신 강의에 대한 설문 응답을 해주시기 바랍니다.</p>
+    </div>  
+    <div class="wrapper bg-gray">
+        <div class="panel panel-default border m-b-sm widthfix-xs m-auto">
+        <div class="padder-v">
+        <div class="b-n m-b-none">
+          <table class="table mini-table m-b-none">
+            <tbody>
+              <tr>
+                <td class="w-xs">강의기간</td>
+                <td>{{surv_detail.startDt}}  &nbsp;  -   &nbsp; {{surv_detail.endDt}}</td>
+              </tr>
+              <tr>
+                <td>강사명</td>
+                <td>{{surv_detail.tcNm}}</td>
+              </tr>
+              <tr>
+                <td>강의명</td>
+                <td>{{surv_detail.lectureNm}}</td>
+              </tr>    
+            </tbody>
+          </table>
+        </div>   
+        </div>
+    </div>
+        <!----설문문항----->
+        <div class="survey_btn_wrap" ng-repeat="surv_detail_item in surv_detail_items">
+       		<p class="m-t-md m-b-none">{{$index+1}}. {{surv_detail_item[0].survTitle}}</p>
+        	<div class="row flexbox m-t-xs" ng-if="surv_detail_item[0].survType=='M'">
+            	<button style="margin: 1px" ng-repeat="item in surv_detail_item"
+				ng-click="select(item)" ng-class="{'btn-primary': item.ssCd == selected[item.stCd].ssCd}"
+			 class="btn btn-xs w-20 text-center no-padder no-radius">{{item.survNm}}</button>&nbsp;&nbsp;
+        	</div>
+        	<div class="row m-t-xs" ng-if="surv_detail_item[0].survType=='S'">
+            	<textarea class="border" ng-model="surv_detail_item[0].cnts"></textarea>
+        	</div>
+        </div>
+        <!----설문문항end----->
+        <div class="primary wrapper-lg text-sm text-center">
+            (본 설문은 수업평가 및 개선을 위해 사용되며<br>
+응답 결과에 대한 개인적인 정보는 저장되지 않습니다.) 
+        </div>
+    </div>   
+      <button type="submit" ng-click="save()" class="btn btn-xl btn-primary w-full">설문완료</button>       
+  </div>
+
+</script>
+	<!--app, app-content body 에 그레이톤 배경 추가--->
+	<script>
+    $(document).ready(function(){
+        $('.app-content-body').addClass('bg-gray');
+        $('.app').addClass('bg-gray');
+        $('.app').addClass('back');
+        $('body').addClass('pc-popup-md')
+    })
+</script>
+
+</div>
+<script type="text/ng-template" id="popup213">
+
+<!----설문문항----->
+<div class="survey_btn_wrap">
+<p class="m-t-md m-b-none ">2. 강사는 수업 목적에 맞춰 내용을 체계적으로 전달하였습니까?</p>
+<div class="row flexbox m-t-xs">
+    <button class="btn btn-xs btn-info w-20 text-center no-padder no-radius">매우그렇다<br>(5점)</button>&nbsp;
+    <button class="btn btn-xs btn-primary w-20 text-center no-padder no-radius">그렇다<br>(4점)</button>&nbsp;
+    <button class="btn btn-xs btn-info w-20 text-center no-padder no-radius">보통이다<br>(3점)</button>&nbsp;
+    <button class="btn btn-xs btn-info w-20 text-center no-padder no-radius">그렇지 않다<br>(2점)</button>&nbsp;
+    <button class="btn btn-xs btn-info w-20 text-center no-padder no-radius">전혀 아니다<br>(1점)</button>
+</div>
+</div>
+<!----설문문항end----->
+<!----설문문항----->
+<div class="survey_btn_wrap">
+<p class="m-t-md m-b-none ">3. 강사는 수업시간을 체계적으로 운영하였습니까?</p>
+<div class="row flexbox m-t-xs">
+    <button class="btn btn-xs btn-info w-20 text-center no-padder no-radius">매우그렇다<br>(5점)</button>&nbsp;
+    <button class="btn btn-xs btn-primary w-20 text-center no-padder no-radius">그렇다<br>(4점)</button>&nbsp;
+    <button class="btn btn-xs btn-info w-20 text-center no-padder no-radius">보통이다<br>(3점)</button>&nbsp;
+    <button class="btn btn-xs btn-info w-20 text-center no-padder no-radius">그렇지 않다<br>(2점)</button>&nbsp;
+    <button class="btn btn-xs btn-info w-20 text-center no-padder no-radius">전혀 아니다<br>(1점)</button>
+</div>
+</div>
+<!----설문문항end----->
+<!----설문문항----->
+<div class="survey_btn_wrap">
+<p class="m-t-md m-b-none ">4. 수업내용이 학습자 실력향상에 도움이 되었습니까?</p>
+<div class="row flexbox m-t-xs">
+    <button class="btn btn-xs btn-info w-20 text-center no-padder no-radius">매우그렇다<br>(5점)</button>&nbsp;
+    <button class="btn btn-xs btn-primary w-20 text-center no-padder no-radius">그렇다<br>(4점)</button>&nbsp;
+    <button class="btn btn-xs btn-info w-20 text-center no-padder no-radius">보통이다<br>(3점)</button>&nbsp;
+    <button class="btn btn-xs btn-info w-20 text-center no-padder no-radius">그렇지 않다<br>(2점)</button>&nbsp;
+    <button class="btn btn-xs btn-info w-20 text-center no-padder no-radius">전혀 아니다<br>(1점)</button>
+</div>
+</div>
+<!----설문문항end----->
+<!----설문문항----->
+<div class="survey_btn_wrap">
+<p class="m-t-md m-b-none ">5. 수업 중 어느 부분이 가장 유익하고 도움이 되었습니까?</p>
+<div class="row flexbox m-t-xs">
+    <button class="btn btn-xs btn-info w-20 text-center no-padder no-radius">유창성 및<br>발음(5점)</button>&nbsp;
+    <button class="btn btn-xs btn-primary w-20 text-center no-padder no-radius">정확성<br>(문법,작문,독해)</button>&nbsp;
+    <button class="btn btn-xs btn-info w-20 text-center no-padder no-radius">이해도 및<br>청취력</button>&nbsp;
+    <button class="btn btn-xs btn-info w-20 text-center no-padder no-radius">어휘력</button>&nbsp;
+    <button class="btn btn-xs btn-info w-20 text-center no-padder no-radius">자신감</button>
+</div>
+</div>
+<!----설문문항end----->
+</script>

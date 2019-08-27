@@ -1,0 +1,97 @@
+
+<div class="app-content-body " ng-controller="studentQNAController" ng-init="init()">
+<div class="wrapper-md">
+  <div class="panel panel-default">
+    <div class="panel-heading font-bold">
+      수강지원센터
+        <!-- <button type="submit" class="btn btn-primary pull-right btn-m" ui-sref="app.teacher.insert">강사 신규등록</button> -->
+    </div>
+      
+    <div class="panel-body">
+      <form class="form-horizontal" method="get" action="">
+          <div class="form-group b-n">
+          <label class="col-sm-1 control-label">구분</label>
+          <div class="col-sm-2">
+            <select name="selected_shInquiryType" class="form-control input-sm" ng-model="selected_shInquiryType" ng-options="type.codeId as type.codeName1 for type in type_inquiry">
+              <option value="">전체</option>
+            </select>
+          </div>
+          <label class="col-sm-1 col-sm-offset-3 control-label">상태</label>
+          <div class="col-sm-2">
+            <select name="selected_shAnswerYn" class="form-control input-sm" ng-model="selected_shAnswerYn">
+              <option value="">전체</option>
+              <option value="N">미답변</option>
+              <option value="Y">답변완료</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group b-n">
+          <label class="col-sm-1 control-label">작성자</label>
+          <div class="col-sm-2">
+            <input name="selected_shUserName" class="form-control input-sm" type="text" ng-model="selected_shUserName" maxlength="20">
+          </div>
+            <label class="col-sm-1 col-sm-offset-3 control-label">제목</label>
+          <div class="col-sm-2">
+            <input name="selected_shInquiryTitle" class="form-control input-sm" type="text" ng-model="selected_shInquiryTitle" maxlength="100">
+          </div>
+        </div>
+      </form>
+    </div>
+      <div class="panel-footer">
+          <div class="row">
+            <button type="submit" class="btn btn-dark pull-right btn-m" ng-click="lookup()">조회</button>        
+          </div>
+      </div>
+  </div>
+    <div class="panel panel-default">
+    <div class="table-responsive teacher_table">
+        <table class="table b-t b-light" ng-if="result_support_centers.length > 0">
+            <thead>
+              <tr class="active">
+                  <th>No</th>
+                  <th>구분</th>
+                  <th>제목</th>
+                  <th>작성자</th>
+                  <th>고객사명</th>
+                  <th>등록일</th>
+                  <th>상태</th>
+                  <th>조회수</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="support_center in result_support_centers">
+                <td>{{generateListNo(current_page, total_support_centers, $index)}}</td>
+                <td>{{support_center.inquiryTypeNm}}</td>
+                <td><a class="primary underline" ui-sref="app.student_qna.view({id: support_center.scCd})">{{support_center.inquiryTitle}}</a></td>
+                <td>{{support_center.userName}}</td>
+                <td>{{support_center.compNm}}</td>
+                <td>{{support_center.regDt}}</td>
+                <td>{{support_center.answerYnNm}}</td>
+                <td>{{support_center.hits}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
+    <div class="row" ng-if="total_support_centers > app.page_size">
+			<div class="text-center">
+				<ul class="pagination pagination-sm m-t-none m-b-none">
+					<li ng-click="previousPageClick()"><a href=""><i
+							class="fa fa-chevron-left"></i></a></li>
+					<li ng-repeat="page in getRange(total_pages) track by $index"
+						class="{{current_page == $index + 1 ? 'active' : ''}}"
+						ng-click="setCurrentPage($index + 1)"><a href="">{{$index
+							+ 1}}</a></li>
+					<li ng-click="nextPageClick()"><a href=""><i
+							class="fa fa-chevron-right"></i></a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="panel panel-default default_result"
+			ng-if="support_centers.length == 0">
+			<p class="text-center text-lg">선택된 항목이 없습니다.</p>
+		</div>
+</div>
+</div>
+  <script src="./pages/student_qna/student_qna_controller.js">
+  </script>

@@ -1,0 +1,671 @@
+<div class="app-content-body" ng-controller="AttendController"
+	ng-init="init()">
+	<!--강의목록 s---->
+	<div class="panel panel-body no-shadow m-b-n-xs padder-vsm bg-gray">
+		<div class="pc-padder">
+			<form
+				class="form-horizontal widthfix m-auto pull-none col-xs-12 col-sm-4 no-padder">
+				<div class="form-group b-n pc-padder">
+					<div class="col-xs-4 col-sm-3 no-padder-left">
+						<label class="control-label text-md"><span data-langNum="65">강의목록</span></label>
+					</div>
+					<div class="col-xs-8 col-sm-9 no-padder">
+			            <select name="account" class="form-control m-t-xs" ng-model="select_lecture" ng-change="getAttendLectureDetail()"
+			              ng-options="item.ltCd as item.lectureNm for item in lecture_list_box">
+			              <option value="">제목</option>
+			            </select>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<!--강의목록 e---->
+	<!--LNB s-->
+	<div class="lnb_wraper">
+		<div class="lnb_wrap clearfix">
+            <a class="lnb" ui-sref="app.mylecture.lecture({ltCd: select_lecture})"><span data-langNum="38">기본 정보</span></a>
+            <a class="lnb" ui-sref="app.mylecture.student({ltCd: select_lecture})"><span data-langNum="39">수강생현황</span></a>
+            <a class="lnb" ui-sref="app.mylecture.lvtest({ltCd: select_lecture})"><span data-langNum="40">레벨테스트</span></a>
+            <a class="lnb active" ui-sref="app.mylecture.attend({ltCd: select_lecture})"><span data-langNum="41">출석현황</span></a>
+            <a class="lnb" ui-sref="app.mylecture.test({ltCd: select_lecture})"><span data-langNum="42">성취도평가</span></a>
+            <a class="lnb" ui-sref="app.mylecture.alert_list({ltCd: select_lecture})"><span data-langNum="43">알림게시판</span></a>
+		</div>
+	</div>
+	<!--LNB e-->
+
+	<div class="widthfix-lg m-auto" ng-if="select_lecture==null">
+		<div class="wrapper">
+			<div class="pc-big">
+				<p class="tt text-center">강의를 선택해주세요.</p>
+			</div>
+		</div>
+	</div>
+	<div class="widthfix-lg m-auto" ng-if="select_lecture!=null">
+		<div class="wrapper">
+			<div class="pc-big">
+				<p class="tt text-center">{{lecture_detail.lectureNm}}</p>
+				<div class="text-center">
+					<span class="wrapper-xs bg-darkgray text-md">{{lecture_detail.startDt}}~
+						{{lecture_detail.endDt}} / 총 {{lecture_detail.lectureTotalCnt}}차시</span>
+				</div>
+				<div class="text-center">
+					<span class="wrapper-xs bg-darkgray text-md "
+						ng-repeat="x in schedule_list">{{x.scheduleWeekKor}} {{x.scheduleStartTime}}~{{x.scheduleEndTime}}<br></span>
+				</div>
+			</div>
+		</div>
+		<div class="wrapper-md no-padder-top attend_wrap">
+			<div class="row padder-vsm">
+				<span class="form-group b-n">
+				    <div class="col-sm-5 no-padder-left">
+				        <div class="col-sm-3 no-padder-right">
+				            <input class="form-control input-sm date dateStr" type="text" ng-model="search.startDt" readonly style="background: white; min-width:90px;">
+				        </div>
+				        <label class="control-label col-sm-1 text-center" style="line-height:40px;">─</label>
+				        <div class="col-sm-3 no-padder-left">
+				            <input class="form-control input-sm date dateEnd" type="text" ng-model="search.endDt" readonly style="background: white; min-width:90px;">
+				        </div>
+				        <div class="col-sm-4 no-padder-left">
+				        	<button type="submit" class="form-control btn btn-dark btn-s" ng-click="changeAttendDt()" style="height:30px; margin-top: 5px;">기간 조회</button>
+				        </div>
+				        <script>
+							$(function() {
+								$(".dateStr, .dateEnd").datepicker({
+									format : "yyyy-mm-dd",
+									autoclose: true
+								});
+							});
+						</script>
+				    </div>	    
+				</span>
+						
+				<span class="pull-right text-md" style="line-height: 40px;">평균 출석률 : {{lecture_detail.totalAttendAvg||0}}%</span>
+			</div>
+			<!----출결현황 s----->
+			<div class="panel-body no-padder">
+				<div class="table-horizontal-wrap">
+					<table class="table table-bordered b-light m-b-none"
+						ng-if="select_lecture!=null">
+						<thead>
+							<tr class="active">
+								<th rowspan="2" class="m-w v-middle"><span data-langNum="81">수강생</span></th>
+								<th rowspan="2" class="m-w v-middle"><span data-langNum="45">출석률</span></th>
+								<th ng-repeat="attend_student in attend_student_list" ng-if="attend_student.stCd == student_list[0].stCd">
+									<a class="primary underline" ng-click="openPopup4(attend_student.attDate)">{{attend_student.attDate | date: 'MM-dd'}}({{attend_student.attWeek}})</a>
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="student in student_list">
+								<td><a class="primary underline" ng-click="openPopup5(student)">{{student.studentNm}}</a></td>
+								<td>{{student.attendRate}}%</td>
+								<!-- <td ng-repeat="attend_student in attend_student_list" ng-if="attend_student.stCd == student.stCd" ng-bind-html="setTable(attend_student)"></td> -->
+								<td ng-repeat="attend_student in attend_student_list" ng-if="attend_student.stCd == student.stCd">
+									<span ng-if="attend_student.lectureType == '02'">(휴강) </span>
+									<span ng-if="attend_student.lectureType == '03'">(보강) </span>
+									<span ng-if="attend_student.lectureType == '04'">(☆) </span>
+									<span ng-if="attend_student.attState == '01'" class="primary">O</span>
+									<span ng-if="attend_student.attState == '02'" class="danger"
+										data-toggle="tooltip" data-placement="top" data-original-title="{{attend_student.attCnts}}">
+										X
+										<script>$('[data-toggle="tooltip"]').tooltip(); </script>
+									</span>
+									<span ng-if="attend_student.attState == '03'">△</span>
+									<span ng-if="attend_student.attState == '04'">◎</span>
+									<span ng-if="attend_student.attState == '05'">확정대기</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<!----출결현황 e----->
+		</div>
+		
+		<!----보장성수업 신청 목록 end---->
+		<div ng-if="enrich_list.length > 0">
+			<p class="tt padder m-b-none" data-langNum="84">보장성수업 신청내역</p>
+			<div class="wrapper-xs clearfix">
+				<!---panel--->
+				<div class="col-xs-6 no-padder col-sm-2" ng-repeat="item in enrich_list">
+					<div class="m-xs">
+						<div class="panel panel-default mini-panel m-b-none border">
+							<div class="panel-body no-padder">
+								<form class="form-horizontal ng-pristine ng-valid" method="get">
+									<div class="form-group b-n">
+										<div class="mini-content wrapper-sm padder-v">
+											<div class="m-t-xs text-sm">수업일 : {{item.scheduleDt}}</div>
+											<div class="m-t-xs text-sm">등록일 : {{item.regDt}}</div>
+											<div class="m-t-xs text-sm">메모 : {{item.scheduleCnts}}</div>											
+										</div>
+										<div class="row ng-scope">
+											<button type="submit"
+													class="btn btn-md btn-primary btn-block"
+													ng-click="openPopup2(item)">승인요청</button>
+										</div>										
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>				
+				<!---panel end--->
+			</div>		
+		</div>
+		<!----보장성수업 신청 목록 end---->
+		
+		
+		<!---출석인정신청내역+버튼 wrap--->
+		<div>
+			<p class="tt padder m-b-none"><span data-langNum="54">출석인정신청내역</span></p>
+			<!---출석인정신청내역 s--->
+			<div class="wrapper-xs clearfix">
+				<!---panel--->
+				<div class="col-xs-6 no-padder col-sm-2"
+					ng-repeat="attend_absence in attend_absence_list">
+					<div class="m-xs">
+						<div class="panel panel-default mini-panel m-b-none border">
+							<div class="panel-body no-padder">
+								<form class="form-horizontal ng-pristine ng-valid" method="get">
+									<div class="form-group b-n">
+										<div class="mini-content wrapper-sm padder-v">
+											<div class="row">
+												<div class="pull-left">
+													<span class="thumb-xs w-auto-folded avatar"> <img
+														src="assets/img/profile.png" class="img-full" alt="...">
+													</span>&nbsp;{{attend_absence.studentNm}}
+												</div>
+												<span class="pull-right m-t-xs">{{attend_absence.absenceDt2}}</span>
+											</div>
+											<div class="m-t-xs text-sm">{{attend_absence.detailCnts}}</div>
+											<a class="primary underline text-sm" href="{{attend_absence.pathServer}}/{{attend_absence.fileName}}" target="_blank" ng-if="attend_absence.pathServer">
+												{{attend_absence.originalName}}
+											</a>
+											<span ng-if="!attend_absence.pathServer">-</span>
+										</div>
+										<!-- 19/4/30 주석처리 (관리자에서만 승인/반려 가능하도로고 변경 됨)  
+										<div class="row ng-scope">
+											<div class="col-xs-6 no-padder">
+												<button type="submit" class="btn btn-md btn-dark btn-block"
+													ng-click="popupAttendAbsence(attend_absence)">반려</button>
+											</div>
+											<div class="col-xs-6 no-padder">
+												<button type="submit"
+													class="btn btn-md btn-primary btn-block"
+													ng-click="popupAttendAbsence(attend_absence)">승인</button>
+											</div>
+										</div> -->
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!---panel end--->
+			</div>
+			<!---출석인정신청내역 e--->
+			<!--등록 버튼그룹-->
+			<div class="wrapper-xs m-t-sm clearfix m-b-xl widthfix-xs m-auto">
+				<div class="col-xs-12 no-padder">
+					<div class="m-xs">
+						<button type="submit"
+							class="btn btn-md btn-borderPrimary btn-block no-radius"
+							ng-click="openPopup()"><span data-langNum="57">휴강/보강 등록</span></button>
+					</div>
+				</div>
+				<!-- 5/30 수정 보장성수업은 학생이 등록 후, 강사는 확인 등록하는 폼으로 변경  
+				<div class="col-xs-6 no-padder">
+					<div class="m-xs">
+						<button type="submit"
+							class="btn btn-md btn-borderPrimary btn-block no-radius"
+							ng-click="openPopup2()">보장성 수업 등록
+						</button>
+					</div>
+				</div> -->
+			</div>
+		</div>
+		<!----출석인정신청내역+버튼 wrap end---->
+	</div>
+</div>
+
+
+<script type="text/ng-template" id="popup">
+  <div class="popup_wrap" ng-init="initPopup1()">
+      <div class="popup_header">
+        <span data-langNum="57">휴강/보강 등록</span><span class="pull-right closebtn " data-ng-click="cancel()"><img src="assets/img/close.png" class="img-full" alt="..."></span>
+    </div>
+    <div class="popup_body widthfix-xs m-auto">
+        <!--휴강, 보강 active = btn-primary , default = bg-black text-dark--->
+        <div class="row ng-scope">
+            <div class="col-xs-6 no-padder">
+                <button type="submit" ng-click="lectureNew1.lectureType='02';classButton1='btn-primary';classButton2='bg-black';" ng-class="classButton1" class="btn btn-lg btn-block no-radius no-shadow"><span data-langNum="82">휴강</span></button>    
+            </div>
+            <div class="col-xs-6 no-padder">
+                <button type="submit" ng-click="lectureNew1.lectureType='03';classButton2='btn-primary';classButton1='bg-black';" ng-class="classButton2" class="btn btn-lg btn-block  text-dark no-radius no-shadow"><span data-langNum="83">보강</span></button>    
+            </div>
+        </div>
+        <div class="input-group input-group-lg m-t date">
+          <input type="text" ng-model="lectureNew1.scheduleDt" readonly style="background: white;" class="form-control no-radius">
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default no-shadow no-radius b-l-none">
+				<i class="glyphicon glyphicon-calendar"></i>
+			</button>
+          </span>
+        </div>
+      <p class="m-t-md text-md padder-sm" data-langNum="88">사유</p>    
+      <div>
+        <textarea class="border text-md" ng-model="lectureNew1.scheduleCnts" placeholder="사유입력"></textarea>  
+     </div>     
+    </div>   
+      <button type="submit" ng-click="save()" class="btn btn-xl btn-primary w-full m-t-lg"><span data-langNum="52">등록</span></button>       
+  </div>
+	
+	<script src="assets/js/language.js"></script>		
+</script>
+
+
+<script type="text/ng-template" id="popup2">
+<div class="popup_wrap">
+    <div class="popup_header" ng-init="initEnrich()">
+        <span data-langNum="85">(보장성 수업) 취소통보일자 등록</span><span class="pull-right closebtn " data-ng-click="cancel()"><img src="assets/img/close.png" class="img-full" alt="..."></span>
+    </div>
+    <div class="popup_body widthfix-xs m-auto">
+        <p class="m-t-md m-b-none" span data-langNum="86">보장성 수업일자</p>
+        <div class="row">
+            <div class="col-xs-12 no-padder-left">
+                <div class="input-group input-group-md m-t">
+                    <input type="text" class="form-control no-radius" readonly ng-model="lectureNew2.scheduleDt">
+                </div>
+            </div>
+			
+			<div class="col-xs-5 no-padder">
+            	<div class="input-group input-group-md m-t" style="width:100%";>
+					<select class="form-control " ng-model="time.startHour" style="width: 48%; margin-right:3px; padding:7px; float:left;" 
+							ng-options="item.hour as item.hour for item in hour_list" ng-change="checkComfirmTime()">
+                        <option value="">시</option>
+                    </select>              		
+					<select class="form-control " ng-model="time.startMinute" style="width: 48%; padding:7px;" 
+							ng-options="item.minute as item.minute for item in minute_list" ng-change="checkComfirmTime()">
+                       	<option value="">분</option>
+                    </select>
+            	</div>
+            </div>
+			<label class="control-label col-xs-1 text-center m-t-md">~</label>            
+			<div class="col-xs-5 no-padder">
+            	<div class="input-group input-group-md m-t" style="width:100%";>
+					<select class="form-control " ng-model="time.endHour" style="width: 48%; margin-right:3px; padding:7px; float:left;" ng-options="item.hour as item.hour for item in hour_list">
+                        <option value="">시</option>
+                    </select>              		
+					<select class="form-control " ng-model="time.endMinute" style="width: 48%; padding:7px;" ng-options="item.minute as item.minute for item in minute_list">
+                       	<option value="">분</option>
+                    </select>
+            	</div>
+            </div>
+        </div>
+
+        <p class="m-t-md m-b-none" data-langNum="64">취소통보일자</p>
+        <div class="row">
+            <div class="col-xs-7 no-padder-left">
+                <div class="input-group input-group-md m-t date">
+                    <input type="text" class="form-control no-radius" readonly style="background: white;" ng-model="lectureNew2.enrichCancelDt">
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default no-shadow no-radius b-l-none"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+            </div>
+
+			<div class="col-xs-5 no-padder">
+            	<div class="input-group input-group-md m-t" style="width:100%";>
+					<select class="form-control " ng-model="time.cancelHour" style="width: 48%; margin-right:3px; padding:7px; float:left;" 
+							ng-options="item.hour as item.hour for item in hour_list" ng-change="checkComfirmTime()">
+                        <option value="">시</option>
+                    </select>              		
+					<select class="form-control " ng-model="time.cancelMinute" style="width: 48%; padding:7px;" 
+							ng-options="item.minute as item.minute for item in minute_list" ng-change="checkComfirmTime()">
+                       	<option value="">분</option>
+                    </select>
+            	</div>
+            </div>            
+        </div>
+        <p class="wrapper-sm"><span id="check_time" class="underline primary">0</span>전 통보</p>
+        <p class="m-t-lg" span data-langNum="87">메모</p>
+        <div>
+            <textarea class="border" ng-model="lectureNew2.scheduleCnts" style="background:#eee;" readonly></textarea>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-xl btn-primary w-full m-t-lg" ng-click="save()"><span data-langNum="52">등록</span></button>
+</div>
+
+	<script src="assets/js/language.js"></script>
+</script>
+
+<script type="text/ng-template" id="popupAttendAbsence">
+  <div class="popup_wrap">
+      <div class="popup_header">
+        출석 인정 승인<span class="pull-right closebtn " data-ng-click="cancel()"><img src="assets/img/close.png" class="img-full" alt="..."></span>
+    </div>
+    <div class="popup_body widthfix-xs m-auto">
+            <!---profile---->
+            <div class="dropdown wrapper text-center text-sm no-padder-top hidden-md hidden-lg">
+          <span class="thumb-lg w-auto-folded avatar">
+            <img src="assets/img/profile.png" class="img-full" alt="...">
+          </span>
+          <span class="clear">
+            <span class="block m-t-sm text-md">
+              김정민 (kjm0604)
+            </span>
+          </span>
+            </div>
+            <!------profile e------>
+            <form class="form-horizontal ng-pristine ng-valid b-t b-b m-b m-t-lg">
+            <div class="form-group">
+              <div class="col-bg col-xs-4 no-padder"><label class=" control-label label-indent">신청인</label></div>
+              <div class="col-xs-8 no-padder"><label class=" control-label">{{attend_absence.studentNm}}</label></div>    
+            </div>
+            <div class="form-group">
+              <div class="col-bg col-xs-4 no-padder"><label class=" control-label label-indent">요청일</label></div>
+              <div class="col-xs-8 no-padder"><label class=" control-label">{{attend_absence.absenceDt}}</label></div>   
+            </div>
+            <div class="form-group">
+              <div class="col-bg col-xs-4 no-padder"><label class=" control-label label-indent">인정사유</label></div>
+              <div class="col-xs-8 no-padder"><label class=" control-label">{{attend_absence.recognizeCdNm}}</label></div>   
+            </div>
+            <div class="form-group">
+              <div class="col-bg col-xs-4 no-padder"><label class=" control-label label-indent">상세사유</label></div>
+              <div class="col-xs-8 no-padder"><label class=" control-label">{{attend_absence.detailCnts}}
+</label></div>   
+            </div>
+            <div class="form-group">
+              <div class="col-bg col-xs-4 no-padder"><label class=" control-label label-indent">첨부서류</label></div>
+              <div class="col-xs-8 no-padder">
+				<a class="primary underline text-sm" href="{{attend_absence.pathServer}}/{{attend_absence.fileName}}" target="_blank" ng-if="attend_absence.pathServer">
+					{{attend_absence.originalName}}
+				</a>
+				<span ng-if="!attend_absence.pathServer">-</span>
+			  </div>   
+            </div>  
+            </form>        
+    </div>   
+      <div class="row m-t marginBTN">
+            <div class="col-xs-6 no-padder">
+                <button type="submit" class="btn btn-lg btn-dark btn-block no-radius" ng-click="savepopupAttendAbsence('R')">반려</button>    
+            </div>
+            <div class="col-xs-6 no-padder">
+                <button type="submit" class="btn btn-lg btn-primary btn-block no-radius no-shadow" ng-click="savepopupAttendAbsence('S')">승인</button>    
+            </div>
+        </div>
+  </div>
+	<script src="assets/js/language.js"></script>
+</script>
+
+<script type="text/ng-template" id="popup4">
+  <div class="popup_wrap">
+      <div class="popup_header" ng-init="initPopup4()">
+        출석 등록<span class="pull-right closebtn " data-ng-click="cancel()"><img src="assets/img/close.png" class="img-full" alt="..."></span>
+    </div>
+    <div class="popup_body">
+        <form class="form-horizontal ng-pristine ng-valid" method="get">
+        <div class="widthfix-xxs m-auto">
+        <div class="form-group b-n">
+          <label class="col-xs-4 control-label">{{popup4_attendStudent_list[0].selectDate}}</label>
+          <div class="col-xs-8 no-padder">
+            <div class="col-xs-5 no-padder">
+            <input class="form-control input-sm" type="text" ng-model="popup4_time.attStartTime">
+            </div>
+            <label class="control-label col-xs-2 text-center">─</label>
+            <div class="col-xs-5 no-padder">
+            <input class="form-control input-sm" type="text" ng-model="popup4_time.attEndTime">
+            </div>
+          </div>
+        </div>
+        </div>	
+		<!--싸인패드 영역 시작--->
+		<div id="sign_content">
+           	<div class="m-b-none wrapper-sm">
+				<span>확인서명 (해당 날짜에 최초 1회만 기입합니다.)</span> 
+				<button type="submit" class="btn btn-sm btn-default" ng-click="clear()">지우기</button>
+			</div>
+			
+           	<div class="heightfix-md border wrapper">
+               	싸인패드영역
+        		<signature-pad accept="accept" clear="clear" height="220" width="568" dataurl="dataurl"></signature-pad>
+				<img ng-src="{{ signature.dataUrl }}" style="display:none" id="sign_img">
+           	</div>
+        </div>		
+    	<!--싸인패드 영역 끝--->
+        <!---출석테이블--->    
+        <div class="table-horizontal-wrap heightfix m-t attend_wrap">
+              <table class="table table-bordered b-t b-light m-b-none">
+                    <thead>
+                    <tr class="active">            
+                        <th rowspan="2" class="no-padder w-xxs"><span data-langNum="81">수강생</span></th>
+                        <th class="no-padder w-xxs"><span data-langNum="10">출석</span></th>
+                        <th class="no-padder w-xxs"><span data-langNum="48">결석</span></th>
+                        <th class="no-padder w-xxs"><span data-langNum="63">지각</span></th>
+                        <th class="no-padder w-xxs">출석인정</th>
+                        <th rowspan="2" class="no-padder w-xxs hidden-xs hidden-sm"><span data-langNum="60">비고</span></th>
+						<th rowspan="2" class="no-padder w-xxs" ng-if="attendInfo.attendanceYn == 'Y'">서명</th>
+                      </tr>
+                      <tr class="active">
+                        <th class="no-padder" ng-click="checkAll('01')"><img ng-if="id_check_all=='01'" class="m-t-sm" src="assets/img/attend_check.png">
+							<img ng-if="id_check_all!='01'" class="m-t-sm" src="assets/img/attend_check_disabled.png"><p class="text-xs m-t-xs">전체선택</p></th>
+                        <th class="no-padder" ng-click="checkAll('02')"><img ng-if="id_check_all=='02'" class="m-t-sm" src="assets/img/attend_check.png">
+							<img ng-if="id_check_all!='02'" class="m-t-sm" src="assets/img/attend_check_disabled.png"><p class="text-xs m-t-xs">전체선택</p></th>
+                        <th class="no-padder" ng-click="checkAll('03')"><img ng-if="id_check_all=='03'" class="m-t-sm" src="assets/img/attend_check.png">
+							<img ng-if="id_check_all!='03'" class="m-t-sm" src="assets/img/attend_check_disabled.png"><p class="text-xs m-t-xs">전체선택</p></th>
+                        <th class="no-padder" ng-click="checkAll('04')"><img ng-if="id_check_all=='04'" class="m-t-sm" src="assets/img/attend_check.png">
+							<img ng-if="id_check_all!='04'" class="m-t-sm" src="assets/img/attend_check_disabled.png"><p class="text-xs m-t-xs">전체선택</p></th>
+                      </tr>      
+                    </thead>
+                    <tbody>
+                        <!---class ---클릭 : text-white, bg-primary / 기본 : text-muted---->
+                     <tr ng-repeat="student in popup4_attendStudent_list" >
+						<td class="active no-padder text-sm">{{student.studentNm}}</td> 
+						<td id="01" ng-click="student.attState='01';checkTdPopup4('01');" ng-class="student.attState == '01' ? 'text-white bg-primary' : 'text-muted'" class="no-padder text-sm "><span data-langNum="10">출석</span></td>
+                        <td id="02" ng-click="student.attState='02';checkTdPopup4('02');" ng-class="student.attState == '02' ? 'text-white bg-primary' : 'text-muted'" class="no-padder text-sm"><span data-langNum="48">결석</span></td>
+                        <td id="03" ng-click="student.attState='03';checkTdPopup4('03');" ng-class="student.attState == '03' ? 'text-white bg-primary' : 'text-muted'" class="no-padder text-sm"><span data-langNum="63">지각</span></td> 
+                        <td id="04" ng-click="student.attState='04';checkTdPopup4('04');" ng-class="student.attState == '04' ? 'text-white bg-primary' : 'text-muted'" class="no-padder text-sm">출석인정</td>
+                        <td class="no-padder text-sm text-muted padder-sm hidden-xs hidden-sm">
+							<input ng-model="student.attCnts" class="form-control input-sm m-t-none" type="text">
+						</td> 
+						<td ng-if="attendInfo.attendanceYn == 'Y'">
+							<!-- 일반출석서명 -->
+							<img class="img-full" ng-if="student.lectureType != '04'" src="{{student.signUrl}}">
+							<!-- 보장성 출석서명 --> 
+							<img class="img-full" ng-if="student.lectureType == '04'" src="{{student.signEnrichUrl}}">
+						</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>    
+      </form>
+    </div>   
+      <button type="submit" class="btn btn-xl btn-primary w-full m-t-lg" ng-click="saveImage()"><span data-langNum="59">저장</span></button>       
+  </div>
+	<script src="assets/js/language.js"></script>
+</script>
+
+<script type="text/ng-template" id="popup5">
+<div class="popup_wrap">
+    <div class="popup_header" ng-init="initPopup5()">
+        {{popup5_student.studentNm}} 의 출석현황<span class="pull-right closebtn " data-ng-click="cancel()">
+            <img src="assets/img/close.png" class="img-full" alt="..."></span>
+    </div>
+    <div class="popup_body no-padder-right no-padder-left no-padder-top">
+        <!-- tab -->
+        <div class="tab_wrap twotab pc-tab">
+            <div class="row">
+                <div class="col-sm-5 no-padder pull-right">
+                    <div class="radio">
+                        <label class="i-checks m-b-n">
+                            <input type="radio" value="table" ng-model="fieldChange">
+                            <i style="margin-right:0 !important"></i>
+                            <span data-langNum="61" style="margin-left:5px;">표로보기</span>
+                        </label> &nbsp;&nbsp;&nbsp;
+                        <label class="i-checks m-b-n">
+                            <input type="radio" value="calendar" ng-model="fieldChange">
+                            <i style="margin-right:0 !important"></i>
+                            <span data-langNum="62" style="margin-left:5px;">달력으로 보기</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div ng-controller="TabsDemoCtrl">
+                <tabset class="tab-container">
+                    <tab heading="표로보기" ng-if="fieldChange == 'table'" style="position:relative">
+                        <!---출석테이블--->
+                        <div class="wrapper no-padder-top" ng-init="initLanguage()">
+                            <div class="table-horizontal-wrap heightfix m-t attend_wrap">
+                                <table class="table table-bordered b-t b-light m-b-none">
+                                    <thead>
+                                        <tr class="active">
+                                            <th rowspan="2" class="no-padder w-xxs">날짜</th>
+                                            <th rowspan="2" class="no-padder w-xxs hidden-xs hidden-sm">시간</th>
+                                            <th class="no-padder w-xxs"><span data-langNum="10">출석</span></th>
+                                            <th class="no-padder w-xxs"><span data-langNum="48">결석</span></th>
+                                            <th class="no-padder w-xxs"><span data-langNum="63">지각</span></th>
+                                            <th class="no-padder w-xxs">출석인정</th>
+                                            <th rowspan="2" class="no-padder w-xxs hidden-xs hidden-sm"><span data-langNum="60">비고</span></th>
+                                        </tr>
+                                        <tr class="active">
+                                            <th class="no-padder" ng-click="checkAll('01')"><img ng-if="id_check_all=='01'" class="m-t-sm" src="assets/img/attend_check.png">
+                                                <img ng-if="id_check_all!='01'" class="m-t-sm" src="assets/img/attend_check_disabled.png">
+                                                <p class="text-xs m-t-xs">전체선택</p>
+                                            </th>
+                                            <th class="no-padder" ng-click="checkAll('02')"><img ng-if="id_check_all=='02'" class="m-t-sm" src="assets/img/attend_check.png">
+                                                <img ng-if="id_check_all!='02'" class="m-t-sm" src="assets/img/attend_check_disabled.png">
+                                                <p class="text-xs m-t-xs">전체선택</p>
+                                            </th>
+                                            <th class="no-padder" ng-click="checkAll('03')"><img ng-if="id_check_all=='03'" class="m-t-sm" src="assets/img/attend_check.png">
+                                                <img ng-if="id_check_all!='03'" class="m-t-sm" src="assets/img/attend_check_disabled.png">
+                                                <p class="text-xs m-t-xs">전체선택</p>
+                                            </th>
+                                            <th class="no-padder" ng-click="checkAll('04')"><img ng-if="id_check_all=='04'" class="m-t-sm" src="assets/img/attend_check.png">
+                                                <img ng-if="id_check_all!='04'" class="m-t-sm" src="assets/img/attend_check_disabled.png">
+                                                <p class="text-xs m-t-xs">전체선택</p>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!---class ---클릭 : text-white, bg-primary / 기본 : text-muted---->
+                                        <tr ng-repeat="student in popup5_attendStudent_list">
+                                            <td class="active no-padder text-sm">{{student.attDate | date: 'MM월dd일'}}</td>
+                                            <td class="no-padder text-sm hidden-xs hidden-sm">
+                                                <input class="form-control input-sm m-t-none w-40 pc-inline m-l-xs" type="text" ng-model="student.attStartTime">-
+                                                <input class="form-control input-sm m-t-none pc-inline w-40 m-r-xs" type="text" ng-model="student.attEndTime">
+                                            </td>
+                                            <td id="01" ng-click="student.attState='01';checkTdPopup5('01');" ng-class="student.attState == '01' ? 'text-white bg-primary' : 'text-muted'" class="no-padder text-sm"><span data-langNum="10">출석</span></td>
+                                            <td id="02" ng-click="student.attState='02';checkTdPopup5('02');" ng-class="student.attState == '02' ? 'text-white bg-primary' : 'text-muted'" class="no-padder text-sm"><span data-langNum="48">결석</span></td>
+                                            <td id="03" ng-click="student.attState='03';checkTdPopup5('03');" ng-class="student.attState == '03' ? 'text-white bg-primary' : 'text-muted'" class="no-padder text-sm"><span data-langNum="63">지각</span></td>
+                                            <td id="04" ng-click="student.attState='04';checkTdPopup5('04');" ng-class="student.attState == '04' ? 'text-white bg-primary' : 'text-muted'" class="no-padder text-sm">출석인정</td>
+                                            <td class="no-padder text-sm padder-sm hidden-xs hidden-sm"><input class="form-control input-sm m-t-none" type="text" ng-model="student.attCnts"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!--출석테이블 wrap end-->
+                    </tab>
+                    <tab heading="달력보기" ng-if="fieldChange == 'calendar'" ng-controller="FullcalendarCtrl">
+                        <!---달력 s-->
+                        <div ng-init="initLanguage()">
+                            <div class="fullcalendar_wrap wrapper">
+                                <div class="hbox hbox-auto-xs hbox-auto-sm">
+                                    <div>
+                                        <div class="pos-rlt">
+                                            <div class="fc-overlay">
+                                                <div class="panel bg-white b-a pos-rlt">
+                                                    <span class="arrow"></span>
+                                                    <div class="h4 font-thin m-b-sm">{{event.title}}</div>
+                                                    <div class="line b-b b-light"></div>
+                                                    <div><i class="icon-calendar text-muted m-r-xs"></i> {{event.start | date:'medium'}}</div>
+                                                    <div class="ng-hide" ng-show='event.end'><i class="icon-clock text-muted m-r-xs"></i> {{event.end | date:'medium'}}</div>
+                                                    <div class="ng-hide" ng-show='event.location'><i class="icon-pointer text-muted m-r-xs"></i> {{event.location}}</div>
+                                                    <div class="m-t-sm">{{event.info}}</div>
+                                                    <div class="m-t-sm">{{event.url}}</div>
+                                                </div>
+                                            </div>
+
+                                            <!----bug calendar---->
+                                            <div class="calendar" ng-model="eventSources" config="uiConfig.calendar" ui-calendar="uiConfig.calendar"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!----달력 end---->
+                        <!--- 시간, 출석종류 버튼---->
+                        <div class="bg-gray wrapper-sm b-t b-b">
+                            <div class="widthfix-xs m-auto">
+                                <div class="row text-center widthfix-xxs m-auto">
+                                    <div>
+                                        <div class="col-xs-4 no-padder">
+                                            <label class="control-label text-sm m-t-sm">{{schedule_item.attDate | date: 'MM 월 dd 일' }}({{schedule_item.attWeek}})</label>
+                                        </div>
+                                        <div class="col-xs-2 no-padder">
+                                            <label class="control-label text-sm m-t-sm">시간</label>
+                                        </div>
+                                        <div class="col-xs-6 no-padder">
+                                            <div class="col-xs-5 no-padder">
+                                                <input class="form-control input-sm" type="text" placeholder="" ng-model="schedule_item.attStartTime">
+                                            </div>
+                                            <label class="control-label col-xs-2 no-padder m-t-sm text-center">~</label>
+                                            <div class="col-xs-5 no-padder">
+                                                <input class="form-control input-sm" type="text" placeholder="" ng-model="schedule_item.attEndTime">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row text-center m-t-sm">
+                                    <div>
+                                        <div class="no-padder">
+                                            <div class="flexbox">
+                                                <button class="btn {{schedule_item.attState == '01' ? 'btn-primary' : 'btn-transparent'}} w-25 btn-rounded" ng-click="setStatus('01')"><span data-langNum="10">출석</span></button>
+                                                <button class="btn {{schedule_item.attState == '02' ? 'btn-primary' : 'btn-transparent'}} w-25 btn-rounded" ng-click="setStatus('02')"><span data-langNum="48">결석</span></button>
+                                                <button class="btn {{schedule_item.attState == '03' ? 'btn-primary' : 'btn-transparent'}} w-25 btn-rounded" ng-click="setStatus('03')"><span data-langNum="63">지각</span></button>
+                                                <button class="btn {{schedule_item.attState == '04' ? 'btn-primary' : 'btn-transparent'}} w-25 btn-rounded" ng-click="setStatus('04')">출석인정</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row text-center m-t-sm">
+                                    <input class="form-control m-t-none" type="text">
+                                </div>
+                            </div>
+                        </div>
+                        <!--- 시간, 출석종류 버튼---->
+                    </tab>
+                </tabset>
+            </div>
+        </div>
+
+        <!-- / tab -->
+    </div>
+    <div class="dot w-full text-center input-lg" ng-if="attendanceYn == 'Y'">※ 해당 강의는 날짜로만 출석 등록할 수 있습니다.</div>
+    <button type="submit" ng-if="attendanceYn == 'N'" ng-click="savePopup5()" class="btn btn-xl btn-primary w-full m-t-none">
+        <span data-langNum="59">저장</span>
+    </button>
+
+</div>
+ 
+<script type="text/javascript">
+$(function () {
+	$(".date").datepicker({
+		format : "yyyy-mm-dd",
+		autoclose: true
+	});	
+})
+</script>
+
+</script>
+
+<!--로고 hide , back button show--->
+<script>
+	$(function() {
+		$('.app').addClass('back');
+		$('[data-toggle="tooltip"]').tooltip();
+		$('body').addClass('pc-popup-md');		
+	});
+	
+</script>
+<script src="assets/js/language.js"></script>

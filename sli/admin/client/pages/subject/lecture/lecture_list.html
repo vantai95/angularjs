@@ -1,0 +1,130 @@
+<div class="app-content-body " ng-controller="lecture_listController"
+	ng-init="init()">
+	<div class="wrapper-md">
+		<div class="panel panel-default">
+			<div class="panel-heading font-bold">
+				강의마스터
+				<button type="submit" class="btn btn-primary pull-right btn-m"
+					ui-sref="app.subject.lecture_insert">강의 신규등록</button>
+			</div>
+			<div class="panel-body">
+				<form class="form-horizontal" method="get">
+					<div class="form-group b-n">
+						<label class="col-sm-1 control-label">상태</label>
+						<div class="col-sm-4" style="padding: 0 5px;">
+							<label class="i-checks m-l-sm"> <input name="state"
+								type="checkbox" id="parent" ng-change="checkAllStates()"
+								ng-model="is_all_states_checked"><i></i>전체
+							</label> <label class="i-checks m-l-sm"> <input name="state"
+								type="checkbox" class="child" ng-change="changeState()"
+								ng-model="filter.stateY"><i></i>진행중
+							</label> <label class="i-checks m-l-sm"> <input name="state"
+								type="checkbox" class="child" ng-change="changeState()"
+								ng-model="filter.stateW"><i></i>대기
+							</label> <label class="i-checks m-l-sm"> <input name="state"
+								type="checkbox" class="child" ng-change="changeState()"
+								ng-model="filter.stateN"><i></i>종료
+							</label>
+						</div>
+						<label class="col-sm-1 col-sm-offset-1 control-label">강의구분</label>
+						<div class="col-sm-2">
+							<select name="account" class="form-control input-sm"
+								ng-model="filter.lecture"
+								ng-options="item.codeId as item.codeName1 for item in dropdown_lectures">
+								<option value="">전체</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group b-n">
+						<label class="col-sm-1 control-label">고객사명</label>
+						<div class="col-sm-2">
+							<select class="form-control input-sm" ng-model="filter.company"
+								ng-options="item.cpCd as item.compNm for item in customer_companies">
+								<option value="">전체</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group b-n">
+						<label class="col-sm-1 control-label">강사</label>
+						<div class="col-sm-2">
+							<select class="form-control input-sm" ng-model="filter.teacher"
+								ng-options="item.tcCd as item.userName for item in teachers">
+								<option value="">전체</option>
+							</select>
+						</div>
+						<label class="col-sm-1 col-sm-offset-3 control-label">과목</label>
+						<div class="col-sm-2">
+							<select name="account" class="form-control input-sm"
+								ng-model="filter.subject"
+								ng-options="item.sjCd as item.subjectName for item in subjects">
+								<option value="">전체</option>
+							</select>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="panel-footer">
+				<div class="row">
+					<button type="submit" ng-click="getLecture(); getLectures()"
+						class="btn btn-dark pull-right btn-m">조회</button>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="table-responsive teacher_table">
+				<table class="table b-t b-light">
+					<thead>
+						<tr class="active">
+							<th>No</th>
+							<th>강의코드</th>
+							<th>과목</th>
+							<th>구분</th>
+							<th>강의명</th>
+							<th>강사명</th>
+							<th>고객사명</th>
+							<th>수강료</th>
+							<th>시작일</th>
+							<th>종료일</th>
+							<th>인원</th>
+							<th>개시여부</th>
+							<th>상태</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="x in lectures">
+							<td>{{generateListNo(current_page, total_lectures, $index)}}</td>
+							<td>{{x.ltCd }}</td>
+							<td>{{x.sjCdNm }}</td>
+							<td>{{x.lectureSortNm }}</td>
+							<td><a class="primary underline" ui-sref="app.subject.lecture_detail({id: x.ltCd})">{{x.lectureNm}}</a></td>
+							<td>{{x.tcCdNm }}</td>
+							<td>{{x.cpCdNm }}</td>
+							<td>{{x.tuitionFee }}</td>
+							<td>{{x.startDt }}</td>
+							<td>{{x.endDt }}</td>
+							<td>{{x.studentLimit }}/{{x.completAttendance}}</td>
+							<td>{{x.useYn }}</td>
+							<td>{{x.stateFlagNm }}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class=" text-center">
+				<ul class="pagination pagination-sm m-t-none m-b-none"  ng-if="total_lectures > app.page_size">
+					<li ng-click="previousPageClick()"><a href=""><i class="fa fa-chevron-left"></i></a></li>
+					<li ng-repeat="page in getRange(total_pages) track by $index" class="{{current_page == $index + 1 ? 'active' : ''}}" ng-click="setCurrentPage($index + 1)"><a href="">{{$index + 1}}</a></li>
+					<li ng-click="nextPageClick()"><a href=""><i class="fa fa-chevron-right"></i></a></li>
+				</ul>
+
+				<button type="submit" class="btn btn-border pull-right" ng-click="fnDownload();">
+				 엑셀 다운로드&nbsp; 
+				<i class="fa fa-file-excel-o"></i>
+				</button>
+			</div>
+		</div>
+	
+	</div>
+</div>

@@ -1,0 +1,433 @@
+
+<!-- content -->
+<div class="app-content-body" ng-controller="UserDetailController"
+	ng-init="init() ">
+	<div class="wrapper-md">
+		<div class="panel panel-default panel-devide">
+			<div class="panel-heading font-bold">
+				수강생현황
+				<div class="pull-right col-sm-5 no-padder">
+					<div class="col-sm-3 col-sm-offset-1 ">
+						<label class="control-label text-md pull-right">회원상세조회</label>
+					</div>
+					<div class="col-sm-3 no-padder-right">
+						<select name="account" class="form-control input-sm"
+							ng-model="selected_type"
+							ng-options="type.id as type.name for type in search_type track by type.id">
+							<option value="">선택</option>
+						</select>
+					</div>
+					<div class="col-sm-3 no-padder-right">
+						<input class="form-control input-sm" type="text"
+							ng-model="search_input">
+					</div>
+					<div class="col-sm-2 no-padder-right">
+						<button type="submit" class="btn btn-dark pull-right btn-m m-t-xs"
+							ng-click=searchUsers()>조회</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row panel-body white text-xl">1. 기본정보</div>
+		<div class="panel panel-default panel-devide">
+			<div class="panel-body">
+				<form class="form-horizontal" method="get">
+					<div class="form-group">
+						<div class="col-bg col-sm-1">
+							<label class=" control-label"> 이름</label>
+						</div>
+						<div class="col-sm-1">
+							<input class="form-control input-sm" type="text"
+								ng-model='student.userName' maxlength="255">
+						</div>
+						<div class="col-bg col-sm-1 col-sm-offset-4">
+							<label class=" control-label"> 소속고객사</label>							
+						</div>
+						<div class="col-sm-2">
+							<select name="customer_company" class="form-control input-sm"
+								ng-options="customer_company.compNm for customer_company in customer_companies track by customer_company.cpCd"
+								ng-model="selected_company">
+							</select>							
+						</div>
+						<div class="col-sm-2">
+							<label class="control-label">※ 수강이력이 있을 경우 수정되지 않습니다.</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-1">
+							<label class=" control-label"> 부서명</label>
+						</div>
+						<div class="col-sm-1">
+							<input class="form-control input-sm" type="text"
+								ng-model='student.deptNm' maxlength="255">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-1">
+							<label class=" control-label"> 생년월일</label>
+						</div>
+						<div class="col-sm-1 no-padder-right">
+							<div class="col-sm-9 no-padder">
+								<input class="form-control input-sm" type="number"
+									maxLength="4"
+									ng-keyup="foucusBirthday('year', birthday_year)"
+									ng-model="birthday_year" >
+							</div>
+							<label class="col-sm-3 control-label ">년</label>
+						</div>
+						<div class="col-sm-1 no-padder">
+							<div class="col-sm-9 no-padder">
+								<input class="form-control input-sm" type="number"
+									maxLength="2"
+									ng-keyup="foucusBirthday('month', birthday_month)"
+									ng-model="birthday_month" >
+							</div>
+							<label class="col-sm-3 control-label">월</label>
+						</div>
+						<div class="col-sm-1 no-padder">
+							<div class="col-sm-9 no-padder">
+								<input class="form-control input-sm" type="number"
+									maxLength="2"
+									ng-keyup="foucusBirthday('day',birthday_day)"
+									ng-model="birthday_day" >
+							</div>
+							<label class="col-sm-3 control-label">일</label>
+						</div>
+						<div class="col-bg col-sm-1 col-sm-offset-2">
+							<label class=" control-label"> 성별</label>
+						</div>
+						<div class="col-sm-1">
+							<div class="radio">
+								<label class="i-checks"> 
+									<input type="radio" name="gender" ng-model="student.gender" value="M" ng-true-value="M"> <i></i>남
+								</label> &nbsp;&nbsp;&nbsp; 
+								<label class="i-checks"> 
+									<input type="radio" name="gender" ng-model="student.gender" value="F" ng-true-value="F"> <i></i>여
+								</label>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-1">
+							<label class=" control-label"> 아이디</label>
+						</div>
+						<div class="col-sm-1">
+							<label class="control-label">{{student.userId}}</label>
+						</div>
+						<div class="col-bg col-sm-1 col-sm-offset-4">
+							<label class=" control-label"> 비밀번호</label>
+						</div>
+						<div class="col-sm-1">
+							<label class="control-label">******</label>
+						</div>
+						<div class="col-sm-1 no-padder">
+							<button class="btn btn-sm btn-info m-t-xs" ng-click="sendNewPassword()">임시비밀번호발송</button>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-1">
+							<label class=" control-label"> 휴대폰번호</label>
+						</div>
+						<div class="col-sm-2">
+							<input class="form-control input-sm" type="text" ng-model="student.mobile" maxLength="13">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-1">
+							<label class="control-label ">주소</label>
+						</div>
+						<div class="col-sm-6">
+							<label class="control-label">03134) 서울시 서초구 서초대로 42길 12
+								에스엘아이교육그룹빌딩</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-1">
+							<label class=" control-label"> 이메일</label>
+						</div>
+						<div class="col-sm-2">
+							<input class="form-control input-sm" type="text" ng-model='student.email' maxlength="225">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="text-right">
+			<button class="btn btn-primary btn-w" ng-click="saveUser()">저장</button>
+		</div>
+		<div class="row panel-body white text-xl">2. 수강정보</div>
+		<div class="panel panel-default">
+			<div class="table-responsive teacher_table"></div>
+			<table st-table="rowCollectionPage" class="table">
+			</table>
+			<table class="table b-t b-light">
+				<thead>
+					<tr class="active">
+						<th>No</th>
+						<th>강의명</th>
+						<th>강사명</th>
+						<th>시작일</th>
+						<th>종료일</th>
+						<th>레벨테스트</th>
+						<th>출석률</th>
+						<th>성취도평가</th>
+						<th>수료여부</th>
+						<th>상세보기</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="x in student_class_list">
+						<td>{{student_class_list.length - $index}}</td>
+						<td>{{x.lectureNm}}</td>
+						<td>{{x.teacherNm}}</td>
+						<td>{{x.startDt}}</td>
+						<td>{{x.endDt}}</td>
+						<td>{{x.scoreLv}}</td>
+						<td>{{x.attendRate}}%</td>
+						<td>{{x.scoreAc}}</td>
+						<td>{{x.completeYnNm}}</td>
+						<td><a class="primary underline"
+							ui-sref="app.student.detail({id:x.ltCd})" target="_blank">자세히</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="row panel-body white text-xl">3. 결제정보</div>
+		<div class="panel panel-default">
+			<div class="table-responsive teacher_table"></div>
+			<table st-table="rowCollectionPage" class="table">
+			</table>
+			<table class="table b-t b-light">
+				<thead>
+					<tr class="active">
+						<th>주문번호</th>
+						<th>강의명</th>
+						<th>결제일</th>
+						<th>시작일</th>
+						<th>종료일</th>
+						<th>결제금액</th>
+						<th>결제수단</th>
+						<th>상태</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="x in account_pay_list">
+						<td><a class="primary underline" ng-click="openPopup2()">{{x.orderCd}}</a></td>
+						<td>{{x.lectureNm}}</td>
+						<td>{{x.payDt}}</td>
+						<td>{{x.startDt}}</td>
+						<td>{{x.endDt}}</td>
+						<td>{{x.payMoney}}</td>
+						<td>{{x.payMeansNm}}</td>
+						<td><span ng-if="x.prCd != '-' && x.refundDt != '-'">환불완료</span>
+							<span ng-if="x.prCd != '-' && x.refundDt == '-'">결제취소</span> <span
+							ng-if="!(x.prCd != '-' && x.refundDt != '-') && !(x.prCd != '-' && x.refundDt != '-')">결제완료</span>
+						</td>
+					</tr>
+					<!--  
+          <tr>
+            <td><a class="primary underline text-l-t" ng-click="openPopup2()">13445</a></td>     
+            <td>기초부터 시작하는 영어 첫 걸음</td>  
+            <td><span class="text-l-t">2017.10.05</span></td>
+            <td>-</td>
+            <td>-</td>
+            <td>30,000</td>  
+            <td>신용카드</td>  
+            <td>결제취소</td>
+          </tr>
+          -->
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+
+</div>
+<!-- /content -->
+<script type="text/ng-template" id="popup">
+  <div class="popup_wrap">
+      <div class="popup_header">
+        회원선택<span class="pull-right closebtn " data-ng-click="cancel()"><img src="assets/img/close.png" class="img-full" alt="..."></span>
+    </div>
+    <div class="popup_body">
+        <p class="text-md text-center">조회할 회원을 선택해주세요.</p>
+        <div class="table-responsive m-t-md">
+      <table class="table b b-light popup_table center_align">
+        <thead>
+          <tr class="active">
+            <th class="w-xxs"></th>
+            <th>이름</th>
+            <th>고객사명</th>
+            <th>직급</th>
+            <th>연락처</th>
+          </tr>    
+        </thead>
+        <tbody>
+		<tr ng-repeat="user in students">
+			<td>
+              <label class="i-checks m-b-n">
+                <input type="radio" name="name" ng-click="selectItem(user)">
+                <i></i>
+              </label>
+            </td>
+			<td>{{user.userName}}</td>
+			<td>{{user.compNm}}</td>
+			<td>{{user.positionNm}}</td>
+			<td>{{user.mobile}}</td>
+		</tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="text-center m-t-lg">
+            <button class="btn btn-primary btn-w" ng-click="selectStudents()">완료</button>
+     </div>
+    </div>  
+  </div>
+</script>
+<script type="text/ng-template" id="popup2">
+  <div class="popup_wrap">
+      <div class="popup_header">
+        결제조회 및 환불처리<span class="pull-right closebtn " data-ng-click="cancel()"><img src="assets/img/close.png" class="img-full" alt="..."></span>
+    </div>
+    <div class="popup_body no-padder-top">
+        <div>
+    <div class="panel-body text-md m-t-md">
+      <form class="form-horizontal ng-pristine ng-valid" method="get">
+        <div class="form-group b-n">
+          <label class="col-sm-4 control-label"><b>고객사명</b> : 한국전력</label>
+        </div>
+        <div class="form-group b-n">
+            <label class="col-sm-4 control-label"><b>수강생명</b> : 김갑돌 </label>
+            <label class="col-sm-8 control-label"><b>연락처</b> 010-3000-2222 </label>
+        </div>  
+      </form>
+    </div>     
+    <div class="panel panel-default panel-devide m-t-md">
+    <div class="panel-body">
+      <form class="form-horizontal ng-pristine ng-valid" method="get">
+        <div class="form-group">
+          <div class="col-bg col-sm-2"><label class=" control-label"> 주문번호</label></div>
+          <div class="col-sm-4">
+            <label class=" control-label">1234545</label>
+          </div>
+            <div class="col-bg col-sm-2"><label class=" control-label">
+                 결제수단</label></div>
+          <div class="col-sm-4">
+            <label class=" control-label">신용카드</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-bg col-sm-2"><label class=" control-label"> 결제금액</label></div>
+          <div class="col-sm-4">
+            <label class=" control-label">15,000</label>
+          </div>
+            <div class="col-bg col-sm-2"><label class=" control-label">
+                 결제일시</label></div>
+          <div class="col-sm-4">
+            <label class=" control-label">2017.12.05</label>
+          </div>
+        </div>
+          <div class="form-group">
+          <div class="col-bg col-sm-2"><label class=" control-label"> 상품명</label></div>
+          <div class="col-sm-10">
+            <label class=" control-label">기초부터 시작하는 영어 첫 걸음</label>
+          </div>
+        </div>
+          <div class="form-group">
+          <div class="col-bg col-sm-2"><label class=" control-label"> 수강기간</label></div>
+          <div class="col-sm-4">
+            <label class=" control-label">2017.12.05~2017.01.04</label>
+          </div>
+            <div class="col-bg col-sm-2"><label class=" control-label">
+                 수업진척률</label></div>
+          <div class="col-sm-4">
+            <label class=" control-label">2차시/총 20차시 (10%)</label>
+          </div>
+        </div>
+          <div class="line-thin"></div>
+          <div class="form-group">
+          <div class="col-bg col-sm-2"><label class="control-label ">환불사유</label></div>
+          <div class="row">
+              <div class="col-sm-3">
+            <select class="form-control input-sm">
+              <option value="메일선택">선택</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+            </select>
+          </div>
+          </div>
+        <div class="col-bg col-sm-2 h-lg"><label class="control-label "></label></div>      
+        <div class="col-sm-10 h-lg padder-vsm">
+            <textarea class="h-full b m-t-none"></textarea>
+          </div>
+        </div>
+          <div class="form-group">
+           <div class="col-bg col-sm-2 "><label class=" control-label">
+                    환불유형</label></div>
+          <div class="col-sm-4">
+                <div class="radio">
+              <label class="i-checks">
+                <input type="radio" name="a" value="option2" checked="">
+                <i></i>
+                결제취소
+              </label>
+                <label class="i-checks">
+                <input type="radio" name="a" value="option1">
+                <i></i>
+                부분환불
+               </label>
+            </div>        
+          </div>
+          <div class="col-bg col-sm-2"><label class=" control-label">
+                 환불금액</label></div>
+          <div class="col-sm-4">
+            <input class="form-control input-sm">
+          </div>      
+        </div>
+          <div class="form-group">
+          <div class="col-bg col-sm-2"><label class=" control-label">환불계좌</label></div>
+            <div class="col-sm-2">
+            <select class="form-control input-sm">
+              <option value="메일선택">은행선택</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+            </select>
+          </div>  
+            <div class="col-sm-2 no-padder">
+            <div class="col-sm-10 no-padder"><input class="form-control input-sm" type="text"></div>
+          </div>
+        <div class="col-bg col-sm-2"><label class=" control-label">
+                 입금일자</label></div>
+          <div class="col-sm-4">
+            <input class="form-control input-sm" >
+          </div>        
+        </div>
+          <div class="form-group">
+          <div class="col-bg col-sm-2"><label class=" control-label">환불직원</label></div> 
+            <div class="col-sm-4">
+            <label class=" control-label">관리자</label>
+          </div>  
+        <div class="col-bg col-sm-2"><label class=" control-label">
+                 환불일자</label></div>
+          <div class="col-sm-4">
+            <input class="form-control input-sm" >
+          </div>        
+        </div>
+      </form>
+    </div>
+  </div>
+        <!--add del section end-->
+        <div class="text-center m-t-lg">
+            <button class="btn btn-dark btn-w">취소</button>
+            <button class="btn btn-primary btn-w">저장</button>
+        </div>
+    </div>  
+    </div>  
+  </div>
+</script>
+<style>
+.modal-dialog {
+	width: 800px;
+}
+</style>

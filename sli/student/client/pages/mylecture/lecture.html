@@ -1,0 +1,117 @@
+
+<div class="app-content-body" ng-controller="MyLectureController" ng-init="init()">  
+    <!--강의목록 s---->
+    <div class="panel panel-body no-shadow m-b-n-xs padder-vsm bg-gray">
+        <form class="form-horizontal widthfix m-auto pull-none col-xs-12 col-sm-4 no-padder">
+        <div class="form-group b-n">
+          <div class="col-xs-3 col-sm-3 no-padder">
+            <label class="control-label text-md">강의목록</label>
+          </div>    
+          <div class="col-xs-9 col-sm-9 no-padder">
+            <select name="account" class="form-control m-t-xs" 
+            	ng-model="selected_lecture"
+				ng-options="lecture.ltCd as lecture.lectureNm for lecture in lectures"
+				ng-change="getLectureListBox()">
+            </select>
+          </div>
+        </div> 
+      </form>
+    </div>
+    <!--강의목록 e---->
+    <!--LNB s-->
+    <div class="lnb_wraper">
+        <div class="lnb_wrap clearfix">
+            <a class="lnb active"  ui-sref="app.mylecture.lecture({ltCd: selected_lecture})">기본 정보</a>
+            <a class="lnb" ui-sref="app.mylecture.video({ltCd: selected_lecture})">강의영상</a>
+            <a class="lnb"  ui-sref="app.mylecture.lvtest({ltCd: selected_lecture})">레벨테스트</a>
+            <a class="lnb" ui-sref="app.mylecture.attend({ltCd: selected_lecture})">출석현황</a>
+            <a class="lnb" ui-sref="app.mylecture.test({ltCd: selected_lecture})">성취도평가</a>
+            <a class="lnb" ui-sref="app.mylecture.alert_list({ltCd: selected_lecture})">알림게시판</a>
+        </div>
+    </div>
+    <!--LNB e-->
+<div class="wrapper-md widthfix m-auto widthfix-sm">
+    <!---강의 panel--->
+            <div class="panel panel-default no-shadow">
+                <div class="panel-heading font-bold text-left b-n">
+                    {{lecture_detail[0].lectureNm}}
+                </div>
+                <div class="panel-body no-padder">
+                <div class="table-responsive b-n">
+                  <table class="table mini-table m-b-none">
+                    <tbody>
+                      <tr>
+                        <td class="w-20">과정구분</td>
+                        <td class="w-40">{{lecture_detail[0].lectureSortNm}}</td>
+                      </tr>
+                      <tr>
+                        <td>강사명</td>
+                        <td>{{lecture_detail[0].teacherNm}}</td>
+                      </tr>
+                      <tr>
+                        <td>강의기간</td>
+                        <td>{{lecture_detail[0].startDt}} ~ {{lecture_detail[0].endDt}}</td>
+                      </tr>
+                      <tr>
+                        <td>강의시간</td>
+                        <td>{{lecture_detail[0].lectureWeek}} {{lecture_detail[0].lectureTime}}</td>
+                      </tr>    
+                      <tr>
+                        <td>강의장소</td>
+                        <td> {{lecture_detail[0].lecturePlaceNm}} </td>
+                      </tr>      
+						<tr>
+							<td>
+							</td>
+							<td>
+								{{lecture_detail[0].postNo}} {{lecture_detail[0].addr}} {{lecture_detail[0].dtlAddr}} <br>
+								<span class="m-l-xs" ng-click="showMap(lecture_detail[0])"><img width="62"	src="./assets/img/map_ico.jpg"></span>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<div class="col-sm-8" id="map_{{lecture_detail[0].ltCd}}" style="width:100%; height:200px;margin-top:10px;display:none"></div>
+							</td>
+						</tr>
+                      <tr>
+                        <td class="w-20">수업진척률</td>
+                        <td class="w-40">
+                            <div class="progress">
+							<div class="progress-bar progress-bar-info" role="progressbar" 
+							 aria-valuemin="0" aria-valuemax="100"  ng-style="{ 'width': ((lecture_detail[0].nowAttCnt  / lecture_detail[0].lectureTotalCnt)  * 100) + '%' }">
+							</div>
+							</div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>출석률</td>
+                        <td>
+                            <div class="progress">
+								 <div class="progress-bar progress-bar-info" role="progressbar" 
+									  aria-valuemin="0" aria-valuemax="100"  ng-style="{ 'width': lecture_detail[0].attendRate + '%' }">
+							    </div>
+							</div>
+                        </td>
+                      </tr>    
+                    </tbody>
+                  </table>
+                </div>   
+                </div>
+              </div>
+              <!---강의 panel end---> 
+                <div class="mini_notice">
+                <p class="tt m-t-xl padder">알림</p>      
+                <div class="line"></div>
+                <div ng-repeat="info in notice_list">
+                	<div class="padder">{{info.regDt}} {{info.notiTitle}}</div>
+                </div>
+                </div>    
+            </div>
+</div>
+    
+    <!--로고 hide , back button show--->
+<script>
+    $(document).ready(function(){
+        $('.app').addClass('back')
+    })
+</script>

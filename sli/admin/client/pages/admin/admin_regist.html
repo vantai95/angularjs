@@ -1,0 +1,106 @@
+ <!-- content -->
+  	<div class="app-content-body" ng-controller="AdminRegistController" ng-init="init()">
+<div class="wrapper-md">
+  <div class="panel panel-default panel-devide">
+    <div class="panel-heading font-bold">
+      관리자관리
+    </div>
+    <div class="panel-body">
+      <form class="form-horizontal" method="get">
+        <div class="form-group">
+          <div class="col-bg col-sm-2"><label class=" control-label"><span class="dot">*</span> 이름</label></div>
+          <div class="col-sm-2">
+            <input class="form-control input-sm" type="text" maxlength="20" ng-model="admin.userName">
+          </div>
+            <div class="col-bg col-sm-2 col-sm-offset-3"><label class="label-indent control-label">
+               <span class="dot">*</span>  사번</label></div>
+          <div class="col-sm-2">
+            <input class="form-control input-sm" type="text" maxlength="10" ng-model="admin.compNo">
+          </div>
+        </div>
+         <div class="form-group">
+            <div class="col-bg col-sm-2"><label class=" control-label">
+                <span class="dot">*</span> 아이디</label></div>
+          <div class="col-sm-2">
+           	<input class="form-control input-sm" maxlength="20" type="text" ng-model="admin.userId">
+          </div>
+          <div class="col-bg col-sm-2 col-sm-offset-3"><label class=" control-label">
+                <span class="dot">*</span> 비밀번호</label></div>
+          <div class="col-sm-2">
+            <input class="form-control input-sm" type="password" ng-model="admin.userPw">
+          </div>
+        </div>  
+          <div class="form-group">
+          <div class="col-bg col-sm-2"><label class=" control-label"><span class="dot">*</span>소속/부서/팀</label></div>
+          <div class="col-sm-4">
+            <div class="col-sm-4 no-padder">
+                <input class="form-control input-sm" type="text" maxlength="50"  ng-model="admin.belongNm">
+            </div>
+            <div class="col-sm-4">
+                <input class="form-control input-sm" type="text" maxlength="50"  ng-model="admin.deptNm">
+            </div>
+            <div class="col-sm-4 no-padder">
+                <input class="form-control input-sm" type="text" maxlength="50"  ng-model="admin.teamNm">
+            </div>  
+              
+          </div>
+            <div class="col-bg col-sm-2 col-sm-offset-1 "><label class="label-indent control-label">
+                <span class="dot">*</span> 직급</label></div>
+          <div class="col-sm-2">
+            <input class="form-control input-sm"  ng-model="admin.positionNm" maxlength="50">
+          </div>
+        </div>
+          <div class="form-group">
+          <div class="col-bg col-sm-2"><label class=" control-label">
+              <span class="dot">*</span> 휴대폰번호</label></div>
+          <div class="col-sm-2">
+           <input class="form-control input-sm" type="number" maxlength="20" ng-model="admin.mobile">
+          </div>
+        </div>
+          <div class="form-group">
+          <div class="col-bg col-sm-2"><label class=" control-label"><span class="dot">*</span> 이메일</label></div>
+          <div class="col-sm-2">
+            <input class="form-control input-sm" type="text" maxlength="100" ng-model="admin.email">
+          </div>
+        </div>
+          <div class="form-group">
+            <div class="col-bg col-sm-2"><label class=" control-label">
+                <span class="dot">*</span> 권한그룹</label></div>
+          <div class="col-sm-2">
+            <select name="account" class="form-control input-sm"
+            	ng-model="admin.arCd"
+            	ng-options="permission.arCd as permission.groupNm for permission in permission_group">
+            	<option value="">전체</option>
+            </select>
+          </div>
+        </div>
+          <div class="form-group b-n">
+          <div class="col-bg col-sm-2"><label class=" control-label">
+                <span class="dot">*</span> 접속권한</label></div>
+            <div class="col-sm-2">
+                <div class="radio">
+              <label class="i-checks">
+                <input type="radio" name="a" value="Y"  ng-model="admin.accessYn">
+                <i></i>
+                접속허용
+              </label> &nbsp;&nbsp;&nbsp;
+                <label class="i-checks">
+                <input type="radio" name="a" value="N" ng-model="admin.accessYn">
+                <i></i>
+                접속차단
+               </label>
+            </div>        
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+        <div class="text-center m-t-lg">
+            <button class="btn btn-dark btn-w" ng-click="cancelCreate()">취소</button>&nbsp;
+            <button class="btn btn-primary btn-w" ng-click="saveAdmin()">저장</button>
+          </div>
+</div>
+
+
+	</div>
+  <!-- /content -->

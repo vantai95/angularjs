@@ -1,0 +1,101 @@
+
+  	<div class="app-content-body" ng-controller="AdminListController" ng-init="init()">
+<div class="wrapper-md">
+  <div class="panel panel-default">
+    <div class="panel-heading font-bold b-n">
+      관리자관리
+    </div>
+  </div>
+    <div class="row panel-body white text-xl">
+        관리자 조회
+        <div class="pull-right col-sm-2 no-padder">
+            <div class="col-sm-4"><label class="control-label text-md pull-right m-t-sm">정렬</label></div>
+            <div class="col-sm-8 no-padder-right">
+            <select name="account" class="form-control input-sm" 
+            	ng-model="searchOrder"
+            	ng-options="searchOrder.key as searchOrder.value for searchOrder in searchOrders"
+             	ng-change="getAdminList()">
+             
+            </select></div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+    <div class="table-responsive teacher_table">
+      <table class="table b-t b-light">
+        <thead>
+          <tr class="active">
+            <th>No</th>
+            <th>메뉴권한</th>
+            <th>이름</th>
+            <th>아이디</th>
+            <th>소속</th>
+            <th>등록일</th>
+            <th>등록자</th>
+            <th>권한수정</th>
+            <th>삭제</th>  
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="permission in permission_groups track by $index">
+            <td>{{generateListNo(current_page, total_users, $index)}}</td>
+            <td>{{permission.groupNm}}</td>  
+            <td ui-sref="app.admin.modify({id: permission.userId})"><a class="primary underline">{{permission.userName}}</a></td>
+            <td>{{permission.userId}}</td>
+            <td>{{permission.belongNm}}</td>
+            <td>{{permission.regDt}}</td>  
+            <td>{{permission.regUserNm}}</td>  
+            <td><a class="primary underline" ng-click="openPopup(permission.userId, permission.arCd)">수정</a> </td>
+            <td><a class="primary underline" ng-click="deleteUser(permission.userId)">삭제</a></td>  
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+    <div class="row" ng-if="total_users > app.page_size">
+			<div class=" text-center">
+				<ul class="pagination pagination-sm m-t-none m-b-none">
+					<li ng-click="previousPageClick()"><a href=""><i
+							class="fa fa-chevron-left"></i></a></li>
+					<li ng-repeat="page in getRange(total_pages) track by $index"
+						class="{{current_page == $index + 1 ? 'active' : ''}}"
+						ng-click="setCurrentPage($index + 1)"><a href="">{{$index
+							+ 1}}</a></li>
+					<li ng-click="nextPageClick()"><a href=""><i
+							class="fa fa-chevron-right"></i></a></li>
+				</ul>
+			</div>
+		</div>
+    </div>
+          <div class="row">
+        <button class="btn btn-primary btn-w pull-right" ui-sref="app.admin.regist">신규등록</button>
+      </div>
+</div>
+	</div>
+<script type="text/ng-template" id="custom_modal.html">
+  <div class="popup_wrap">
+      <div class="popup_header">
+        권한수정<span class="pull-right closebtn " ng-click="cancel()"><img src="assets/img/close.png" class="img-full" alt="..."></span>
+    </div>
+    <div class="popup_body">
+      <div class="row panel-body white text-md">
+        변경할 관리자 그룹을 선택해주세요.
+    </div>
+    <div class="m-t-sm row">
+        <div class="col-sm-12">
+        <select name="account" class="form-control input-sm"
+			ng-model="selected_group"
+			ng-options="select.arCd as select.groupNm for select in permission_group">
+          <option value="">전체</option>
+        </select>
+        </div>    
+    </div>    
+    <div class="text-center m-t-lg">
+        <span class="btn btn-primary" ng-click="ok()">수정</span>
+        <span class="btn btn-default" ng-click="cancel()">취소</span>
+    </div>
+    </div>  
+  </div>
+</script>
+<style>
+    .modal-dialog{width:280px;}
+</style>

@@ -1,0 +1,481 @@
+
+<!-- content -->
+<div class="app-content-body" ng-controller="TeacherInsertCtrl" ng-init="init()">
+	<div class="wrapper-md">
+		<div class="panel panel-default panel-devide">
+			<div class="panel-heading font-bold">강사등록</div>
+			<div class="panel-body">
+				<form class="form-horizontal" method="get">
+					<div class="form-group">
+						<div class="col-bg col-sm-2">
+							<label class=" control-label"><span class="dot">*</span>
+								이름</label>
+						</div>
+						<div class="col-sm-2">
+							<input class="form-control input-sm" type="text" ng-model="teacher.userName" maxlength="20" placeholder="실명">
+						</div>
+						<div class="col-sm-2">
+							<input class="form-control input-sm" type="text" ng-model="teacher.nickName" maxlength="30" placeholder="사이트 이름">
+						</div>
+						<div class="col-bg col-sm-2 col-sm-offset-1">
+							<label class="control-label"> <span class="dot">*</span>
+								국적
+							</label>
+						</div>
+						<div class="col-sm-2">
+							<select name="account" class="form-control input-sm" ng-model="teacher.nationalType" ng-options="nationality.codeId as nationality.codeName1 for nationality in nationalities">
+								<option value="">선택</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-2">
+							<label class=" control-label"><span class="dot">*</span>
+								생년월일</label>
+						</div>
+						<div class="col-sm-1 no-padder-right">
+							<div class="col-sm-9 no-padder">
+								<input class="form-control input-sm" type="text" maxLength="4"
+								ng-keyup="foucusBirthday('year', teacher.birthday_year)"
+								ng-model="teacher.birthday_year">
+							</div>
+							<label class="col-sm-3 control-label ">년</label>
+						</div>
+						<div class="col-sm-1 no-padder">
+							<div class="col-sm-9 no-padder">
+								<input class="form-control input-sm" type="text" maxLength="2" 
+								ng-keyup="foucusBirthday('month', teacher.birthday_month)"
+								ng-model="teacher.birthday_month">
+							</div>
+							<label class="col-sm-3 control-label">월</label>
+						</div>
+						<div class="col-sm-1 no-padder">
+							<div class="col-sm-9 no-padder">
+								<input class="form-control input-sm" type="text" maxLength="2" 
+								ng-keyup="foucusBirthday('day', teacher.birthday_day)"
+								ng-model="teacher.birthday_day">
+							</div>
+							<label class="col-sm-3 control-label">일</label>
+						</div>
+						<div class="col-bg col-sm-2 col-sm-offset-2">
+							<label class=" control-label"> <span class="dot">*</span>
+								성별
+							</label>
+						</div>
+						<div class="col-sm-2">
+							<div class="radio">
+								<label class="i-checks"> 
+									<input type="radio" name="gender" ng-model="teacher.gender" value="M" ng-true-value="M"> <i></i>남
+								</label> &nbsp;&nbsp;&nbsp; 
+								<label class="i-checks"> 
+									<input type="radio" name="gender" ng-model="teacher.gender" value="F" ng-true-value="F"> <i></i>여
+								</label>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-2">
+							<label class=" control-label"> <span class="dot">*</span>
+								휴대폰번호
+							</label>
+						</div>
+						<div class="col-sm-2">
+							<input class="form-control input-sm" type="text" ng-model="teacher.mobile" maxLength="13">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-2">
+							<label class=" control-label"> <span class="dot">*</span>
+								주민번호
+								(외국인등록번호)
+							</label>
+						</div>
+						<div class="col-sm-2">
+							<input class="form-control input-sm" type="text" ng-model="teacher.number_social" maxLength="6">
+						</div>
+						<div class="col-sm-3">
+							<input class="form-control input-sm" type="text" ng-model="teacher.foreigner_registration_number" maxLength="7">
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="col-bg col-sm-2">
+							<label class="control-label label-indent">주소</label>
+						</div>
+						<div class="col-sm-2">
+							<input class="form-control input-sm" type="text" ng-model="teacher.postNo" value="" placeholder="우편번호검색" maxlength="5" readonly ng-click="execDaumPostcode()">
+						</div>
+						<div class="col-sm-3">
+							<input class="form-control input-sm" type="text" ng-model="teacher.addr" value="" placeholder="주소를 입력하세요" maxlength="100" readonly ng-click="execDaumPostcode()">
+						</div>
+
+						<div class="col-sm-12 no-padder">
+							<div class="col-bg col-sm-2">
+								<label class=" control-label text-xxs label-indent">주소</label>
+							</div>
+							<div class="col-sm-4">
+								<input class="form-control input-sm" type="text" ng-model="teacher.dtlAddr" placeholder="상세주소 입력" maxlength="255">
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-2">
+							<label class=" control-label"><span class="dot">*</span> 이메일</label>
+						</div>
+						<div class="col-sm-2 no-padder-right">
+							<div class="col-sm-9 no-padder">
+								<input class="form-control input-sm" type="text" ng-model='teacher.email_user_name' maxlength="87">
+							</div>
+							<label class="col-sm-3 control-label">@</label>
+						</div>
+						<div class="col-sm-2 no-padder" ng-hide="teacher.email_server">
+							<div class="col-sm-20 no-padder">
+								<input class="form-control input-sm" type="text" ng-model='teacher.email_domain' maxlength="12">
+							</div>
+						</div>
+						<div class="col-sm-2">
+							<select class="form-control input-sm" ng-model='teacher.email_server' ng-options='s.codeName1 as s.codeName1 for s in email_servers'>
+								<option value="">메일선택</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-2">
+							<label class=" control-label"><span class="dot">*</span>
+								아이디
+							</label>
+						</div>
+						<div class="col-sm-2">
+							<input class="form-control input-sm" type="text" ng-model='teacher.userId' maxlength="20">
+						</div>
+						<div class="col-bg col-sm-2 col-sm-offset-3">
+							<label class=" control-label"> <span class="dot">*</span>
+								비밀번호
+							</label>
+						</div>
+						<div class="col-sm-2">
+							<input class="form-control input-sm" type="password" ng-model='teacher.userPw' maxlength="255">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-2">
+							<label class=" control-label"> <span class="dot">*</span>
+								담당과목
+							</label>
+						</div>
+						<div class="col-sm-2">
+							<select name="account" class="form-control input-sm" ng-model='teacher.subjectCd' ng-options='s.sjCd as s.subjectName for s in subjects'>
+								<option value="">과목선택</option>
+							</select>
+						</div>
+						<div class="col-bg col-sm-2 col-sm-offset-3">
+							<label class="control-label label-indent"> 담당자</label>
+						</div>
+						<div class="col-sm-2">
+							<select name="account" class="form-control input-sm" ng-model="teacher.sliId" ng-options="m.userId as m.userName for m in managers">
+								<option value=''>담당자선택</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-2">
+							<label class=" control-label label-indent">강의지역 </label>
+						</div>
+						<div class="col-sm-10 no-padder">
+							<div class="radio col-sm-12">
+								<label class="i-checks">
+								<input name="lectureArea" type="checkbox" ng-model="all_lecture_areas" ng-change="selectAllLectureAreas()"><i></i> 전체
+								</label> &nbsp;&nbsp; 
+								(&nbsp;&nbsp;&nbsp;&nbsp; 
+								<label class="i-checks" ng-repeat="lecture in lecture_areas">
+									<input name="lectureArea" type="checkbox" 
+									ng-checked="teacher.lectureArea.indexOf(lecture.codeId) > -1" 
+									ng-true-value="{{lecture.codeId}}" 
+									ng-click="selectLectureArea(lecture.codeId)"><i></i> {{lecture.codeName1}}
+								</label> 
+								 )
+							</div>
+						</div>
+						<div class="col-sm-10 col-sm-offset-2 no-padder" ng-if="subArea.subAreaYn == 'Y'" style="line-height:38px; margin:10px 0 7px 0">
+							<div class="col-sm-1">
+								세부지역:
+							</div>
+							<div class="col-sm-2">								 
+								<select class="form-control input-sm" ng-model="subArea.select_sido" ng-options="m.codeId as m.codeName1 for m in sido_list" ng-change="gugunList();">
+									<option value=''>시도</option>
+								</select>								
+							</div>
+							<div class="col-sm-2">
+								<select class="form-control input-sm" ng-model="subArea.select_gugun" ng-options="m as m.gugunNm for m in gugun_list">
+									<option value=''>구군</option>
+								</select>								
+							</div>
+							<div class="col-sm-1">
+								<button class="btn btn-m" ng-click="addAreaGugun()">추가</button>
+							</div>
+						</div>
+						<div class="col-sm-10 col-sm-offset-2 no-padder" ng-if="subArea.subAreaYn == 'Y'">
+							<div class="col-sm-10">
+								<label class="control-label m-l-none" ng-repeat="obj in gugun_target_list">
+				                  {{obj.gugunNm}}
+				                  <button type="button" class="btn btn-xs btn-default" ng-click="gugun_target_list.splice($index, 1)">
+				                    <i class="fa fa-times primary"></i>
+				                  </button>
+				                </label>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-2">
+							<label class=" control-label label-indent">강사경력</label>
+						</div>
+						<div class="col-sm-4">
+							<input class="form-control input-sm" type="text" ng-model="teacher.career">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-2">
+							<label class=" control-label label-indent">강사사진</label>
+						</div>
+						<div class="col-sm-4">
+							<label class="btn btn-sm btn-info m-t-xs" ng-if="!files['photo']">
+								파일 첨부
+				                <input type="file" select-ng-files ng-model="files['photo']" ng-change="fileUpload('photo')"
+				                  style="opacity: 0; position: absolute; left: 0; width: 100px;height: 32px; top: 5px" />
+							</label>
+				              <label class="uploader" ng-if="files['photo']" ng-repeat="file in files['photo']">
+				                {{ file.name }}
+				                <button type="button" id="file" class="btn btn-xs btn-default" ng-click="files['photo'] = null;">
+				                  <i class="fa fa-times primary"></i>
+				                </button>
+				              </label>
+						</div>
+						<div class="col-bg col-sm-2 col-sm-offset-1">
+							<label class=" control-label label-indent">이력서원본</label>
+						</div>
+						<div class="col-sm-2">
+							<label class="btn btn-sm btn-info m-t-xs" ng-if="!files['resume']">
+								파일 첨부
+				                <input type="file" select-ng-files ng-model="files['resume']" ng-change="fileUpload('resume')"
+				                  style="opacity: 0; position: absolute; left: 0; width: 100px;height: 32px; top: 5px" />
+							</label>
+				              <label class="uploader" ng-if="files['resume']" ng-repeat="file in files['resume']">
+				                {{ file.name }}
+				                <button type="button" id="file" class="btn btn-xs btn-default" ng-click="files['resume'] = null;">
+				                  <i class="fa fa-times primary"></i>
+				                </button>
+				              </label>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-2">
+							<label class=" control-label label-indent">비자정보</label>
+						</div>
+						<div class="col-sm-2">
+							<input class="form-control input-sm" type="text" ng-model="teacher.visa" placeholder="비자종류" maxlength="20">
+						</div>
+						<div class="col-sm-2">
+							<input class="form-control input-sm date" type="text" ng-model="teacher.visaExpireDt" placeholder="비자만료일">
+						</div>
+						<div class="col-bg col-sm-2 col-sm-offset-1">
+							<label class="control-label label-indent">신분증사본</label>
+						</div>
+						<div class="col-sm-2">
+							<label class="btn btn-sm btn-info m-t-xs" ng-if="!files['idcard']">
+								파일 첨부
+				                <input type="file" select-ng-files ng-model="files['idcard']" ng-change="fileUpload('idcard')"
+				                  style="opacity: 0; position: absolute; left: 0; width: 100px;height: 32px; top: 5px" />
+							</label>
+			                <label class="uploader" ng-if="files['idcard']" ng-repeat="file in files['idcard']">
+					        	{{ file.name }}
+					            <button type="button" id="file" class="btn btn-xs btn-default" ng-click="files['idcard'] = null;">
+					            	<i class="fa fa-times primary"></i>
+					            </button>
+					        </label>
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-bg col-sm-2">
+							<label class="control-label label-indent"> 강사평가</label>
+						</div>
+						<div class="col-sm-2">
+							<select name="account" class="form-control input-sm" ng-model='teacher.score' ng-options='b as b for b in scores'>
+								<option value="">점수선택</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-2">
+							<label class=" control-label label-indent">계좌관리</label>
+						</div>
+						<div class="col-sm-2">
+							<select name="account" class="form-control input-sm" ng-model='teacher.bankCd' ng-options='b.codeId as b.codeName1 for b in bank_cds'>
+								<option value="">은행 선택</option>
+							</select>
+						</div>
+						<div class="col-sm-3 no-padder-left">
+							<input class="form-control input-sm" type="text" ng-model='teacher.bankAccount' maxlength="20">
+						</div>
+						<div class="col-sm-2">
+							<label class="col-sm-4 control-label">예금주</label>
+							<div class="col-sm-8 ">
+								<input class="form-control input-sm" type="text" ng-model='teacher.bankHolder' maxlength="20">
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<label class="col-sm-3 control-label">통장사본</label>
+							<div class="col-sm-9 uploader_wrap">
+								<label class="btn btn-sm btn-info m-t-xs" ng-if="!files['bankbook']">
+									파일 첨부
+					                <input type="file" select-ng-files ng-model="files['bankbook']" ng-change="fileUpload('bankbook')"
+					                  style="opacity: 0; position: absolute; left: 0; width: 100px;height: 32px; top: 5px" />
+								</label>
+					              <label class="uploader" ng-if="files['bankbook']" ng-repeat="file in files['bankbook']">
+					                {{ file.name }}
+					                <button type="button" id="file" class="btn btn-xs btn-default" ng-click="files['bankbook'] = null;">
+					                  <i class="fa fa-times primary"></i>
+					                </button>
+					              </label>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-bg col-sm-2">
+							<label class=" control-label label-indent">메모</label>
+						</div>
+						<div class="col-sm-5">
+							<input class="form-control input-sm" type="text" ng-model='teacher.cnts' maxlength="255">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		
+		<div class="wrapper-md">
+			<div class="panel panel-default panel-devide">
+				<div class="panel-heading font-bold">강사 선발 심사</div>
+				<div class="panel panel-default">
+		  			<table class="table table-bordered b-t b-light v_table">
+		        		<thead>
+				          	<tr class="active">            
+					            <th class="v-middle w-xs">구분</th>
+					            <th class="v-middle w-xxs">세부 구분</th>  
+					            <th class="v-middle w-xs">심사 항목</th>
+					            <th class="v-middle w-xs">배점 구분</th>
+					            <th class="v-middle w-xxs">배점</th>
+				          	</tr>
+		        		</thead>
+		        		<tbody>
+		        			
+		        			<tr>
+		        				<td rowspan="5">
+		        					서류 심사<br>기준<br>(총 70점)
+		        				</td>
+		        				<td rowspan="3">
+		        					전문 역량<br>(총 30점)
+		        				</td>
+		        				<td>
+		        					해당 어학 관련<br>학위 소유 여부<br>(총 20점)
+								</td>
+		        				<td>
+		        					<select class="form-control input-sm" ng-model='article_op1' ng-change="setArticleScore(1);"  
+		        						ng-options='s as s.codeName1 + " ("+s.codeName2+"점)" for s in article_list1'>
+										<option value="">선택</option>
+									</select>
+		        				</td>
+		        				<td><input class="form-control w-xxs" type="text" maxLength="2" ng-model="article_obj.item1" style="margin:auto; border:0; background:#fff;" readonly></td>
+		        			</tr>	        			
+		        			<tr>
+		        				<td>
+		        					해당 어학 관련<br>자격증 보유 여부<br>(총 10점)
+								</td>
+		        				<td>
+		        					<select class="form-control input-sm" ng-model='article_op2' ng-change="setArticleScore(2);" 
+		        						ng-options='s as s.codeName1 + " ("+s.codeName2+"점)" for s in article_list2'>
+										<option value="">선택</option>
+									</select>
+		        				</td>
+		        				<td><input class="form-control w-xxs" type="text" maxLength="2" ng-model="article_obj.item2" style="margin:auto; border:0; background:#fff;" readonly></td>
+		        			</tr>	        			
+		        			<tr>
+		        				<td>
+		        					교재 개발<br>관련 이력 여부<br>(가산점 총 5점)				
+								</td>
+		        				<td>
+		        					<select class="form-control input-sm" ng-model='article_op3' ng-change="setArticleScore(3);" 
+		        						ng-options='s as s.codeName1 + " ("+s.codeName2+"점)" for s in article_list3'>
+										<option value="">선택</option>
+									</select>
+		        				</td>
+		        				<td><input class="form-control w-xxs" type="text" maxLength="2" ng-model="article_obj.item3" style="margin:auto; border:0; background:#fff;" readonly></td>
+		        			</tr>
+		        			<tr>
+		        				<td rowspan="2">
+		        					강의 경력<br>(총 40점)
+		        				</td>
+		        				<td>
+		        					강의 경력<br>(총 20점)
+								</td>
+		        				<td>
+		        					<select class="form-control input-sm" ng-model='article_op4' ng-change="setArticleScore(4);"
+		        						 ng-options='s as s.codeName1 + " ("+s.codeName2+"점)" for s in article_list4'>
+										<option value="">선택</option>
+									</select>
+		        				</td>
+		        				<td><input class="form-control w-xxs" type="text" maxLength="2" ng-model="article_obj.item4" style="margin:auto; border:0; background:#fff;" readonly></td>
+		        			</tr>
+		        			<tr>
+		        				<td>
+		        					기업체 강의 이력<br>(총 20점)
+								</td>
+		        				<td>
+		        					<select class="form-control input-sm" ng-model='article_op5' ng-change="setArticleScore(5);" 
+		        						ng-options='s as s.codeName1 + " ("+s.codeName2+"점)" for s in article_list5'>
+										<option value="">선택</option>
+									</select>
+		        				</td>
+		        				<td><input class="form-control w-xxs" type="text" maxLength="2" ng-model="article_obj.item5" style="margin:auto; border:0; background:#fff;" readonly></td>
+		        			</tr>
+		        			
+		        			<tr ng-repeat="item in article_list6">
+		        				<td ng-if="$index == 0" rowspan="9">
+									면접 심사<br>기준<br>(총 30점)
+								</td>
+		        				<td ng-if="$index == 0" colspan="2" rowspan="3">
+		        					지도 역량<br>(총 10점)
+		        				</td>
+		        				<td>{{item.codeName1}} ({{item.codeName2}}점)</td>
+		        				<td><input class="form-control w-xxs" type="text" maxLength="1" ng-model="article_obj['item' + ($index+6)]" style="margin:auto;" ng-change="setArticleScore(0);"></td>
+		        			</tr>
+		        			<tr ng-repeat="item in article_list7">
+		        				<td ng-if="$index == 0" colspan="2" rowspan="6">
+		        					태도 및 적합성<br>(총 20점)
+		        				</td>
+		        				<td>{{item.codeName1}} ({{item.codeName2}}점)</td>
+		        				<td><input class="form-control w-xxs" type="text" maxLength="1" ng-model="article_obj['item' + ($index+9)]" style="margin:auto;" ng-change="setArticleScore(0);"></td>
+		        			</tr>
+		        			<tr>
+		        				<td colspan="4"></td>
+		        				<td>총점 : {{article_total}}</td>
+		        			</tr>
+		        		</tbody>
+		      		</table>
+		    	</div>
+			</div>
+		</div>
+		<div class="text-center m-t-lg">
+			<button class="btn btn-dark btn-w" ng-click="cancelUpdating()">취소</button>
+			&nbsp;
+			<button class="btn btn-primary btn-w" ng-click="saveTeacher()">등록</button>
+		</div>
+	</div>
+</div>
+<div style="position:fixed; z-index:9; width:100%; height:100%; left:0; top:0; display:none" id="daum_wrap">
+	<div id="layer" style="z-index:9999; display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
+		<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
+	</div>
+</div>
+
+<!-- /content -->

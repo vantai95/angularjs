@@ -1,0 +1,37 @@
+<div class="aside-wrap">
+  <!-- if you want to use a custom scroll when aside fixed, use the slimScroll
+    <div class="navi-wrap" ui-jq="slimScroll" ui-options="{height:'100%', size:'8px'}">
+  -->
+  <div class="navi-wrap">
+    <!-- user -->
+    <div class="clearfix hidden-xs text-center show" id="aside-user">
+      <div class="dropdown wrapper">
+        <a ui-sref="app.page.profile">
+          <span class="thumb-lg w-auto-folded avatar m-t-sm">
+            <img src="assets/img/a0.jpg" class="img-full" alt="...">
+          </span>
+        </a>
+        <a href class="dropdown-toggle hidden-folded">
+          <span class="clear">
+            <span class="block m-t-sm">
+              <strong class=" text-lt">{{current_user.userName}} ({{current_user.userId}}) </strong> <span class="glyphicon glyphicon-cog gray" aria-hidden="true"></span>
+            </span>
+            <span class="text-muted text-xs block"></span>
+          </span>
+        </a>
+          <ul class="dropdown-menu animated fadeInRight w hidden-folded">
+                <li class="wrapper  m-t-n-xs">
+                  <span class="arrow top hidden-folded arrow"></span>
+                        <div class="dropdown_link"><a ui-sref="access.login">정보수정</a> &nbsp;&nbsp; | &nbsp;&nbsp;<a ui-sref="access.password">로그아웃</a></div>
+                </li>
+              </ul>
+      </div>
+      <div class="line dk hidden-folded"></div>
+    </div>
+    <!-- / user -->
+
+    <!-- nav -->
+    <nav ui-nav class="navi" ng-include="'pages/app/nav.html'"></nav>
+    <!-- nav -->
+  </div>
+</div>

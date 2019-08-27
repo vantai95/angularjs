@@ -1,0 +1,86 @@
+<div class="app-content-body" ng-controller="CompanyController" ng-init="init()">
+	<div class="wrapper-md">
+		<div class="panel panel-default">
+			<div class="panel-heading font-bold">
+				고객사관리
+				<button type="submit" class="btn btn-primary pull-right btn-m"
+					ui-sref="app.company.insert" href="#!/app/notice/write">고객사
+					신규등록</button>
+			</div>
+
+			<div class="panel-body">
+				<form class="form-horizontal" method="get">
+					<div class="form-group b-n">
+						<label class="col-sm-1 control-label">회원구분</label>
+						<div class="col-sm-2">
+							<select name="account" class="form-control input-sm"
+								ng-model="member_mode"
+								ng-options="member_mode.codeId as member_mode.codeName1 for member_mode in member_modes">
+								<option value="">전체</option>
+							</select>
+						</div>
+						<label class="col-sm-1 col-sm-offset-3 control-label">기업구분</label>
+						<div class="col-sm-2">
+							<select name="account" class="form-control input-sm"
+								ng-model="company_type"
+								ng-options="company_type.codeId as company_type.codeName1 for company_type in company_types">
+								<option value="">전체</option>
+							</select>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="panel-footer">
+				<div class="row">
+					<button type="submit" class="btn btn-dark pull-right btn-m"
+						ng-click="getCompanies()">조회</button>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="table-responsive teacher_table">
+				<table class="table b-t b-light">
+					<thead>
+						<tr class="active">
+							<th>No</th>
+							<th>회원모드</th>
+							<th>업체명</th>
+							<th>기업구분</th>
+							<th>업체코드</th>
+							<th>가입코드</th>
+							<th>고객담당자</th>
+							<th>연락처</th>
+							<th>등록일</th>
+							<th>상세</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="company in companies">
+							<td>{{generateListNo(current_page, total_companies, $index)}}</td>
+							<td>{{ company.accountTypenm }}</td>
+							<td>{{ company.compNm }}</td>
+							<td>{{ company.compTypenm }}</td>
+							<td>{{ company.cpCd }}</td>
+							<td>{{ company.compKey }}</td>
+							<td>{{ company.sliCsNm }}</td>
+							<td>{{ company.sliCsMobile }}</td>
+							<td>{{ company.regDt }}</td>
+							<td><a class="primary underline" ui-sref="app.company.view({id: company.cpCd})">상세보기</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="row" ng-if="total_companies > app.page_size">
+			<div class=" text-center">
+				<ul class="pagination pagination-sm m-t-none m-b-none">
+					<li ng-click="previousPageClick()"><a href=""><i class="fa fa-chevron-left"></i></a></li>
+					<li ng-repeat="page in getRange(total_pages) track by $index" 
+						class="{{current_page == $index + 1 ? 'active' : ''}}"
+						ng-click="setCurrentPage($index + 1)"><a href="">{{$index + 1}}</a></li>
+					<li ng-click="nextPageClick()"><a href=""><i class="fa fa-chevron-right"></i></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

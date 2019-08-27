@@ -1,0 +1,192 @@
+
+<div class="app-content-body" ng-controller="MonthlyController"
+	ng-init="init()">
+	<div class="wrapper-md">
+		<div class="panel panel-default">
+			<div class="panel-heading font-bold">업체별 매출/강사료 지출 현황</div>
+			<div class="panel-body">
+				<form class="form-horizontal ng-pristine ng-valid" method="get">
+					<div class="form-group b-n">
+					 	<label class="col-sm-1 control-label">고객사명</label>
+						<div class="col-sm-2">
+							<select name="account" class="form-control input-sm"
+								ng-model="filter.cpCd"
+								ng-options="company.cpCd as company.compNm for company in companies">
+								<option value="">전체</option>
+							</select>
+						</div>
+						<label class="col-sm-1 col-sm-offset-3 control-label">년도</label>
+						<div class="col-sm-2">
+							<select name="account" class="form-control input-sm" ng-model="filter.year" ng-options="item as item for item in years ">
+							</select>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="panel-footer">
+				<div class="row">
+					<button type="submit" ng-click="getMonthly()"
+						class="btn btn-dark pull-right btn-m">조회</button>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="table-responsive teacher_table">
+				<table class="table b-t b-light">
+					<thead>
+						<tr class="active">
+							<th>고객사</th>
+							<th>구분</th>
+							<th>01월</th>
+							<th>02월</th>
+							<th>03월</th>
+							<th>04월</th>
+							<th>05월</th>
+							<th>06월</th>
+							<th>07월</th>
+							<th>08월</th>
+							<th>09월</th>
+							<th>10월</th>
+							<th>11월</th>
+							<th>12월</th>
+							<th>합계</th>
+						</tr>
+					</thead>
+					<tbody ng-repeat="(key, item) in list">
+						<tr>
+							<td rowspan="7">{{item.compNm}}</td>
+							<td>매출</td>
+							<td ng-repeat="n in [].constructor(12) track by $index">{{item.sales[($index+1) < 10 ? '0' + ($index+1) : ($index+1)] | number:0}}</td>
+							<td>{{item.sumSales | number:0}}</td>
+						</tr>
+						<tr>
+							<td>강사료</td>
+							<td ng-repeat="n in [].constructor(12) track by $index">{{item.teacher[($index+1) < 10 ? '0' + ($index+1) : ($index+1)] | number:0}}</td>
+							<td>{{item.sumTeacher | number:0}}</td>
+						</tr>
+						<tr>
+							<td>지출</td>
+							<td ng-repeat="n in [].constructor(12) track by $index">
+								<a class="primary underline" ng-click="openMonthlyPopup(item, $index + 1)">{{item.expend[($index+1) < 10 ? '0' + ($index+1) : ($index+1)] | number:0}}</a>
+							</td>
+							<td>
+								{{item.sumExpend | number:0}}
+							</td>
+						</tr>
+						<tr>
+							<td>영업이익</td>
+							<td ng-repeat="n in [].constructor(12) track by $index">{{item.operate_profit[($index+1) < 10 ? '0' + ($index+1) : ($index+1)] | number:0}}</td>
+							<td>{{item.sumOperateProfit | number:0}}</td>
+						</tr>
+						<tr>
+							<td>이익률</td>
+							<td ng-repeat="n in [].constructor(12) track by $index">{{item.rate_profit[($index+1) < 10 ? '0' + ($index+1) : ($index+1)] | number:0}}%</td>
+							<td>{{item.sumRateProfit | number:0}}%</td>
+						</tr>
+						<tr>
+							<td>세금계산서</td>
+							<td ng-repeat="n in [].constructor(12) track by $index">
+								<div class="input-group input-group-sm m-t-xs w-xs m-auto" ng-show="item.completeYn[($index+1) < 10 ? '0' + ($index+1) : ($index+1)] == 'N'">
+									<input type="text" class="form-control date" ng-model="item.taxBillDt[($index+1) < 10 ? '0' + ($index+1) : ($index+1)]" >
+
+								</div>
+								<div ng-show="item.completeYn[($index+1) < 10 ? '0' + ($index+1) : ($index+1)] == 'Y'">
+									{{item.taxBillDt[($index+1) < 10 ? '0' + ($index+1) : ($index+1)]}}
+								</div>
+							</td>
+							<td>-</td>
+						</tr>
+						<tr>
+							<td>입금여부</td>
+							<td ng-repeat="n in [].constructor(12) track by $index" callback-on-end="repeatComplete();" ng-click="complete(item, $index + 1);">
+								{{item.completeYn[($index+1) < 10 ? '0' + ($index+1) : ($index+1)]}}
+								<button type="submit" class="btn btn-primary btn-icon" ng-if="item.completeYn[($index+1) < 10 ? '0' + ($index+1) : ($index+1)] == 'N'">완료</button>
+							</td>
+							<td>-</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="row m-t-lg">
+			<div class="pull-right text-lg">
+				총 매출: <b>{{total_sale | number:0}}</b>원 &nbsp;&nbsp;/&nbsp;&nbsp;총 강사료:<b>{{total_teacher_fee | number:0}}</b>원&nbsp;&nbsp;/&nbsp;&nbsp;총 지출:<b>{{total_expenditure | number:0}}</b>원
+				&nbsp;&nbsp;/&nbsp;&nbsp;총영업이익: <b>{{total_sale-total_teacher_fee-total_expenditure | number:0}}</b>원&nbsp;&nbsp;/&nbsp;&nbsp;영업이익률:<b>{{total_rate_profit | number:0}}</b>%
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<script type="text/ng-template" id="monthlyPopup.html">
+  <div class="popup_wrap" ng-init="init()">
+      <div class="popup_header">
+        업체별 지출금액 입력<span class="pull-right closebtn " data-ng-click="cancel()"><img src="assets/img/close.png" class="img-full" alt="..."></span>
+    </div>
+    <div class="popup_body no-padder-top">
+        <div>
+    <div class="panel-body text-md m-t-md">
+      <form class="form-horizontal ng-pristine ng-valid" method="get">
+        <div class="form-group b-n">
+          	<label class="col-sm-2 control-label"><b>업체명</b></label>
+          	<label class="col-sm-2 control-label">{{obj.compNm}}</label>
+			<div class="pull-right col-sm-2 control-label">총 가감액 : {{total_price | number:0}}원</div>
+        </div>  
+      </form>
+    </div>
+    <div class="table-responsive heightmax">
+      <table class="table b-t b-light popup_table center_align m-b-none">
+        <thead>
+          <tr class="active">
+            <th>No</th>
+            <th>지출사유</th>
+            <th>지출액</th>
+            <th>일자</th>  
+            <th class="w-xxs" ng-if="obj.completeYn[month] == 'N'"></th>  
+            <th class="w-xxs" ng-if="obj.completeYn[month] == 'N'"></th>  
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="expenditure in expenditures track by $index">
+				<td>{{expenditures.length -  $index}}</td>
+            	<td>
+					<span ng-if="!expenditure.modify">{{expenditure.expendCnts}}</span>
+					<input ng-if="expenditure.modify" type="text" ng-model="expenditure.expendCnts"> 
+				</td>
+            	<td>
+					<span ng-if="!expenditure.modify">{{expenditure.expendMoney | number :0}}</span>
+					<input ng-if="expenditure.modify" type="text" ng-model="expenditure.expendMoney"> 
+				</td>
+            	<td>
+					<span ng-if="!expenditure.modify">{{expenditure.selectDt }}</span>
+					<input ng-if="expenditure.modify" type="text" my-date-picker ng-model="expenditure.selectDt">
+				</td>  
+	           	<td ng-if="obj.completeYn[month] == 'N'">
+					<a class="primary underline" ng-if="!expenditure.modify" ng-click="expenditure.modify = !expenditure.modify">수정</a>
+					<a class="primary underline" ng-if="expenditure.modify" ng-click="editExpenditure(expenditure)">저장</a>
+				</td> 
+            	<td ng-if="obj.completeYn[month] == 'N'">
+					<a class="primary underline" ng-if="expenditure.modify" ng-click="expenditure.modify = !expenditure.modify">취소</a>
+					<a class="primary underline" ng-if="!expenditure.modify" ng-click="deleteExpenditure(expenditure)">삭제</a>
+				</td>   
+          </tr>  
+          <tr ng-if="obj.completeYn[month] == 'N'">
+            <td> </td>
+            <td><input class="form-control input-sm" ng-model="expenditure_new.reason" type="text"></td>
+            <td><input class="form-control input-sm" ng-model="expenditure_new.price" type="text"></td>
+            <td><input class="form-control input-sm" ng-model="expenditure_new.date" my-date-picker type="text"></td> 
+            <td colspan="2"><a class="primary underline" ng-click="insertExpenditure()">등록</a></td> 
+          </tr>    
+        </tbody>
+      </table>
+    </div>        
+    </div>  
+    </div>  
+  </div>
+</script>
+
+<style>
+.modal-dialog {
+	width: 800px;
+}
+</style>

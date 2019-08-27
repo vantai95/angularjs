@@ -1,0 +1,125 @@
+<!-- list -->
+<div class="popup_wrap bg-gray">
+    <div class="popup_header heightfix-xs">
+        <span class="pull-right closebtn " data-ng-click="cancel()"><img src="assets/img/close.png" class="img-full" alt="..." ui-toggle-class="off-screen" data-target=".app-aside" ui-scroll="app"></span>
+    </div>
+</div>    
+<ul class="nav">
+    <div class="dropdown wrapper-xl text-center text-sm ltr bg-gray no-padder-top">
+          <span class="thumb-lg w-auto-folded avatar">
+            <img src="assets/img/profile.png" class="img-full" alt="...">
+          </span>
+          <span class="clear">
+            <span class="block m-t-sm text-md">
+              {{current_user.userName}} ({{current_user.userId}})
+            </span>
+          </span>
+      </div>
+    <div class="list">
+    <li>
+        <a class="auto text-lg" ui-sref="app.notice.list">      
+          <span>공지사항</span>
+        </a>
+        <ul class="nav-sub p-none">
+          <li class="nav-sub-header">
+            <a ui-sref="app.notice.list">
+              <span>공지사항</span>
+            </a>
+          </li> 
+    </ul>
+    </li>     
+      <li class="active">
+        <a ui-sref="app.mylecture.index" class="auto text-lg">      
+          <span>내강의실</span>
+        </a>
+        <ul class="nav-sub p-none">
+          <li class="nav-sub-header">
+            <a>
+              <span>내강의실</span>
+            </a>
+          </li>
+          <li ui-sref-active="active">
+            <a ui-sref="app.mylecture.lecture">
+              <span>기본 정보</span>
+            </a>
+          </li>
+          <li ui-sref-active="active">
+            <a ui-sref="app.mylecture.video">
+              <span>강의영상</span>
+            </a>
+          </li>
+          <li ui-sref-active="active">
+            <a ui-sref="app.mylecture.lvtest">
+              <span>레벨테스트</span>
+            </a>
+          </li>
+          <li ui-sref-active="active">
+            <a ui-sref="app.mylecture.attend">
+              <span>출석현황</span>
+            </a>
+          </li>
+          <li ui-sref-active="active">
+            <a ui-sref="app.mylecture.test">
+              <span>성취도평가</span>
+            </a>
+          </li>
+          <li ui-sref-active="active">
+            <a ui-sref="app.mylecture.alert_list">
+              <span>알림게시판</span>
+            </a>
+          </li>    
+        </ul>
+    </li>
+        <li>
+        <a class="auto text-lg" ui-sref="app.lecture.list">      
+          <span>수강신청</span>
+        </a>
+        <ul class="nav-sub p-none">
+          <li class="nav-sub-header">
+            <a ui-sref="app.lecture.list">
+              <span>수강신청</span>
+            </a>
+          </li> 
+    </ul>
+    </li>
+      <li class="active">
+        <a ui-sref="app.student.student_help" class="auto text-lg">      
+          <span>수강지원센터</span>
+        </a>
+        <ul class="nav-sub p-none">
+          <li class="nav-sub-header">
+            <a ui-sref="app.student.student_help">
+              <span>수강지원센터</span>
+            </a>
+          </li>  
+        </ul>
+        </li>     
+     <li>
+        <a class="auto text-lg" ui-sref="app.order.list">      
+          <span>결제내역</span>
+        </a>
+        <ul class="nav-sub p-none">
+          <li class="nav-sub-header">
+            <a ui-sref="app.order.list">
+              <span>결제내역</span>
+            </a>
+          </li> 
+    	</ul>
+    </li>
+    <li>
+        <a class="auto text-lg" ui-sref="app.data.list">      
+          <span>자료실</span>
+        </a>
+        <ul class="nav-sub p-none">
+          <li class="nav-sub-header">
+            <a ui-sref="app.data.list">
+              <span>자료실</span>
+            </a>
+          </li> 
+    	</ul>
+    </li> 
+  </div>
+</ul>
+<!-- / list -->
+
+    <button type="submit" class="btn btn-xl btn-primary btn-block" ng-click="logout()">로그아웃</button>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Collections>
+    	<!-- CodeList Start-->
+    	<ParameterMeta ID="groupId" IsReadOnly="false" Enable="true">
+			<RegBy>admin</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>admin</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>CodeList</ExecutionID>
+			<Value xsi:type="xsd:string">0</Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<!-- CodeList End-->
+    	    	    	
+    	<!-- FileList Start-->
+    	<ParameterMeta ID="curType" IsReadOnly="false" Enable="true">
+			<RegBy>file</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>file</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>FileList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="curCd" IsReadOnly="false" Enable="true">
+			<RegBy>file</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>file</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>FileList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+		<ParameterMeta ID="curKey" IsReadOnly="false" Enable="true">
+			<RegBy>file</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>file</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>FileList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<!-- FileList End--> 
+
+    	<!-- GetUserInfo Start-->  	
+		<ParameterMeta ID="userId" IsReadOnly="false" Enable="true">
+			<RegBy>file</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>file</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>GetUserInfo</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<!-- GetUserInfo End-->
+    	
+    	<!-- MyCompanyList Start-->  	
+		<ParameterMeta ID="shTcCd" IsReadOnly="false" Enable="true">
+			<RegBy>companyList</RegBy>
+			<RegDate>2014-12-01T12:00:00</RegDate>
+			<ModBy>file</ModBy>
+			<ModDate>2014-12-01T12:00:00</ModDate>
+			<ExecutionID>MyCompanyList</ExecutionID>
+			<Value xsi:type="xsd:string"></Value>
+			<DataType>String</DataType>
+			<DataLength>0</DataLength>
+			<Direction>Input</Direction>
+		</ParameterMeta>
+    	<!-- GetUserInfo End-->    	
+    </Collections>
+</MetaCollection>
